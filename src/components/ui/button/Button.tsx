@@ -1,27 +1,28 @@
 import { Slot } from "@radix-ui/react-slot"
-import { forwardRef } from "react"
+import * as React from "react"
 
+import type { PropsWithAsChild, PropsWithVariant } from "@/types/globals"
 import { cn } from "@/utilities/shadcn"
 
-import { variants } from "./variants"
+import { buttonVariants } from "./buttonVariants"
 
-import type { VariantProps } from "class-variance-authority"
+type Ref = React.ElementRef<"button">
+type Props = PropsWithVariant<
+  PropsWithAsChild<React.ComponentPropsWithoutRef<"button">>,
+  typeof buttonVariants
+>
 
-type ButtonProps = React.ComponentPropsWithoutRef<"button"> &
-  VariantProps<typeof variants> & {
-    asChild?: boolean
-  }
-
-export const Button = forwardRef<React.ElementRef<"button">, ButtonProps>(
+export const Button = React.forwardRef<Ref, Props>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Component = asChild ? Slot : "button"
+    const Comp = asChild ? Slot : "button"
     return (
-      <Component
+      <Comp
+        className={cn(buttonVariants({ className, size, variant }))}
         ref={ref}
-        className={cn(variants({ className, size, variant }))}
         {...props}
       />
     )
   }
 )
+
 Button.displayName = "Button"

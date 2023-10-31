@@ -1,5 +1,6 @@
 import { Logo } from "./Logo"
 import { ThemeToggle } from "./ThemeToggle"
+import { UserButton } from "./UserButton"
 
 export function Header() {
   return (
@@ -8,6 +9,7 @@ export function Header() {
         <Logo />
         <nav className="flex-1 flex items-center justify-end space-x-4">
           <ThemeToggle />
+          <UserButton />
         </nav>
       </div>
       <div></div>

@@ -1,11 +1,10 @@
-import * as React from "react"
-
+import { forwardRef } from "react"
 import { cn } from "@/utilities/shadcn"
 
 type Ref = React.ElementRef<"div">
 type Props = React.ComponentPropsWithoutRef<"div">
 
-export const CardContent = React.forwardRef<Ref, Props>(
+export const CardContent = forwardRef<Ref, Props>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}

@@ -1,11 +1,10 @@
-import * as React from "react"
-
+import { forwardRef } from "react"
 import { cn } from "@/utilities/shadcn"
 
 type Ref = React.ElementRef<"footer">
 type Props = React.ComponentPropsWithoutRef<"footer">
 
-export const CardFooter = React.forwardRef<Ref, Props>(
+export const CardFooter = forwardRef<Ref, Props>(
   ({ className, ...props }, ref) => (
     <footer
       ref={ref}

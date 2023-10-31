@@ -39,17 +39,15 @@
           "sibling",
           "type"
         ],
+        "newlines-between": "never",
         "pathGroups": [
           {
+            "pattern": "react",
             "group": "builtin",
-            "pattern": "react"
-          },
-          {
-            "group": "internal",
-            "pattern": "@/**"
+            "position": "before"
           }
         ],
-        "newlines-between": "always"
+        "pathGroupsExcludedImportTypes": ["react"]
       }
     ],
     "@typescript-eslint/consistent-type-exports": ["error"],

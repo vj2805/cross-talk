@@ -1,6 +1,5 @@
 import Link from "next/link"
 import Image from "next/image"
-
 import { AspectRatio } from "./ui/aspect-ratio/AspectRatio"
 
 export function Logo() {

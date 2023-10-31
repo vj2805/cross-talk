@@ -1,8 +1,6 @@
 import { Inter } from "next/font/google"
-
 import { Header } from "@/components/Header"
 import { ThemeProvider } from "@/components/ThemeProvider"
-
 import type { Metadata } from "next"
 
 import "../styles/globals.css"

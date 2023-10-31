@@ -1,8 +1,8 @@
 import { Inter } from "next/font/google"
 import { Header } from "@/components/Header"
 import { ThemeProvider } from "@/components/ThemeProvider"
+import { SessionProvider } from "@/components/SessionProvider"
 import type { Metadata } from "next"
-
 import "../styles/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -23,15 +23,17 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={inter.className}>
-        <ThemeProvider
-          enableSystem
-          disableTransitionOnChange
-          attribute="class"
-          defaultTheme="dark"
-        >
-          <Header />
-          {children}
-        </ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider
+            enableSystem
+            disableTransitionOnChange
+            attribute="class"
+            defaultTheme="dark"
+          >
+            <Header />
+            {children}
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   )

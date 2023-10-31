@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import { Label } from "@/components/ui/label"
+import { Label } from "@/components/ui/label/Label"
 import { cn } from "@/utilities/shadcn"
 import { useFormField } from "./useFormField"
 import { useFormItemId } from "./useFormItemId"

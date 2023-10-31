@@ -1,10 +1,8 @@
+import { forwardRef } from "react"
 import { Slot } from "@radix-ui/react-slot"
-import * as React from "react"
-
-import type { PropsWithAsChild, PropsWithVariant } from "@/types/globals"
 import { cn } from "@/utilities/shadcn"
-
 import { buttonVariants } from "./buttonVariants"
+import type { PropsWithAsChild, PropsWithVariant } from "@/types/globals"
 
 type Ref = React.ElementRef<"button">
 type Props = PropsWithVariant<
@@ -12,7 +10,7 @@ type Props = PropsWithVariant<
   typeof buttonVariants
 >
 
-export const Button = React.forwardRef<Ref, Props>(
+export const Button = forwardRef<Ref, Props>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
     return (

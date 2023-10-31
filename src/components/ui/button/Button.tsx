@@ -1,7 +1,7 @@
 import { forwardRef } from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cn } from "@/utilities/shadcn"
-import { buttonVariants } from "./buttonVariants"
+import { buttonVariants } from "./variants"
 import type { PropsWithAsChild, PropsWithVariant } from "@/types/globals"
 
 type Ref = React.ElementRef<"button">

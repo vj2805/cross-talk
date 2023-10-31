@@ -1,5 +1,6 @@
-import { boolean } from "zod"
 import type { VariantProps } from "class-variance-authority"
+
+export type SafeOmit<T extends object, K extends keyof T> = Omit<T, K>
 
 export type Nullish<T> = T | null
 export type Uncertain<T> = T | undefined

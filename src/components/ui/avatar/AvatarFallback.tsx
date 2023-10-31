@@ -1,15 +1,15 @@
 "use client"
-import * as React from "react"
-import * as AvatarPrimitive from "@radix-ui/react-avatar"
 
+import { forwardRef } from "react"
+import { Fallback } from "@radix-ui/react-avatar"
 import { cn } from "@/utilities/shadcn"
 
-type Ref = React.ElementRef<typeof AvatarPrimitive.Fallback>
-type Props = React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
+type Ref = React.ElementRef<typeof Fallback>
+type Props = React.ComponentPropsWithoutRef<typeof Fallback>
 
-export const AvatarFallback = React.forwardRef<Ref, Props>(
+export const AvatarFallback = forwardRef<Ref, Props>(
   ({ className, ...props }, ref) => (
-    <AvatarPrimitive.Fallback
+    <Fallback
       ref={ref}
       className={cn(
         "flex h-full w-full items-center justify-center rounded-full bg-muted",
@@ -20,4 +20,4 @@ export const AvatarFallback = React.forwardRef<Ref, Props>(
   )
 )
 
-AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
+AvatarFallback.displayName = Fallback.displayName

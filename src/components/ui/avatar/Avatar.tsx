@@ -1,24 +1,21 @@
 "use client"
 
-import * as React from "react"
-import * as AvatarPrimitive from "@radix-ui/react-avatar"
-
+import { forwardRef } from "react"
+import { Root } from "@radix-ui/react-avatar"
 import { cn } from "@/utilities/shadcn"
 
-type Ref = React.ElementRef<typeof AvatarPrimitive.Root>
-type Props = React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
+type Ref = React.ElementRef<typeof Root>
+type Props = React.ComponentPropsWithoutRef<typeof Root>
 
-export const Avatar = React.forwardRef<Ref, Props>(
-  ({ className, ...props }, ref) => (
-    <AvatarPrimitive.Root
-      ref={ref}
-      className={cn(
-        "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
-        className
-      )}
-      {...props}
-    />
-  )
-)
+export const Avatar = forwardRef<Ref, Props>(({ className, ...props }, ref) => (
+  <Root
+    ref={ref}
+    className={cn(
+      "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
+      className
+    )}
+    {...props}
+  />
+))
 
-Avatar.displayName = AvatarPrimitive.Root.displayName
+Avatar.displayName = Root.displayName

@@ -14,12 +14,12 @@ export function Logo() {
         ratio={16 / 9}
         className="flex items-center justify-center"
       >
-        <Image
+        {/* <Image
           priority
           src=""
           alt="Cross Talk Logo"
           className="dark:filter dark:invert"
-        />
+        /> */}
       </AspectRatio>
     </Link>
   )

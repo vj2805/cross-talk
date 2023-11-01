@@ -1,5 +1,5 @@
 interface PricingCardsProps {
-  redirect?: boolean
+  redirect: boolean
 }
 
 export function PricingCards({}: PricingCardsProps) {

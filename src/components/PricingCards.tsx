@@ -1,6 +1,7 @@
 import { CheckIcon } from "lucide-react"
 import Link from "next/link"
 import { getPricingTiers } from "@/configs/getPricingTiers"
+import { cn } from "@/utilities/shadcn"
 import { CheckoutButton } from "./CheckoutButton"
 
 interface PricingCardsProps {
@@ -14,7 +15,10 @@ export function PricingCards({ redirect }: PricingCardsProps) {
         {getPricingTiers().map(tier => (
           <div
             key={tier.id}
-            className="flex flex-col justify-between rounded-3xl bg-white p-8 shadow-xl ring-1 ring-gray-900/10 sm:p-10"
+            className={cn(
+              "flex flex-col justify-between rounded-3xl bg-white p-8 shadow-xl ring-1 ring-gray-900/10 sm:p-10",
+              !tier.id && "sm:pb-[9.5rem]"
+            )}
           >
             <h3
               id={tier.id + tier.name}
@@ -26,7 +30,7 @@ export function PricingCards({ redirect }: PricingCardsProps) {
               {tier.priceMonthly ? (
                 <>
                   <span className="text-5xl font-bold tracking-tight text-gray-900">
-                    &#8377;{tier.priceMonthly}
+                    &#8377; {tier.priceMonthly}
                   </span>
                   <span className="text-base font-semibold leading-7 text-gray-900">
                     /month

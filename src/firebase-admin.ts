@@ -1,4 +1,5 @@
 import * as admin from "firebase-admin"
+import { FirestoreAdapter } from "@auth/firebase-adapter"
 import { getEnv } from "./utilities/getEnv"
 
 const adminAppOptions: admin.AppOptions = {
@@ -15,3 +16,4 @@ const app = admin.apps.length
 
 export const adminDb = admin.firestore(app)
 export const adminAuth = admin.auth(app)
+export const adminFirestoreAdapter = FirestoreAdapter(adminDb)

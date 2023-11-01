@@ -1,3 +1,4 @@
+import { PricingCards } from "@/components/PricingCards"
 import { getServerSession } from "@/services/getServerSession"
 
 export default async function Register() {
@@ -31,6 +32,7 @@ export default async function Register() {
           </svg>
         </div>
       </div>
+      <PricingCards redirect={false} />
     </div>
   )
 }

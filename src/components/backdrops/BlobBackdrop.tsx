@@ -4,7 +4,7 @@ interface BackdropProps {
   position: "end" | "start"
 }
 
-export function Backdrop({ position }: BackdropProps) {
+export function BlobBackdrop({ position }: BackdropProps) {
   const isEnd = position === "end"
   return (
     <div

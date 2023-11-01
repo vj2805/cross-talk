@@ -3,12 +3,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/utilities/shadcn"
 import demo from "@/assets/images/demo.png"
-import { Backdrop } from "@/components/Backdrop"
+import { BlobBackdrop } from "@/components/backdrops/BlobBackdrop"
 
 export default function Home() {
   return (
     <main className="relative isolate pt-14 dark:bg-gray-900">
-      <Backdrop position="start" />
+      <BlobBackdrop position="start" />
       <div className="py-12 sm:py-20 lg:pb-40">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="">
@@ -69,7 +69,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Backdrop position="end" />
+      <BlobBackdrop position="end" />
     </main>
   )
 }

@@ -1,6 +1,7 @@
 import { PricingCards } from "@/components/PricingCards"
+import { CircleBackdrop } from "@/components/backdrops/CircleBackdrop"
 
-function Pricing() {
+export default function Pricing() {
   return (
     <div className="isolate overflow-hidden bg-gray-900">
       <div className="mx-auto max-w-7xl px-6 pb-96 pt-24 text-center sm:pt-32 lg:px-8">
@@ -18,7 +19,7 @@ function Pricing() {
           <p className="mx-auto max-w-2xl text-lg leading-8 text-zinc-400/60">
             Were 99% sure we have a plan to match 100% of your needs
           </p>
-          {/* <CircleBackdrop /> */}
+          <CircleBackdrop />
         </div>
       </div>
       <div className="flow-root bg-white pb-24 sm:pb-32">
@@ -29,5 +30,3 @@ function Pricing() {
     </div>
   )
 }
-
-export default Pricing

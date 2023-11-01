@@ -1,10 +1,12 @@
 import { CheckIcon } from "lucide-react"
 import Link from "next/link"
 import { getPricingTiers } from "@/configs/getPricingTiers"
+import { CheckoutButton } from "./CheckoutButton"
 
 interface PricingCardsProps {
   redirect: boolean
 }
+
 export function PricingCards({ redirect }: PricingCardsProps) {
   return (
     <div>
@@ -56,7 +58,7 @@ export function PricingCards({ redirect }: PricingCardsProps) {
                 </li>
               ))}
             </ul>
-            {/* {redirect ? (
+            {redirect ? (
               <Link
                 href="/register"
                 className="mt-8 block rounded-md bg-cyan-500 px-3.5 py-2 text-center text-sm font-semibold
@@ -68,7 +70,7 @@ export function PricingCards({ redirect }: PricingCardsProps) {
               </Link>
             ) : (
               tier.id && <CheckoutButton />
-            )} */}
+            )}
           </div>
         ))}
       </div>

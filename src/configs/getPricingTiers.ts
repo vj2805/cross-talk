@@ -10,7 +10,7 @@ const PRICING_TIERS = [
       1,
     ],
     href: "#",
-    id: "starter_ID",
+    id: null,
     name: "Starter",
     priceMonthly: null,
   },

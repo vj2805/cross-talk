@@ -9,4 +9,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: getEnv("GOOGLE_CLIENT_SECRET"),
     }),
   ],
+  session: {
+    strategy: "jwt",
+  },
 }

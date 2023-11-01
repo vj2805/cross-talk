@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import logo from "@/assets/images/logo.png"
 import { AspectRatio } from "./ui/aspect-ratio/AspectRatio"
 
 export function Logo() {
@@ -7,18 +8,18 @@ export function Logo() {
     <Link
       href="/"
       prefetch={false}
-      className="w-72 h-14 flex items-center overflow-hidden"
+      className="p-8 w-72 h-14 flex items-center overflow-hidden"
     >
       <AspectRatio
         ratio={16 / 9}
         className="flex items-center justify-center"
       >
-        {/* <Image
+        <Image
           priority
-          src=""
+          src={logo}
           alt="Cross Talk Logo"
           className="dark:filter dark:invert"
-        /> */}
+        />
       </AspectRatio>
     </Link>
   )

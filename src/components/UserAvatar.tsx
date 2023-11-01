@@ -13,10 +13,11 @@ interface UserAvatarProps {
 export function UserAvatar({ image, name, className }: UserAvatarProps) {
   return (
     <Avatar className={cn("bg-white text-black", className)}>
-      {name && image && (
+      {image && (
         <Image
+          priority
           src={image}
-          alt={name}
+          alt={name || "User Image"}
           width={40}
           height={40}
           className="rounded-full"

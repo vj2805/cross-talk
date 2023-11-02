@@ -18,7 +18,6 @@ export const pricingTiers: PricingTier[] = [
       "3 Chat Rooms limit",
       "Supports 2 languages",
       "48-hour support response time",
-      "1",
     ],
     href: "#",
     id: "Starter",

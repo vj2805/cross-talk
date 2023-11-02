@@ -1,4 +1,13 @@
-const PRICING_TIERS = [
+export type PricingTier = {
+  description: string
+  features: string[]
+  href: string
+  id: Local.Nullish<string>
+  name: string
+  priceMonthly: Local.Nullish<string>
+}
+
+export const pricingTiers: PricingTier[] = [
   {
     description: "Get chatting right away with anyone, anywhere!",
     features: [
@@ -7,7 +16,7 @@ const PRICING_TIERS = [
       "3 Chat Rooms limit",
       "Supports 2 languages",
       "48-hour support response time",
-      1,
+      "1",
     ],
     href: "#",
     id: null,
@@ -26,12 +35,8 @@ const PRICING_TIERS = [
       "Early access to New Features",
     ],
     href: "#",
-    id: "si_OnlcsLNQYbMVzV",
+    id: "pro",
     name: "Pro",
     priceMonthly: "199",
   },
 ]
-
-export function getPricingTiers() {
-  return PRICING_TIERS
-}

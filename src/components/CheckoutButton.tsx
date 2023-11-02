@@ -1,21 +1,24 @@
 "use client"
 
 import { useSession } from "next-auth/react"
+import { useCreateCheckout } from "@/hooks/useCreateCheckoutSession"
 import { cn } from "@/utilities/shadcn"
 
-export function CheckoutButton() {
-  const { data: session } = useSession()
+interface CheckoutButtonProps {
+  priceId: string
+}
 
-  function createCheckout() {
-    if (!session) {
-      return
-    }
-  }
+export function CheckoutButton({ priceId }: CheckoutButtonProps) {
+  const { data: session } = useSession()
+  const { createCheckoutSession, processing } = useCreateCheckout({
+    priceId,
+    session,
+  })
 
   return (
     <div className="flex flex-col space-y-2">
       <button
-        onClick={createCheckout}
+        onClick={createCheckoutSession}
         className={cn(
           "mt-8 block rounded-md bg-cyan-500 px-3.5 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm",
           "hover:bg-cyan-400",
@@ -24,7 +27,7 @@ export function CheckoutButton() {
           "disabled:opacity-80 disabled:bg-cyan-500/50 disabled:text-white disabled:cursor-default"
         )}
       >
-        Sign Up
+        {processing ? "Processing..." : "Sign Up"}
       </button>
     </div>
   )

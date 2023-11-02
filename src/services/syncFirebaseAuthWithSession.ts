@@ -1,14 +1,14 @@
 import { signInWithCustomToken, signOut } from "firebase/auth"
-import { firebaseAuth } from "@/firebase"
+import { clientAuth } from "@/firebase"
 import type { Session } from "next-auth"
 
 export async function syncFirebaseAuthWithSession(session: Session) {
   if (!session.firebaseToken) {
-    signOut(firebaseAuth)
+    signOut(clientAuth)
     return
   }
   try {
-    await signInWithCustomToken(firebaseAuth, session.firebaseToken)
+    await signInWithCustomToken(clientAuth, session.firebaseToken)
   } catch (error) {
     console.log("Error signing in with custom token", error)
   }

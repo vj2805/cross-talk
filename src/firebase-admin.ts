@@ -13,5 +13,5 @@ const app = admin.apps.length
   ? admin.app()
   : admin.initializeApp(adminAppOptions)
 
-export const adminDb = admin.firestore(app)
 export const adminAuth = admin.auth(app)
+export const adminRepo = admin.firestore(app)

@@ -1,13 +1,13 @@
 import Link from "next/link"
 import { MessagesSquareIcon } from "lucide-react"
-import { getServerSession } from "@/services/getServerSession"
+import { getSession } from "@/services/getSession"
 import { Logo } from "./Logo"
 import { ThemeToggle } from "./ThemeToggle"
 import { UserButton } from "./UserButton"
 import { CreateChatButton } from "./CreateChatButton"
 
 export async function Header() {
-  const session = await getServerSession()
+  const session = await getSession()
   return (
     <header className="top-0 z-50 sticky bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto p-5 pl-2 bg-white dark:bg-gray-900 flex flex-col sm:flex-row items-center">

@@ -1,9 +1,9 @@
 import { PricingCards } from "@/components/PricingCards"
 import { CircleBackdrop } from "@/components/backdrops/CircleBackdrop"
-import { getServerSession } from "@/services/getServerSession"
+import { getSession } from "@/services/getSession"
 
 export default async function Register() {
-  const session = await getServerSession()
+  const session = await getSession()
   return (
     <div className="isolate h-full overflow-hidden bg-gray-900 pb-40">
       <div className="mx-auto max-w-7xl px-6 pb-12 pt-16 text-white text-center lg:px-8">

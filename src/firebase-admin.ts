@@ -1,11 +1,11 @@
 import * as admin from "firebase-admin"
-import { getEnv } from "./utilities/getEnv"
+import { env } from "@/env"
 
 const adminAppOptions: admin.AppOptions = {
   credential: admin.credential.cert({
-    clientEmail: getEnv("FIREBASE_CLIENT_EMAIL"),
-    privateKey: getEnv("FIREBASE_PRIVATE_KEY"),
-    projectId: getEnv("FIREBASE_PROJECT_ID"),
+    clientEmail: env["FIREBASE_CLIENT_EMAIL"],
+    privateKey: env["FIREBASE_PRIVATE_KEY"],
+    projectId: env["FIREBASE_PROJECT_ID"],
   }),
 }
 

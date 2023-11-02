@@ -1,7 +1,7 @@
 import GoogleProvider from "next-auth/providers/google"
 import { FirestoreAdapter } from "@auth/firebase-adapter"
-import { getEnv } from "@/utilities/getEnv"
-import { adminAuth, adminRepo } from "./firebase-admin"
+import { env } from "@/env"
+import { adminAuth, adminRepo } from "@/firebase-admin"
 import type { CallbacksOptions, NextAuthOptions } from "next-auth"
 
 const jwt: CallbacksOptions["jwt"] = async ({ user, token }) => {
@@ -20,8 +20,8 @@ const session: CallbacksOptions["session"] = async ({ session, token }) => {
 }
 
 const google = GoogleProvider({
-  clientId: getEnv("GOOGLE_CLIENT_ID"),
-  clientSecret: getEnv("GOOGLE_CLIENT_SECRET"),
+  clientId: env["GOOGLE_CLIENT_ID"],
+  clientSecret: env["GOOGLE_CLIENT_SECRET"],
 })
 
 export const authOptions: NextAuthOptions = {

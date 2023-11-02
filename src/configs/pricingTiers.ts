@@ -2,9 +2,11 @@ export type PricingTier = {
   description: string
   features: string[]
   href: string
-  id: Local.Nullish<string>
-  name: string
-  priceMonthly: Local.Nullish<string>
+  id: string
+  priceMonthly?: {
+    cost: string
+    id: string
+  }
 }
 
 export const pricingTiers: PricingTier[] = [
@@ -19,9 +21,7 @@ export const pricingTiers: PricingTier[] = [
       "1",
     ],
     href: "#",
-    id: null,
-    name: "Starter",
-    priceMonthly: null,
+    id: "Starter",
   },
   {
     description: "Unlock the Full Potential with Pro!",
@@ -35,8 +35,10 @@ export const pricingTiers: PricingTier[] = [
       "Early access to New Features",
     ],
     href: "#",
-    id: "pro",
-    name: "Pro",
-    priceMonthly: "199",
+    id: "Pro",
+    priceMonthly: {
+      cost: "199",
+      id: "price_1O83KkSD4okAqSj5ysyvJBJA",
+    },
   },
 ]

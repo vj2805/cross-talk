@@ -3,10 +3,11 @@
 import { forwardRef } from "react"
 import { Label } from "@radix-ui/react-dropdown-menu"
 import { cn } from "@/utilities/shadcn"
-import type { PropsWithWithInset } from "@/types/globals"
 
 type Ref = React.ElementRef<typeof Label>
-type Props = PropsWithWithInset<React.ComponentPropsWithoutRef<typeof Label>>
+type Props = Local.PropsWithWithInset<
+  React.ComponentPropsWithoutRef<typeof Label>
+>
 
 export const DropdownMenuLabel = forwardRef<Ref, Props>(
   ({ className, withInset, ...props }, ref) => (

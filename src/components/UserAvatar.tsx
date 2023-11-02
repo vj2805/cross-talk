@@ -2,11 +2,10 @@ import Image from "next/image"
 import { cn } from "@/utilities/shadcn"
 import { Avatar } from "./ui/avatar/Avatar"
 import { AvatarFallback } from "./ui/avatar/AvatarFallback"
-import type { Optional } from "@/types/globals"
 
 interface UserAvatarProps {
-  name?: Optional<string>
-  image?: Optional<string>
+  name?: Local.Optional<string>
+  image?: Local.Optional<string>
   className?: string
 }
 

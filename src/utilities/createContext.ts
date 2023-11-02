@@ -1,7 +1,7 @@
 import React from "react"
 
 export const createContext = <T>(displayName: string) => {
-  const Context = React.createContext<T | undefined>(undefined)
+  const Context = React.createContext<Local.Uncertain<T>>(undefined)
   const Provider = Context.Provider
   const useContext = () => {
     const context = React.useContext(Context)

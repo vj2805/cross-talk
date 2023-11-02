@@ -2,10 +2,9 @@ import { forwardRef } from "react"
 import { Root } from "@radix-ui/react-toast"
 import { cn } from "@/utilities/shadcn"
 import { toastVariants } from "./variants"
-import type { PropsWithVariant } from "@/types/globals"
 
 type Ref = React.ElementRef<typeof Root>
-export type ToastProps = PropsWithVariant<
+export type ToastProps = Local.PropsWithVariant<
   React.ComponentPropsWithoutRef<typeof Root>,
   typeof toastVariants
 >

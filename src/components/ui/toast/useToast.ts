@@ -1,6 +1,5 @@
 import { useCallback, useReducer, useRef } from "react"
 import { generateUuid } from "@/utilities/generateUuid"
-import type { SafeOmit } from "@/types/globals"
 import type { ToastActionElement } from "./ToastAction"
 import type { ToastProps } from "./Toast"
 
@@ -14,7 +13,7 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement
 }
 
-type Toast = SafeOmit<ToasterToast, "id">
+type Toast = Local.SafeOmit<ToasterToast, "id">
 
 type Action =
   | {

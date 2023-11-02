@@ -4,10 +4,9 @@ import { forwardRef } from "react"
 import { ChevronRight } from "lucide-react"
 import { SubTrigger } from "@radix-ui/react-dropdown-menu"
 import { cn } from "@/utilities/shadcn"
-import type { PropsWithWithInset } from "@/types/globals"
 
 type Ref = React.ElementRef<typeof SubTrigger>
-type Props = PropsWithWithInset<
+type Props = Local.PropsWithWithInset<
   React.ComponentPropsWithoutRef<typeof SubTrigger>
 >
 

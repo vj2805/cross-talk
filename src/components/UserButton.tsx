@@ -10,10 +10,9 @@ import { DropdownMenuLabel } from "./ui/dropdown-menu/DropdownMenuLabel"
 import { DropdownMenuSeparator } from "./ui/dropdown-menu/DropdownMenuSeparator"
 import { DropdownMenuTrigger } from "./ui/dropdown-menu/DropdownMenuTrigger"
 import type { Session } from "next-auth"
-import type { Nullish } from "@/types/globals"
 
 interface UserButtonProps {
-  session: Nullish<Session>
+  session: Local.Nullish<Session>
 }
 
 export function UserButton({ session }: UserButtonProps) {

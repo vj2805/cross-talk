@@ -3,10 +3,11 @@
 import { forwardRef } from "react"
 import { Item } from "@radix-ui/react-dropdown-menu"
 import { cn } from "@/utilities/shadcn"
-import type { PropsWithWithInset } from "@/types/globals"
 
 type Ref = React.ElementRef<typeof Item>
-type Props = PropsWithWithInset<React.ComponentPropsWithoutRef<typeof Item>>
+type Props = Local.PropsWithWithInset<
+  React.ComponentPropsWithoutRef<typeof Item>
+>
 
 export const DropdownMenuItem = forwardRef<Ref, Props>(
   ({ className, withInset, ...props }, ref) => (

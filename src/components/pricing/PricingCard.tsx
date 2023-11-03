@@ -26,10 +26,7 @@ export function PricingCard({ tier, redirect }: PricingCardProps) {
         }
       )}
     >
-      <h3
-        id={tier.id}
-        className="text-base font-semibold leading-7 text-cyan-600"
-      >
+      <h3 className="text-base font-semibold leading-7 text-cyan-600">
         {tier.id}
       </h3>
       <PriceMonthly priceMonthly={tier.priceMonthly} />

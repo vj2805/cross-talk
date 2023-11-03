@@ -2,6 +2,7 @@ import { cn } from "@/utilities/shadcn"
 import { CheckoutButton } from "../CheckoutButton"
 import { PricingTierFeatureList } from "./PricingTierFeatureList"
 import { GetStartedTodayButton } from "./GetStartedTodayButton"
+import { PriceMonthly } from "./PriceMonthly"
 import type { PricingTier } from "@/configs/pricingTiers"
 
 interface PricingCardProps {
@@ -13,7 +14,13 @@ export function PricingCard({ tier, redirect }: PricingCardProps) {
   return (
     <div
       className={cn(
-        "flex flex-col justify-between rounded-3xl bg-white p-8 shadow-xl ring-1 ring-gray-900/10 sm:p-10",
+        "p-8",
+        "bg-white",
+        "rounded-3xl",
+        "shadow-xl",
+        "ring-1 ring-gray-900/10",
+        "flex flex-col justify-between",
+        "sm:p-10",
         {
           "sm:pb-[9.5rem]": !tier.priceMonthly,
         }
@@ -25,22 +32,7 @@ export function PricingCard({ tier, redirect }: PricingCardProps) {
       >
         {tier.id}
       </h3>
-      <div className="mt-4 flex items-baseline gap-x-2">
-        {tier.priceMonthly ? (
-          <>
-            <span className="text-5xl font-bold tracking-tight text-gray-900">
-              &#8377; {tier.priceMonthly.cost}
-            </span>
-            <span className="text-base font-semibold leading-7 text-gray-900">
-              /month
-            </span>
-          </>
-        ) : (
-          <span className="text-5xl font-bold tracking-tight text-gray-900">
-            Free
-          </span>
-        )}
-      </div>
+      <PriceMonthly priceMonthly={tier.priceMonthly} />
       <p className="mt-6 text-base leading-7 text-gray-600">
         {tier.description}
       </p>

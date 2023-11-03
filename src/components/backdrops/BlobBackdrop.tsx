@@ -10,21 +10,29 @@ export const BlobBackdrop: React.FC<BlobBackdropProps> = ({ position }) => {
     <div
       aria-hidden
       className={cn(
-        "absolute inset-x-0 -z-10 transform-gpu overflow-hidden blur-3xl",
-        isEnd ? "top-[calc(100%-30rem)]" : "top-28",
-        isEnd && "sm:top-[calc(100%-30rem)]"
+        "absolute",
+        "inset-x-0",
+        isEnd ? "top-[calc(100%-30rem)] sm:top-[calc(100%-30rem)]" : "top-28",
+        "-z-10",
+        "transform-gpu",
+        "overflow-hidden",
+        "blur-3xl"
       )}
     >
       <div
         className={cn(
-          "relative",
-          isEnd ? "left-[calc(50%+3rem)]" : "left-[calc(50%-11rem)]",
-          "aspect-[1155/678] w-[36.125rem]",
+          isEnd
+            ? "left-[calc(50%+3rem)] sm:left-[calc(50%+36rem)]"
+            : "left-[calc(50%-11rem)] sm:left-[calc(50%-30rem)]",
+          "w-[36.125rem] sm:w-[72.1875rem]",
+          "aspect-[1155/678]",
+          "opacity-30",
+          "bg-gradient-to-tr from-cyan-500 to-indigo-500",
           "-translate-x-1/2",
-          !isEnd && "rotate-[30deg]",
-          "bg-gradient-to-tr from-cyan-500 to-indigo-500 opacity-30",
-          isEnd ? "sm:left-[calc(50%+36rem)]" : "sm:left-[calc(50%-30rem)]",
-          "sm:w-[72.1875rem]"
+          "relative",
+          {
+            "rotate-[30deg]": !isEnd,
+          }
         )}
         style={{
           clipPath: `polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, ${

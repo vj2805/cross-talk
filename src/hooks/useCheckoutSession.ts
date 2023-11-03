@@ -9,7 +9,7 @@ interface UseCreateCheckoutParams {
   priceId: string
 }
 
-export function useCreateCheckout({
+export function useCheckoutSession({
   priceId,
   session,
 }: UseCreateCheckoutParams) {

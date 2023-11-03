@@ -1,7 +1,7 @@
 "use client"
 
 import { useSession } from "next-auth/react"
-import { useCreateCheckout } from "@/hooks/useCreateCheckoutSession"
+import { useCheckoutSession } from "@/hooks/useCheckoutSession"
 import { cn } from "@/utilities/shadcn"
 
 interface CheckoutButtonProps {
@@ -10,7 +10,7 @@ interface CheckoutButtonProps {
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
   const { data: session } = useSession()
-  const { createCheckoutSession, processing } = useCreateCheckout({
+  const { createCheckoutSession, processing } = useCheckoutSession({
     priceId,
     session,
   })

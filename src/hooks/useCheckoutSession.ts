@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { onSnapshot } from "firebase/firestore"
-import { useToast } from "@/components/ui/toast/useToast"
 import { addCheckoutSession } from "../services/addCheckoutSession"
 import type { Session } from "next-auth"
 

@@ -3,7 +3,7 @@ import { ThemeProvider } from "@/providers/ThemeProvider"
 import { SessionProvider } from "@/providers/SessionProvider"
 import { SyncSessionWithAuthProvider } from "@/providers/SyncSessionWithAuthProvider"
 import type { Metadata } from "next"
-import "@/styles/globals.css"
+import "@/styles.css"
 
 export const metadata: Metadata = {
   description: "A Chat SaaS",

@@ -34,10 +34,10 @@ export function useCheckoutSession({
     onSnapshot(docRef, snapshot => {
       const data = snapshot.data()
       if (data?.error) {
-        setError(data?.error)
+        setError(data.error)
       }
       if (data?.url) {
-        window.location.assign(data?.url)
+        window.location.assign(data.url)
       }
       setProcessing(false)
     })

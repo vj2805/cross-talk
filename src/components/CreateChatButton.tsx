@@ -4,10 +4,10 @@ import { MessageSquarePlusIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button/Button"
 
-export function CreateChatButton() {
+export const CreateChatButton: React.FC = () => {
   const router = useRouter()
 
-  async function createChat() {
+  const createChat = async () => {
     router.push(`/chat/${"abc"}`)
   }
 

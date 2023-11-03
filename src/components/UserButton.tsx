@@ -15,11 +15,10 @@ interface UserButtonProps {
   session: Nullish<Session>
 }
 
-export function UserButton({ session }: UserButtonProps) {
-  if (!session) {
-    return <SignInButton />
-  }
-  return (
+export const UserButton: React.FC<UserButtonProps> = ({ session }) =>
+  !session ? (
+    <SignInButton />
+  ) : (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
@@ -34,4 +33,3 @@ export function UserButton({ session }: UserButtonProps) {
       </DropdownMenuContent>
     </DropdownMenu>
   )
-}

@@ -8,7 +8,7 @@ import { DropdownMenuTrigger } from "./ui/dropdown-menu/DropdownMenuTrigger"
 import { DropdownMenuContent } from "./ui/dropdown-menu/DropdownMenuContent"
 import { DropdownMenuItem } from "./ui/dropdown-menu/DropdownMenuItem"
 
-export function ThemeToggle() {
+export const ThemeToggle: React.FC = () => {
   const { setTheme } = useTheme()
   return (
     <DropdownMenu>

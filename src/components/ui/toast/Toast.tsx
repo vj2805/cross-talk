@@ -4,7 +4,7 @@ import { cn } from "@/utilities/shadcn"
 import { toastVariants } from "./variants"
 
 type Ref = React.ElementRef<typeof Root>
-export type ToastProps = Local.PropsWithVariant<
+export type ToastProps = React.PropsWithVariant<
   React.ComponentPropsWithoutRef<typeof Root>,
   typeof toastVariants
 >

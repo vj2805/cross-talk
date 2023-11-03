@@ -6,7 +6,7 @@ import { SubTrigger } from "@radix-ui/react-dropdown-menu"
 import { cn } from "@/utilities/shadcn"
 
 type Ref = React.ElementRef<typeof SubTrigger>
-type Props = Local.PropsWithWithInset<
+type Props = React.PropsWithWithInset<
   React.ComponentPropsWithoutRef<typeof SubTrigger>
 >
 

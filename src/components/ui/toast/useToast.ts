@@ -13,7 +13,7 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement
 }
 
-type Toast = Local.SafeOmit<ToasterToast, "id">
+type Toast = SafeOmit<ToasterToast, "id">
 
 type Action =
   | {

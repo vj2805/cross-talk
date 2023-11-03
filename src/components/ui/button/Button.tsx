@@ -4,8 +4,8 @@ import { cn } from "@/utilities/shadcn"
 import { buttonVariants } from "./variants"
 
 type Ref = React.ElementRef<"button">
-type Props = Local.PropsWithVariant<
-  Local.PropsWithAsChild<React.ComponentPropsWithoutRef<"button">>,
+type Props = React.PropsWithVariant<
+  React.PropsWithAsChild<React.ComponentPropsWithoutRef<"button">>,
   typeof buttonVariants
 >
 

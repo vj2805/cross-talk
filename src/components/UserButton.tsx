@@ -12,7 +12,7 @@ import { DropdownMenuTrigger } from "./ui/dropdown-menu/DropdownMenuTrigger"
 import type { Session } from "next-auth"
 
 interface UserButtonProps {
-  session: Local.Nullish<Session>
+  session: Nullish<Session>
 }
 
 export function UserButton({ session }: UserButtonProps) {

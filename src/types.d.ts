@@ -1,13 +1,11 @@
 import type { VariantProps } from "class-variance-authority"
 
 declare global {
-  namespace Local {
-    type SafeOmit<T extends object, K extends keyof T> = Omit<T, K>
-
-    type Nullish<T> = T | null
-    type Uncertain<T> = T | undefined
-    type Optional<T> = T | null | undefined
-
+  type SafeOmit<T extends object, K extends keyof T> = Omit<T, K>
+  type Nullish<T> = T | null
+  type Uncertain<T> = T | undefined
+  type Optional<T> = T | null | undefined
+  namespace React {
     type PropsWithAsChild<T extends object> = T & { asChild?: boolean }
     type PropsWithWithInset<T extends object> = T & {
       withInset?: boolean

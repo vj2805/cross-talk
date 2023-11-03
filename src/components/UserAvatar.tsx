@@ -4,8 +4,8 @@ import { Avatar } from "./ui/avatar/Avatar"
 import { AvatarFallback } from "./ui/avatar/AvatarFallback"
 
 interface UserAvatarProps {
-  name?: Local.Optional<string>
-  image?: Local.Optional<string>
+  name?: Optional<string>
+  image?: Optional<string>
   className?: string
 }
 

@@ -5,7 +5,7 @@ import { Item } from "@radix-ui/react-dropdown-menu"
 import { cn } from "@/utilities/shadcn"
 
 type Ref = React.ElementRef<typeof Item>
-type Props = Local.PropsWithWithInset<
+type Props = React.PropsWithWithInset<
   React.ComponentPropsWithoutRef<typeof Item>
 >
 

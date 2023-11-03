@@ -8,7 +8,7 @@ export function useCreateCheckout({
   priceId,
   session,
 }: {
-  session: Local.Nullish<Session>
+  session: Nullish<Session>
   priceId: string
 }) {
   const [processing, setProcessing] = useState(false)

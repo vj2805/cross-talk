@@ -1,4 +1,4 @@
-import { pricingTiers } from "@/configs/pricingTiers"
+import { getPricingTiers } from "@/services/getPricingTiers"
 import { PricingCard } from "./PricingCard"
 
 interface PricingCardsProps {
@@ -7,7 +7,7 @@ interface PricingCardsProps {
 
 export const PricingCards: React.FC<PricingCardsProps> = ({ redirect }) => (
   <div className="mx-auto grid max-w-md grid-cols-1 gap-8 lg:max-w-4xl lg:grid-cols-2">
-    {pricingTiers.map(tier => (
+    {getPricingTiers().map(tier => (
       <PricingCard
         key={tier.id}
         tier={tier}

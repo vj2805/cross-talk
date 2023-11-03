@@ -1,5 +1,5 @@
 import { CheckIcon } from "lucide-react"
-import type { PricingTier } from "@/configs/pricingTiers"
+import type { PricingTier } from "@/services/getPricingTiers"
 
 interface PricingTierFeatureListProps {
   features: PricingTier["features"]

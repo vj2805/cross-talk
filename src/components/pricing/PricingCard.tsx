@@ -3,7 +3,7 @@ import { CheckoutButton } from "../CheckoutButton"
 import { PricingTierFeatureList } from "./PricingTierFeatureList"
 import { GetStartedTodayButton } from "./GetStartedTodayButton"
 import { PriceMonthly } from "./PriceMonthly"
-import type { PricingTier } from "@/configs/pricingTiers"
+import type { PricingTier } from "@/services/getPricingTiers"
 
 interface PricingCardProps {
   tier: PricingTier

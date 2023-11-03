@@ -9,7 +9,7 @@ export type PricingTier = {
   }
 }
 
-export const pricingTiers: PricingTier[] = [
+const pricingTiers: PricingTier[] = [
   {
     description: "Get chatting right away with anyone, anywhere!",
     features: [
@@ -41,3 +41,7 @@ export const pricingTiers: PricingTier[] = [
     },
   },
 ]
+
+export function getPricingTiers() {
+  return pricingTiers
+}

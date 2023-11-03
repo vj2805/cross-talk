@@ -1,13 +1,15 @@
 import { addDoc, collection } from "firebase/firestore"
 import { clientRepo } from "@/firebase"
 
+interface AddCheckoutSessionParams {
+  priceId: string
+  userId: string
+}
+
 export function addCheckoutSession({
   priceId,
   userId,
-}: {
-  priceId: string
-  userId: string
-}) {
+}: AddCheckoutSessionParams) {
   return addDoc(
     collection(clientRepo, "customers", userId, "checkout_sessions"),
     {

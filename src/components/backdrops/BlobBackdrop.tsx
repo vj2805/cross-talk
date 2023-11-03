@@ -10,13 +10,11 @@ export const BlobBackdrop: React.FC<BlobBackdropProps> = ({ position }) => {
     <div
       aria-hidden
       className={cn(
-        "absolute",
-        "inset-x-0",
+        "absolute -z-10 inset-x-0",
         isEnd ? "top-[calc(100%-30rem)] sm:top-[calc(100%-30rem)]" : "top-28",
-        "-z-10",
+        "blur-3xl",
         "transform-gpu",
-        "overflow-hidden",
-        "blur-3xl"
+        "overflow-hidden"
       )}
     >
       <div
@@ -24,12 +22,11 @@ export const BlobBackdrop: React.FC<BlobBackdropProps> = ({ position }) => {
           isEnd
             ? "left-[calc(50%+3rem)] sm:left-[calc(50%+36rem)]"
             : "left-[calc(50%-11rem)] sm:left-[calc(50%-30rem)]",
-          "w-[36.125rem] sm:w-[72.1875rem]",
-          "aspect-[1155/678]",
-          "opacity-30",
+          "aspect-[1155/678] w-[36.125rem] sm:w-[72.1875rem]",
           "bg-gradient-to-tr from-cyan-500 to-indigo-500",
-          "-translate-x-1/2",
+          "opacity-30",
           "relative",
+          "-translate-x-1/2",
           {
             "rotate-[30deg]": !isEnd,
           }

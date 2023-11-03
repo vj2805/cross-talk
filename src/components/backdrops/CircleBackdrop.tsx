@@ -1,7 +1,14 @@
+import { cn } from "@/utilities/shadcn"
+
 export const CircleBackdrop: React.FC = () => (
   <svg
     viewBox="0 0 1208 1024"
-    className="absolute -top-10 left-1/2 -z-10 h-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:top-12 md:-top-20 lg:-top-12 xl:top-0"
+    className={cn(
+      "absolute -z-10 left-1/2 -top-10 md:-top-20 lg:-top-12 xl:top-0",
+      "h-[64rem]",
+      "-translate-x-1/2",
+      "[mask-image:radial-gradient(closest-side,white,transparent)]"
+    )}
   >
     <ellipse
       cx={604}

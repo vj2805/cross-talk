@@ -14,7 +14,7 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
   name,
   className,
 }) => (
-  <Avatar className={cn("bg-white text-black", className)}>
+  <Avatar className={cn("bg-white", "text-black", className)}>
     {image && (
       <Image
         priority
@@ -27,7 +27,7 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
     )}
     <AvatarFallback
       delayMs={1000}
-      className="dark:bg-white dark:text-black text-lg"
+      className="dark:bg-white text-lg dark:text-black"
     >
       {name
         ?.split(" ")

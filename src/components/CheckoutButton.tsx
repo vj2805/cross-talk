@@ -20,11 +20,16 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
       <button
         onClick={createCheckoutSession}
         className={cn(
-          "mt-8 block rounded-md bg-cyan-500 px-3.5 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm",
-          "hover:bg-cyan-400",
+          "mt-8",
+          "block",
+          "px-3.5 py-2",
+          "bg-cyan-500 hover:bg-cyan-400 disabled:bg-cyan-500/50",
+          "text-center text-sm font-semibold leading-6 text-white disabled:text-white",
+          "rounded-md",
+          "shadow-sm",
           "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500",
-          "cursor-pointer",
-          "disabled:opacity-80 disabled:bg-cyan-500/50 disabled:text-white disabled:cursor-default"
+          "cursor-pointer  disabled:cursor-default",
+          "disabled:opacity-80"
         )}
       >
         {processing ? "Processing..." : "Sign Up"}

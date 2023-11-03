@@ -2,6 +2,7 @@
 
 import { MessageSquarePlusIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { cn } from "@/utilities/shadcn"
 import { Button } from "./ui/button/Button"
 
 export const CreateChatButton: React.FC = () => {
@@ -14,8 +15,8 @@ export const CreateChatButton: React.FC = () => {
   return (
     <Button
       variant="ghost"
-      className="aspect-square p-0"
       onClick={createChat}
+      className={cn("aspect-square", "p-0")}
     >
       <MessageSquarePlusIcon />
     </Button>

@@ -2,6 +2,7 @@
 
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
+import { cn } from "@/utilities/shadcn"
 import { Button } from "./ui/button/Button"
 import { DropdownMenu } from "./ui/dropdown-menu/DropdownMenu"
 import { DropdownMenuTrigger } from "./ui/dropdown-menu/DropdownMenuTrigger"
@@ -17,8 +18,23 @@ export const ThemeToggle: React.FC = () => {
           variant="outline"
           size="icon"
         >
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <Sun
+            className={cn(
+              "h-[1.2rem] w-[1.2rem]",
+              "rotate-0 dark:-rotate-90",
+              "scale-100 dark:scale-0",
+              "transition-all"
+            )}
+          />
+          <Moon
+            className={cn(
+              "absolute",
+              "h-[1.2rem] w-[1.2rem]",
+              "rotate-90 dark:rotate-0",
+              "scale-0 dark:scale-100",
+              "transition-all"
+            )}
+          />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>

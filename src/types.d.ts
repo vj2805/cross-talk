@@ -6,6 +6,7 @@ declare global {
   type Uncertain<T> = T | undefined
   type Optional<T> = T | null | undefined
   namespace React {
+    type PropsWithRequiredChildren = Required<React.PropsWithChildren>
     type PropsWithAsChild<T extends object> = T & { asChild?: boolean }
     type PropsWithWithInset<T extends object> = T & {
       withInset?: boolean

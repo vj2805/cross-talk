@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header"
 import { ThemeProvider } from "@/providers/ThemeProvider"
 import { SessionProvider } from "@/providers/SessionProvider"
-import { FirebaseAuthProvider } from "@/providers/FirebaseAuthProvider"
+import { SyncSessionWithAuthProvider } from "@/providers/SyncSessionWithAuthProvider"
 import type { Metadata } from "next"
 import "@/styles/globals.css"
 
@@ -22,7 +22,7 @@ export default function RootLayout({
     >
       <body>
         <SessionProvider>
-          <FirebaseAuthProvider>
+          <SyncSessionWithAuthProvider>
             <ThemeProvider
               enableSystem
               disableTransitionOnChange
@@ -32,7 +32,7 @@ export default function RootLayout({
               <Header />
               {children}
             </ThemeProvider>
-          </FirebaseAuthProvider>
+          </SyncSessionWithAuthProvider>
         </SessionProvider>
       </body>
     </html>

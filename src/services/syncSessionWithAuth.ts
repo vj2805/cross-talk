@@ -2,7 +2,7 @@ import { signInWithCustomToken, signOut } from "firebase/auth"
 import { clientAuth } from "@/firebase"
 import type { Session } from "next-auth"
 
-export async function syncFirebaseAuthWithSession(session: Session) {
+export async function syncSessionWithAuth(session: Session) {
   if (!session.firebaseToken) {
     signOut(clientAuth)
     return

@@ -1,4 +1,4 @@
-import { PricingCards } from "@/components/PricingCards"
+import { PricingCards } from "@/components/pricing/PricingCards"
 import { CircleBackdrop } from "@/components/backdrops/CircleBackdrop"
 import { getSession } from "@/services/getSession"
 

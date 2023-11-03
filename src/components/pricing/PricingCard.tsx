@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { cn } from "@/utilities/shadcn"
-import { CheckoutButton } from "./CheckoutButton"
+import { CheckoutButton } from "../CheckoutButton"
 import { PricingTierFeatureList } from "./PricingTierFeatureList"
 import type { PricingTier } from "@/configs/pricingTiers"
 

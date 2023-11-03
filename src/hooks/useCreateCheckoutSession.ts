@@ -4,13 +4,15 @@ import { addCheckoutSession } from "../services/addCheckoutSession"
 import type { Unsubscribe } from "firebase/firestore"
 import type { Session } from "next-auth"
 
+interface UseCreateCheckoutParams {
+  session: Nullish<Session>
+  priceId: string
+}
+
 export function useCreateCheckout({
   priceId,
   session,
-}: {
-  session: Nullish<Session>
-  priceId: string
-}) {
+}: UseCreateCheckoutParams) {
   const [processing, setProcessing] = useState(false)
   const unsubscribe = useRef<Unsubscribe>()
 

@@ -14,7 +14,6 @@ export function useCheckoutSession({
   session,
 }: UseCreateCheckoutParams) {
   const [processing, setProcessing] = useState(false)
-  const unsubscribe = useRef<Unsubscribe>()
 
   async function createCheckoutSession() {
     if (!session?.user?.id) {
@@ -31,8 +30,7 @@ export function useCheckoutSession({
       setProcessing(false)
       return
     }
-    unsubscribe.current?.()
-    unsubscribe.current = onSnapshot(docRef, snap => {
+    onSnapshot(docRef, snap => {
       const data = snap.data()
       const url = data?.url
       const error = data?.error
@@ -44,10 +42,7 @@ export function useCheckoutSession({
       }
       setProcessing(false)
     })
-    return unsubscribe
   }
-
-  useEffect(() => () => unsubscribe.current?.(), [])
 
   return { createCheckoutSession, processing }
 }

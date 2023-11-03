@@ -31,15 +31,13 @@ export function useCheckoutSession({
       setProcessing(false)
       return
     }
-    onSnapshot(docRef, snap => {
-      const data = snap.data()
-      const url = data?.url
-      const error = data?.error
-      if (error) {
-        setError(error)
+    onSnapshot(docRef, snapshot => {
+      const data = snapshot.data()
+      if (data?.error) {
+        setError(data?.error)
       }
-      if (url) {
-        window.location.assign(url)
+      if (data?.url) {
+        window.location.assign(data?.url)
       }
       setProcessing(false)
     })

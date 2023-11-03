@@ -6,7 +6,7 @@ import { ThemeToggle } from "./ThemeToggle"
 import { UserButton } from "./UserButton"
 import { CreateChatButton } from "./CreateChatButton"
 
-export async function Header() {
+export const Header: React.FC = async () => {
   const session = await getSession()
   return (
     <header className="top-0 z-50 sticky bg-white dark:bg-gray-900">

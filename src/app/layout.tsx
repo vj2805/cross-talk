@@ -15,8 +15,8 @@ export default function RootLayout({
 }: React.PropsWithRequiredChildren) {
   return (
     <html
-      lang="en"
       suppressHydrationWarning
+      lang="en"
     >
       <body>
         <SessionProvider>

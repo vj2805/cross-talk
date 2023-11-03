@@ -1,10 +1,10 @@
 import { cn } from "@/utilities/shadcn"
 
-interface BackdropProps {
+interface BlobBackdropProps {
   position: "end" | "start"
 }
 
-export function BlobBackdrop({ position }: BackdropProps) {
+export const BlobBackdrop: React.FC<BlobBackdropProps> = ({ position }) => {
   const isEnd = position === "end"
   return (
     <div

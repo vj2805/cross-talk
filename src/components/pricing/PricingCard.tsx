@@ -1,7 +1,7 @@
-import Link from "next/link"
 import { cn } from "@/utilities/shadcn"
 import { CheckoutButton } from "../CheckoutButton"
 import { PricingTierFeatureList } from "./PricingTierFeatureList"
+import { GetStartedTodayButton } from "./GetStartedTodayButton"
 import type { PricingTier } from "@/configs/pricingTiers"
 
 interface PricingCardProps {
@@ -47,15 +47,7 @@ export function PricingCard({ tier, redirect }: PricingCardProps) {
       <PricingTierFeatureList features={tier.features} />
       {tier.priceMonthly &&
         (redirect ? (
-          <Link
-            href="/register"
-            className="mt-8 block rounded-md bg-cyan-500 px-3.5 py-2 text-center text-sm font-semibold
-        leading-6 text-white shadow-sm hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2
-        focus-visible:outline-offset-2 focus-visible:outline-cyan-600 cursor-pointer
-        disabled:opacity-80"
-          >
-            Get Started Today
-          </Link>
+          <GetStartedTodayButton />
         ) : (
           <CheckoutButton priceId={tier.priceMonthly.id} />
         ))}

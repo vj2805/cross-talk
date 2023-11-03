@@ -1,4 +1,5 @@
 import { CheckIcon } from "lucide-react"
+import { cn } from "@/utilities/shadcn"
 import type { PricingTier } from "@/services/getPricingTiers"
 
 interface PricingTierFeatureListProps {
@@ -10,7 +11,7 @@ export const PricingTierFeatureList: React.FC<PricingTierFeatureListProps> = ({
 }) => (
   <ul
     role="list"
-    className="mt-10 space-y-4 text-sm leading-6 text-gray-900"
+    className={cn("mt-10", "space-y-4", "text-sm leading-6 text-gray-900")}
   >
     {features.map(feature => (
       <li
@@ -18,8 +19,8 @@ export const PricingTierFeatureList: React.FC<PricingTierFeatureListProps> = ({
         className="flex gap-x-3"
       >
         <CheckIcon
-          className="h-6 w-5 flex-none text-cyan-600"
-          aria-hidden="true"
+          aria-hidden
+          className={cn("h-6 w-5", "flex-none", "text-cyan-600")}
         />
         {feature}
       </li>

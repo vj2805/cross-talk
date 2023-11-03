@@ -13,23 +13,24 @@ interface PricingCardProps {
 export const PricingCard: React.FC<PricingCardProps> = ({ tier, redirect }) => (
   <div
     className={cn(
-      "p-8",
+      "p-8 sm:p-10",
+      {
+        "sm:pb-[9.5rem]": !tier.priceMonthly,
+      },
       "bg-white",
       "rounded-3xl",
       "shadow-xl",
       "ring-1 ring-gray-900/10",
-      "flex flex-col justify-between",
-      "sm:p-10",
-      {
-        "sm:pb-[9.5rem]": !tier.priceMonthly,
-      }
+      "flex flex-col justify-between"
     )}
   >
     <h3 className="text-base font-semibold leading-7 text-cyan-600">
       {tier.id}
     </h3>
     <PriceMonthly priceMonthly={tier.priceMonthly} />
-    <p className="mt-6 text-base leading-7 text-gray-600">{tier.description}</p>
+    <p className={cn("mt-6", "text-base leading-7 text-gray-600")}>
+      {tier.description}
+    </p>
     <PricingTierFeatureList features={tier.features} />
     {tier.priceMonthly &&
       (redirect ? (

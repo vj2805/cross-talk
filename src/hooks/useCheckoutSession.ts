@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import { onSnapshot } from "firebase/firestore"
+import { useToast } from "@/components/ui/toast/useToast"
 import { addCheckoutSession } from "../services/addCheckoutSession"
-import type { Unsubscribe } from "firebase/firestore"
 import type { Session } from "next-auth"
 
 interface UseCreateCheckoutParams {
@@ -14,11 +14,13 @@ export function useCheckoutSession({
   session,
 }: UseCreateCheckoutParams) {
   const [processing, setProcessing] = useState(false)
+  const [error, setError] = useState<Nullish<Error>>(null)
 
   async function createCheckoutSession() {
     if (!session?.user?.id) {
       return
     }
+    setError(null)
     let docRef
     try {
       setProcessing(true)
@@ -35,7 +37,7 @@ export function useCheckoutSession({
       const url = data?.url
       const error = data?.error
       if (error) {
-        alert(`An error occured: ${error.message}`)
+        setError(error)
       }
       if (url) {
         window.location.assign(url)
@@ -44,5 +46,5 @@ export function useCheckoutSession({
     })
   }
 
-  return { createCheckoutSession, processing }
+  return { createCheckoutSession, error, processing }
 }

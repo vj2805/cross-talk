@@ -8,7 +8,7 @@ interface CheckoutButtonProps {
   priceId: string
 }
 
-export function CheckoutButton({ priceId }: CheckoutButtonProps) {
+export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
   const { data: session } = useSession()
   const { createCheckoutSession, processing } = useCreateCheckout({
     priceId,

@@ -1,7 +1,7 @@
-import { CheckIcon } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/utilities/shadcn"
 import { CheckoutButton } from "./CheckoutButton"
+import { PricingTierFeatureList } from "./PricingTierFeatureList"
 import type { PricingTier } from "@/configs/pricingTiers"
 
 interface PricingCardProps {
@@ -12,10 +12,11 @@ interface PricingCardProps {
 export function PricingCard({ tier, redirect }: PricingCardProps) {
   return (
     <div
-      key={tier.id}
       className={cn(
         "flex flex-col justify-between rounded-3xl bg-white p-8 shadow-xl ring-1 ring-gray-900/10 sm:p-10",
-        !tier.priceMonthly && "sm:pb-[9.5rem]"
+        {
+          "sm:pb-[9.5rem]": !tier.priceMonthly,
+        }
       )}
     >
       <h3
@@ -43,23 +44,7 @@ export function PricingCard({ tier, redirect }: PricingCardProps) {
       <p className="mt-6 text-base leading-7 text-gray-600">
         {tier.description}
       </p>
-      <ul
-        role="list"
-        className="mt-10 space-y-4 text-sm leading-6 text-gray-900"
-      >
-        {tier.features.map(feature => (
-          <li
-            key={feature}
-            className="flex gap-x-3"
-          >
-            <CheckIcon
-              className="h-6 w-5 flex-none text-cyan-600"
-              aria-hidden="true"
-            />
-            {feature}
-          </li>
-        ))}
-      </ul>
+      <PricingTierFeatureList features={tier.features} />
       {tier.priceMonthly &&
         (redirect ? (
           <Link

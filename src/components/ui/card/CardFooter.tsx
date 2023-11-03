@@ -8,7 +8,7 @@ export const CardFooter = forwardRef<Ref, Props>(
   ({ className, ...props }, ref) => (
     <footer
       ref={ref}
-      className={cn("flex items-center p-6 pt-0", className)}
+      className={cn("p-6 pt-0", "flex items-center", className)}
       {...props}
     />
   )

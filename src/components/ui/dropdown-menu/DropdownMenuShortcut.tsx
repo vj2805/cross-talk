@@ -11,7 +11,12 @@ export const DropdownMenuShortcut = forwardRef<Ref, Props>(
     return (
       <span
         ref={ref}
-        className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
+        className={cn(
+          "ml-auto",
+          "text-xs tracking-widest",
+          "opacity-60",
+          className
+        )}
         {...props}
       />
     )

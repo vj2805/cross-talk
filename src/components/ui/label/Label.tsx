@@ -11,7 +11,9 @@ export const Label = forwardRef<Ref, Props>(({ className, ...props }, ref) => (
   <Root
     ref={ref}
     className={cn(
-      "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+      "text-sm font-medium leading-none",
+      "peer-disabled:cursor-not-allowed",
+      "peer-disabled:opacity-70",
       className
     )}
     {...props}

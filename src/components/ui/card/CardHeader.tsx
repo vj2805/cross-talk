@@ -8,7 +8,7 @@ export const CardHeader = forwardRef<Ref, Props>(
   ({ className, ...props }, ref) => (
     <header
       ref={ref}
-      className={cn("flex flex-col space-y-1.5 p-6", className)}
+      className={cn("p-6", "flex flex-col space-y-1.5", className)}
       {...props}
     />
   )

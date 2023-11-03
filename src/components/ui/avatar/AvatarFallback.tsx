@@ -12,7 +12,10 @@ export const AvatarFallback = forwardRef<Ref, Props>(
     <Fallback
       ref={ref}
       className={cn(
-        "flex h-full w-full items-center justify-center rounded-full bg-muted",
+        "h-full w-full",
+        "bg-muted",
+        "rounded-full",
+        "flex items-center justify-center",
         className
       )}
       {...props}

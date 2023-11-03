@@ -8,7 +8,7 @@ export const Skeleton = forwardRef<Ref, Props>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("animate-pulse rounded-md bg-muted", className)}
+      className={cn("bg-muted", "rounded-md", "animate-pulse", className)}
       {...props}
     />
   )

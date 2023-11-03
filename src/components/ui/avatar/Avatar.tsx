@@ -11,7 +11,11 @@ export const Avatar = forwardRef<Ref, Props>(({ className, ...props }, ref) => (
   <Root
     ref={ref}
     className={cn(
-      "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
+      "shrink-0",
+      "h-10 w-10",
+      "rounded-full",
+      "relative",
+      "flex overflow-hidden",
       className
     )}
     {...props}

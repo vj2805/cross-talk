@@ -15,14 +15,23 @@ export const DropdownMenuSubTrigger = forwardRef<Ref, Props>(
     <SubTrigger
       ref={ref}
       className={cn(
-        "flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent",
-        withInset && "pl-8",
+        "px-2 py-1.5",
+        {
+          "pl-8": withInset,
+        },
+        "flex items-center",
+        "text-sm",
+        "rounded-sm",
+        "outline-none",
+        "cursor-default",
+        "select-none",
+        "focus:bg-accent data-[state=open]:bg-accent",
         className
       )}
       {...props}
     >
       {children}
-      <ChevronRight className="ml-auto h-4 w-4" />
+      <ChevronRight className={cn("ml-auto", "h-4 w-4")} />
     </SubTrigger>
   )
 )

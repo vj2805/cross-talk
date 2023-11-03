@@ -13,7 +13,19 @@ export const DropdownMenuRadioItem = forwardRef<Ref, Props>(
     <RadioItem
       ref={ref}
       className={cn(
-        "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+        "py-1.5 pl-8 pr-2",
+        "flex items-center",
+        "text-sm",
+        "rounded-sm",
+        "relative",
+        "outline-none",
+        "select-none",
+        "cursor-default",
+        "transition-colors",
+        "focus:bg-accent",
+        "focus:text-accent-foreground",
+        "data-[disabled]:pointer-events-none",
+        "data-[disabled]:opacity-50",
         className
       )}
       {...props}

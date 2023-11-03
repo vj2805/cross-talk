@@ -8,7 +8,10 @@ export const Card = forwardRef<Ref, Props>(({ className, ...props }, ref) => (
   <section
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      "bg-card",
+      "text-card-foreground",
+      "border rounded-lg",
+      "shadow-sm",
       className
     )}
     {...props}

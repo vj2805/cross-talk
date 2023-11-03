@@ -14,8 +14,22 @@ export const DropdownMenuItem = forwardRef<Ref, Props>(
     <Item
       ref={ref}
       className={cn(
-        "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-        withInset && "pl-8",
+        "px-2 py-1.5",
+        {
+          "pl-8": withInset,
+        },
+        "text-sm",
+        "relative",
+        "flex items-center",
+        "rounded-sm",
+        "outline-none",
+        "select-none",
+        "cursor-default",
+        "transition-colors",
+        "focus:bg-accent",
+        "focus:text-accent-foreground",
+        "data-[disabled]:pointer-events-none",
+        "data-[disabled]:opacity-50",
         className
       )}
       {...props}

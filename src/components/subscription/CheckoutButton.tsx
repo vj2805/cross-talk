@@ -3,7 +3,9 @@
 import { useSession } from "next-auth/react"
 import { useCheckoutSession } from "@/hooks/useCheckoutSession"
 import { cn } from "@/services/shadcn"
+import { useSubscriptionStore } from "@/stores/subscription"
 import { Spinner } from "../ui/spinner/Spinner"
+import { ManageSubscriptionButton } from "./ManageSubscriptionButton"
 
 interface CheckoutButtonProps {
   priceId: string
@@ -15,11 +17,11 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
     priceId,
     session,
   })
+  const subscription = useSubscriptionStore(store => store.subscription)
 
   return (
     <div className="flex flex-col space-y-2">
-      <button
-        onClick={createCheckoutSession}
+      <div
         className={cn(
           "mt-8",
           "block",
@@ -33,8 +35,14 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
           "disabled:opacity-80"
         )}
       >
-        {processing ? <Spinner /> : "Sign Up"}
-      </button>
+        {subscription === undefined || processing ? (
+          <Spinner />
+        ) : subscription?.status === "active" ? (
+          <ManageSubscriptionButton />
+        ) : (
+          <button onClick={createCheckoutSession}>Sign Up</button>
+        )}
+      </div>
     </div>
   )
 }

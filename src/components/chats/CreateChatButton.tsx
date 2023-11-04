@@ -4,10 +4,24 @@ import { MessageSquarePlusIcon } from "lucide-react"
 import { cn } from "@/services/shadcn"
 import { Button } from "../ui/button/Button"
 import { useCreateChat } from "../../hooks/useCreateChat"
+import { Spinner } from "../ui/spinner/Spinner"
 
-export const CreateChatButton: React.FC = () => {
-  const { createChat } = useCreateChat()
-  return (
+interface CreateChatButtonProps {
+  large?: true
+}
+
+export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
+  large,
+}) => {
+  const { createChat, loading } = useCreateChat()
+  return large ? (
+    <Button
+      variant="default"
+      onClick={createChat}
+    >
+      {loading ? <Spinner /> : "Create a New Chat"}
+    </Button>
+  ) : (
     <Button
       variant="ghost"
       onClick={createChat}

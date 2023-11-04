@@ -1,3 +1,7 @@
-export const ManageSubscriptionButton = () => {
-  return <div>ManageSubscriptionButton</div>
-}
+import { manageSubscription } from "@/actions/manageSubscription"
+
+export const ManageSubscriptionButton: React.FC = () => (
+  <form action={manageSubscription}>
+    <button>Manage Subscription</button>
+  </form>
+)

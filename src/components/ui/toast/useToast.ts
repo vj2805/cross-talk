@@ -1,5 +1,5 @@
 import { useCallback, useReducer, useRef } from "react"
-import { generateUuid } from "@/services/generateUuid"
+import { generateId } from "@/services/generateId"
 import type { ToastActionElement } from "./ToastAction"
 import type { ToastProps } from "./Toast"
 
@@ -84,7 +84,7 @@ export function useToast() {
   )
 
   function showToast({ ...props }: Toast) {
-    const id = generateUuid()
+    const id = generateId()
 
     function updateToast(toast: Toast) {
       return dispatch({ id, toast, type: "update" })

@@ -99,15 +99,15 @@ function showToast(toast: Toast) {
     dispatch({ id, toast, type: "update" })
   }
 
-  function dismissToast() {
-    dispatch({ id, type: "dismiss" })
+  function dismissToast(delay: number) {
+    setTimeout(() => dispatch({ id, type: "dismiss" }), delay)
   }
 
   dispatch({
     toast: {
       ...toast,
       id,
-      onOpenChange: open => !open && dismissToast(),
+      onOpenChange: open => !open && dismissToast(0),
       open: true,
     },
     type: "add",

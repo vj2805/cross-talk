@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header"
-import { ThemeProvider } from "@/providers/ThemeProvider"
-import { SessionProvider } from "@/providers/SessionProvider"
-import { SyncSessionWithAuthProvider } from "@/providers/SyncSessionWithAuthProvider"
+import { ThemeProvider } from "@/components/providers/ThemeProvider"
+import { SessionProvider } from "@/components/providers/SessionProvider"
+import { SyncSessionWithAuthProvider } from "@/components/providers/SyncSessionWithAuthProvider"
 import type { Metadata } from "next"
 import "@/styles.css"
 

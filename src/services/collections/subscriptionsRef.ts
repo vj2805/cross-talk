@@ -71,7 +71,7 @@ const subscriptionConverter: FirestoreDataConverter<Subscription> = {
   },
 }
 
-export function getSubscriptionCollection(userId: string) {
+export function subscriptionsRef(userId: string) {
   return collection(
     clientRepo,
     "customers",

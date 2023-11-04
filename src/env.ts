@@ -6,6 +6,7 @@ const EnvSchema = zod.object({
   FIREBASE_PROJECT_ID: zod.string(),
   GOOGLE_CLIENT_ID: zod.string(),
   GOOGLE_CLIENT_SECRET: zod.string(),
+  NODE_ENV: zod.union([zod.literal("development"), zod.literal("production")]),
   STRIPE_SECRET_KEY: zod.string(),
 })
 

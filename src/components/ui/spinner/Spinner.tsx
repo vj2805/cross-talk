@@ -12,8 +12,8 @@ export const Spinner = () => (
       xmlns="http://www.w3.org/2000/svg"
       className={cn(
         "h-6 w-6",
-        "text-gray-300 dark:text-gray-600",
-        "fill-white",
+        "text-cyan-300 dark:text-cyan-950",
+        "fill-cyan-800",
         "animate-spin"
       )}
     >

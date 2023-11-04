@@ -1,8 +1,10 @@
 import { Header } from "@/components/Header"
-import { ThemeProvider } from "@/components/providers/ThemeProvider"
 import { SessionProvider } from "@/components/providers/SessionProvider"
+import { SubscriptionProvider } from "@/components/providers/SubscriptionProvider"
 import { SyncSessionWithAuthProvider } from "@/components/providers/SyncSessionWithAuthProvider"
+import { ThemeProvider } from "@/components/providers/ThemeProvider"
 import type { Metadata } from "next"
+
 import "@/styles.css"
 
 export const metadata: Metadata = {
@@ -21,15 +23,17 @@ export default function RootLayout({
       <body>
         <SessionProvider>
           <SyncSessionWithAuthProvider>
-            <ThemeProvider
-              enableSystem
-              disableTransitionOnChange
-              attribute="class"
-              defaultTheme="dark"
-            >
-              <Header />
-              {children}
-            </ThemeProvider>
+            <SubscriptionProvider>
+              <ThemeProvider
+                enableSystem
+                disableTransitionOnChange
+                attribute="class"
+                defaultTheme="dark"
+              >
+                <Header />
+                {children}
+              </ThemeProvider>
+            </SubscriptionProvider>
           </SyncSessionWithAuthProvider>
         </SessionProvider>
       </body>

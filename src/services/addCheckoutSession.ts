@@ -1,5 +1,5 @@
-import { addDoc, collection } from "firebase/firestore"
-import { clientRepo } from "@/firebase"
+import { addDoc } from "firebase/firestore"
+import { checkoutSessionsRef } from "./collections/checkoutSessionsRef"
 
 interface AddCheckoutSessionParams {
   priceId: string
@@ -10,12 +10,9 @@ export function addCheckoutSession({
   priceId,
   userId,
 }: AddCheckoutSessionParams) {
-  return addDoc(
-    collection(clientRepo, "customers", userId, "checkout_sessions"),
-    {
-      cancel_url: window.location.origin,
-      price: priceId,
-      success_url: window.location.origin,
-    }
-  )
+  return addDoc(checkoutSessionsRef(userId), {
+    cancel_url: window.location.origin,
+    price: priceId,
+    success_url: window.location.origin,
+  })
 }

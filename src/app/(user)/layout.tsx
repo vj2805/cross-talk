@@ -5,3 +5,5 @@ const Layout: React.FC<React.PropsWithRequiredChildren> = ({ children }) => (
     {children}
   </div>
 )
+
+export default Layout

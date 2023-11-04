@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 
 export const GetStartedTodayButton: React.FC = () => (
   <Link

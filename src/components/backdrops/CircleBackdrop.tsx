@@ -1,4 +1,4 @@
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 
 export const CircleBackdrop: React.FC = () => (
   <svg

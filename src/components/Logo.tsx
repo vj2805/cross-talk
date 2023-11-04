@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import logo from "@/assets/images/logo.png"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 import { AspectRatio } from "./ui/aspect-ratio/AspectRatio"
 
 export const Logo: React.FC = () => (

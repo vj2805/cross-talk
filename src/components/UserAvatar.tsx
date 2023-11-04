@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 import { Avatar } from "./ui/avatar/Avatar"
 import { AvatarFallback } from "./ui/avatar/AvatarFallback"
 

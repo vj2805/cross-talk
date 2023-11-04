@@ -1,7 +1,7 @@
 import { MoveRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 import demo from "@/assets/images/demo.png"
 import { BlobBackdrop } from "@/components/backdrops/BlobBackdrop"
 

@@ -1,6 +1,6 @@
 import { PricingCards } from "@/components/pricing/PricingCards"
 import { CircleBackdrop } from "@/components/backdrops/CircleBackdrop"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 
 export default function Pricing() {
   return (

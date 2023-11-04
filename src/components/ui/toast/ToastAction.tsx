@@ -1,6 +1,6 @@
 import { forwardRef } from "react"
 import { Action } from "@radix-ui/react-toast"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 
 type Ref = React.ElementRef<typeof Action>
 type Props = React.ComponentPropsWithoutRef<typeof Action>

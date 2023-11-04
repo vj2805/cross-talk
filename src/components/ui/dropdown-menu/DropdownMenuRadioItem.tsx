@@ -3,7 +3,7 @@
 import { forwardRef } from "react"
 import { Circle } from "lucide-react"
 import { ItemIndicator, RadioItem } from "@radix-ui/react-dropdown-menu"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 
 type Ref = React.ElementRef<typeof RadioItem>
 type Props = React.ComponentPropsWithoutRef<typeof RadioItem>

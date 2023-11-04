@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { MessagesSquareIcon } from "lucide-react"
 import { getSession } from "@/services/getSession"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 import { Logo } from "./Logo"
 import { ThemeToggle } from "./ThemeToggle"
 import { UserButton } from "./UserButton"

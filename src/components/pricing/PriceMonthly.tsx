@@ -1,4 +1,4 @@
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 import type { PricingTier } from "@/services/getPricingTiers"
 
 interface PriceMonthlyProps {

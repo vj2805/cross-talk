@@ -1,7 +1,7 @@
 import { PricingCards } from "@/components/pricing/PricingCards"
 import { CircleBackdrop } from "@/components/backdrops/CircleBackdrop"
 import { getSession } from "@/services/getSession"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 
 export default async function Register() {
   const session = await getSession()

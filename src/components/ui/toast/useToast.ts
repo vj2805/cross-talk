@@ -1,5 +1,5 @@
 import { useCallback, useReducer, useRef } from "react"
-import { generateUuid } from "@/utilities/generateUuid"
+import { generateUuid } from "@/services/generateUuid"
 import type { ToastActionElement } from "./ToastAction"
 import type { ToastProps } from "./Toast"
 

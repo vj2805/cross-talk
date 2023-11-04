@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 
 type Ref = React.ElementRef<"input">
 type Props = React.ComponentPropsWithoutRef<"input">

@@ -2,7 +2,7 @@
 
 import { forwardRef } from "react"
 import { Root } from "@radix-ui/react-avatar"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 
 type Ref = React.ElementRef<typeof Root>
 type Props = React.ComponentPropsWithoutRef<typeof Root>

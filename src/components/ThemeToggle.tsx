@@ -2,7 +2,7 @@
 
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 import { Button } from "./ui/button/Button"
 import { DropdownMenu } from "./ui/dropdown-menu/DropdownMenu"
 import { DropdownMenuTrigger } from "./ui/dropdown-menu/DropdownMenuTrigger"

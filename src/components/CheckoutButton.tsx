@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react"
 import { useCheckoutSession } from "@/hooks/useCheckoutSession"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 
 interface CheckoutButtonProps {
   priceId: string

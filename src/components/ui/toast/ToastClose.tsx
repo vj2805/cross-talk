@@ -1,7 +1,7 @@
 import { forwardRef } from "react"
 import { X } from "lucide-react"
 import { Close } from "@radix-ui/react-toast"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 
 type Ref = React.ElementRef<typeof Close>
 type Props = React.ComponentPropsWithoutRef<typeof Close>

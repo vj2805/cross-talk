@@ -2,7 +2,7 @@
 
 import { forwardRef } from "react"
 import { Label } from "@radix-ui/react-dropdown-menu"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 
 type Ref = React.ElementRef<typeof Label>
 type Props = React.PropsWithWithInset<

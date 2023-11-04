@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 import { useFormField } from "./useFormField"
 import { useFormItemId } from "./useFormItemId"
 

@@ -1,4 +1,4 @@
-import { cn } from "@/utilities/shadcn"
+import { cn } from "@/services/shadcn"
 import { CheckoutButton } from "../CheckoutButton"
 import { PricingTierFeatureList } from "./PricingTierFeatureList"
 import { GetStartedTodayButton } from "./GetStartedTodayButton"

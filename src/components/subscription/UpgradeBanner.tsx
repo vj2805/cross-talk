@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation"
 import { useSubscriptionStore } from "@/stores/subscription"
 import { cn } from "@/services/shadcn"
-import { Button } from "./ui/button/Button"
+import { Button } from "../ui/button/Button"
 
 export const UpgradeBanner: React.FC = () => {
   const router = useRouter()

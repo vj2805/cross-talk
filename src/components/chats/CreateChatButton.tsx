@@ -3,7 +3,7 @@
 import { MessageSquarePlusIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { cn } from "@/services/shadcn"
-import { Button } from "./ui/button/Button"
+import { Button } from "../ui/button/Button"
 
 export const CreateChatButton: React.FC = () => {
   const router = useRouter()

@@ -1,7 +1,7 @@
 "use client"
 
 import { signIn } from "next-auth/react"
-import { Button } from "./ui/button/Button"
+import { Button } from "../ui/button/Button"
 
 export const SignInButton: React.FC = () => (
   <Button

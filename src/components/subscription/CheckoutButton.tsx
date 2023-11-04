@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react"
 import { useCheckoutSession } from "@/hooks/useCheckoutSession"
 import { cn } from "@/services/shadcn"
-import { Spinner } from "./ui/spinner/Spinner"
+import { Spinner } from "../ui/spinner/Spinner"
 
 interface CheckoutButtonProps {
   priceId: string

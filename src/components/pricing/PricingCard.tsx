@@ -1,5 +1,5 @@
 import { cn } from "@/services/shadcn"
-import { CheckoutButton } from "../CheckoutButton"
+import { CheckoutButton } from "../subscription/CheckoutButton"
 import { PricingTierFeatureList } from "./PricingTierFeatureList"
 import { GetStartedTodayButton } from "./GetStartedTodayButton"
 import { PriceMonthly } from "./PriceMonthly"

@@ -1,14 +1,14 @@
 "use client"
 
 import { signOut } from "next-auth/react"
-import { SignInButton } from "./SignInButton"
+import { DropdownMenu } from "../ui/dropdown-menu/DropdownMenu"
+import { DropdownMenuContent } from "../ui/dropdown-menu/DropdownMenuContent"
+import { DropdownMenuItem } from "../ui/dropdown-menu/DropdownMenuItem"
+import { DropdownMenuLabel } from "../ui/dropdown-menu/DropdownMenuLabel"
+import { DropdownMenuSeparator } from "../ui/dropdown-menu/DropdownMenuSeparator"
+import { DropdownMenuTrigger } from "../ui/dropdown-menu/DropdownMenuTrigger"
 import { UserAvatar } from "./UserAvatar"
-import { DropdownMenu } from "./ui/dropdown-menu/DropdownMenu"
-import { DropdownMenuContent } from "./ui/dropdown-menu/DropdownMenuContent"
-import { DropdownMenuItem } from "./ui/dropdown-menu/DropdownMenuItem"
-import { DropdownMenuLabel } from "./ui/dropdown-menu/DropdownMenuLabel"
-import { DropdownMenuSeparator } from "./ui/dropdown-menu/DropdownMenuSeparator"
-import { DropdownMenuTrigger } from "./ui/dropdown-menu/DropdownMenuTrigger"
+import { SignInButton } from "./SignInButton"
 import type { Session } from "next-auth"
 
 interface ProfileButtonProps {

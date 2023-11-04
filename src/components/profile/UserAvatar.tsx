@@ -1,8 +1,8 @@
 import Image from "next/image"
 import { cn } from "@/services/shadcn"
 import { joinFirstLetterOfEachWord } from "@/services/joinFirstLetterOfEachWord"
-import { Avatar } from "./ui/avatar/Avatar"
-import { AvatarFallback } from "./ui/avatar/AvatarFallback"
+import { Avatar } from "../ui/avatar/Avatar"
+import { AvatarFallback } from "../ui/avatar/AvatarFallback"
 
 interface UserAvatarProps {
   name?: Optional<string>

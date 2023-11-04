@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react"
 import { useCheckoutSession } from "@/hooks/useCheckoutSession"
 import { cn } from "@/services/shadcn"
+import { Spinner } from "./ui/spinner/Spinner"
 
 interface CheckoutButtonProps {
   priceId: string
@@ -32,7 +33,7 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
           "disabled:opacity-80"
         )}
       >
-        {processing ? "Processing..." : "Sign Up"}
+        {processing ? <Spinner /> : "Sign Up"}
       </button>
     </div>
   )

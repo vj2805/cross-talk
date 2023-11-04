@@ -1,10 +1,10 @@
 import { PricingCards } from "@/components/pricing/PricingCards"
 import { CircleBackdrop } from "@/components/backdrops/CircleBackdrop"
-import { getSession } from "@/services/getSession"
+import { getServerUser } from "@/services/getServerUser"
 import { cn } from "@/services/shadcn"
 
 export default async function Register() {
-  const session = await getSession()
+  const user = await getServerUser()
   return (
     <div
       className={cn(
@@ -30,8 +30,7 @@ export default async function Register() {
               "text-4xl font-bold tracking-tight sm:text-5xl"
             )}
           >
-            Let&apos;s handle your Membership{" "}
-            {session?.user?.name?.split(" ")[0]}
+            Let&apos;s handle your Membership {user?.displayName?.split(" ")[0]}
           </p>
         </div>
         <div className="relative">

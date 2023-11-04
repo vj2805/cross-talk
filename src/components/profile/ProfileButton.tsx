@@ -1,7 +1,7 @@
 "use client"
 
-import { signOut } from "next-auth/react"
 import { StarIcon } from "lucide-react"
+import { signOut } from "next-auth/react"
 import { useSubscription } from "@/stores/subscription"
 import { cn } from "@/services/shadcn"
 import { DropdownMenu } from "../ui/dropdown-menu/DropdownMenu"
@@ -11,24 +11,24 @@ import { DropdownMenuLabel } from "../ui/dropdown-menu/DropdownMenuLabel"
 import { DropdownMenuSeparator } from "../ui/dropdown-menu/DropdownMenuSeparator"
 import { DropdownMenuTrigger } from "../ui/dropdown-menu/DropdownMenuTrigger"
 import { Spinner } from "../ui/spinner/Spinner"
-import { UserAvatar } from "./UserAvatar"
 import { SignInButton } from "./SignInButton"
-import type { Session } from "next-auth"
+import { UserAvatar } from "./UserAvatar"
+import type { User } from "firebase/auth"
 
 interface ProfileButtonProps {
-  session: Nullish<Session>
+  user: Nullish<User>
 }
 
-export const ProfileButton: React.FC<ProfileButtonProps> = ({ session }) => {
+export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
   const subscription = useSubscription()
-  return !session ? (
+  return !user ? (
     <SignInButton />
   ) : (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
-          name={session.user?.name}
-          image={session.user?.image}
+          name={user.displayName}
+          image={user.photoURL}
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="text-center">

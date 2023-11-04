@@ -1,15 +1,15 @@
 import { getParticipatingChats } from "@/services/getParticipatingChats"
-import { getSession } from "@/services/getSession"
+import { getServerUser } from "@/services/getServerUser"
 import { ChatListRow } from "./ChatListRow"
 
 export const ChatList: React.FC = async () => {
-  const session = await getSession()
+  const user = await getServerUser()
 
-  if (!session?.user) {
+  if (!user) {
     return null
   }
 
-  const initialChats = await getParticipatingChats(session.user.id)
+  const initialChats = await getParticipatingChats(user.uid)
 
   return <ChatListRow initialChats={initialChats} />
 }

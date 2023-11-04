@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { MessagesSquareIcon } from "lucide-react"
-import { getSession } from "@/services/getSession"
+import { getServerUser } from "@/services/getServerUser"
 import { cn } from "@/services/shadcn"
 import { Logo } from "./Logo"
 import { ThemeToggle } from "./ThemeToggle"
@@ -9,7 +9,7 @@ import { CreateChatButton } from "./chats/CreateChatButton"
 import { UpgradeBanner } from "./subscription/UpgradeBanner"
 
 export const Header: React.FC = async () => {
-  const session = await getSession()
+  const user = await getServerUser()
   return (
     <header className={cn("z-50 top-0", "sticky", "bg-white dark:bg-gray-900")}>
       <div
@@ -25,7 +25,7 @@ export const Header: React.FC = async () => {
         <nav
           className={cn("flex-1", "flex items-center justify-end space-x-4")}
         >
-          {session ? (
+          {user ? (
             <>
               <Link
                 prefetch={false}
@@ -44,7 +44,7 @@ export const Header: React.FC = async () => {
             </Link>
           )}
           <ThemeToggle />
-          <ProfileButton session={session} />
+          <ProfileButton user={user} />
         </nav>
       </div>
       <UpgradeBanner />

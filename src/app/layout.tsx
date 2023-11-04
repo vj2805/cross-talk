@@ -3,6 +3,7 @@ import { SessionProvider } from "@/components/providers/SessionProvider"
 import { SubscriptionProvider } from "@/components/providers/SubscriptionProvider"
 import { SyncSessionWithAuthProvider } from "@/components/providers/SyncSessionWithAuthProvider"
 import { ThemeProvider } from "@/components/providers/ThemeProvider"
+import { Toaster } from "@/components/ui/toast/Toaster"
 import type { Metadata } from "next"
 
 import "@/styles.css"
@@ -32,6 +33,7 @@ export default function RootLayout({
               >
                 <Header />
                 {children}
+                <Toaster />
               </ThemeProvider>
             </SubscriptionProvider>
           </SyncSessionWithAuthProvider>

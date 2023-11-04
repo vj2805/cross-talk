@@ -1,8 +1,5 @@
 export interface Participant {
-  chatId: string
   email: string
+  id: string
   image: string
-  isAdmin: boolean
-  timestamp: Nullish<Date>
-  userId: string
 }

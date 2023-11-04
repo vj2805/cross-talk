@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react"
 import { useCheckoutSession } from "@/hooks/useCheckoutSession"
 import { cn } from "@/services/shadcn"
-import { useSubscriptionStore } from "@/stores/subscription"
+import { useSubscription } from "@/stores/subscription"
 import { Spinner } from "../ui/spinner/Spinner"
 import { ManageSubscriptionButton } from "./ManageSubscriptionButton"
 
@@ -17,7 +17,7 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
     priceId,
     session,
   })
-  const subscription = useSubscriptionStore(store => store.subscription)
+  const subscription = useSubscription()
 
   return (
     <div className="flex flex-col space-y-2">

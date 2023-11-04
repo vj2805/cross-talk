@@ -6,6 +6,7 @@ import { Logo } from "./Logo"
 import { ThemeToggle } from "./ThemeToggle"
 import { ProfileButton } from "./ProfileButton"
 import { CreateChatButton } from "./CreateChatButton"
+import { UpgradeBanner } from "./UpgradeBanner"
 
 export const Header: React.FC = async () => {
   const session = await getSession()
@@ -46,7 +47,7 @@ export const Header: React.FC = async () => {
           <ProfileButton session={session} />
         </nav>
       </div>
-      <div></div>
+      <UpgradeBanner />
     </header>
   )
 }

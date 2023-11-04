@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { cn } from "@/services/shadcn"
+import { joinFirstLetterOfEachWord } from "@/services/joinFirstLetterOfEachWord"
 import { Avatar } from "./ui/avatar/Avatar"
 import { AvatarFallback } from "./ui/avatar/AvatarFallback"
 
@@ -29,11 +30,7 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
       delayMs={1000}
       className="dark:bg-white text-lg dark:text-black"
     >
-      {name
-        ?.split(" ")
-        .slice(0, 2)
-        .map(n => n[0])
-        .join("")}
+      {joinFirstLetterOfEachWord(name)?.slice(0, 2)}
     </AvatarFallback>
   </Avatar>
 )

@@ -1,13 +1,13 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useSubscriptionStore } from "@/stores/subscription"
+import { useSubscription } from "@/stores/subscription"
 import { cn } from "@/services/shadcn"
 import { Button } from "../ui/button/Button"
 
 export const UpgradeBanner: React.FC = () => {
   const router = useRouter()
-  const subscription = useSubscriptionStore(store => store.subscription)
+  const subscription = useSubscription()
 
   if (subscription === undefined || subscription) {
     return null

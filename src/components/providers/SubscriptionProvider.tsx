@@ -4,12 +4,13 @@ import { useEffect } from "react"
 import { useSession } from "next-auth/react"
 import { onSnapshot } from "firebase/firestore"
 import { subscriptionsRef } from "@/services/collections/subscriptionsRef"
-import { setSubscription } from "@/stores/subscription"
+import { useSetSubscription } from "@/stores/subscription"
 
 export const SubscriptionProvider: React.FC<
   React.PropsWithRequiredChildren
 > = ({ children }) => {
   const { data: session } = useSession()
+  const setSubscription = useSetSubscription()
 
   useEffect(() => {
     if (!session?.user) {
@@ -26,7 +27,7 @@ export const SubscriptionProvider: React.FC<
       },
       console.error
     )
-  }, [session])
+  }, [session, setSubscription])
 
   return <>{children}</>
 }

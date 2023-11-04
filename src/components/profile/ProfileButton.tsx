@@ -2,7 +2,7 @@
 
 import { signOut } from "next-auth/react"
 import { StarIcon } from "lucide-react"
-import { useSubscriptionStore } from "@/stores/subscription"
+import { useSubscription } from "@/stores/subscription"
 import { cn } from "@/services/shadcn"
 import { DropdownMenu } from "../ui/dropdown-menu/DropdownMenu"
 import { DropdownMenuContent } from "../ui/dropdown-menu/DropdownMenuContent"
@@ -20,7 +20,7 @@ interface ProfileButtonProps {
 }
 
 export const ProfileButton: React.FC<ProfileButtonProps> = ({ session }) => {
-  const subscription = useSubscriptionStore(store => store.subscription)
+  const subscription = useSubscription()
   return !session ? (
     <SignInButton />
   ) : (

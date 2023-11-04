@@ -3,11 +3,18 @@ import type { Subscription } from "@/types/Subscription"
 
 interface SubscriptionStore {
   subscription: Optional<Subscription>
+  setSubscription: (subscription: Nullish<Subscription>) => void
 }
 
-export const useSubscriptionStore = create<SubscriptionStore>(() => ({
+const useSubscriptionStore = create<SubscriptionStore>(set => ({
+  setSubscription(subscription) {
+    set({ subscription })
+  },
   subscription: undefined,
 }))
 
-export const setSubscription = (subscription: Nullish<Subscription>) =>
-  useSubscriptionStore.setState({ subscription })
+export const useSubscription = () =>
+  useSubscriptionStore(store => store.subscription)
+
+export const useSetSubscription = () =>
+  useSubscriptionStore(store => store.setSubscription)

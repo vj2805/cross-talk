@@ -11,11 +11,11 @@ import { DropdownMenuSeparator } from "./ui/dropdown-menu/DropdownMenuSeparator"
 import { DropdownMenuTrigger } from "./ui/dropdown-menu/DropdownMenuTrigger"
 import type { Session } from "next-auth"
 
-interface UserButtonProps {
+interface ProfileButtonProps {
   session: Nullish<Session>
 }
 
-export const UserButton: React.FC<UserButtonProps> = ({ session }) =>
+export const ProfileButton: React.FC<ProfileButtonProps> = ({ session }) =>
   !session ? (
     <SignInButton />
   ) : (

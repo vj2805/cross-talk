@@ -4,7 +4,7 @@ import { getSession } from "@/services/getSession"
 import { cn } from "@/services/shadcn"
 import { Logo } from "./Logo"
 import { ThemeToggle } from "./ThemeToggle"
-import { UserButton } from "./UserButton"
+import { ProfileButton } from "./ProfileButton"
 import { CreateChatButton } from "./CreateChatButton"
 
 export const Header: React.FC = async () => {
@@ -43,7 +43,7 @@ export const Header: React.FC = async () => {
             </Link>
           )}
           <ThemeToggle />
-          <UserButton session={session} />
+          <ProfileButton session={session} />
         </nav>
       </div>
       <div></div>

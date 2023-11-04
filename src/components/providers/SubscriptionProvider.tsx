@@ -1,33 +1,37 @@
 "use client"
 
-import { useEffect } from "react"
-import { useSession } from "next-auth/react"
+import { createContext, useContext, useEffect, useState } from "react"
 import { onSnapshot } from "firebase/firestore"
 import { subscriptionsRef } from "@/services/collections/subscriptionsRef"
-import { useSetSubscription } from "@/stores/subscription"
+import { useUser } from "@/hooks/useUser"
+import type { Subscription } from "@/types/Subscription"
+
+const SubscriptionContext = createContext<Optional<Subscription>>(undefined)
+
+export const useSubscription = () => useContext(SubscriptionContext)
 
 export const SubscriptionProvider: React.FC<
   React.PropsWithRequiredChildren
-> = ({ children }) => {
-  const { data: session } = useSession()
-  const setSubscription = useSetSubscription()
+> = props => {
+  const [subscription, setSubscription] =
+    useState<Optional<Subscription>>(undefined)
+  const [syncUser] = useUser()
 
   useEffect(() => {
-    if (!session?.user) {
-      return
-    }
-    return onSnapshot(
-      subscriptionsRef(session.user.id),
-      snapshot => {
+    if (syncUser) {
+      return onSnapshot(subscriptionsRef(syncUser.uid), snapshot => {
         if (snapshot.empty) {
           setSubscription(null)
         } else {
           setSubscription(snapshot.docs[0].data())
         }
-      },
-      console.error
-    )
-  }, [session, setSubscription])
+      })
+    }
+  }, [syncUser])
 
-  return <>{children}</>
+  return (
+    <SubscriptionContext.Provider value={subscription}>
+      {props.children}
+    </SubscriptionContext.Provider>
+  )
 }

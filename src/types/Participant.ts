@@ -1,4 +1,4 @@
-export interface ChatMember {
+export interface Participant {
   chatId: string
   email: string
   image: string

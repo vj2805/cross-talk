@@ -2,11 +2,11 @@ import { create } from "zustand"
 import type { Subscription } from "@/types/Subscription"
 
 interface SubscriptionStore {
-  subscription: Nullish<Subscription>
+  subscription: Optional<Subscription>
 }
 
 export const useSubscriptionStore = create<SubscriptionStore>(() => ({
-  subscription: null,
+  subscription: undefined,
 }))
 
 export const setSubscription = (subscription: Nullish<Subscription>) =>

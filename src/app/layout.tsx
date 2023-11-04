@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header"
 import { SessionProvider } from "@/components/providers/SessionProvider"
 import { SubscriptionProvider } from "@/components/providers/SubscriptionProvider"
-import { SyncSessionWithAuthProvider } from "@/components/providers/SyncSessionWithAuthProvider"
+import { SyncedUserProvider } from "@/components/providers/SyncedUserProvider"
 import { ThemeProvider } from "@/components/providers/ThemeProvider"
 import { Toaster } from "@/components/ui/toast/Toaster"
 import type { Metadata } from "next"
@@ -23,7 +23,7 @@ export default function RootLayout({
     >
       <body>
         <SessionProvider>
-          <SyncSessionWithAuthProvider>
+          <SyncedUserProvider>
             <SubscriptionProvider>
               <ThemeProvider
                 enableSystem
@@ -36,7 +36,7 @@ export default function RootLayout({
                 <Toaster />
               </ThemeProvider>
             </SubscriptionProvider>
-          </SyncSessionWithAuthProvider>
+          </SyncedUserProvider>
         </SessionProvider>
       </body>
     </html>

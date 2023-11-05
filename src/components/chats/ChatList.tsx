@@ -9,7 +9,7 @@ export const ChatList: React.FC = async () => {
     return null
   }
 
-  const initialChats = await getParticipatingChats(user.uid)
+  const initialChats = await getParticipatingChats(user.id)
 
   return <ChatListRow initialChats={initialChats} />
 }

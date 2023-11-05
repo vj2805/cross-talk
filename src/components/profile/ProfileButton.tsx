@@ -13,10 +13,10 @@ import { DropdownMenuTrigger } from "../ui/dropdown-menu/DropdownMenuTrigger"
 import { Spinner } from "../ui/spinner/Spinner"
 import { SignInButton } from "./SignInButton"
 import { UserAvatar } from "./UserAvatar"
-import type { User } from "firebase/auth"
+import type { User } from "next-auth"
 
 interface ProfileButtonProps {
-  user: Nullish<User>
+  user?: User
 }
 
 export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {

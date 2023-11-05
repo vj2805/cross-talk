@@ -30,7 +30,7 @@ export default async function Register() {
               "text-4xl font-bold tracking-tight sm:text-5xl"
             )}
           >
-            Let&apos;s handle your Membership {user?.displayName?.split(" ")[0]}
+            Let&apos;s handle your Membership {user?.name?.split(" ")[0]}
           </p>
         </div>
         <div className="relative">

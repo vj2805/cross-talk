@@ -18,10 +18,10 @@ export async function manageSubscription() {
     return console.error("User Not Found!")
   }
 
-  const doc = await adminRepo.collection("customers").doc(user.uid).get()
+  const doc = await adminRepo.collection("customers").doc(user.id).get()
 
   if (!doc.exists) {
-    return console.error("No customer record found with id ", user.uid)
+    return console.error("No customer record found with id ", user.id)
   }
 
   const stripeSession = await stripe.billingPortal.sessions.create({

@@ -1,14 +1,4 @@
-export type SupportedLanguage =
-  | "de"
-  | "en"
-  | "es"
-  | "fr"
-  | "hi"
-  | "ja"
-  | "kn"
-  | "ml"
-  | "ta"
-  | "te"
+import type { SupportedLanguage } from "../types/SupportedLanguage"
 
 const supportedLanguageMap: Record<SupportedLanguage, string> = {
   de: "German",

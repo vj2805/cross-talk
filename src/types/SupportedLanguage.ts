@@ -1,0 +1,11 @@
+export type SupportedLanguage =
+  | "de"
+  | "en"
+  | "es"
+  | "fr"
+  | "hi"
+  | "ja"
+  | "kn"
+  | "ml"
+  | "ta"
+  | "te"

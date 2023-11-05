@@ -2,14 +2,10 @@
 
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
-import Stripe from "stripe"
-import { env } from "@/env"
-import { adminRepo } from "@/firebase-admin"
-import { getServerUser } from "@/services/getServerUser"
-
-const stripe = new Stripe(env["STRIPE_SECRET_KEY"], {
-  apiVersion: "2023-10-16",
-})
+import { getServerUser } from "@services"
+import { env } from "~/env"
+import { adminRepo } from "~/firebase-admin"
+import { stripe } from "~/stripe"
 
 export async function manageSubscription() {
   const user = await getServerUser()

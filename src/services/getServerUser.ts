@@ -1,5 +1,6 @@
-import { clientAuth } from "@/firebase"
+import { getServerSession } from "next-auth"
 
 export async function getServerUser() {
-  return clientAuth.currentUser
+  const session = await getServerSession()
+  return session?.user
 }

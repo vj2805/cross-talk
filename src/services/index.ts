@@ -1,3 +1,4 @@
+export { signIn, signOut } from "next-auth/react"
 export { addChat } from "./addChat"
 export { addCheckoutSession } from "./addCheckoutSession"
 export { getParticipatingChats } from "./getParticipatingChats"

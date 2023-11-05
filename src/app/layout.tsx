@@ -1,8 +1,8 @@
 import { Header } from "@/components/Header"
-import { SessionProvider } from "@/components/providers/SessionProvider"
-import { SubscriptionProvider } from "@/components/providers/SubscriptionProvider"
-import { SyncedUserProvider } from "@/components/providers/SyncedUserProvider"
-import { ThemeProvider } from "@/components/providers/ThemeProvider"
+import { SessionProvider } from "@/providers/SessionProvider"
+import { SubscriptionProvider } from "@/providers/SubscriptionProvider"
+import { SyncedUserProvider } from "@/providers/SyncedUserProvider"
+import { ThemeProvider } from "@/providers/ThemeProvider"
 import { Toaster } from "@/components/ui/toast/Toaster"
 import type { Metadata } from "next"
 

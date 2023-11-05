@@ -2,8 +2,8 @@
 
 import { StarIcon } from "lucide-react"
 import { signOut } from "next-auth/react"
-import { useSubscription } from "@/stores/subscription"
 import { cn } from "@/services/shadcn"
+import { useSubscription } from "@/providers/SubscriptionProvider"
 import { DropdownMenu } from "../ui/dropdown-menu/DropdownMenu"
 import { DropdownMenuContent } from "../ui/dropdown-menu/DropdownMenuContent"
 import { DropdownMenuItem } from "../ui/dropdown-menu/DropdownMenuItem"
@@ -27,8 +27,8 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
-          name={user.displayName}
-          image={user.photoURL}
+          name={user.name}
+          image={user.image}
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="text-center">

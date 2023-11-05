@@ -1,11 +1,7 @@
-import type {
-  DocumentData,
-  DocumentReference,
-  Timestamp,
-} from "firebase/firestore"
+import type { DocumentReference, Timestamp } from "firebase/firestore"
 import type Stripe from "stripe"
 
-export interface Subscription {
+export type Subscription = {
   cancel_at: Nullish<Timestamp>
   cancel_at_period_end: boolean
   cancelled_at: Nullish<Timestamp>
@@ -18,9 +14,9 @@ export interface Subscription {
   latest_invoice?: string
   metadata: Record<string, string>
   payment_method?: string
-  price: DocumentReference<DocumentData>
-  prices: Array<DocumentReference<DocumentData>>
-  product: DocumentReference<DocumentData>
+  price: DocumentReference
+  prices: DocumentReference[]
+  product: DocumentReference
   quantity: number
   role: Nullish<string>
   status:

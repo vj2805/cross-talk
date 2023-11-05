@@ -1,4 +1,4 @@
-import type { PricingTier } from "../types/PricingTier"
+import type { PricingTier } from "@types"
 
 const pricingTiers: PricingTier[] = [
   {

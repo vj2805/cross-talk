@@ -1,4 +1,4 @@
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 
 interface BlobBackdropProps {
   position: "end" | "start"

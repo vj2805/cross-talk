@@ -1,6 +1,6 @@
 import { forwardRef } from "react"
 import { Title } from "@radix-ui/react-toast"
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 
 type Ref = React.ElementRef<typeof Title>
 type Props = React.ComponentPropsWithoutRef<typeof Title>

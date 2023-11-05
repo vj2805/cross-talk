@@ -1,4 +1,4 @@
-export type { User } from "next-auth"
+export type { User, Session } from "next-auth"
 export type { Chat } from "./Chat"
 export type { Participant } from "./Participant"
 export type { PricingTier } from "./PricingTier"

@@ -1,10 +1,9 @@
 "use client"
 
-import { useSession } from "next-auth/react"
-import { useCheckoutSession } from "@/hooks/useCheckoutSession"
-import { cn } from "@/services/shadcn"
-import { useSubscription } from "@/stores/subscription"
-import { Spinner } from "../ui/spinner/Spinner"
+import { useCheckoutSession, useSession } from "@hooks"
+import { useSubscription } from "@providers"
+import { cn } from "@utilities"
+import { Spinner } from "@ui"
 import { ManageSubscriptionButton } from "./ManageSubscriptionButton"
 
 interface CheckoutButtonProps {

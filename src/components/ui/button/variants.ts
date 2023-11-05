@@ -1,5 +1,5 @@
 import { cva } from "class-variance-authority"
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 
 export const buttonVariants = cva(
   cn(

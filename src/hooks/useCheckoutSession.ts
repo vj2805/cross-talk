@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { onSnapshot } from "firebase/firestore"
-import { addCheckoutSession } from "@/services/addCheckoutSession"
-import type { Session } from "next-auth"
+import { addCheckoutSession } from "@services"
+import type { Session } from "@types"
 
 interface UseCreateCheckoutParams {
   session: Nullish<Session>

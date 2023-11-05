@@ -1,4 +1,4 @@
-import type { Chat } from "@/types/Chat"
+import type { Chat } from "@types"
 
 interface ChatListRowProps {
   initialChats: Chat[]

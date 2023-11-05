@@ -1,10 +1,9 @@
 "use client"
 
-import { MessageSquarePlusIcon } from "lucide-react"
-import { cn } from "@/services/shadcn"
-import { Button } from "../ui/button/Button"
-import { useCreateChat } from "../../hooks/useCreateChat"
-import { Spinner } from "../ui/spinner/Spinner"
+import { useCreateChat } from "@hooks"
+import { cn } from "@utilities"
+import { Button, Spinner } from "@ui"
+import { MessageSquarePlusIcon } from "@icons"
 
 interface CreateChatButtonProps {
   large?: true

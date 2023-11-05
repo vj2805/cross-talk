@@ -1,9 +1,8 @@
-import { MoveRight } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import { cn } from "@/services/shadcn"
-import demo from "@/assets/images/demo.png"
-import { BlobBackdrop } from "@/components/backdrops/BlobBackdrop"
+import { demo } from "@assets/images"
+import { BlobBackdrop } from "@components"
+import { MoveRight } from "@icons"
+import { Image, Link } from "@ui"
+import { cn } from "@utilities"
 
 export default function Home() {
   return (

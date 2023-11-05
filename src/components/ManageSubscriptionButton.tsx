@@ -1,4 +1,4 @@
-import { manageSubscription } from "@/actions/manageSubscription"
+import { manageSubscription } from "@actions"
 
 export const ManageSubscriptionButton: React.FC = () => (
   <form action={manageSubscription}>

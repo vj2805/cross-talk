@@ -1,9 +1,9 @@
-import { cn } from "@/services/shadcn"
-import { CheckoutButton } from "../subscription/CheckoutButton"
+import { cn } from "@utilities"
+import { CheckoutButton } from "./CheckoutButton"
 import { PricingTierFeatureList } from "./PricingTierFeatureList"
 import { GetStartedTodayButton } from "./GetStartedTodayButton"
 import { PriceMonthly } from "./PriceMonthly"
-import type { PricingTier } from "@/services/getPricingTiers"
+import type { PricingTier } from "@types"
 
 interface PricingCardProps {
   tier: PricingTier

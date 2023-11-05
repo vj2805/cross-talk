@@ -2,7 +2,7 @@
 
 import { forwardRef } from "react"
 import { Fallback } from "@radix-ui/react-avatar"
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 
 type Ref = React.ElementRef<typeof Fallback>
 type Props = React.ComponentPropsWithoutRef<typeof Fallback>

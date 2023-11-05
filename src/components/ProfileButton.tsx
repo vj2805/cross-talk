@@ -1,19 +1,21 @@
 "use client"
 
-import { StarIcon } from "lucide-react"
-import { signOut } from "next-auth/react"
-import { cn } from "@/services/shadcn"
-import { useSubscription } from "@/providers/SubscriptionProvider"
-import { DropdownMenu } from "../ui/dropdown-menu/DropdownMenu"
-import { DropdownMenuContent } from "../ui/dropdown-menu/DropdownMenuContent"
-import { DropdownMenuItem } from "../ui/dropdown-menu/DropdownMenuItem"
-import { DropdownMenuLabel } from "../ui/dropdown-menu/DropdownMenuLabel"
-import { DropdownMenuSeparator } from "../ui/dropdown-menu/DropdownMenuSeparator"
-import { DropdownMenuTrigger } from "../ui/dropdown-menu/DropdownMenuTrigger"
-import { Spinner } from "../ui/spinner/Spinner"
+import { useSubscription } from "@providers"
+import { signOut } from "@services"
+import { cn } from "@utilities"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  Spinner,
+} from "@ui"
+import { StarIcon } from "@icons"
 import { SignInButton } from "./SignInButton"
 import { UserAvatar } from "./UserAvatar"
-import type { User } from "next-auth"
+import type { User } from "@types"
 
 interface ProfileButtonProps {
   user?: User

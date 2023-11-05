@@ -1,10 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { useSession } from "next-auth/react"
-import { useRouter } from "next/navigation"
-import { addChat } from "@/services/addChat"
-import { useToast } from "../components/ui/toast/useToast"
+import { useRouter, useSession } from "@hooks"
+import { addChat } from "@services"
+import { useToast } from "@ui"
 
 export function useCreateChat() {
   const [loading, setLoading] = useState(false)

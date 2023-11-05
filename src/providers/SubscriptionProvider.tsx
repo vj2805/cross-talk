@@ -1,10 +1,9 @@
 "use client"
 
 import { createContext, useContext, useEffect, useState } from "react"
-import { onSnapshot } from "firebase/firestore"
-import { subscriptionsRef } from "@/services/collections/subscriptionsRef"
-import { useUser } from "@/hooks/useUser"
-import type { Subscription } from "@/types/Subscription"
+import { useUser } from "@hooks"
+import { syncSubscription } from "@services"
+import type { Subscription } from "@types"
 
 const SubscriptionContext = createContext<Optional<Subscription>>(undefined)
 
@@ -19,7 +18,7 @@ export const SubscriptionProvider: React.FC<
 
   useEffect(() => {
     if (syncUser) {
-      return onSnapshot(subscriptionsRef(syncUser.uid), snapshot => {
+      return syncSubscription(syncUser.uid, snapshot => {
         if (snapshot.empty) {
           setSubscription(null)
         } else {

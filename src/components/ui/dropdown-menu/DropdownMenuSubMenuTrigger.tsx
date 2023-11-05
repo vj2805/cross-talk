@@ -1,9 +1,9 @@
 "use client"
 
 import { forwardRef } from "react"
-import { ChevronRight } from "lucide-react"
 import { SubTrigger } from "@radix-ui/react-dropdown-menu"
-import { cn } from "@/services/shadcn"
+import { ChevronRight } from "@icons"
+import { cn } from "@utilities"
 
 type Ref = React.ElementRef<typeof SubTrigger>
 type Props = React.PropsWithWithInset<

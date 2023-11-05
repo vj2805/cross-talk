@@ -1,6 +1,6 @@
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 
-export const Spinner = () => (
+export const Spinner: React.FC = () => (
   <div
     role="status"
     className="flex items-center justify-center"

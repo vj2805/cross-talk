@@ -1,7 +1,7 @@
 "use client"
 
 import { forwardRef } from "react"
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 
 type Ref = React.ElementRef<"span">
 type Props = React.ComponentPropsWithoutRef<"span">

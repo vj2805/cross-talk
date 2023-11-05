@@ -1,5 +1,5 @@
 import * as admin from "firebase-admin"
-import { env } from "@/env"
+import { env } from "./env"
 
 const adminAppOptions: admin.AppOptions = {
   credential: admin.credential.cert({

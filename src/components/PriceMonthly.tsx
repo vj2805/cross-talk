@@ -1,5 +1,5 @@
-import { cn } from "@/services/shadcn"
-import type { PricingTier } from "@/services/getPricingTiers"
+import { cn } from "@utilities"
+import type { PricingTier } from "@types"
 
 interface PriceMonthlyProps {
   priceMonthly: PricingTier["priceMonthly"]

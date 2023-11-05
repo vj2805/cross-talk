@@ -2,7 +2,7 @@
 
 import { forwardRef } from "react"
 import { Separator } from "@radix-ui/react-dropdown-menu"
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 
 type Ref = React.ElementRef<typeof Separator>
 type Props = React.ComponentPropsWithoutRef<typeof Separator>

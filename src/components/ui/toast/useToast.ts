@@ -1,5 +1,7 @@
+"use client"
+
 import { useEffect, useState } from "react"
-import { generateId } from "@/services/generateId"
+import { generateId } from "@utilities"
 import type { ToastProps } from "./Toast"
 import type { ToastActionElement } from "./ToastAction"
 

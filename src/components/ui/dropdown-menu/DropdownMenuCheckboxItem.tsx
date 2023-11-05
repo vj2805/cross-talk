@@ -2,8 +2,8 @@
 
 import { forwardRef } from "react"
 import { CheckboxItem, ItemIndicator } from "@radix-ui/react-dropdown-menu"
-import { Check } from "lucide-react"
-import { cn } from "@/services/shadcn"
+import { Check } from "@icons"
+import { cn } from "@utilities"
 
 type Ref = React.ElementRef<typeof CheckboxItem>
 type Props = React.ComponentPropsWithoutRef<typeof CheckboxItem>

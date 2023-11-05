@@ -2,8 +2,8 @@
 
 import { forwardRef } from "react"
 import { Root, Indicator } from "@radix-ui/react-checkbox"
-import { Check } from "lucide-react"
-import { cn } from "@/services/shadcn"
+import { Check } from "@icons"
+import { cn } from "@utilities"
 
 type Ref = React.ElementRef<typeof Root>
 type Props = React.ComponentPropsWithoutRef<typeof Root>

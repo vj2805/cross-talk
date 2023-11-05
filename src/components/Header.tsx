@@ -1,12 +1,12 @@
-import Link from "next/link"
-import { MessagesSquareIcon } from "lucide-react"
-import { getServerUser } from "@/services/getServerUser"
-import { cn } from "@/services/shadcn"
+import { getServerUser } from "@services"
+import { cn } from "@utilities"
+import { Link } from "@ui"
+import { MessagesSquareIcon } from "@icons"
+import { CreateChatButton } from "./CreateChatButton"
 import { Logo } from "./Logo"
+import { ProfileButton } from "./ProfileButton"
 import { ThemeToggle } from "./ThemeToggle"
-import { ProfileButton } from "./profile/ProfileButton"
-import { CreateChatButton } from "./chats/CreateChatButton"
-import { UpgradeBanner } from "./subscription/UpgradeBanner"
+import { UpgradeBanner } from "./UpgradeBanner"
 
 export const Header: React.FC = async () => {
   const user = await getServerUser()

@@ -1,10 +1,10 @@
 "use client"
 
 import { useEffect } from "react"
-import { signInWithCustomToken, signOut } from "firebase/auth"
-import { useSession } from "next-auth/react"
-import { clientAuth } from "@/firebase"
-import type { Session } from "next-auth"
+import { useSession } from "@hooks"
+import { signInToFirebaseWithCustomToken, signOutFromFirebase } from "@services"
+import type { Session } from "@types"
+import { clientAuth } from "~/firebase"
 
 export const SyncedUserProvider: React.FC<
   React.PropsWithRequiredChildren
@@ -20,9 +20,9 @@ export const SyncedUserProvider: React.FC<
 
 async function syncUser(session: Nullish<Session>) {
   if (!session?.firebaseToken) {
-    signOut(clientAuth)
+    signOutFromFirebase(clientAuth)
   } else {
-    signInWithCustomToken(clientAuth, session.firebaseToken).catch(
+    signInToFirebaseWithCustomToken(clientAuth, session.firebaseToken).catch(
       console.error
     )
   }

@@ -1,13 +1,7 @@
-import {
-  collection,
-  collectionGroup,
-  doc,
-  query,
-  where,
-} from "firebase/firestore"
-import { clientRepo } from "@/firebase"
+import { collection, query, where } from "firebase/firestore"
+import type { Chat } from "@types"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import type { Chat } from "@/types/Chat"
+import { clientRepo } from "~/firebase"
 
 const chatConverter: FirestoreDataConverter<Chat> = {
   fromFirestore(snapshot, options) {

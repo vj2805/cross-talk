@@ -1,13 +1,15 @@
 "use client"
 
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
-import { cn } from "@/services/shadcn"
-import { Button } from "./ui/button/Button"
-import { DropdownMenu } from "./ui/dropdown-menu/DropdownMenu"
-import { DropdownMenuTrigger } from "./ui/dropdown-menu/DropdownMenuTrigger"
-import { DropdownMenuContent } from "./ui/dropdown-menu/DropdownMenuContent"
-import { DropdownMenuItem } from "./ui/dropdown-menu/DropdownMenuItem"
+import { useTheme } from "@hooks"
+import { cn } from "@utilities"
+import {
+  Button,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@ui"
+import { Moon, Sun } from "@icons"
 
 export const ThemeToggle: React.FC = () => {
   const { setTheme } = useTheme()

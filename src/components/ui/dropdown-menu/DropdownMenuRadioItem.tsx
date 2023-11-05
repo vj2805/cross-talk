@@ -1,9 +1,9 @@
 "use client"
 
 import { forwardRef } from "react"
-import { Circle } from "lucide-react"
+import { Circle } from "@icons"
 import { ItemIndicator, RadioItem } from "@radix-ui/react-dropdown-menu"
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 
 type Ref = React.ElementRef<typeof RadioItem>
 type Props = React.ComponentPropsWithoutRef<typeof RadioItem>

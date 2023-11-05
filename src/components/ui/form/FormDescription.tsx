@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 import { useFormField } from "./useFormField"
 
 type Ref = React.ElementRef<"p">

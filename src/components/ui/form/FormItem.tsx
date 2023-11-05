@@ -1,5 +1,5 @@
 import { forwardRef, useId } from "react"
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 import { FormItemIdProvider } from "./useFormItemId"
 
 type Ref = React.ElementRef<"div">

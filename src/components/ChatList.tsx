@@ -1,5 +1,4 @@
-import { getParticipatingChats } from "@/services/getParticipatingChats"
-import { getServerUser } from "@/services/getServerUser"
+import { getParticipatingChats, getServerUser } from "@services"
 import { ChatListRow } from "./ChatListRow"
 
 export const ChatList: React.FC = async () => {

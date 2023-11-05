@@ -1,4 +1,4 @@
-import type { SupportedLanguage } from "../types/SupportedLanguage"
+import type { SupportedLanguage } from "@types"
 
 const supportedLanguageMap: Record<SupportedLanguage, string> = {
   de: "German",

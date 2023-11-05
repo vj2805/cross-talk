@@ -1,7 +1,7 @@
 "use client"
 
-import { signIn } from "next-auth/react"
-import { Button } from "../ui/button/Button"
+import { signIn } from "@services"
+import { Button } from "@ui"
 
 export const SignInButton: React.FC = () => (
   <Button

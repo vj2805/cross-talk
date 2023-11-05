@@ -1,6 +1,6 @@
-import { CheckIcon } from "lucide-react"
-import { cn } from "@/services/shadcn"
-import type { PricingTier } from "@/services/getPricingTiers"
+import { cn } from "@utilities"
+import { CheckIcon } from "@icons"
+import type { PricingTier } from "@types"
 
 interface PricingTierFeatureListProps {
   features: PricingTier["features"]

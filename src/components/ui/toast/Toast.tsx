@@ -1,6 +1,6 @@
 import { forwardRef } from "react"
 import { Root } from "@radix-ui/react-toast"
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 import { toastVariants } from "./variants"
 
 type Ref = React.ElementRef<typeof Root>

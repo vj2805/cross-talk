@@ -2,7 +2,7 @@
 
 import { forwardRef } from "react"
 import { SubContent } from "@radix-ui/react-dropdown-menu"
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 
 type Ref = React.ElementRef<typeof SubContent>
 type Props = React.ComponentPropsWithoutRef<typeof SubContent>

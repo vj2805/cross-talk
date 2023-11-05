@@ -1,6 +1,6 @@
 import { forwardRef } from "react"
 import { Slot } from "@radix-ui/react-slot"
-import { cn } from "@/services/shadcn"
+import { cn } from "@utilities"
 import { buttonVariants } from "./variants"
 
 type Ref = React.ElementRef<"button">

@@ -14,4 +14,4 @@ export { Label } from "./label/Label"
 export { Spinner } from "./spinner/Spinner"
 export { Toaster } from "./toast/Toaster"
 
-export { useToast } from "./toast/useToast"
+export { showToast } from "./toast/useToast"

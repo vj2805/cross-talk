@@ -2,13 +2,12 @@
 
 import { useRouter, useUser } from "@hooks"
 import { addChat } from "@services"
-import { useToast } from "@ui"
+import { showToast } from "@ui"
 import { useProcess } from "./useProcess"
 
 export function useCreateChat() {
   const { processing, startProcess, stopProcess } = useProcess()
   const [user] = useUser()
-  const { showToast } = useToast()
   const router = useRouter()
 
   async function createChat() {

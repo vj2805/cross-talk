@@ -9,7 +9,7 @@ import { ToastViewport } from "./ToastViewport"
 import { useToast } from "./useToast"
 
 export const Toaster = () => {
-  const { toasts } = useToast()
+  const toasts = useToast()
   return (
     <ToastProvider>
       {toasts.map(({ id, title, description, action, ...props }) => (

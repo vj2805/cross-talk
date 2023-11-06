@@ -7,6 +7,7 @@ import { ProfileButton } from "../user/ProfileButton"
 import { UpgradeBanner } from "../subscription/UpgradeBanner"
 import { Logo } from "./Logo"
 import { ThemeToggle } from "./ThemeToggle"
+import { LanguageSelect } from "./LanguageSelect"
 
 export const Header: React.FC = async () => {
   const user = await getServerUser()
@@ -25,6 +26,7 @@ export const Header: React.FC = async () => {
         <nav
           className={cn("flex-1", "flex items-center justify-end space-x-4")}
         >
+          <LanguageSelect />
           {user ? (
             <>
               <Link

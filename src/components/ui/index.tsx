@@ -23,5 +23,6 @@ export {
 } from "./select"
 export { Skeleton } from "./skeleton"
 export { Spinner } from "./spinner"
+export { ToastAction } from "./toast"
 export { Toaster } from "./toaster"
 export { showToast } from "./use-toast"

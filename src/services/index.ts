@@ -13,5 +13,5 @@ export { syncSubscription } from "./subscription/syncSubscription"
 export { getServerUser } from "./user/getServerUser"
 export { syncUser } from "./user/syncUser"
 
-export { participatingChatsRef } from "./chat/refs"
+export { chatRef, participatingChatsRef } from "./chat/refs"
 export { lastMessageRef } from "./message/refs"

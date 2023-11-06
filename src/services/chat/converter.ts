@@ -5,9 +5,9 @@ export const chatConverter: FirestoreDataConverter<Chat> = {
   fromFirestore(snapshot, options) {
     const data = snapshot.data(options)
     return {
-      admin: data.admin,
+      adminId: data.admin,
       id: snapshot.id,
-      participants: data.participants,
+      participantsIds: data.participants,
     }
   },
   toFirestore(chat) {

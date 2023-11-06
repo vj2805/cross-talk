@@ -5,7 +5,7 @@ import type { Language } from "./Language"
 export type Message = {
   id: string
   input: string
-  timestamp: Timestamp
+  timestamp: Timestamp | string
   translated?: {
     [K in Language]?: string
   }

@@ -1,4 +1,4 @@
-import { ChatInput, ChatMessages } from "@components"
+import { ChatInput, ChatMembersBadges, ChatMessages } from "@components"
 import { getMessages, getServerUser } from "@services"
 
 interface ChatPageProps {
@@ -14,10 +14,14 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
     return null
   }
 
-  const initialMessages = await getMessages(chatId)
-
+  let initialMessages = await getMessages(chatId)
+  initialMessages = initialMessages.map(message => ({
+    ...message,
+    timestamp: message.timestamp.toString(),
+  }))
   return (
     <>
+      <ChatMembersBadges />
       <div className="flex-1">
         <ChatMessages
           chatId={chatId}

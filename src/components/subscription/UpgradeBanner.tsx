@@ -1,7 +1,7 @@
 "use client"
 
+import { useIsPro, useSubscription } from "@stores"
 import { useRouter } from "@hooks"
-import { useIsPro, useSubscription } from "@providers"
 import { cn } from "@utilities"
 import { Button } from "@ui"
 

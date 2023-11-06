@@ -1,7 +1,7 @@
 "use client"
 
+import { useSubscription } from "@stores"
 import { useCheckoutSession, useSession } from "@hooks"
-import { useSubscription } from "@providers"
 import { cn } from "@utilities"
 import { Spinner } from "@ui"
 import { ManageSubscriptionButton } from "./ManageSubscriptionButton"

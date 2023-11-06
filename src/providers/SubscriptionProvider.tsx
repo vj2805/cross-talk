@@ -1,21 +1,13 @@
 "use client"
 
-import { createContext, useContext, useEffect, useState } from "react"
+import { useEffect } from "react"
+import { setSubscription } from "@stores"
 import { useUser } from "@hooks"
 import { syncSubscription } from "@services"
-import type { Subscription } from "@types"
-
-const SubscriptionContext = createContext<Optional<Subscription>>(undefined)
-
-export const useSubscription = () => useContext(SubscriptionContext)
-
-export const useIsPro = () => useSubscription()?.status == "active"
 
 export const SubscriptionProvider: React.FC<
   React.PropsWithRequiredChildren
 > = props => {
-  const [subscription, setSubscription] =
-    useState<Optional<Subscription>>(undefined)
   const [syncUser] = useUser()
 
   useEffect(() => {
@@ -30,9 +22,5 @@ export const SubscriptionProvider: React.FC<
     }
   }, [syncUser])
 
-  return (
-    <SubscriptionContext.Provider value={subscription}>
-      {props.children}
-    </SubscriptionContext.Provider>
-  )
+  return props.children
 }

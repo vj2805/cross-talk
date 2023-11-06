@@ -1,6 +1,6 @@
 "use client"
 
-import { useIsPro, useSubscription } from "@providers"
+import { useIsPro, useSubscription } from "@stores"
 import { signOut } from "@services"
 import { cn } from "@utilities"
 import {

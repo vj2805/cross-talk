@@ -1,23 +1,15 @@
-import { getServerSession } from "next-auth"
-import { authOptions } from "@auth"
-import { getParticipatingChats } from "@services"
-import { ChatListRow } from "./ChatListRow"
+import { getParticipatingChats, getServerUser } from "@services"
+import { ChatListRows } from "./ChatListRows"
 
 export const ChatList: React.FC = async () => {
   const user = await getServerUser()
 
-  console.log(user)
-
-  if (!user?.id) {
+  if (!user) {
     return null
   }
 
   const initialChats = await getParticipatingChats(user.id)
 
-  return <ChatListRow initialChats={initialChats} />
-}
-
-async function getServerUser() {
-  const session = await getServerSession(authOptions)
-  return session?.user
+  console.log(initialChats)
+  return <ChatListRows initialChats={initialChats} />
 }

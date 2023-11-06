@@ -1,9 +1,9 @@
 import type { Chat } from "@types"
 
-interface ChatListRowProps {
+interface ChatListRowsProps {
   initialChats: Chat[]
 }
 
-export const ChatListRow: React.FC<ChatListRowProps> = () => {
+export const ChatListRows: React.FC<ChatListRowsProps> = () => {
   return <div>ChatListRow</div>
 }

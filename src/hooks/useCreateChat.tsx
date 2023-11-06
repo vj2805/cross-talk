@@ -1,28 +1,28 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter, useSession } from "@hooks"
+import { useRouter, useUser } from "@hooks"
 import { addChat } from "@services"
 import { useToast } from "@ui"
+import { useProcess } from "./useProcess"
 
 export function useCreateChat() {
-  const [loading, setLoading] = useState(false)
-  const { data: session } = useSession()
+  const { processing, startProcess, stopProcess } = useProcess()
+  const [user] = useUser()
   const { showToast } = useToast()
   const router = useRouter()
 
   async function createChat() {
-    if (!session?.user) {
+    if (!user) {
       return
     }
-    setLoading(true)
+    startProcess()
     const { dismissToast, updateToast } = showToast({
       description: "Hold tight while we create your new chat...",
       title: "Creating new chat...",
       variant: "default",
     })
     try {
-      const chatId = await addChat(session.user)
+      const chatId = await addChat(user.uid)
       updateToast({
         description: "Redirecting to the new chat, Please wait...",
         title: "Created new chat!",
@@ -37,9 +37,9 @@ export function useCreateChat() {
       })
     } finally {
       dismissToast(2000)
-      setLoading(false)
+      stopProcess()
     }
   }
 
-  return { createChat, loading }
+  return { createChat, processing }
 }

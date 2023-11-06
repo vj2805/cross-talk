@@ -56,7 +56,10 @@ export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
           />
           <Button
             disabled={form.formState.isSubmitting}
-            className={cn("bg-indigo-600 hover:bg-indigo-500", "text-white")}
+            className={cn(
+              "bg-cyan-500 dark:bg-indigo-600 hover:bg-cyan-400 dark:hover:bg-indigo-500",
+              "text-white"
+            )}
           >
             {form.formState.isSubmitting ? <Spinner /> : "Send"}
           </Button>

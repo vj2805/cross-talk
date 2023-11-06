@@ -1,3 +1,3 @@
-export default function Chats() {
+export default function ChatsPage() {
   return <div>Chats</div>
 }

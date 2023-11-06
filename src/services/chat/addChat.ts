@@ -5,7 +5,7 @@ export async function addChat(adminId: string) {
   const chatRef = await addDoc(chatsRef(), {
     adminId: adminId,
     id: "",
-    participantsIds: [],
+    participantsIds: [adminId],
   })
   return chatRef.id
 }

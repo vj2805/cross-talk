@@ -8,7 +8,7 @@ import {
 import { Toaster } from "@ui"
 import type { Metadata } from "next"
 
-import "~/styles.css"
+import "@styles.css"
 
 export const metadata: Metadata = {
   description: "A Chat SaaS",

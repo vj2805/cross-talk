@@ -1,7 +1,7 @@
 import { CircleBackdrop, PricingCards } from "@components"
 import { cn } from "@utilities"
 
-export default function Pricing() {
+export default function PricingPage() {
   return (
     <main className={cn("isolate", "bg-gray-900", "overflow-hidden")}>
       <div

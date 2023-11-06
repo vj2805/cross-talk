@@ -4,7 +4,7 @@ import { MoveRight } from "@icons"
 import { Image, Link } from "@ui"
 import { cn } from "@utilities"
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main className={cn("isolate", "pt-14", "dark:bg-gray-900", "relative")}>
       <BlobBackdrop position="start" />

@@ -1,6 +1,7 @@
 "use client"
 
 import { useLastMessageInChat } from "@hooks/useLastMessageInChat"
+import { useLanguage } from "@stores"
 import { useRouter, useUser } from "@hooks"
 import { Skeleton } from "@ui"
 import { cn, prettifyId } from "@utilities"
@@ -12,8 +13,9 @@ interface ChatRowProps {
 }
 
 export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
-  const [messages, loading, error] = useLastMessageInChat(chatId)
+  const [messages, loading] = useLastMessageInChat(chatId)
   const [user] = useUser()
+  const language = useLanguage()
   const router = useRouter()
 
   if (loading) {
@@ -50,7 +52,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
             : "New Chat"}
         </p>
         <p className="text-gray-400 line-clamp-1">
-          {message?.translated?.["en"] ?? "Get the conversation started..."}
+          {message?.translated?.[language] ?? "Get the conversation started..."}
         </p>
       </div>
       <div className="text-xs text-gray-400 text-right">

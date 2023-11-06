@@ -1,11 +1,12 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import * as zod from "zod"
 import { addMessage } from "@services/message/addMessage"
 import { getMessagesCount } from "@services/message/getMessagesCount"
-import { showToast } from "@ui"
+import { ToastAction, showToast } from "@ui"
 import { useUser } from "./useUser"
 
 const ChatInputFormSchema = zod.object({
@@ -16,6 +17,7 @@ type ChatInputFormSchemaType = zod.infer<typeof ChatInputFormSchema>
 
 export function useChatInputForm(chatId: string) {
   const [user] = useUser()
+  const router = useRouter()
   const form = useForm<ChatInputFormSchemaType>({
     defaultValues: {
       input: "",
@@ -32,7 +34,7 @@ export function useChatInputForm(chatId: string) {
     }
     try {
       const count = await getMessagesCount(chatId)
-      if (count < 5) {
+      if (count < 25) {
         await addMessage({
           chatId,
           input,
@@ -46,19 +48,26 @@ export function useChatInputForm(chatId: string) {
         form.reset()
       } else {
         showToast({
+          action: (
+            <ToastAction
+              altText="Upgrade"
+              onClick={() => router.push("/subscribe")}
+            >
+              Upgrade to PRO
+            </ToastAction>
+          ),
           description:
             "You've exceeded the FREE plan limit of 25 messages. Upgrade to PRO to send unlimited messages!",
+          duration: 2000,
           title: "Free plan limit exceeded!",
           variant: "destructive",
         })
       }
-    } finally {
+    } catch (error) {
+      form.setError("input", {
+        message: JSON.stringify(error),
+      })
     }
-    //  catch (error) {
-    // form.setError("input", {
-    //   message: JSON.stringify(error),
-    // })
-    // }
   }
 
   return { form, onSubmit }

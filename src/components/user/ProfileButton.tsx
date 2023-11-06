@@ -41,7 +41,7 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
             <Spinner />
           </DropdownMenuItem>
         ) : (
-          subscription && (
+          subscription?.status !== "canceled" && (
             <>
               <DropdownMenuLabel
                 className={cn(

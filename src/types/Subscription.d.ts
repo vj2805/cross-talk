@@ -21,7 +21,7 @@ export type Subscription = {
   role: Nullish<string>
   status:
     | "active"
-    | "cancelled"
+    | "canceled"
     | "incomplete_expired"
     | "incomplete"
     | "past_due"

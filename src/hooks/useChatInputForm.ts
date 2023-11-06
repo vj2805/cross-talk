@@ -28,8 +28,14 @@ export function useChatInputForm(chatId: string) {
     if (!user) {
       return
     }
-    await addMessage({ chatId, input, user })
-    form.reset()
+    try {
+      await addMessage({ chatId, input, user })
+      form.reset()
+    } catch (error) {
+      form.setError("input", {
+        message: JSON.stringify(error),
+      })
+    }
   }
 
   return { form, onSubmit }

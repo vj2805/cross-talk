@@ -1,5 +1,5 @@
-import { clientRepo } from "@firebase"
 import { collection, doc, limit, orderBy, query } from "firebase/firestore"
+import { clientRepo } from "@firebase"
 import { messageConverter } from "./converter"
 
 export function messagesRef(chatId: string) {

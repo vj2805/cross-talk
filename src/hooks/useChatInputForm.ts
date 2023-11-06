@@ -8,11 +8,17 @@ const ChatInputFormSchema = zod.object({
   input: zod.string().max(100),
 })
 
+type ChatInputFormSchemaType = zod.infer<typeof ChatInputFormSchema>
+
 export function useChatInputForm() {
-  return useForm<zod.infer<typeof ChatInputFormSchema>>({
+  const form = useForm<ChatInputFormSchemaType>({
     defaultValues: {
       input: "",
     },
     resolver: zodResolver(ChatInputFormSchema),
   })
+
+  function onSubmit({ input }: ChatInputFormSchemaType) {}
+
+  return { form, onSubmit }
 }

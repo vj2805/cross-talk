@@ -13,11 +13,6 @@ export async function addMessage({ chatId, input, user }: AddMessageParams) {
     id: "",
     input,
     timestamp: serverTimestamp(),
-    user: {
-      displayName: user.displayName,
-      email: user.email,
-      photoURL: user.photoURL,
-      uid: user.uid,
-    },
+    user,
   })
 }

@@ -9,6 +9,7 @@ import {
   FormItem,
   FormMessage,
   Input,
+  Spinner,
 } from "@ui"
 import { cn } from "@utilities"
 
@@ -33,6 +34,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
           )}
         >
           <FormField
+            disabled={form.formState.isSubmitting}
             control={form.control}
             name="input"
             render={({ field }) => (
@@ -52,7 +54,12 @@ export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
               </FormItem>
             )}
           />
-          <Button className={cn("bg-indigo-600", "text-white")}>Send</Button>
+          <Button
+            disabled={form.formState.isSubmitting}
+            className={cn("bg-indigo-600 hover:bg-indigo-500", "text-white")}
+          >
+            {form.formState.isSubmitting ? <Spinner /> : "Send"}
+          </Button>
         </form>
       </Form>
     </div>

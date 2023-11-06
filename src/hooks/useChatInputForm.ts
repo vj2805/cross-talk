@@ -29,7 +29,17 @@ export function useChatInputForm(chatId: string) {
       return
     }
     try {
-      await addMessage({ chatId, input, user })
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      await addMessage({
+        chatId,
+        input,
+        user: {
+          email: user.email,
+          id: user.uid,
+          image: user.photoURL,
+          name: user.displayName,
+        },
+      })
       form.reset()
     } catch (error) {
       form.setError("input", {

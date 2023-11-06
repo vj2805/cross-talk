@@ -1,5 +1,3 @@
-"use client"
-
 import { signInWithCustomToken, signOut } from "firebase/auth"
 import { clientAuth } from "@firebase"
 import type { Session } from "@types"

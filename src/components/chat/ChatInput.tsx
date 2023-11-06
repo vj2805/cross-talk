@@ -20,7 +20,7 @@ interface ChatInputProps {
 export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
   const { form, onSubmit } = useChatInputForm(chatId)
   return (
-    <div className={cn("bottom-0", "sticky")}>
+    <div className={cn("px-2", "bottom-0", "sticky")}>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -29,7 +29,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
             "max-w-4xl",
             "p-2",
             "bg-white dark:bg-slate-800",
-            "border rounded-t-xl",
+            "border border-input rounded-t-xl",
             "flex space-x-2"
           )}
         >
@@ -45,7 +45,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
                     className={cn(
                       "bg-transparent",
                       "dark:placeholder:text-white/70",
-                      "border-none"
+                      "border-none  focus-visible:ring-transparent dark:focus-visible:ring-ring/50"
                     )}
                     {...field}
                   />
@@ -57,7 +57,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
           <Button
             disabled={form.formState.isSubmitting}
             className={cn(
-              "bg-cyan-500 dark:bg-indigo-600 hover:bg-cyan-400 dark:hover:bg-indigo-500",
+              "bg-cyan-500 dark:bg-indigo-600 hover:bg-cyan-400 dark:hover:bg-indigo-500 focus-visible:ring-0 dark:focus-visible:ring-0",
               "text-white"
             )}
           >

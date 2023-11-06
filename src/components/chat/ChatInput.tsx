@@ -21,7 +21,17 @@ export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
   return (
     <div className={cn("bottom-0", "sticky")}>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className={cn(
+            "mx-auto",
+            "max-w-4xl",
+            "p-2",
+            "bg-white dark:bg-slate-800",
+            "border rounded-t-xl",
+            "flex space-x-2"
+          )}
+        >
           <FormField
             control={form.control}
             name="input"

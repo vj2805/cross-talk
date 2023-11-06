@@ -1,4 +1,4 @@
-import { ChatInput, ChatMembersBadges, ChatMessages } from "@components"
+import { ChatInput, ChatParticipantsBadges, ChatMessages } from "@components"
 import { getMessages, getServerUser } from "@services"
 
 interface ChatPageProps {
@@ -21,7 +21,7 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
   }))
   return (
     <>
-      <ChatMembersBadges />
+      <ChatParticipantsBadges chatId={chatId} />
       <div className="flex-1">
         <ChatMessages
           chatId={chatId}

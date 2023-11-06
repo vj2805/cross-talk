@@ -13,28 +13,22 @@ export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
   large,
 }) => {
   const { createChat, processing } = useCreateChat()
-  return processing ? (
-    <Button
-      disabled
-      variant="ghost"
-      className={cn("aspect-square", "p-0")}
-    >
-      <Spinner />
-    </Button>
-  ) : large ? (
+  return large ? (
     <Button
       variant="default"
+      disabled={processing}
       onClick={createChat}
     >
-      Create a New Chat
+      {processing ? <Spinner /> : "Create a New Chat"}
     </Button>
   ) : (
     <Button
       variant="ghost"
+      disabled={processing}
       onClick={createChat}
       className={cn("aspect-square", "p-0")}
     >
-      <MessageSquarePlusIcon />
+      {processing ? <Spinner /> : <MessageSquarePlusIcon />}
     </Button>
   )
 }

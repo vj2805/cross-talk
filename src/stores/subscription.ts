@@ -2,12 +2,12 @@ import { create } from "zustand"
 import type { Subscription } from "@types"
 
 type SubscriptionStore = {
-  isPro: Uncertain<boolean>
+  isPro: boolean
   subscription: Optional<Subscription>
 }
 
 const useSubscriptionStore = create<SubscriptionStore>(() => ({
-  isPro: undefined,
+  isPro: false,
   subscription: undefined,
 }))
 

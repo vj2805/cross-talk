@@ -13,12 +13,6 @@ const supportedLanguageMap: Record<SupportedLanguage, string> = {
   te: "Telugu",
 }
 
-const supportedLanguages = Object.keys(supportedLanguageMap)
-
-export function getSupportedLanguages() {
-  return supportedLanguages
-}
-
-export function getLanguageName(languageCode: SupportedLanguage) {
-  return supportedLanguageMap[languageCode]
+export function getSupportedLanguageMap() {
+  return supportedLanguageMap
 }

@@ -1,5 +1,5 @@
 import { addDoc } from "firebase/firestore"
-import { checkoutSessionsRef } from "./collections/checkoutSessionsRef"
+import { checkoutSessionsRef } from "./refs"
 
 interface AddCheckoutSessionParams {
   priceId: string

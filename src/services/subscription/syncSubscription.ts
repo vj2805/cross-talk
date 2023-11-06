@@ -1,5 +1,5 @@
 import { onSnapshot } from "firebase/firestore"
-import { subscriptionsRef } from "./collections/subscriptionsRef"
+import { subscriptionsRef } from "./refs"
 import type { Subscription } from "@types"
 import type { QuerySnapshot } from "firebase/firestore"
 

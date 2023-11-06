@@ -1,9 +1,7 @@
-import { collection } from "firebase/firestore"
 import type { Subscription } from "@types"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import { clientRepo } from "~/firebase"
 
-const subscriptionConverter: FirestoreDataConverter<Subscription> = {
+export const subscriptionConverter: FirestoreDataConverter<Subscription> = {
   fromFirestore(snapshot, options) {
     const data = snapshot.data(options)
     return {
@@ -33,13 +31,4 @@ const subscriptionConverter: FirestoreDataConverter<Subscription> = {
   toFirestore(subscription) {
     return subscription
   },
-}
-
-export function subscriptionsRef(userId: string) {
-  return collection(
-    clientRepo,
-    "customers",
-    userId,
-    "subscriptions"
-  ).withConverter(subscriptionConverter)
 }

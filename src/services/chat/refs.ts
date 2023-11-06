@@ -9,6 +9,6 @@ export function chatsRef() {
 export function participatingChatsRef(participantId: string) {
   return query(
     chatsRef(),
-    where("participants", "array-contains", participantId)
+    where("participantsIds", "array-contains", participantId)
   )
 }

@@ -1,6 +1,6 @@
 import { collection, doc } from "firebase/firestore"
 import { clientRepo } from "~/firebase"
-import { participantConverter } from "./participantConverter"
+import { participantConverter } from "./converter"
 
 function participantsRef() {
   return collection(clientRepo, "users").withConverter(participantConverter)

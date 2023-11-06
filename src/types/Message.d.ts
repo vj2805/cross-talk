@@ -1,4 +1,4 @@
-import type { SupportedLanguage } from "./SupportedLanguage"
+import type { Language } from "./Language"
 import type { User } from "next-auth"
 import type { Timestamp } from "firebase/firestore"
 
@@ -7,7 +7,7 @@ export type Message = {
   input: string
   timestamp: Timestamp
   translated?: {
-    [K in SupportedLanguage]?: string
+    [K in Language]?: string
   }
   user: Required<User>
 }

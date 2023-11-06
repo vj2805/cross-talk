@@ -1,8 +1,8 @@
-import { getSupportedLanguageMap } from "./getSupportedLanguageMap"
-import type { SupportedLanguage } from "@types"
+import { getAvailableLanguagesMap } from "./getAvailableLanguagesMap"
+import type { Language } from "@types"
 
-const supportedLanguageMap = getSupportedLanguageMap()
+const availableLanguagesMap = getAvailableLanguagesMap()
 
-export function getLanguageName(languageCode: SupportedLanguage) {
-  return supportedLanguageMap[languageCode]
+export function getLanguageName(languageCode: Language) {
+  return availableLanguagesMap[languageCode]
 }

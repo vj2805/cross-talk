@@ -1,7 +1,7 @@
-import { getSupportedLanguageMap } from "./getSupportedLanguageMap"
+import { getAvailableLanguages } from "./getAvailableLanguages"
 
-const supportedLanguages = Object.keys(getSupportedLanguageMap())
+const availableLanguages = getAvailableLanguages()
 
-export function getSupportedLanguages() {
-  return supportedLanguages
+export function getSupportedLanguages(isPro: boolean) {
+  return isPro ? availableLanguages : availableLanguages.slice(0, 2)
 }

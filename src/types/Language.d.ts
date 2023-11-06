@@ -1,4 +1,4 @@
-export type SupportedLanguage =
+export type Language =
   | "de"
   | "en"
   | "es"

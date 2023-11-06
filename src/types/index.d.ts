@@ -1,7 +1,7 @@
 export type { Session, User } from "next-auth"
 export type { Chat } from "./Chat"
+export type { Language } from "./Language"
 export type { Message } from "./Message"
 export type { Participant } from "./Participant"
 export type { PricingTier } from "./PricingTier"
 export type { Subscription } from "./Subscription"
-export type { SupportedLanguage } from "./SupportedLanguage"

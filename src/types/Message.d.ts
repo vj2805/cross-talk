@@ -1,6 +1,6 @@
-import type { Language } from "./Language"
-import type { User } from "next-auth"
+import type { User } from "firebase/auth"
 import type { Timestamp } from "firebase/firestore"
+import type { Language } from "./Language"
 
 export type Message = {
   id: string
@@ -9,5 +9,5 @@ export type Message = {
   translated?: {
     [K in Language]?: string
   }
-  user: Required<User>
+  user: Required<Pick<User, "displayName" | "email" | "photoURL" | "uid">>
 }

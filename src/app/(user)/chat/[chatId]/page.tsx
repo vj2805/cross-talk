@@ -1,6 +1,31 @@
-import { getServerUser } from "@services"
+import { ChatInput, ChatMessages } from "@components"
+import { getMessages, getServerUser } from "@services"
 
-export default async function ChatPage() {
+interface ChatPageProps {
+  params: {
+    chatId: string
+  }
+}
+
+export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
   const user = await getServerUser()
-  return <div>Chat</div>
+
+  if (!user) {
+    return null
+  }
+
+  const initialMessages = await getMessages(chatId)
+
+  return (
+    <>
+      <div className="flex-1">
+        <ChatMessages
+          chatId={chatId}
+          user={user}
+          initialMessages={initialMessages}
+        />
+      </div>
+      <ChatInput chatId={chatId} />
+    </>
+  )
 }

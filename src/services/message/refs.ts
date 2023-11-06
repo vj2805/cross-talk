@@ -1,4 +1,4 @@
-import { collection, doc, limit, orderBy, query } from "firebase/firestore"
+import { collection, limit, orderBy, query } from "firebase/firestore"
 import { clientRepo } from "@firebase"
 import { messageConverter } from "./converter"
 

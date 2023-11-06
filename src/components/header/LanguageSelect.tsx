@@ -66,7 +66,7 @@ export const LanguageSelect: React.FC = () => {
                         "text-gray-500 dark:text-white"
                       )}
                     >
-                      {getLanguageName(language)}
+                      {getLanguageName(language)} (PRO)
                     </SelectItem>
                   </Link>
                 ))}

@@ -3,7 +3,7 @@ import { Link } from "@ui"
 
 export const GetStartedTodayButton: React.FC = () => (
   <Link
-    href="/register"
+    href="/subscribe"
     className={cn(
       "block",
       "mt-8",

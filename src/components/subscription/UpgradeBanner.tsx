@@ -15,7 +15,7 @@ export const UpgradeBanner: React.FC = () => {
 
   return (
     <Button
-      onClick={() => router.push("/register")}
+      onClick={() => router.push("/subscribe")}
       className={cn(
         "w-full",
         "px-5",

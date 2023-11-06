@@ -39,7 +39,7 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
         ) : subscription?.status === "active" ? (
           <ManageSubscriptionButton />
         ) : (
-          <button onClick={createCheckoutSession}>Sign Up</button>
+          <button onClick={createCheckoutSession}>Subscribe</button>
         )}
       </div>
     </div>

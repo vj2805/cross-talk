@@ -30,5 +30,5 @@ export async function manageSubscription() {
 
 function getReturnUrl(host: Nullish<string>) {
   const protocol = env["NODE_ENV"] === "development" ? "http" : "https"
-  return `${protocol}://${host}/register`
+  return `${protocol}://${host}/subscribe`
 }

@@ -1,10 +1,9 @@
 import { addDoc } from "firebase/firestore"
 import { chatsRef } from "./refs"
-import type { User } from "@types"
 
-export async function addChat(user: User) {
+export async function addChat(adminId: string) {
   const chatRef = await addDoc(chatsRef(), {
-    admin: user.id,
+    admin: adminId,
     id: "",
     participants: [],
   })

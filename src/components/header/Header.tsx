@@ -1,12 +1,12 @@
-import { getServerUser } from "@services"
-import { cn } from "@utilities"
-import { Link } from "@ui"
 import { MessagesSquareIcon } from "@icons"
-import { CreateChatButton } from "./CreateChatButton"
+import { getServerUser } from "@services"
+import { Link } from "@ui"
+import { cn } from "@utilities"
+import { CreateChatButton } from "../chat/CreateChatButton"
+import { ProfileButton } from "../user/ProfileButton"
+import { UpgradeBanner } from "../subscription/UpgradeBanner"
 import { Logo } from "./Logo"
-import { ProfileButton } from "./ProfileButton"
 import { ThemeToggle } from "./ThemeToggle"
-import { UpgradeBanner } from "./UpgradeBanner"
 
 export const Header: React.FC = async () => {
   const user = await getServerUser()

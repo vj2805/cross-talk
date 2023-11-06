@@ -1,4 +1,4 @@
-export { BlobBackdrop } from "./BlobBackdrop"
-export { CircleBackdrop } from "./CircleBackdrop"
-export { Header } from "./Header"
-export { PricingCards } from "./PricingCards"
+export { BlobBackdrop } from "./backdrop/BlobBackdrop"
+export { CircleBackdrop } from "./backdrop/CircleBackdrop"
+export { Header } from "./header/Header"
+export { PricingCards } from "./subscription/PricingCards"

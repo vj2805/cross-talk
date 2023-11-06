@@ -11,6 +11,7 @@ export { DropdownMenuLabel } from "./dropdown-menu/DropdownMenuLabel"
 export { DropdownMenuSeparator } from "./dropdown-menu/DropdownMenuSeparator"
 export { DropdownMenuTrigger } from "./dropdown-menu/DropdownMenuTrigger"
 export { Label } from "./label/Label"
+export { Skeleton } from "./skeleton/Skeleton"
 export { Spinner } from "./spinner/Spinner"
 export { Toaster } from "./toast/Toaster"
 

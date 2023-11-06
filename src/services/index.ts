@@ -1,7 +1,3 @@
-export {
-  signInWithCustomToken as signInToFirebaseWithCustomToken,
-  signOut as signOutFromFirebase,
-} from "firebase/auth"
 export { signIn, signOut } from "next-auth/react"
 export { addChat } from "./chat/addChat"
 export { getParticipatingChats } from "./chat/getParticipatingChats"
@@ -11,3 +7,4 @@ export { getSupportedLanguages } from "./languages/getSupportedLanguages"
 export { getPricingTiers } from "./subscription/getPricingTiers"
 export { syncSubscription } from "./subscription/syncSubscription"
 export { getServerUser } from "./user/getServerUser"
+export { syncUser } from "./user/syncUser"

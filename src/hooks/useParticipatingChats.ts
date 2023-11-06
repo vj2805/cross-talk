@@ -1,5 +1,5 @@
-import { participatingChatsRef } from "@services/chat/refs"
 import { useCollectionData } from "react-firebase-hooks/firestore"
+import { participatingChatsRef } from "@services"
 import type { Chat } from "@types"
 
 export function useParticipatingChats(

@@ -29,6 +29,7 @@ export const subscriptionConverter: FirestoreDataConverter<Subscription> = {
     }
   },
   toFirestore(subscription) {
+    delete subscription.id
     return subscription
   },
 }

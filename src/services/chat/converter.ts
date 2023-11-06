@@ -11,6 +11,7 @@ export const chatConverter: FirestoreDataConverter<Chat> = {
     }
   },
   toFirestore(chat) {
+    delete chat.id
     return chat
   },
 }

@@ -11,6 +11,7 @@ export const participantConverter: FirestoreDataConverter<Participant> = {
     }
   },
   toFirestore(participant) {
+    delete participant.id
     return participant
   },
 }

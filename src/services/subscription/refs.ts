@@ -1,5 +1,5 @@
 import { collection } from "firebase/firestore"
-import { clientRepo } from "~/firebase"
+import { clientRepo } from "@firebase"
 import { subscriptionConverter } from "./converter"
 
 export function subscriptionsRef(userId: string) {

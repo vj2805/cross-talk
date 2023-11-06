@@ -1,5 +1,5 @@
 import { collection, doc } from "firebase/firestore"
-import { clientRepo } from "~/firebase"
+import { clientRepo } from "@firebase"
 import { participantConverter } from "./converter"
 
 function participantsRef() {

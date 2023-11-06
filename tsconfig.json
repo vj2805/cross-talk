@@ -19,17 +19,8 @@
       }
     ],
     "paths": {
-      "@actions": ["./src/actions/index"],
-      "@assets/*": ["./src/assets/*"],
-      "@components": ["./src/components/index"],
-      "@hooks": ["./src/hooks/index"],
-      "@icons": ["./src/icons/index"],
-      "@providers": ["./src/providers/index"],
-      "@services": ["./src/services/index"],
-      "@types": ["./src/types/index"],
       "@ui": ["./src/components/ui/index"],
-      "@utilities": ["./src/utilities/index"],
-      "~/*": ["./src/*"]
+      "@*": ["./src/*"]
     }
   },
   "include": [
@@ -41,4 +32,3 @@
   ],
   "exclude": ["node_modules"]
 }
-

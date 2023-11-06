@@ -1,5 +1,5 @@
 import { collection, query, where } from "firebase/firestore"
-import { clientRepo } from "~/firebase"
+import { clientRepo } from "@firebase"
 import { chatConverter } from "./converter"
 
 export function chatsRef() {

@@ -1,8 +1,8 @@
 "use client"
 
 import { forwardRef } from "react"
-import { Circle } from "@icons"
 import { ItemIndicator, RadioItem } from "@radix-ui/react-dropdown-menu"
+import { Circle } from "@icons"
 import { cn } from "@utilities"
 
 type Ref = React.ElementRef<typeof RadioItem>

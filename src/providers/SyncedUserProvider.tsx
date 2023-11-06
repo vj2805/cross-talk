@@ -13,5 +13,5 @@ export const SyncedUserProvider: React.FC<
     syncUser(session)
   }, [session])
 
-  return <>{props.children}</>
+  return props.children
 }

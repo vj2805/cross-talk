@@ -20,7 +20,7 @@ export const UpgradeBanner: React.FC = () => {
       className={cn(
         "w-full",
         "p-2",
-        "bg-gradient-to-r from-cyan-500 to-indigo-600",
+        "bg-gradient-to-r from-indigo-500 to-cyan-500 dark:from-cyan-500 dark:to-indigo-600",
         "text-center text-white",
         "rounded-none",
         "hover:shadow-md",

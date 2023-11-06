@@ -9,6 +9,8 @@ const SubscriptionContext = createContext<Optional<Subscription>>(undefined)
 
 export const useSubscription = () => useContext(SubscriptionContext)
 
+export const useIsPro = () => useSubscription()?.status == "active"
+
 export const SubscriptionProvider: React.FC<
   React.PropsWithRequiredChildren
 > = props => {

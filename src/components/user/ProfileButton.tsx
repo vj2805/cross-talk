@@ -1,6 +1,6 @@
 "use client"
 
-import { useSubscription } from "@providers"
+import { useIsPro, useSubscription } from "@providers"
 import { signOut } from "@services"
 import { cn } from "@utilities"
 import {
@@ -23,6 +23,7 @@ interface ProfileButtonProps {
 
 export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
   const subscription = useSubscription()
+  const isPro = useIsPro()
   return !user ? (
     <SignInButton />
   ) : (
@@ -41,7 +42,7 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
             <Spinner />
           </DropdownMenuItem>
         ) : (
-          subscription?.status !== "canceled" && (
+          isPro && (
             <>
               <DropdownMenuLabel
                 className={cn(

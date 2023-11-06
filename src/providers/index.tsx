@@ -3,4 +3,4 @@ export { SubscriptionProvider } from "./SubscriptionProvider"
 export { SyncedUserProvider } from "./SyncedUserProvider"
 export { ThemeProvider } from "./ThemeProvider"
 
-export { useSubscription } from "./SubscriptionProvider"
+export { useIsPro, useSubscription } from "./SubscriptionProvider"

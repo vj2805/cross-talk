@@ -1,15 +1,16 @@
 "use client"
 
 import { useRouter } from "@hooks"
-import { useSubscription } from "@providers"
+import { useIsPro, useSubscription } from "@providers"
 import { cn } from "@utilities"
 import { Button } from "@ui"
 
 export const UpgradeBanner: React.FC = () => {
   const router = useRouter()
   const subscription = useSubscription()
+  const isPro = useIsPro()
 
-  if (subscription === undefined || subscription) {
+  if (subscription === undefined || isPro) {
     return null
   }
 
@@ -18,7 +19,7 @@ export const UpgradeBanner: React.FC = () => {
       onClick={() => router.push("/subscribe")}
       className={cn(
         "w-full",
-        "px-5",
+        "p-2",
         "bg-gradient-to-r from-cyan-500 to-indigo-600",
         "text-center text-white",
         "rounded-none",
@@ -26,7 +27,7 @@ export const UpgradeBanner: React.FC = () => {
         "hover:opacity-90"
       )}
     >
-      Upgrade to Pro to unlock all features!
+      Upgrade to PRO to unlock all features!
     </Button>
   )
 }

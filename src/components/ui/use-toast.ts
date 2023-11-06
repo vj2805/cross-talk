@@ -139,19 +139,20 @@ type Toast = Omit<ToasterToast, "id">
 function showToast({ ...props }: Toast) {
   const id = genId()
 
-  const update = (props: ToasterToast) =>
+  const updateToast = (props: ToasterToast) =>
     dispatch({
       toast: { ...props, id },
       type: "UPDATE_TOAST",
     })
-  const dismiss = () => dispatch({ toastId: id, type: "DISMISS_TOAST" })
+  const dismissToast = (delay: number) =>
+    setTimeout(() => dispatch({ toastId: id, type: "DISMISS_TOAST" }), delay)
 
   dispatch({
     toast: {
       ...props,
       id,
       onOpenChange: open => {
-        if (!open) dismiss()
+        if (!open) dismissToast(0)
       },
       open: true,
     },
@@ -159,9 +160,8 @@ function showToast({ ...props }: Toast) {
   })
 
   return {
-    dismiss,
-    id: id,
-    update,
+    dismissToast,
+    updateToast,
   }
 }
 
@@ -185,4 +185,4 @@ function useToast() {
   }
 }
 
-export { useToast, showToast }
+export { showToast, useToast }

@@ -4,9 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import * as zod from "zod"
-import { addMessage } from "@services/message/addMessage"
-import { getMessagesCount } from "@services/message/getMessagesCount"
 import { ToastAction, showToast } from "@ui"
+import { addMessage, getMessagesCount } from "@services"
 import { useUser } from "./useUser"
 
 const ChatInputFormSchema = zod.object({

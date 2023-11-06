@@ -14,5 +14,12 @@ export { Label } from "./label/Label"
 export { Skeleton } from "./skeleton/Skeleton"
 export { Spinner } from "./spinner/Spinner"
 export { Toaster } from "./toast/Toaster"
+export {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./select"
 
 export { showToast } from "./toast/useToast"

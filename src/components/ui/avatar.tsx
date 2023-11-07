@@ -3,6 +3,7 @@
 import * as React from "react"
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
 import { cn } from "@/utilities/shadcn"
+import { NextImage } from "./builtins"
 
 export const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
@@ -23,11 +24,12 @@ export const Avatar = React.forwardRef<
 Avatar.displayName = AvatarPrimitive.Root.displayName
 
 export const AvatarImage = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Image>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Image
+  React.ElementRef<typeof NextImage>,
+  React.ComponentPropsWithoutRef<typeof NextImage>
+>(({ className, alt, ...props }, ref) => (
+  <NextImage
     ref={ref}
+    alt={alt}
     className={cn("aspect-square h-full w-full", className)}
     {...props}
   />

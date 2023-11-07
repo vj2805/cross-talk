@@ -14,47 +14,6 @@ type ToastPropsWithoutId = SafeOmit<ToastProps, "id"> & {
 
 type Toast = ToastPropsWithoutId & { id: string }
 
-type Action =
-  | {
-      type: "add/toast"
-      toast: Toast
-    }
-  | {
-      type: "dismiss/toast"
-      id: Toast["id"]
-    }
-  | {
-      type: "update/toast"
-      id: Toast["id"]
-      props: Partial<ToastPropsWithoutId>
-    }
-
-type State = Toast[]
-
-const reducer = (state: State, action: Action): State => {
-  switch (action.type) {
-    case "add/toast":
-      return [action.toast, ...state].slice(0, TOAST_LIMIT)
-    case "update/toast":
-      return state.map(t =>
-        t.id === action.id ? { ...t, ...action.props } : t
-      )
-    case "dismiss/toast":
-      return state.filter(t => t.id !== action.id)
-  }
-}
-
-const listeners: Array<(state: State) => void> = []
-
-let memoryState: State = []
-
-function dispatch(action: Action) {
-  memoryState = reducer(memoryState, action)
-  listeners.forEach(listener => {
-    listener(memoryState)
-  })
-}
-
 function showToast(props: ToastPropsWithoutId) {
   const id = addToast(props)
   const update = (props: ToastPropsWithoutId) => updateToast(id, props)

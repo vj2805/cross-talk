@@ -25,13 +25,7 @@ export function useToasts() {
 }
 
 export function showToast(props: ToastPropsWithoutId) {
-  const id = addToast(props)
-  const update = (props: ToastPropsWithoutId) => updateToast(id, props)
-  const dismiss = (delay: number) => dismissToast(id, delay)
-  return {
-    dismissToast: dismiss,
-    updateToast: update,
-  }
+  return addToast(props)
 }
 
 function createToast(props: ToastPropsWithoutId): Toast {

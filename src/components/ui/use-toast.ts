@@ -124,7 +124,9 @@ export function addToast(props: ToastPropsWithoutId) {
     },
     open: true,
   }
-  useToastStore.setState(store => ({ toasts: [toast, ...store.toasts] }))
+  useToastStore.setState(store => ({
+    toasts: [toast, ...store.toasts].slice(0, TOAST_LIMIT),
+  }))
   return toast.id
 }
 

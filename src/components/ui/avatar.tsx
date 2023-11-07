@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import { cn } from "@/utilities/shadcn"
-import { NextImage, PrimitiveAvatar } from "./primitives"
+import { NextImage } from "./builtins"
+import { PrimitiveAvatar } from "./primitives"
 
 export const Avatar = React.forwardRef<
   React.ElementRef<typeof PrimitiveAvatar.Root>,

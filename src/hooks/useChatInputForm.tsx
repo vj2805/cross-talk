@@ -4,9 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import * as zod from "zod"
-import { ToastAction, showToast } from "@ui"
 import { addMessage, getMessagesCount } from "@services"
-import { useUser } from "./useUser"
+import { useSyncedUser } from "@stores"
+import { ToastAction, showToast } from "@ui"
 
 const ChatInputFormSchema = zod.object({
   input: zod.string().max(100),
@@ -15,7 +15,7 @@ const ChatInputFormSchema = zod.object({
 type ChatInputFormSchemaType = zod.infer<typeof ChatInputFormSchema>
 
 export function useChatInputForm(chatId: string) {
-  const [user] = useUser()
+  const user = useSyncedUser()
   const router = useRouter()
   const form = useForm<ChatInputFormSchemaType>({
     defaultValues: {
@@ -37,12 +37,7 @@ export function useChatInputForm(chatId: string) {
         await addMessage({
           chatId,
           input,
-          user: {
-            email: user.email,
-            id: user.uid,
-            image: user.photoURL,
-            name: user.displayName,
-          },
+          user,
         })
         form.reset()
       } else {

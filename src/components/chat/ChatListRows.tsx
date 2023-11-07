@@ -1,7 +1,7 @@
 "use client"
 
 import { useParticipatingChats } from "@hooks"
-import { useUser } from "@hooks"
+import { useSyncedUser } from "@stores"
 import { cn } from "@utilities"
 import { MessageSquareIcon } from "@icons"
 import { Spinner } from "@ui"
@@ -14,8 +14,8 @@ interface ChatListRowsProps {
 }
 
 export const ChatListRows: React.FC<ChatListRowsProps> = ({ initialChats }) => {
-  const [user] = useUser()
-  const [chats] = useParticipatingChats(user?.uid, initialChats)
+  const user = useSyncedUser()
+  const [chats] = useParticipatingChats(user?.id, initialChats)
 
   if (!chats) {
     return <Spinner />

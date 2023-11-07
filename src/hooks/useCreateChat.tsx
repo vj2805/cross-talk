@@ -1,13 +1,14 @@
 "use client"
 
-import { useRouter, useUser } from "@hooks"
+import { useRouter } from "@hooks"
 import { addChat } from "@services"
 import { showToast } from "@ui"
+import { useSyncedUser } from "@stores"
 import { useProcess } from "./useProcess"
 
 export function useCreateChat() {
   const { processing, startProcess, stopProcess } = useProcess()
-  const [user] = useUser()
+  const user = useSyncedUser()
   const router = useRouter()
 
   async function createChat() {
@@ -21,7 +22,7 @@ export function useCreateChat() {
       variant: "default",
     })
     try {
-      const chatId = await addChat(user.uid)
+      const chatId = await addChat(user.id)
       updateToast({
         description: "Redirecting to the new chat, Please wait...",
         title: "Created new chat!",

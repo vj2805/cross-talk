@@ -1,8 +1,8 @@
 "use client"
 
 import { useLastMessageInChat } from "@hooks/useLastMessageInChat"
-import { useLanguage } from "@stores"
-import { useRouter, useUser } from "@hooks"
+import { useLanguage, useSyncedUser } from "@stores"
+import { useRouter } from "@hooks"
 import { Skeleton } from "@ui"
 import { cn, prettifyId } from "@utilities"
 import { UserAvatar } from "../user/UserAvatar"
@@ -14,7 +14,7 @@ interface ChatRowProps {
 
 export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const [messages, loading] = useLastMessageInChat(chatId)
-  const [user] = useUser()
+  const user = useSyncedUser()
   const language = useLanguage()
   const router = useRouter()
 
@@ -42,13 +42,13 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
       )}
     >
       <UserAvatar
-        name={message?.user.name ?? user?.displayName}
-        image={message?.user.image ?? user?.photoURL}
+        name={message?.user.name || user?.name}
+        image={message?.user.image || user?.image}
       />
       <div className="flex-1">
         <p className="font-bold">
           {message
-            ? (message.user.name ?? user?.displayName)?.split(" ")[0]
+            ? (message.user.name ?? user?.name)?.split(" ")[0]
             : "New Chat"}
         </p>
         <p className="text-gray-400 line-clamp-1">

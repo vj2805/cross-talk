@@ -46,13 +46,12 @@ export const FormField = <
     PrimitiveForm.FieldPath<FieldValues> = PrimitiveForm.FieldPath<FieldValues>,
 >(
   props: PrimitiveForm.ControllerProps<FieldValues, Name>
-) => {
-  return (
-    <FormFieldNameContext.Provider value={props.name}>
-      <PrimitiveForm.Controller {...props} />
-    </FormFieldNameContext.Provider>
-  )
-}
+) => (
+  <FormFieldNameContext.Provider value={props.name}>
+    <PrimitiveForm.Controller {...props} />
+  </FormFieldNameContext.Provider>
+)
+FormField.displayName = FormField.name
 
 export const FormItem = React.forwardRef<
   HTMLDivElement,
@@ -66,7 +65,7 @@ export const FormItem = React.forwardRef<
     />
   </FormItemIdContext.Provider>
 ))
-FormItem.displayName = "FormItem"
+FormItem.displayName = FormItem.name
 
 export const FormLabel = React.forwardRef<
   React.ElementRef<typeof Label>,
@@ -82,7 +81,7 @@ export const FormLabel = React.forwardRef<
     />
   )
 })
-FormLabel.displayName = "FormLabel"
+FormLabel.displayName = FormLabel.name
 
 export const FormControl = React.forwardRef<
   React.ElementRef<typeof PrimitiveSlot.Slot>,
@@ -103,7 +102,7 @@ export const FormControl = React.forwardRef<
     />
   )
 })
-FormControl.displayName = "FormControl"
+FormControl.displayName = FormControl.name
 
 export const FormDescription = React.forwardRef<
   HTMLParagraphElement,
@@ -119,7 +118,7 @@ export const FormDescription = React.forwardRef<
     />
   )
 })
-FormDescription.displayName = "FormDescription"
+FormDescription.displayName = FormDescription.name
 
 export const FormMessage = React.forwardRef<
   HTMLParagraphElement,
@@ -138,4 +137,4 @@ export const FormMessage = React.forwardRef<
     </p>
   ) : null
 })
-FormMessage.displayName = "FormMessage"
+FormMessage.displayName = FormMessage.name

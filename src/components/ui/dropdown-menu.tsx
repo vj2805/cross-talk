@@ -1,9 +1,74 @@
 "use client"
 
 import * as React from "react"
-import { Check, ChevronRight, Circle } from "lucide-react"
+import { cva } from "class-variance-authority"
+import { Check, ChevronRight, Circle } from "@icons"
 import { cn } from "@/utilities/shadcn"
 import { PrimitiveDropdownMenu } from "./builtins"
+
+const contentVariants = cva(
+  cn(
+    "z-50",
+    "min-w-[8rem]",
+    "p-1",
+    "bg-popover",
+    "text-popover-foreground",
+    "border rounded-md",
+    "overflow-hidden",
+    "data-[state=open]:animate-in",
+    "data-[state=open]:fade-in-0",
+    "data-[state=open]:zoom-in-95",
+    "data-[state=closed]:animate-out",
+    "data-[state=closed]:fade-out-0",
+    "data-[state=closed]:zoom-out-95",
+    "data-[side=top]:slide-in-from-bottom-2",
+    "data-[side=right]:slide-in-from-left-2",
+    "data-[side=bottom]:slide-in-from-top-2",
+    "data-[side=left]:slide-in-from-right-2"
+  ),
+  {
+    variants: {
+      type: {
+        root: "shadow-md",
+        sub: "shadow-lg",
+      },
+    },
+  }
+)
+
+const itemVariants = cva(
+  cn(
+    "pr-2 py-1.5",
+    "text-sm",
+    "rounded-sm",
+    "outline-none",
+    "cursor-default",
+    "select-none",
+    "transition-colors",
+    "relative flex items-center",
+    "focus:bg-accent",
+    "focus:text-accent-foreground",
+    "data-[disabled]:opacity-50",
+    "data-[disabled]:pointer-events-none"
+  ),
+  {
+    defaultVariants: {
+      type: "default",
+    },
+    variants: {
+      type: {
+        default: "pl-2",
+        indented: "pl-8",
+      },
+    },
+  }
+)
+
+const itemContainerStyles = cn(
+  "absolute left-2",
+  "h-3.5 w-3.5",
+  "flex items-center justify-center"
+)
 
 export const DropdownMenu = PrimitiveDropdownMenu.Root
 
@@ -55,27 +120,7 @@ export const DropdownMenuSubContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <PrimitiveDropdownMenu.SubContent
     ref={ref}
-    className={cn(
-      "z-50",
-      "min-w-[8rem]",
-      "p-1",
-      "bg-popover",
-      "text-popover-foreground",
-      "border rounded-md",
-      "shadow-lg",
-      "overflow-hidden",
-      "data-[state=open]:animate-in",
-      "data-[state=open]:fade-in-0",
-      "data-[state=open]:zoom-in-95",
-      "data-[state=closed]:animate-out",
-      "data-[state=closed]:fade-out-0",
-      "data-[state=closed]:zoom-out-95",
-      "data-[side=top]:slide-in-from-bottom-2",
-      "data-[side=right]:slide-in-from-left-2",
-      "data-[side=bottom]:slide-in-from-top-2",
-      "data-[side=left]:slide-in-from-right-2",
-      className
-    )}
+    className={contentVariants({ className, type: "sub" })}
     {...props}
   />
 ))
@@ -90,26 +135,7 @@ export const DropdownMenuContent = React.forwardRef<
     <PrimitiveDropdownMenu.Content
       ref={ref}
       sideOffset={sideOffset}
-      className={cn(
-        "z-50",
-        "min-w-[8rem]",
-        "p-1",
-        "bg-popover text-popover-foreground",
-        "border rounded-md",
-        "shadow-md",
-        "overflow-hidden",
-        "data-[state=open]:animate-in",
-        "data-[state=open]:fade-in-0",
-        "data-[state=open]:zoom-in-95",
-        "data-[state=closed]:animate-out",
-        "data-[state=closed]:fade-out-0",
-        "data-[state=closed]:zoom-out-95",
-        "data-[side=top]:slide-in-from-bottom-2",
-        "data-[side=right]:slide-in-from-left-2",
-        "data-[side=bottom]:slide-in-from-top-2",
-        "data-[side=left]:slide-in-from-right-2",
-        className
-      )}
+      className={contentVariants({ className, type: "root" })}
       {...props}
     />
   </PrimitiveDropdownMenu.Portal>
@@ -124,24 +150,10 @@ export const DropdownMenuItem = React.forwardRef<
 >(({ className, withInset, ...props }, ref) => (
   <PrimitiveDropdownMenu.Item
     ref={ref}
-    className={cn(
-      "px-2 py-1.5",
-      "text-sm",
-      "rounded-sm",
-      "outline-none",
-      "cursor-default",
-      "select-none",
-      "transition-colors",
-      "relative flex items-center",
-      "focus:bg-accent",
-      "focus:text-accent-foreground",
-      "data-[disabled]:opacity-50",
-      "data-[disabled]:pointer-events-none",
-      {
-        "pl-8": withInset,
-      },
-      className
-    )}
+    className={itemVariants({
+      className,
+      type: withInset ? "indented" : "default",
+    })}
     {...props}
   />
 ))
@@ -153,31 +165,11 @@ export const DropdownMenuCheckboxItem = React.forwardRef<
 >(({ className, children, checked, ...props }, ref) => (
   <PrimitiveDropdownMenu.CheckboxItem
     ref={ref}
-    className={cn(
-      "py-1.5 pl-8 pr-2",
-      "text-sm",
-      "rounded-sm",
-      "outline-none",
-      "cursor-default",
-      "select-none",
-      "transition-colors",
-      "relative flex items-center",
-      "focus:bg-accent",
-      "focus:text-accent-foreground",
-      "data-[disabled]:opacity-50",
-      "data-[disabled]:pointer-events-none",
-      className
-    )}
+    className={itemVariants({ className, type: "indented" })}
     checked={checked}
     {...props}
   >
-    <span
-      className={cn(
-        "absolute left-2",
-        "h-3.5 w-3.5",
-        "flex items-center justify-center"
-      )}
-    >
+    <span className={itemContainerStyles}>
       <PrimitiveDropdownMenu.ItemIndicator>
         <Check className="h-4 w-4" />
       </PrimitiveDropdownMenu.ItemIndicator>
@@ -194,30 +186,10 @@ export const DropdownMenuRadioItem = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <PrimitiveDropdownMenu.RadioItem
     ref={ref}
-    className={cn(
-      "py-1.5 pl-8 pr-2",
-      "text-sm",
-      "rounded-sm",
-      "outline-none",
-      "cursor-default",
-      "select-none",
-      "transition-colors",
-      "relative flex items-center",
-      "focus:bg-accent",
-      "focus:text-accent-foreground",
-      "data-[disabled]:opacity-50",
-      "data-[disabled]:pointer-events-none",
-      className
-    )}
+    className={itemVariants({ className, type: "indented" })}
     {...props}
   >
-    <span
-      className={cn(
-        "absolute left-2",
-        "h-3.5 w-3.5",
-        "flex items-center justify-center"
-      )}
-    >
+    <span className={itemContainerStyles}>
       <PrimitiveDropdownMenu.ItemIndicator>
         <Circle className={cn("h-2 w-2", "fill-current")} />
       </PrimitiveDropdownMenu.ItemIndicator>

@@ -113,7 +113,20 @@ type ToastStore = {
 
 const useToastStore = create<ToastStore>(() => ({ toasts: [] }))
 
-export function addToast(props: ToastPropsWithoutId) {}
+export function addToast(props: ToastPropsWithoutId) {
+  const toast: Toast = {
+    ...props,
+    id: generateId(),
+    onOpenChange(open) {
+      if (!open) {
+        dismissToast(this.id, 0)
+      }
+    },
+    open: true,
+  }
+  useToastStore.setState(store => ({ toasts: [toast, ...store.toasts] }))
+  return toast.id
+}
 
 export function updateToast(id: Toast["id"], props: ToastPropsWithoutId) {}
 

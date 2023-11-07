@@ -113,3 +113,9 @@ type ToastStore = {
 }
 
 const useToastStore = create<ToastStore>(() => ({ toasts: [] }))
+
+export function addToast(props: ToastWithoutId) {}
+
+export function updateToast(id: Toast["id"], props: ToastWithoutId) {}
+
+export function dismissToast(id: Toast["id"], delay: number) {}

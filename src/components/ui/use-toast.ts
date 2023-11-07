@@ -58,7 +58,7 @@ function dispatch(action: Action) {
 function showToast({ ...props }: ToastWithoutId) {
   const id = generateId()
 
-  const updateToast = (props: Toast) =>
+  const updateToast = (props: ToastWithoutId) =>
     dispatch({
       id,
       props,

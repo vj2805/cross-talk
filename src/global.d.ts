@@ -19,6 +19,9 @@ declare global {
     > = T & VariantProps<V>
   }
   namespace Model {
-    type Observable<T> = [Error, "error"] | [T, "idle"] | [undefined, "loading"]
+    type Observable<T, L = undefined> =
+      | [Error, "error"]
+      | [L, "loading"]
+      | [T, "idle"]
   }
 }

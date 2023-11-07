@@ -16,15 +16,15 @@ type ToastWithoutId = SafeOmit<Toast, "id">
 
 type Action =
   | {
-      type: "ADD_TOAST"
+      type: "add/toast"
       toast: Toast
     }
   | {
-      type: "REMOVE_TOAST"
+      type: "dismiss/toast"
       id: Toast["id"]
     }
   | {
-      type: "UPDATE_TOAST"
+      type: "update/toast"
       id: Toast["id"]
       props: Partial<ToastWithoutId>
     }
@@ -33,13 +33,13 @@ type State = Toast[]
 
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case "ADD_TOAST":
+    case "add/toast":
       return [action.toast, ...state].slice(0, TOAST_LIMIT)
-    case "UPDATE_TOAST":
+    case "update/toast":
       return state.map(t =>
         t.id === action.id ? { ...t, ...action.props } : t
       )
-    case "REMOVE_TOAST":
+    case "dismiss/toast":
       return state.filter(t => t.id !== action.id)
   }
 }
@@ -62,10 +62,10 @@ function showToast({ ...props }: ToastWithoutId) {
     dispatch({
       id,
       props,
-      type: "UPDATE_TOAST",
+      type: "update/toast",
     })
   const dismissToast = (delay: number) =>
-    setTimeout(() => dispatch({ id, type: "REMOVE_TOAST" }), delay)
+    setTimeout(() => dispatch({ id, type: "dismiss/toast" }), delay)
 
   dispatch({
     toast: {
@@ -76,7 +76,7 @@ function showToast({ ...props }: ToastWithoutId) {
       },
       open: true,
     },
-    type: "ADD_TOAST",
+    type: "add/toast",
   })
 
   return {
@@ -100,7 +100,7 @@ function useToast() {
 
   return {
     ...state,
-    dismiss: (id: string) => dispatch({ id, type: "REMOVE_TOAST" }),
+    dismiss: (id: string) => dispatch({ id, type: "dismiss/toast" }),
     toast: showToast,
   }
 }

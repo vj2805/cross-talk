@@ -27,7 +27,7 @@ type BadgeProps = React.PropsWithVariant<
   typeof variants
 >
 
-function Badge({ className, variant, ...props }: BadgeProps) {
+export function Badge({ className, variant, ...props }: BadgeProps) {
   return (
     <div
       className={cn(variants({ variant }), className)}
@@ -35,5 +35,3 @@ function Badge({ className, variant, ...props }: BadgeProps) {
     />
   )
 }
-
-export { Badge, variants as badgeVariants }

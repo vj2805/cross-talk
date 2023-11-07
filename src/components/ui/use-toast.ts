@@ -13,6 +13,8 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement
 }
 
+type ToastWithoutId = SafeOmit<ToasterToast, "id">
+
 type Action =
   | {
       type: "ADD_TOAST"
@@ -71,9 +73,7 @@ function dispatch(action: Action) {
   })
 }
 
-type Toast = Omit<ToasterToast, "id">
-
-function showToast({ ...props }: Toast) {
+function showToast({ ...props }: ToastWithoutId) {
   const id = generateId()
 
   const updateToast = (props: ToasterToast) =>

@@ -1,18 +1,16 @@
-// Inspired by react-hot-toast library
-import type * as React from "react"
 import { create } from "zustand"
 import { generateId } from "@utilities"
 import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
 
-type ToastPropsWithoutId = SafeOmit<ToastProps, "id"> & {
-  title?: React.ReactNode
-  description?: React.ReactNode
-  action?: ToastActionElement
+type ToastNodes = React.Nodes<"description" | "title"> & {
+  action: ToastActionElement
 }
 
-type Toast = ToastPropsWithoutId & { id: string }
+type ToastPropsWithoutId = Partial<ToastNodes> & SafeOmit<ToastProps, "id">
+
+type Toast = WithId<ToastPropsWithoutId>
 
 type ToastStore = {
   toasts: Toast[]

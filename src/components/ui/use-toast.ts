@@ -56,29 +56,9 @@ function dispatch(action: Action) {
 }
 
 function showToast(props: ToastPropsWithoutId) {
-  const id = generateId()
-
-  dispatch({
-    toast: {
-      ...props,
-      id,
-      onOpenChange: open => {
-        if (!open) dismiss(0)
-      },
-      open: true,
-    },
-    type: "add/toast",
-  })
-
-  const update = (props: ToastPropsWithoutId) =>
-    dispatch({
-      id,
-      props,
-      type: "update/toast",
-    })
-  const dismiss = (delay: number) =>
-    setTimeout(() => dispatch({ id, type: "dismiss/toast" }), delay)
-
+  const id = addToast(props)
+  const update = (props: ToastPropsWithoutId) => updateToast(id, props)
+  const dismiss = (delay: number) => dismissToast(id, delay)
   return {
     dismissToast: dismiss,
     updateToast: update,

@@ -58,7 +58,7 @@ type ButtonProps = React.PropsWithVariant<
 
 export const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Component = asChild ? PrimitiveSlot : "button"
+    const Component = asChild ? PrimitiveSlot.Slot : "button"
     return (
       <Component
         className={variants({ className, size, variant })}

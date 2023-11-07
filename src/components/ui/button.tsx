@@ -51,21 +51,20 @@ const variants = cva(
   }
 )
 
-type ButtonProps = React.PropsWithVariant<
-  React.PropsWithAsChild<React.ComponentPropsWithoutRef<"button">>,
-  typeof variants
->
-
-export const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Component = asChild ? PrimitiveSlot.Slot : "button"
-    return (
-      <Component
-        className={variants({ className, size, variant })}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
+export const Button = React.forwardRef<
+  React.ElementRef<"button">,
+  React.PropsWithVariant<
+    React.PropsWithAsChild<React.ComponentPropsWithoutRef<"button">>,
+    typeof variants
+  >
+>(({ className, variant, size, asChild = false, ...props }, ref) => {
+  const Component = asChild ? PrimitiveSlot.Slot : "button"
+  return (
+    <Component
+      className={variants({ className, size, variant })}
+      ref={ref}
+      {...props}
+    />
+  )
+})
 Button.displayName = Button.name

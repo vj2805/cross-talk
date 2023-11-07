@@ -5,31 +5,31 @@ import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
 
-type ToasterToast = ToastProps & {
+type Toast = SafeOmit<ToastProps, "id"> & {
   id: string
   title?: React.ReactNode
   description?: React.ReactNode
   action?: ToastActionElement
 }
 
-type ToastWithoutId = SafeOmit<ToasterToast, "id">
+type ToastWithoutId = SafeOmit<Toast, "id">
 
 type Action =
   | {
       type: "ADD_TOAST"
-      toast: ToasterToast
+      toast: Toast
     }
   | {
       type: "REMOVE_TOAST"
-      toastId?: ToasterToast["id"]
+      toastId?: Toast["id"]
     }
   | {
       type: "UPDATE_TOAST"
-      toast: Partial<ToasterToast>
+      toast: Partial<Toast>
     }
 
 interface State {
-  toasts: ToasterToast[]
+  toasts: Toast[]
 }
 
 export const reducer = (state: State, action: Action): State => {
@@ -75,7 +75,7 @@ function dispatch(action: Action) {
 function showToast({ ...props }: ToastWithoutId) {
   const id = generateId()
 
-  const updateToast = (props: ToasterToast) =>
+  const updateToast = (props: Toast) =>
     dispatch({
       toast: { ...props, id },
       type: "UPDATE_TOAST",

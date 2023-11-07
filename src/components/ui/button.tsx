@@ -38,7 +38,7 @@ type ButtonProps = React.PropsWithVariant<
   typeof variants
 >
 
-const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
+export const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Component = asChild ? Slot : "button"
     return (
@@ -51,5 +51,3 @@ const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
   }
 )
 Button.displayName = Button.name
-
-export { Button, variants as buttonVariants }

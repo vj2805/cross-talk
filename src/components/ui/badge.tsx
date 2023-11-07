@@ -39,17 +39,14 @@ const variants = cva(
   }
 )
 
-type BadgeProps = React.PropsWithVariant<
-  React.ComponentPropsWithoutRef<"div">,
-  typeof variants
->
-
-export const Badge = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
-  ({ className, variant, ...props }: BadgeProps) => (
-    <div
-      className={variants({ className, variant })}
-      {...props}
-    />
-  )
-)
+export const Badge = React.forwardRef<
+  React.ElementRef<"div">,
+  React.PropsWithVariant<React.ComponentPropsWithoutRef<"div">, typeof variants>
+>(({ className, variant, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={variants({ className, variant })}
+    {...props}
+  />
+))
 Badge.displayName = Badge.name

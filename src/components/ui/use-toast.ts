@@ -20,6 +20,19 @@ type ToastStore = {
 
 const useToastStore = create<ToastStore>(() => ({ toasts: [] }))
 
+function createToast(props: ToastPropsWithoutId): Toast {
+  return {
+    ...props,
+    id: generateId(),
+    onOpenChange(open) {
+      if (!open) {
+        dismissToast(this.id, 0)
+      }
+    },
+    open: true,
+  }
+}
+
 export function useToasts() {
   return useToastStore(store => store.toasts)
 }
@@ -35,16 +48,7 @@ export function showToast(props: ToastPropsWithoutId) {
 }
 
 export function addToast(props: ToastPropsWithoutId) {
-  const toast: Toast = {
-    ...props,
-    id: generateId(),
-    onOpenChange(open) {
-      if (!open) {
-        dismissToast(this.id, 0)
-      }
-    },
-    open: true,
-  }
+  const toast = createToast(props)
   useToastStore.setState(store => ({
     toasts: [toast, ...store.toasts].slice(0, TOAST_LIMIT),
   }))

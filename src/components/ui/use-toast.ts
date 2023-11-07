@@ -1,5 +1,6 @@
 // Inspired by react-hot-toast library
 import * as React from "react"
+import { create } from "zustand"
 import { generateId } from "@utilities"
 import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
 
@@ -106,3 +107,9 @@ function useToast() {
 }
 
 export { showToast, useToast }
+
+type ToastStore = {
+  toasts: Toast[]
+}
+
+const useToastStore = create<ToastStore>(() => ({ toasts: [] }))

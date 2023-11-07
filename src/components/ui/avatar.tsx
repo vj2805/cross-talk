@@ -1,15 +1,14 @@
 "use client"
 
 import * as React from "react"
-import * as AvatarPrimitive from "@radix-ui/react-avatar"
 import { cn } from "@/utilities/shadcn"
-import { NextImage } from "./builtins"
+import { NextImage, PrimitiveAvatar } from "./builtins"
 
 export const Avatar = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
+  React.ElementRef<typeof PrimitiveAvatar.Root>,
+  React.ComponentPropsWithoutRef<typeof PrimitiveAvatar.Root>
 >(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Root
+  <PrimitiveAvatar.Root
     ref={ref}
     className={cn(
       "h-10 w-10 shrink-0",
@@ -21,7 +20,7 @@ export const Avatar = React.forwardRef<
     {...props}
   />
 ))
-Avatar.displayName = AvatarPrimitive.Root.displayName
+Avatar.displayName = PrimitiveAvatar.Root.displayName
 
 export const AvatarImage = React.forwardRef<
   React.ElementRef<typeof NextImage>,
@@ -34,13 +33,13 @@ export const AvatarImage = React.forwardRef<
     {...props}
   />
 ))
-AvatarImage.displayName = AvatarPrimitive.Image.displayName
+AvatarImage.displayName = NextImage.displayName
 
 export const AvatarFallback = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Fallback>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
+  React.ElementRef<typeof PrimitiveAvatar.Fallback>,
+  React.ComponentPropsWithoutRef<typeof PrimitiveAvatar.Fallback>
 >(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Fallback
+  <PrimitiveAvatar.Fallback
     ref={ref}
     className={cn(
       "h-full w-full",
@@ -52,4 +51,4 @@ export const AvatarFallback = React.forwardRef<
     {...props}
   />
 ))
-AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
+AvatarFallback.displayName = PrimitiveAvatar.Fallback.displayName

@@ -1,5 +1,6 @@
 // Inspired by react-hot-toast library
 import * as React from "react"
+import { generateId } from "@utilities"
 import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
@@ -12,11 +13,8 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement
 }
 
-let count = 0
-
 function genId() {
-  count = (count + 1) % Number.MAX_VALUE
-  return count.toString()
+  return generateId()
 }
 
 type Action =

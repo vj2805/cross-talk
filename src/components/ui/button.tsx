@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
 import { cva } from "class-variance-authority"
 import { cn } from "@/utilities/shadcn"
+import { PrimitiveSlot } from "./builtins"
 
 const variants = cva(
   cn(
@@ -58,7 +58,7 @@ type ButtonProps = React.PropsWithVariant<
 
 export const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Component = asChild ? Slot : "button"
+    const Component = asChild ? PrimitiveSlot : "button"
     return (
       <Component
         className={variants({ className, size, variant })}

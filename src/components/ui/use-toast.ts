@@ -138,4 +138,10 @@ export function updateToast(id: Toast["id"], props: ToastPropsWithoutId) {
   }))
 }
 
-export function dismissToast(id: Toast["id"], delay: number) {}
+export function dismissToast(id: Toast["id"], delay: number) {
+  setTimeout(() => {
+    useToastStore.setState(store => ({
+      toasts: store.toasts.filter(toast => toast.id !== id),
+    }))
+  }, delay)
+}

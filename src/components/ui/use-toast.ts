@@ -29,36 +29,24 @@ type Action =
       props: Partial<ToastWithoutId>
     }
 
-type State = {
-  toasts: Toast[]
-}
+type State = Toast[]
 
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "ADD_TOAST":
-      return {
-        ...state,
-        toasts: [action.toast, ...state.toasts].slice(0, TOAST_LIMIT),
-      }
-
+      return [action.toast, ...state].slice(0, TOAST_LIMIT)
     case "UPDATE_TOAST":
-      return {
-        ...state,
-        toasts: state.toasts.map(t =>
-          t.id === action.id ? { ...t, ...action.props } : t
-        ),
-      }
+      return state.map(t =>
+        t.id === action.id ? { ...t, ...action.props } : t
+      )
     case "REMOVE_TOAST":
-      return {
-        ...state,
-        toasts: state.toasts.filter(t => t.id !== action.id),
-      }
+      return state.filter(t => t.id !== action.id)
   }
 }
 
 const listeners: Array<(state: State) => void> = []
 
-let memoryState: State = { toasts: [] }
+let memoryState: State = []
 
 function dispatch(action: Action) {
   memoryState = reducer(memoryState, action)

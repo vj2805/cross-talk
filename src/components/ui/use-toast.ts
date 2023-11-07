@@ -24,10 +24,6 @@ export function useToasts() {
   return useToastStore(store => store.toasts)
 }
 
-export function showToast(props: ToastPropsWithoutId) {
-  return addToast(props)
-}
-
 function createToast(props: ToastPropsWithoutId): Toast {
   return {
     ...props,
@@ -41,7 +37,7 @@ function createToast(props: ToastPropsWithoutId): Toast {
   }
 }
 
-export function addToast(props: ToastPropsWithoutId) {
+export function showToast(props: ToastPropsWithoutId) {
   const toast = createToast(props)
   useToastStore.setState(store => ({
     toasts: [toast, ...store.toasts].slice(0, TOAST_LIMIT),

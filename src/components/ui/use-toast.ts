@@ -58,15 +58,6 @@ function dispatch(action: Action) {
 function showToast(props: ToastPropsWithoutId) {
   const id = generateId()
 
-  const update = (props: ToastPropsWithoutId) =>
-    dispatch({
-      id,
-      props,
-      type: "update/toast",
-    })
-  const dismiss = (delay: number) =>
-    setTimeout(() => dispatch({ id, type: "dismiss/toast" }), delay)
-
   dispatch({
     toast: {
       ...props,
@@ -78,6 +69,15 @@ function showToast(props: ToastPropsWithoutId) {
     },
     type: "add/toast",
   })
+
+  const update = (props: ToastPropsWithoutId) =>
+    dispatch({
+      id,
+      props,
+      type: "update/toast",
+    })
+  const dismiss = (delay: number) =>
+    setTimeout(() => dispatch({ id, type: "dismiss/toast" }), delay)
 
   return {
     dismissToast: dismiss,

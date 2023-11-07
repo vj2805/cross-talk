@@ -8,5 +8,5 @@ export type Message = {
   translated?: {
     [K in Language]?: string
   }
-  user: Required<User>
+  user: User
 }

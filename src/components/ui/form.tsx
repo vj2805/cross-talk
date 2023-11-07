@@ -5,30 +5,18 @@ import { cn } from "@/utilities/shadcn"
 import { PrimitiveForm, PrimitiveSlot } from "./builtins"
 import { Label } from "./label"
 
-export const Form = PrimitiveForm.FormProvider
-
 type FormFieldName<
   FieldValues extends PrimitiveForm.FieldValues = PrimitiveForm.FieldValues,
   Name extends
     PrimitiveForm.FieldPath<FieldValues> = PrimitiveForm.FieldPath<FieldValues>,
 > = Name
 
+type FormItemId = string
+
 const FormFieldNameContext =
   React.createContext<Uncertain<FormFieldName>>(undefined)
 
-export const FormField = <
-  FieldValues extends PrimitiveForm.FieldValues = PrimitiveForm.FieldValues,
-  Name extends
-    PrimitiveForm.FieldPath<FieldValues> = PrimitiveForm.FieldPath<FieldValues>,
->(
-  props: PrimitiveForm.ControllerProps<FieldValues, Name>
-) => {
-  return (
-    <FormFieldNameContext.Provider value={props.name}>
-      <PrimitiveForm.Controller {...props} />
-    </FormFieldNameContext.Provider>
-  )
-}
+const FormItemIdContext = React.createContext<Uncertain<FormItemId>>(undefined)
 
 const useFormField = () => {
   const fieldName = React.useContext(FormFieldNameContext)
@@ -50,9 +38,21 @@ const useFormField = () => {
   }
 }
 
-type FormItemId = string
+export const Form = PrimitiveForm.FormProvider
 
-const FormItemIdContext = React.createContext<Uncertain<FormItemId>>(undefined)
+export const FormField = <
+  FieldValues extends PrimitiveForm.FieldValues = PrimitiveForm.FieldValues,
+  Name extends
+    PrimitiveForm.FieldPath<FieldValues> = PrimitiveForm.FieldPath<FieldValues>,
+>(
+  props: PrimitiveForm.ControllerProps<FieldValues, Name>
+) => {
+  return (
+    <FormFieldNameContext.Provider value={props.name}>
+      <PrimitiveForm.Controller {...props} />
+    </FormFieldNameContext.Provider>
+  )
+}
 
 export const FormItem = React.forwardRef<
   HTMLDivElement,

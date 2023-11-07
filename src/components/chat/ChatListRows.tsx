@@ -15,10 +15,10 @@ interface ChatListRowsProps {
 
 export const ChatListRows: React.FC<ChatListRowsProps> = ({ initialChats }) => {
   const user = useSyncedUser()
-  const [chats] = useParticipatingChats(user?.id, initialChats)
+  const [chats, state] = useParticipatingChats(user?.id!, initialChats)
 
-  if (!chats) {
-    return <Spinner />
+  if (state === "error") {
+    return null
   }
 
   if (chats.length === 0) {

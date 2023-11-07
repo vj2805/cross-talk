@@ -4,7 +4,7 @@ import * as React from "react"
 import { cva } from "class-variance-authority"
 import { Check, ChevronRight, Circle } from "@icons"
 import { cn } from "@/utilities/shadcn"
-import { PrimitiveDropdownMenu } from "./builtins"
+import { PrimitiveDropdownMenu } from "./primitives"
 
 const contentVariants = cva(
   cn(

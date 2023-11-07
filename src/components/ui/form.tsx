@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { cn } from "@/utilities/shadcn"
-import { PrimitiveForm, PrimitiveSlot } from "./builtins"
+import { PrimitiveForm, PrimitiveSlot } from "./primitives"
 import { Label } from "./label"
 
 type FormFieldName<

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { cn } from "@/utilities/shadcn"
-import { PrimitiveLabel } from "./builtins"
+import { PrimitiveLabel } from "./primitives"
 
 export const Label = React.forwardRef<
   React.ElementRef<typeof PrimitiveLabel.Root>,

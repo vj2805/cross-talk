@@ -3,7 +3,7 @@
 import * as React from "react"
 import { cn } from "@/utilities/shadcn"
 import { Check, ChevronDown } from "@icons"
-import { PrimitiveSelect } from "./builtins"
+import { PrimitiveSelect } from "./primitives"
 
 export const Select = PrimitiveSelect.Root
 

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "@/utilities/shadcn"
-import { PrimitiveSlot } from "./builtins"
+import { PrimitiveSlot } from "./primitives"
 
 const variants = cva(
   cn(

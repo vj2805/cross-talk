@@ -12,7 +12,7 @@ export async function addMessage({ chatId, input, user }: AddMessageParams) {
   await addDoc(messagesRef(chatId), {
     id: "",
     input,
-    timestamp: serverTimestamp(),
+    localeTimeString: serverTimestamp(),
     user,
   })
 }

@@ -17,7 +17,7 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
   let initialMessages = await getMessages(chatId)
   initialMessages = initialMessages.map(message => ({
     ...message,
-    timestamp: message.timestamp.toString(),
+    timestamp: message.localeTimeString.toString(),
   }))
   return (
     <>

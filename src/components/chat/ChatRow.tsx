@@ -57,8 +57,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
       </div>
       <div className="text-xs text-gray-400 text-right">
         <p className="mb-auto">
-          {message?.timestamp.toDate().toLocaleTimeString() ??
-            "No messages yet"}
+          {message?.localeTimeString ?? "No messages yet"}
         </p>
         <p className="">Chat #{prettifyId(chatId)}...</p>
       </div>

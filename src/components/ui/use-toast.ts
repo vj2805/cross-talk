@@ -130,6 +130,12 @@ export function addToast(props: ToastPropsWithoutId) {
   return toast.id
 }
 
-export function updateToast(id: Toast["id"], props: ToastPropsWithoutId) {}
+export function updateToast(id: Toast["id"], props: ToastPropsWithoutId) {
+  useToastStore.setState(store => ({
+    toasts: store.toasts.map(toast => {
+      return toast.id !== id ? toast : { ...toast, ...props }
+    }),
+  }))
+}
 
 export function dismissToast(id: Toast["id"], delay: number) {}

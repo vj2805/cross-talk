@@ -6,14 +6,13 @@ import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
 
-type Toast = SafeOmit<ToastProps, "id"> & {
-  id: string
+type ToastPropsWithoutId = SafeOmit<ToastProps, "id"> & {
   title?: React.ReactNode
   description?: React.ReactNode
   action?: ToastActionElement
 }
 
-type ToastWithoutId = SafeOmit<Toast, "id">
+type Toast = ToastPropsWithoutId & { id: string }
 
 type Action =
   | {
@@ -27,7 +26,7 @@ type Action =
   | {
       type: "update/toast"
       id: Toast["id"]
-      props: Partial<ToastWithoutId>
+      props: Partial<ToastPropsWithoutId>
     }
 
 type State = Toast[]
@@ -56,10 +55,10 @@ function dispatch(action: Action) {
   })
 }
 
-function showToast({ ...props }: ToastWithoutId) {
+function showToast(props: ToastPropsWithoutId) {
   const id = generateId()
 
-  const updateToast = (props: ToastWithoutId) =>
+  const updateToast = (props: ToastPropsWithoutId) =>
     dispatch({
       id,
       props,
@@ -109,13 +108,13 @@ function useToast() {
 export { showToast, useToast }
 
 type ToastStore = {
-  toasts: Toast[]
+  toasts: ToastPropsWithoutId[]
 }
 
 const useToastStore = create<ToastStore>(() => ({ toasts: [] }))
 
-export function addToast(props: ToastWithoutId) {}
+export function addToast(props: ToastPropsWithoutId) {}
 
-export function updateToast(id: Toast["id"], props: ToastWithoutId) {}
+export function updateToast(id: Toast["id"], props: ToastPropsWithoutId) {}
 
 export function dismissToast(id: Toast["id"], delay: number) {}

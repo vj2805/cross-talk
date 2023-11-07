@@ -1,5 +1,5 @@
 // Inspired by react-hot-toast library
-import * as React from "react"
+import type * as React from "react"
 import { create } from "zustand"
 import { generateId } from "@utilities"
 import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
@@ -66,19 +66,7 @@ function showToast(props: ToastPropsWithoutId) {
 }
 
 function useToast() {
-  const [state, setState] = React.useState<State>(memoryState)
-
-  React.useEffect(() => {
-    listeners.push(setState)
-    return () => {
-      const index = listeners.indexOf(setState)
-      if (index > -1) {
-        listeners.splice(index, 1)
-      }
-    }
-  }, [])
-
-  return { toasts: state }
+  return useToastStore()
 }
 
 export { showToast, useToast }

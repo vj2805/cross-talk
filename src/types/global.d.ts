@@ -7,6 +7,7 @@ declare global {
   type Optional<T> = T | null | undefined
   type WithId<T extends object> = Omit<T, "id"> & { id: string }
   namespace React {
+    type Nodes<T extends string> = Record<T, React.ReactNode>
     type PropsWithRequiredChildren = Required<React.PropsWithChildren>
     type PropsWithAsChild<T extends object> = T & { asChild?: boolean }
     type PropsWithWithInset<T extends object> = T & {

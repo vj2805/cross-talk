@@ -21,7 +21,7 @@ type Action =
     }
   | {
       type: "REMOVE_TOAST"
-      id?: Toast["id"]
+      id: Toast["id"]
     }
   | {
       type: "UPDATE_TOAST"
@@ -116,8 +116,7 @@ function useToast() {
 
   return {
     ...state,
-    dismiss: (toastId?: string) =>
-      dispatch({ id: toastId, type: "REMOVE_TOAST" }),
+    dismiss: (id: string) => dispatch({ id, type: "REMOVE_TOAST" }),
     toast: showToast,
   }
 }

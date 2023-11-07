@@ -14,7 +14,7 @@ type ToastPropsWithoutId = SafeOmit<ToastProps, "id"> & {
 
 type Toast = ToastPropsWithoutId & { id: string }
 
-function showToast(props: ToastPropsWithoutId) {
+export function showToast(props: ToastPropsWithoutId) {
   const id = addToast(props)
   const update = (props: ToastPropsWithoutId) => updateToast(id, props)
   const dismiss = (delay: number) => dismissToast(id, delay)
@@ -24,11 +24,9 @@ function showToast(props: ToastPropsWithoutId) {
   }
 }
 
-function useToast() {
+export function useToast() {
   return useToastStore()
 }
-
-export { showToast, useToast }
 
 type ToastStore = {
   toasts: Toast[]

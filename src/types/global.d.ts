@@ -5,6 +5,7 @@ declare global {
   type Nullish<T> = T | null
   type Uncertain<T> = T | undefined
   type Optional<T> = T | null | undefined
+  type WithId<T extends object> = Omit<T, "id"> & { id: string }
   namespace React {
     type PropsWithRequiredChildren = Required<React.PropsWithChildren>
     type PropsWithAsChild<T extends object> = T & { asChild?: boolean }

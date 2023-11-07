@@ -54,8 +54,8 @@ export const FormField = <
 FormField.displayName = FormField.name
 
 export const FormItem = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
+  React.ElementRef<"div">,
+  React.ComponentPropsWithoutRef<"div">
 >(({ className, ...props }, ref) => (
   <FormItemIdContext.Provider value={React.useId()}>
     <div
@@ -105,8 +105,8 @@ export const FormControl = React.forwardRef<
 FormControl.displayName = FormControl.name
 
 export const FormDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
+  React.ElementRef<"p">,
+  React.ComponentPropsWithoutRef<"p">
 >(({ className, ...props }, ref) => {
   const { formDescriptionId } = useFormField()
   return (
@@ -121,8 +121,8 @@ export const FormDescription = React.forwardRef<
 FormDescription.displayName = FormDescription.name
 
 export const FormMessage = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
+  React.ElementRef<"p">,
+  React.ComponentPropsWithoutRef<"p">
 >(({ className, children, ...props }, ref) => {
   const { error, formMessageId } = useFormField()
   const body = error?.message ?? children

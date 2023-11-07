@@ -1,4 +1,3 @@
-export type { Session, User } from "next-auth"
 export type { Chat } from "./Chat"
 export type { Language } from "./Language"
 export type { Message } from "./Message"

@@ -29,7 +29,7 @@ type Action =
       props: Partial<ToastWithoutId>
     }
 
-interface State {
+type State = {
   toasts: Toast[]
 }
 

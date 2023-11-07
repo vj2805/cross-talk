@@ -13,11 +13,7 @@ export const SubscriptionProvider: React.FC<
   useEffect(() => {
     if (syncUser) {
       return syncSubscription(syncUser.uid, snapshot => {
-        if (snapshot.empty) {
-          setSubscription(null)
-        } else {
-          setSubscription(snapshot.docs[0].data())
-        }
+        setSubscription(snapshot.empty ? null : snapshot.docs[0].data())
       })
     }
   }, [syncUser])

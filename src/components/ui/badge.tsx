@@ -44,7 +44,7 @@ type BadgeProps = React.PropsWithVariant<
   typeof variants
 >
 
-const Badge = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
+export const Badge = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
   ({ className, variant, ...props }: BadgeProps) => (
     <div
       className={variants({ className, variant })}

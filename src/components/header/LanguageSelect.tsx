@@ -1,14 +1,14 @@
 "use client"
 
-import { setLanguage, useIsPro, useLanguage, useSubscription } from "@stores"
 import { usePathname } from "@hooks"
 import {
   getLanguageName,
   getNotSupportedLanguages,
   getSupportedLanguages,
 } from "@services"
+import { setLanguage, useIsPro, useLanguage, useSubscription } from "@stores"
 import {
-  Link,
+  NextLink,
   Select,
   SelectContent,
   SelectItem,
@@ -50,7 +50,7 @@ export const LanguageSelect: React.FC = () => {
                   </SelectItem>
                 ))}
                 {getNotSupportedLanguages(isPro).map(language => (
-                  <Link
+                  <NextLink
                     key={language}
                     prefetch={false}
                     href="/subscribe"
@@ -68,7 +68,7 @@ export const LanguageSelect: React.FC = () => {
                     >
                       {getLanguageName(language)} (PRO)
                     </SelectItem>
-                  </Link>
+                  </NextLink>
                 ))}
               </>
             )}

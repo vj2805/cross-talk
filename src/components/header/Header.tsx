@@ -1,13 +1,13 @@
 import { MessagesSquareIcon } from "@icons"
 import { getServerUser } from "@services"
-import { Link } from "@ui"
+import { NextLink } from "@ui"
 import { cn } from "@utilities"
 import { CreateChatButton } from "../chat/CreateChatButton"
-import { ProfileButton } from "../user/ProfileButton"
 import { UpgradeBanner } from "../subscription/UpgradeBanner"
+import { ProfileButton } from "../user/ProfileButton"
+import { LanguageSelect } from "./LanguageSelect"
 import { Logo } from "./Logo"
 import { ThemeToggle } from "./ThemeToggle"
-import { LanguageSelect } from "./LanguageSelect"
 
 export const Header: React.FC = async () => {
   const user = await getServerUser()
@@ -29,21 +29,21 @@ export const Header: React.FC = async () => {
           <LanguageSelect />
           {user ? (
             <>
-              <Link
+              <NextLink
                 prefetch={false}
                 href="/chat"
               >
                 <MessagesSquareIcon className="text-black dark:text-white" />
-              </Link>
+              </NextLink>
               <CreateChatButton />
             </>
           ) : (
-            <Link
+            <NextLink
               prefetch
               href="/pricing"
             >
               Pricing
-            </Link>
+            </NextLink>
           )}
           <ThemeToggle />
           <ProfileButton user={user} />

@@ -1,8 +1,8 @@
+import { NextLink } from "@ui"
 import { cn } from "@utilities"
-import { Link } from "@ui"
 
 export const GetStartedTodayButton: React.FC = () => (
-  <Link
+  <NextLink
     href="/subscribe"
     className={cn(
       "block",
@@ -18,5 +18,5 @@ export const GetStartedTodayButton: React.FC = () => (
     )}
   >
     Get Started Today
-  </Link>
+  </NextLink>
 )

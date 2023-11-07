@@ -99,9 +99,9 @@ function useToast() {
   }, [])
 
   return {
-    ...state,
     dismiss: (id: string) => dispatch({ id, type: "dismiss/toast" }),
     toast: showToast,
+    toasts: state,
   }
 }
 

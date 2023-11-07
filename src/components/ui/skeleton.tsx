@@ -1,3 +1,4 @@
+import * as React from "react"
 import { cn } from "@/utilities/shadcn"
 
 export const Skeleton = React.forwardRef<

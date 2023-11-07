@@ -27,11 +27,12 @@ type BadgeProps = React.PropsWithVariant<
   typeof variants
 >
 
-export function Badge({ className, variant, ...props }: BadgeProps) {
-  return (
+const Badge = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
+  ({ className, variant, ...props }: BadgeProps) => (
     <div
       className={cn(variants({ variant }), className)}
       {...props}
     />
   )
-}
+)
+Badge.displayName = Badge.name

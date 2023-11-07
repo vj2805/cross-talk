@@ -18,4 +18,7 @@ declare global {
       V extends (...args: any) => any,
     > = T & VariantProps<V>
   }
+  namespace Model {
+    type Observable<T> = [Error, "error"] | [T, "idle"] | [undefined, "loading"]
+  }
 }

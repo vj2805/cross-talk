@@ -1,15 +1,15 @@
 import { cn } from "@/utilities/shadcn"
 
-function Skeleton({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+export const Skeleton = React.forwardRef<
+  React.ElementRef<"div">,
+  React.ComponentPropsWithoutRef<"div">
+>(({ className, ...props }, ref) => {
   return (
     <div
-      className={cn("animate-pulse rounded-md bg-muted", className)}
+      ref={ref}
+      className={cn("bg-muted", "rounded-md", "animate-pulse", className)}
       {...props}
     />
   )
-}
-
-export { Skeleton }
+})
+Skeleton.displayName = Skeleton.name

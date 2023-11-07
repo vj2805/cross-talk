@@ -108,7 +108,7 @@ function useToast() {
 export { showToast, useToast }
 
 type ToastStore = {
-  toasts: ToastPropsWithoutId[]
+  toasts: Toast[]
 }
 
 const useToastStore = create<ToastStore>(() => ({ toasts: [] }))

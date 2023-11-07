@@ -1,18 +1,16 @@
 "use client"
 
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { Controller, FormProvider, useFormContext } from "react-hook-form"
 import { cn } from "@/utilities/shadcn"
-import { Label } from "@/components/ui/label"
-import type * as LabelPrimitive from "@radix-ui/react-label"
-import type { ControllerProps, FieldPath, FieldValues } from "react-hook-form"
+import { PrimitiveForm, PrimitiveSlot } from "./builtins"
+import { Label } from "./label"
 
-const Form = FormProvider
+const Form = PrimitiveForm.FormProvider
 
 type FormFieldContextValue<
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+  TFieldValues extends PrimitiveForm.FieldValues = PrimitiveForm.FieldValues,
+  TName extends
+    PrimitiveForm.FieldPath<TFieldValues> = PrimitiveForm.FieldPath<TFieldValues>,
 > = {
   name: TName
 }
@@ -21,14 +19,15 @@ const FormFieldContext =
   React.createContext<Uncertain<FormFieldContextValue>>(undefined)
 
 const FormField = <
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+  TFieldValues extends PrimitiveForm.FieldValues = PrimitiveForm.FieldValues,
+  TName extends
+    PrimitiveForm.FieldPath<TFieldValues> = PrimitiveForm.FieldPath<TFieldValues>,
 >({
   ...props
-}: ControllerProps<TFieldValues, TName>) => {
+}: PrimitiveForm.ControllerProps<TFieldValues, TName>) => {
   return (
     <FormFieldContext.Provider value={{ name: props.name }}>
-      <Controller {...props} />
+      <PrimitiveForm.Controller {...props} />
     </FormFieldContext.Provider>
   )
 }
@@ -40,7 +39,7 @@ const useFormField = () => {
     throw new Error("useFormField should be used within <FormField>")
   }
 
-  const { getFieldState, formState } = useFormContext()
+  const { getFieldState, formState } = PrimitiveForm.useFormContext()
 
   const fieldState = getFieldState(fieldContext.name, formState)
 
@@ -88,8 +87,8 @@ const FormItem = React.forwardRef<
 FormItem.displayName = "FormItem"
 
 const FormLabel = React.forwardRef<
-  React.ElementRef<typeof LabelPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
+  React.ElementRef<typeof Label>,
+  React.ComponentPropsWithoutRef<typeof Label>
 >(({ className, ...props }, ref) => {
   const { error, formItemId } = useFormField()
 
@@ -105,13 +104,13 @@ const FormLabel = React.forwardRef<
 FormLabel.displayName = "FormLabel"
 
 const FormControl = React.forwardRef<
-  React.ElementRef<typeof Slot>,
-  React.ComponentPropsWithoutRef<typeof Slot>
+  React.ElementRef<typeof PrimitiveSlot.Slot>,
+  React.ComponentPropsWithoutRef<typeof PrimitiveSlot.Slot>
 >(({ ...props }, ref) => {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
 
   return (
-    <Slot
+    <PrimitiveSlot.Slot
       ref={ref}
       id={formItemId}
       aria-describedby={
@@ -168,12 +167,12 @@ const FormMessage = React.forwardRef<
 FormMessage.displayName = "FormMessage"
 
 export {
-  useFormField,
   Form,
-  FormItem,
-  FormLabel,
   FormControl,
   FormDescription,
-  FormMessage,
   FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  useFormField,
 }

@@ -20,19 +20,6 @@ type ToastStore = {
 
 const useToastStore = create<ToastStore>(() => ({ toasts: [] }))
 
-function createToast(props: ToastPropsWithoutId): Toast {
-  return {
-    ...props,
-    id: generateId(),
-    onOpenChange(open) {
-      if (!open) {
-        dismissToast(this.id, 0)
-      }
-    },
-    open: true,
-  }
-}
-
 export function useToasts() {
   return useToastStore(store => store.toasts)
 }
@@ -44,6 +31,19 @@ export function showToast(props: ToastPropsWithoutId) {
   return {
     dismissToast: dismiss,
     updateToast: update,
+  }
+}
+
+function createToast(props: ToastPropsWithoutId): Toast {
+  return {
+    ...props,
+    id: generateId(),
+    onOpenChange(open) {
+      if (!open) {
+        dismissToast(this.id, 0)
+      }
+    },
+    open: true,
   }
 }
 

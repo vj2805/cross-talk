@@ -1,12 +1,6 @@
-import { useCollectionData } from "react-firebase-hooks/firestore"
-import { participatingChatsRef } from "@services"
+import { chatService } from "@services/chat"
 import type { Chat } from "@types"
 
-export function useParticipatingChats(
-  userId: Uncertain<string>,
-  initialChats: Chat[]
-) {
-  return useCollectionData(userId ? participatingChatsRef(userId) : undefined, {
-    initialValue: initialChats,
-  })
+export function useParticipatingChats(userId: string, initialChats: Chat[]) {
+  return chatService.useParticipatingChats(userId, initialChats)
 }

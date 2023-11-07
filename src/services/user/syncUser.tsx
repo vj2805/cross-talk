@@ -1,6 +1,6 @@
 import { signInWithCustomToken, signOut } from "firebase/auth"
 import { clientAuth } from "@firebase"
-import { setSyncedUser } from "@stores/syncedUser"
+import { setSyncedUser } from "@stores"
 import type { Session } from "@types"
 
 export async function syncUser(session: Nullish<Session>) {

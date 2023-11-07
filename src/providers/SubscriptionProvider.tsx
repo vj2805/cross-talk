@@ -1,17 +1,17 @@
 "use client"
 
 import { useEffect } from "react"
-import { useUser } from "@hooks"
+import { useSyncedUser } from "@stores"
 import { syncSubscription } from "@services"
 
 export const SubscriptionProvider: React.FC<
   React.PropsWithRequiredChildren
 > = props => {
-  const [syncUser] = useUser()
+  const syncUser = useSyncedUser()
 
   useEffect(() => {
     if (syncUser) {
-      return syncSubscription(syncUser.uid)
+      return syncSubscription(syncUser.id)
     }
   }, [syncUser])
 

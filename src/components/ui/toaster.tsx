@@ -8,11 +8,10 @@ import {
   ToastTitle,
   ToastViewport,
 } from "@/components/ui/toast"
-import { useToast } from "@/components/ui/use-toast"
+import { useToasts } from "@/components/ui/use-toast"
 
 export function Toaster() {
-  const { toasts } = useToast()
-
+  const toasts = useToasts()
   return (
     <ToastProvider>
       {toasts.map(function ({ id, title, description, action, ...props }) {

@@ -20,8 +20,8 @@ type ToastStore = {
 
 const useToastStore = create<ToastStore>(() => ({ toasts: [] }))
 
-export function useToast() {
-  return useToastStore()
+export function useToasts() {
+  return useToastStore(store => store.toasts)
 }
 
 export function showToast(props: ToastPropsWithoutId) {

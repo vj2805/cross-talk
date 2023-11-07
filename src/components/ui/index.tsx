@@ -1,5 +1,5 @@
-export { default as Image } from "next/image"
-export { default as Link } from "next/link"
+export * from "./builtins"
+
 export { AspectRatio } from "./aspect-ratio"
 export { Avatar, AvatarFallback } from "./avatar"
 export { Badge } from "./badge"

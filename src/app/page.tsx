@@ -1,7 +1,7 @@
 import { demo } from "@assets/images"
 import { BlobBackdrop } from "@components"
 import { MoveRight } from "@icons"
-import { Image, Link } from "@ui"
+import { NextImage, NextLink } from "@ui"
 import { cn } from "@utilities"
 
 export default function HomePage() {
@@ -31,7 +31,7 @@ export default function HomePage() {
                 "flex items-center justify-center gap-x-6"
               )}
             >
-              <Link
+              <NextLink
                 href="/chat"
                 className={cn(
                   "px-3.5 py-2.5",
@@ -43,8 +43,8 @@ export default function HomePage() {
                 )}
               >
                 Get Started
-              </Link>
-              <Link
+              </NextLink>
+              <NextLink
                 href="/pricing"
                 className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300"
               >
@@ -53,7 +53,7 @@ export default function HomePage() {
                   aria-hidden
                   className={cn("inline", "ml-1", "text-gray-400")}
                 />
-              </Link>
+              </NextLink>
             </div>
           </div>
           <div className={cn("mt-16 sm:mt-24", "flow-root")}>
@@ -66,7 +66,7 @@ export default function HomePage() {
                 "ring-inset ring-gray-900/10"
               )}
             >
-              <Image
+              <NextImage
                 unoptimized
                 src={demo}
                 alt="App Screenshot"

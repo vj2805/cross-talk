@@ -1,5 +1,5 @@
 import { cn, joinFirstLetterOfEachWord } from "@utilities"
-import { Avatar, AvatarFallback, Image } from "@ui"
+import { Avatar, AvatarFallback, NextImage } from "@ui"
 
 interface UserAvatarProps {
   name?: Optional<string>
@@ -14,7 +14,7 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
 }) => (
   <Avatar className={cn("bg-white", "text-black", className)}>
     {image && (
-      <Image
+      <NextImage
         priority
         src={image}
         alt={name || "User Image"}

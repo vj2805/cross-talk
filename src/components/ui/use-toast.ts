@@ -19,10 +19,6 @@ type Action =
       toast: ToasterToast
     }
   | {
-      type: "DISMISS_TOAST"
-      toastId?: ToasterToast["id"]
-    }
-  | {
       type: "REMOVE_TOAST"
       toastId?: ToasterToast["id"]
     }
@@ -33,24 +29,6 @@ type Action =
 
 interface State {
   toasts: ToasterToast[]
-}
-
-const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
-
-const addToRemoveQueue = (toastId: string) => {
-  if (toastTimeouts.has(toastId)) {
-    return
-  }
-
-  const timeout = setTimeout(() => {
-    toastTimeouts.delete(toastId)
-    dispatch({
-      toastId: toastId,
-      type: "REMOVE_TOAST",
-    })
-  }, TOAST_REMOVE_DELAY)
-
-  toastTimeouts.set(toastId, timeout)
 }
 
 export const reducer = (state: State, action: Action): State => {
@@ -68,32 +46,6 @@ export const reducer = (state: State, action: Action): State => {
           t.id === action.toast.id ? { ...t, ...action.toast } : t
         ),
       }
-
-    case "DISMISS_TOAST": {
-      const { toastId } = action
-
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
-      // but I'll keep it here for simplicity
-      if (toastId) {
-        addToRemoveQueue(toastId)
-      } else {
-        state.toasts.forEach(toast => {
-          addToRemoveQueue(toast.id)
-        })
-      }
-
-      return {
-        ...state,
-        toasts: state.toasts.map(t =>
-          t.id === toastId || toastId === undefined
-            ? {
-                ...t,
-                open: false,
-              }
-            : t
-        ),
-      }
-    }
     case "REMOVE_TOAST":
       if (action.toastId === undefined) {
         return {
@@ -130,7 +82,7 @@ function showToast({ ...props }: Toast) {
       type: "UPDATE_TOAST",
     })
   const dismissToast = (delay: number) =>
-    setTimeout(() => dispatch({ toastId: id, type: "DISMISS_TOAST" }), delay)
+    setTimeout(() => dispatch({ toastId: id, type: "REMOVE_TOAST" }), delay)
 
   dispatch({
     toast: {
@@ -165,7 +117,7 @@ function useToast() {
 
   return {
     ...state,
-    dismiss: (toastId?: string) => dispatch({ toastId, type: "DISMISS_TOAST" }),
+    dismiss: (toastId?: string) => dispatch({ toastId, type: "REMOVE_TOAST" }),
     toast: showToast,
   }
 }

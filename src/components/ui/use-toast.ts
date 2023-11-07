@@ -25,7 +25,7 @@ type Action =
     }
   | {
       type: "UPDATE_TOAST"
-      toast: Partial<Toast>
+      props: Partial<Toast>
     }
 
 interface State {
@@ -44,7 +44,7 @@ export const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         toasts: state.toasts.map(t =>
-          t.id === action.toast.id ? { ...t, ...action.toast } : t
+          t.id === action.props.id ? { ...t, ...action.props } : t
         ),
       }
     case "REMOVE_TOAST":
@@ -77,7 +77,7 @@ function showToast({ ...props }: ToastWithoutId) {
 
   const updateToast = (props: Toast) =>
     dispatch({
-      toast: { ...props, id },
+      props: { ...props, id },
       type: "UPDATE_TOAST",
     })
   const dismissToast = (delay: number) =>

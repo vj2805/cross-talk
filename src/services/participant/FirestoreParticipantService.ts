@@ -1,5 +1,8 @@
+import { collection, doc } from "firebase/firestore"
+import { clientRepo } from "@firebase"
 import type { Participant } from "@types"
 import type { FirestoreDataConverter } from "firebase/firestore"
+import type { ParticipantService } from "./ParticipantService"
 
 const participantConverter: FirestoreDataConverter<Participant> = {
   fromFirestore(snapshot, options) {
@@ -18,4 +21,16 @@ const participantConverter: FirestoreDataConverter<Participant> = {
       name: participant.name,
     }
   },
+}
+
+function participantsRef() {
+  return collection(clientRepo, "users").withConverter(participantConverter)
+}
+
+function participantRef(userId: string) {
+  return doc(participantsRef(), userId)
+}
+
+export default function createFirestoreParticipantService(): ParticipantService {
+  return {}
 }

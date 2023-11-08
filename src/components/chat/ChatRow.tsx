@@ -1,7 +1,7 @@
 "use client"
 
 import { useLastMessage } from "@hooks/useLastMessage"
-import { useLanguage } from "@stores/language"
+import { usePreferredLanguage } from "@stores/language"
 import { useSyncedUser } from "@stores/syncedUser"
 import { useRouter } from "@hooks"
 import { Skeleton } from "@ui"
@@ -16,7 +16,7 @@ interface ChatRowProps {
 export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const [messages, loading] = useLastMessage(chatId)
   const user = useSyncedUser()
-  const language = useLanguage()
+  const language = usePreferredLanguage()
   const router = useRouter()
 
   if (loading) {

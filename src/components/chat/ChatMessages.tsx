@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 import { useMessages } from "@hooks"
 import { MessageCircleIcon } from "@icons"
-import { useLanguage } from "@stores/language"
+import { usePreferredLanguage } from "@stores/language"
 import { cn } from "@utilities"
 import { Spinner } from "@ui"
 import { UserAvatar } from "../user/UserAvatar"
@@ -21,7 +21,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   initialMessages,
   user,
 }) => {
-  const language = useLanguage()
+  const language = usePreferredLanguage()
   const messagesEndRef = useRef<React.ElementRef<"div">>(null)
   const [messages, loading] = useMessages(chatId, initialMessages)
 

@@ -1,7 +1,7 @@
 import type { SubscriptionService } from "./SubscriptionService"
 import type { PricingTier, Subscription } from "@types"
 
-const pricingTiers: PricingTier[] = [
+export const pricingTiers: PricingTier[] = [
   {
     description: "Get chatting right away with anyone, anywhere!",
     features: [
@@ -36,6 +36,11 @@ const pricingTiers: PricingTier[] = [
 
 const subscriptions: Map<string, Subscription> = new Map()
 
+const listenersMap: Map<
+  string,
+  Set<(subscription: Nullish<Subscription>) => void>
+> = new Map()
+
 const getPricingTiers: SubscriptionService["getPricingTiers"] = async () => {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -44,18 +49,19 @@ const getPricingTiers: SubscriptionService["getPricingTiers"] = async () => {
   })
 }
 
-const getSubscription: SubscriptionService["getSubscription"] =
-  async userId => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(subscriptions.get(userId) ?? null)
-      }, 1000)
-    })
-  }
+const syncSubscription: SubscriptionService["syncSubscription"] = (
+  userId,
+  onChange
+) => {
+  const existingListeners = listenersMap.get(userId) ?? new Set()
+  existingListeners.add(onChange)
+  listenersMap.set(userId, existingListeners)
+  return () => listenersMap.delete(userId)
+}
 
 export default function createInMemorySubscriptionService(): SubscriptionService {
   return {
     getPricingTiers,
-    getSubscription,
+    syncSubscription,
   }
 }

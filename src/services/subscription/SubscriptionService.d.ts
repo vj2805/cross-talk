@@ -2,5 +2,8 @@ import type { PricingTier, Subscription } from "@types"
 
 export interface SubscriptionService {
   getPricingTiers: () => Promise<PricingTier[]>
-  getSubscription: (userId: string) => Promise<Nullish<Subscription>>
+  syncSubscription: (
+    userId: string,
+    onChange: (subscription: Nullish<Subscription>) => void
+  ) => () => void
 }

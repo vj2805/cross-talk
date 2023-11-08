@@ -2,6 +2,8 @@ import { Header } from "@components"
 import {
   SessionProvider,
   SubscriptionProvider,
+  SyncedLanguagesProvider,
+  SyncedPricingTiersProvider,
   SyncedUserProvider,
   ThemeProvider,
 } from "@providers"
@@ -27,16 +29,20 @@ export default function RootLayout({
         <SessionProvider>
           <SyncedUserProvider>
             <SubscriptionProvider>
-              <ThemeProvider
-                enableSystem
-                disableTransitionOnChange
-                attribute="class"
-                defaultTheme="dark"
-              >
-                <Header />
-                {children}
-                <Toaster />
-              </ThemeProvider>
+              <SyncedPricingTiersProvider>
+                <SyncedLanguagesProvider>
+                  <ThemeProvider
+                    enableSystem
+                    disableTransitionOnChange
+                    attribute="class"
+                    defaultTheme="dark"
+                  >
+                    <Header />
+                    {children}
+                    <Toaster />
+                  </ThemeProvider>
+                </SyncedLanguagesProvider>
+              </SyncedPricingTiersProvider>
             </SubscriptionProvider>
           </SyncedUserProvider>
         </SessionProvider>

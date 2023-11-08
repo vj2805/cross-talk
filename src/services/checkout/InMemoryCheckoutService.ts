@@ -22,7 +22,8 @@ const createCheckout: CheckoutService["createCheckout"] = async (
   userId,
   priceId,
   onSuccess,
-  onFailure
+  onFailure,
+  onDetach
 ) => {
   const checkout = await _createCheckout(userId, priceId)
   setTimeout(() => {
@@ -33,6 +34,7 @@ const createCheckout: CheckoutService["createCheckout"] = async (
         (checkout.error = Error("CheckoutError [This is a simulated error]"))
       )
     }
+    onDetach()
   }, 1000)
 }
 

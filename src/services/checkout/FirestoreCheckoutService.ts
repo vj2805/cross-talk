@@ -35,7 +35,8 @@ const createCheckout: CheckoutService["createCheckout"] = async (
   userId,
   priceId,
   onSuccess,
-  onFailure
+  onFailure,
+  onDetach
 ) => {
   const docRef = await addDoc(checkoutSessionsRef(userId), {
     cancel_url: window.location.origin,
@@ -51,6 +52,7 @@ const createCheckout: CheckoutService["createCheckout"] = async (
       onSuccess(checkout.url)
     }
     unsubscribe()
+    onDetach()
   })
 }
 

@@ -22,7 +22,7 @@ export function useParticipatingChats(userId: string, initialChats: Chat[]) {
       }
     }
     fetchParticipatingChats()
-  }, [setError, startProcess, stopProcess, userId])
+  }, [userId, setError, startProcess, stopProcess])
 
   return [chats, processing, error] as const
 }

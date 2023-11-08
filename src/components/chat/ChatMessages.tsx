@@ -3,11 +3,11 @@
 import { useEffect, useRef } from "react"
 import { useMessages } from "@hooks"
 import { MessageCircleIcon } from "@icons"
-import { usePreferredLanguage } from "@stores/language"
+import { useLanguageCode, usePreferredLanguage } from "@stores/language"
 import { cn } from "@utilities"
 import { Spinner } from "@ui"
 import { UserAvatar } from "../user/UserAvatar"
-import type { Message } from "@types"
+import type { Message } from "@services/message"
 import type { User } from "next-auth"
 
 interface ChatMessagesProps {
@@ -22,6 +22,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   user,
 }) => {
   const language = usePreferredLanguage()
+  const languageCode = useLanguageCode(language)
   const messagesEndRef = useRef<React.ElementRef<"div">>(null)
   const [messages, loading] = useMessages(chatId, initialMessages)
 

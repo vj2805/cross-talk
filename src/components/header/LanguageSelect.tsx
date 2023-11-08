@@ -18,7 +18,7 @@ import {
   Spinner,
 } from "@ui"
 import { cn } from "@utilities"
-import type { Language } from "@types"
+import type { Language } from "@services/language"
 
 export const LanguageSelect: React.FC = () => {
   const pathname = usePathname()

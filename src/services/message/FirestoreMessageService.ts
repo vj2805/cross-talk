@@ -9,9 +9,9 @@ import {
   serverTimestamp,
 } from "firebase/firestore"
 import { clientRepo } from "@firebase"
-import type { MessageService } from "./MessageService"
-import type { Message } from "@types"
 import type { FirestoreDataConverter } from "firebase/firestore"
+import type { Message } from "./Message"
+import type { MessageService } from "./MessageService"
 
 const messageConverter: FirestoreDataConverter<Message> = {
   fromFirestore(snapshot, options) {

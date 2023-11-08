@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getMessages } from "@services/message"
 import { useProcess } from "./useProcess"
-import type { Message } from "@types"
+import type { Message } from "@services/message"
 
 export function useMessages(chatId: string, initialMessages: Message[]) {
   const { error, processing, setError, startProcess, stopProcess } =

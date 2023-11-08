@@ -1,4 +1,4 @@
-import type { Chat } from "@types"
+import type { Chat } from "./Chat"
 
 export interface ChatService {
   createChat: (adminId: string) => Promise<Chat["id"]>

@@ -1,5 +1,6 @@
+import type { PricingTier } from "./PricingTier"
+import type { Subscription } from "./Subscription"
 import type { SubscriptionService } from "./SubscriptionService"
-import type { PricingTier, Subscription } from "@types"
 
 export const pricingTiers: PricingTier[] = [
   {

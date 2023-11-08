@@ -15,7 +15,7 @@ import {
 import { cn } from "@utilities"
 import { SignInButton } from "./SignInButton"
 import { UserAvatar } from "./UserAvatar"
-import type { User } from "@types"
+import type { User } from "@services/user"
 
 interface ProfileButtonProps {
   user?: User

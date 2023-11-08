@@ -1,5 +1,5 @@
-import type { User } from "next-auth"
-import type { Language } from "./Language"
+import type { Language } from "@services/language"
+import type { User } from "@services/user"
 
 export interface Message {
   id: string

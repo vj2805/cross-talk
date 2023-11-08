@@ -1,4 +1,4 @@
-import type { Checkout } from "@types"
+import type { Checkout } from "./Checkout"
 import type { CheckoutService } from "./CheckoutService"
 
 const checkouts: Map<string, Checkout[]> = new Map()

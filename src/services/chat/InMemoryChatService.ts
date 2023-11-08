@@ -1,6 +1,6 @@
 import { generateId } from "@utilities"
 import { ChatError } from "./ChatError"
-import type { Chat } from "@types"
+import type { Chat } from "./Chat"
 import type { ChatService } from "./ChatService"
 
 let chats: Chat[] = []

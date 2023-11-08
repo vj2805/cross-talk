@@ -1,7 +1,7 @@
 import { addDoc, collection, onSnapshot } from "firebase/firestore"
 import { clientRepo } from "@firebase"
-import type { Checkout } from "@types"
 import type { FirestoreDataConverter } from "firebase/firestore"
+import type { Checkout } from "./Checkout"
 import type { CheckoutService } from "./CheckoutService"
 
 const checkoutConverter: FirestoreDataConverter<Checkout> = {

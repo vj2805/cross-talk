@@ -1,5 +1,5 @@
 import { generateId } from "@utilities"
-import type { Message } from "@types"
+import type { Message } from "./Message"
 import type { MessageService } from "./MessageService"
 
 const messages: Map<string, Message[]> = new Map()

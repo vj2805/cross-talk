@@ -1,5 +1,5 @@
 import { cn } from "@utilities"
-import type { PricingTier } from "@types"
+import type { PricingTier } from "@services/subscription"
 
 interface PriceMonthlyProps {
   priceMonthly: PricingTier["priceMonthly"]

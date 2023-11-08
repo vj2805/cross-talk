@@ -1,4 +1,4 @@
-import type { Language } from "@types"
+import type { Language } from "./Language"
 
 export interface LanguageService {
   getLanguageCodes: () => Promise<Record<Language, string>>

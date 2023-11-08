@@ -9,8 +9,8 @@ import {
 } from "firebase/firestore"
 import { clientRepo } from "@firebase"
 import { ChatError } from "./ChatError"
-import type { Chat } from "@types"
 import type { FirestoreDataConverter } from "firebase/firestore"
+import type { Chat } from "./Chat"
 import type { ChatService } from "./ChatService"
 
 const chatConverter: FirestoreDataConverter<Chat> = {

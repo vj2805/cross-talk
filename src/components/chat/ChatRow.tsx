@@ -7,14 +7,14 @@ import { useRouter } from "@hooks"
 import { Skeleton } from "@ui"
 import { cn, prettifyId } from "@utilities"
 import { UserAvatar } from "../user/UserAvatar"
-import type { Chat } from "@types"
+import type { Chat } from "@services/chat"
 
 interface ChatRowProps {
   chatId: Chat["id"]
 }
 
 export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
-  const [messages, loading] = useLastMessage(chatId)
+  const [message, loading] = useLastMessage(chatId)
   const user = useSyncedUser()
   const language = usePreferredLanguage()
   const router = useRouter()
@@ -30,7 +30,6 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
       </div>
     )
   }
-  const message = messages?.[0]
 
   return (
     <div

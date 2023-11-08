@@ -1,4 +1,4 @@
-import type { Message } from "@types"
+import type { Message } from "./Message"
 
 export interface MessageService {
   getLastMessage: (chatId: string) => Promise<Uncertain<Message>>

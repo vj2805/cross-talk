@@ -1,4 +1,4 @@
-import type { Language } from "@types"
+import type { Language } from "./Language"
 import type { LanguageService } from "./LanguageService"
 
 const LANGUAGE_CODES: Record<Language, string> = {

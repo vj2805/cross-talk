@@ -6,7 +6,7 @@ import { cn } from "@utilities"
 import { MessageSquareIcon } from "@icons"
 import { CreateChatButton } from "./CreateChatButton"
 import { ChatRow } from "./ChatRow"
-import type { Chat } from "@types"
+import type { Chat } from "@services/chat"
 
 interface ChatListRowsProps {
   initialChats: Chat[]

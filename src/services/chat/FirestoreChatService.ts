@@ -34,28 +34,8 @@ function chatsRef() {
   return collection(clientRepo, "chats").withConverter(chatConverter)
 }
 
-const createChat: ChatService["createChat"] = async adminId => {
-  const chatRef = await addDoc(chatsRef(), {
-    adminId: adminId,
-    id: "",
-    participantsIds: [adminId],
-  })
-  return chatRef.id
-}
-
 function chatRef(chatId: string) {
   return doc(chatsRef(), chatId)
-}
-
-const getParticipantsIds: ChatService["getParticipantsIds"] = async (
-  chatId: string
-) => {
-  const chat = await getDoc(chatRef(chatId))
-  const data = chat.data()
-  if (!data) {
-    throw new ChatError(chatId, "Does Not Exist")
-  }
-  return data.participantsIds
 }
 
 function participatingChatsRef(participantId: string) {
@@ -65,12 +45,29 @@ function participatingChatsRef(participantId: string) {
   )
 }
 
-const getParticipatingChats: ChatService["getParticipatingChats"] = async (
-  userId: string
-) => {
-  const snapshot = await getDocs(participatingChatsRef(userId))
-  return snapshot.docs.map(doc => doc.data())
+const createChat: ChatService["createChat"] = async adminId => {
+  const chatRef = await addDoc(chatsRef(), {
+    adminId: adminId,
+    id: "",
+    participantsIds: [adminId],
+  })
+  return chatRef.id
 }
+
+const getParticipantsIds: ChatService["getParticipantsIds"] = async chatId => {
+  const chat = await getDoc(chatRef(chatId))
+  const data = chat.data()
+  if (!data) {
+    throw new ChatError(chatId, "Does Not Exist")
+  }
+  return data.participantsIds
+}
+
+const getParticipatingChats: ChatService["getParticipatingChats"] =
+  async userId => {
+    const snapshot = await getDocs(participatingChatsRef(userId))
+    return snapshot.docs.map(doc => doc.data())
+  }
 
 export function createFirestoreChatService(): ChatService {
   return {

@@ -14,9 +14,9 @@ interface ChatListRowsProps {
 
 export const ChatListRows: React.FC<ChatListRowsProps> = ({ initialChats }) => {
   const user = useSyncedUser()
-  const [chats, state] = useParticipatingChats(user?.id!, initialChats)
+  const [chats, loading] = useParticipatingChats(user?.id!, initialChats)
 
-  if (state === "error") {
+  if (loading || !chats) {
     return null
   }
 

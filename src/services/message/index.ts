@@ -1,4 +1,4 @@
-import createMessageService from "./FirestoreMessageService"
+import createMessageService from "./InMemoryMessageService"
 import type { MessageService } from "./MessageService"
 
 export const {

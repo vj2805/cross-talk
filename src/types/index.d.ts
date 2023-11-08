@@ -1,3 +1,4 @@
+export type { User } from "next-auth"
 export type { Chat } from "./Chat"
 export type { Checkout } from "./Checkout"
 export type { Language } from "./Language"

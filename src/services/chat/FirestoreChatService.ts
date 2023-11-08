@@ -1,12 +1,4 @@
-import {
-  addDoc,
-  collection,
-  doc,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore"
-import { useCollectionData } from "react-firebase-hooks/firestore"
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore"
 import { clientRepo } from "@firebase"
 import type { Chat } from "@types"
 import type { FirestoreDataConverter } from "firebase/firestore"
@@ -29,10 +21,6 @@ const chatConverter: FirestoreDataConverter<Chat> = {
 
 function chatsRef() {
   return collection(clientRepo, "chats").withConverter(chatConverter)
-}
-
-function chatRef(chatId: string) {
-  return doc(chatsRef(), chatId)
 }
 
 function participatingChatsRef(participantId: string) {
@@ -58,23 +46,9 @@ const getParticipatingChats: ChatService["getParticipatingChats"] = async (
   return snapshot.docs.map(doc => doc.data())
 }
 
-const useParticipatingChats: ChatService["useParticipatingChats"] = (
-  userId,
-  intialChats
-) => {
-  const [chats, loading, error] = useCollectionData(
-    participatingChatsRef(userId),
-    {
-      initialValue: intialChats,
-    }
-  )
-  return [chats, loading, error]
-}
-
 export function createFirestoreChatService(): ChatService {
   return {
     createChat,
     getParticipatingChats,
-    useParticipatingChats,
   }
 }

@@ -8,11 +8,11 @@ export const SyncedPricingTiersProvider: React.FC<
   React.PropsWithRequiredChildren
 > = props => {
   useEffect(() => {
-    async function syncPricingTiers() {
+    async function fetchPricingTiers() {
       const pricingTiers = await getPricingTiers()
       setPricingTiers(pricingTiers)
     }
-    syncPricingTiers()
+    fetchPricingTiers()
   }, [])
 
   return props.children

@@ -6,6 +6,7 @@ import {
   query,
   where,
 } from "firebase/firestore"
+import { useCollectionData } from "react-firebase-hooks/firestore"
 import { clientRepo } from "@firebase"
 import type { Chat } from "@types"
 import type { FirestoreDataConverter } from "firebase/firestore"
@@ -30,18 +31,18 @@ function chatsRef() {
   return collection(clientRepo, "chats").withConverter(chatConverter)
 }
 
-export function chatRef(chatId: string) {
+function chatRef(chatId: string) {
   return doc(chatsRef(), chatId)
 }
 
-export function participatingChatsRef(participantId: string) {
+function participatingChatsRef(participantId: string) {
   return query(
     chatsRef(),
     where("participantsIds", "array-contains", participantId)
   )
 }
 
-export async function createChat(adminId: string) {
+const createChat: ChatService["createChat"] = async adminId => {
   const chatRef = await addDoc(chatsRef(), {
     adminId: adminId,
     id: "",
@@ -50,14 +51,30 @@ export async function createChat(adminId: string) {
   return chatRef.id
 }
 
-export async function getParticipatingChats(userId: string) {
+const getParticipatingChats: ChatService["getParticipatingChats"] = async (
+  userId: string
+) => {
   const snapshot = await getDocs(participatingChatsRef(userId))
   return snapshot.docs.map(doc => doc.data())
+}
+
+const useParticipatingChats: ChatService["useParticipatingChats"] = (
+  userId,
+  intialChats
+) => {
+  const [chats, loading, error] = useCollectionData(
+    participatingChatsRef(userId),
+    {
+      initialValue: intialChats,
+    }
+  )
+  return [chats, loading, error]
 }
 
 export function createFirestoreChatService(): ChatService {
   return {
     createChat,
     getParticipatingChats,
+    useParticipatingChats,
   }
 }

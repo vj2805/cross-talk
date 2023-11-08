@@ -1,5 +1,14 @@
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore"
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore"
 import { clientRepo } from "@firebase"
+import { ChatError } from "./ChatError"
 import type { Chat } from "@types"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import type { ChatService } from "./ChatService"
@@ -25,13 +34,6 @@ function chatsRef() {
   return collection(clientRepo, "chats").withConverter(chatConverter)
 }
 
-function participatingChatsRef(participantId: string) {
-  return query(
-    chatsRef(),
-    where("participantsIds", "array-contains", participantId)
-  )
-}
-
 const createChat: ChatService["createChat"] = async adminId => {
   const chatRef = await addDoc(chatsRef(), {
     adminId: adminId,
@@ -39,6 +41,28 @@ const createChat: ChatService["createChat"] = async adminId => {
     participantsIds: [adminId],
   })
   return chatRef.id
+}
+
+function chatRef(chatId: string) {
+  return doc(chatsRef(), chatId)
+}
+
+const getParticipantsIds: ChatService["getParticipantsIds"] = async (
+  chatId: string
+) => {
+  const chat = await getDoc(chatRef(chatId))
+  const data = chat.data()
+  if (!data) {
+    throw new ChatError(chatId, "Does Not Exist")
+  }
+  return data.participantsIds
+}
+
+function participatingChatsRef(participantId: string) {
+  return query(
+    chatsRef(),
+    where("participantsIds", "array-contains", participantId)
+  )
 }
 
 const getParticipatingChats: ChatService["getParticipatingChats"] = async (
@@ -51,6 +75,7 @@ const getParticipatingChats: ChatService["getParticipatingChats"] = async (
 export function createFirestoreChatService(): ChatService {
   return {
     createChat,
+    getParticipantsIds,
     getParticipatingChats,
   }
 }

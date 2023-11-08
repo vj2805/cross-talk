@@ -1,36 +1,42 @@
+import { resolve } from "path"
 import { generateId } from "@utilities"
+import { ChatError } from "./ChatError"
 import type { Chat } from "@types"
 import type { ChatService } from "./ChatService"
 
 let chats: Chat[] = []
 
-function _createChat(adminId: string) {
-  const id = generateId()
-  chats = chats.toSpliced(-1, 0, {
-    adminId,
-    id,
-    participantsIds: [adminId],
-  })
-  return id
-}
-
 const createChat: ChatService["createChat"] = adminId => {
   return new Promise<string>(resolve => {
     setTimeout(() => {
-      const id = _createChat(adminId)
+      const id = generateId()
+      chats = chats.toSpliced(-1, 0, {
+        adminId,
+        id,
+        participantsIds: [adminId],
+      })
       resolve(id)
     }, 1000)
   })
 }
 
-function _getParticipatingChats(userId: string) {
-  return chats.filter(chat => chat.participantsIds.includes(userId))
-}
-
 const getParticipatingChats: ChatService["getParticipatingChats"] = userId => {
   return new Promise<Chat[]>(resolve => {
     setTimeout(() => {
-      resolve(_getParticipatingChats(userId))
+      resolve(chats.filter(chat => chat.participantsIds.includes(userId)))
+    }, 1000)
+  })
+}
+
+const getParticipantsIds: ChatService["getParticipantsIds"] = chatId => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const chat = chats.find(chat => chat.id === chatId)
+      if (!chat) {
+        reject(new ChatError(chatId, "Does Not Exist"))
+        return
+      }
+      resolve(chat.participantsIds)
     }, 1000)
   })
 }
@@ -38,6 +44,7 @@ const getParticipatingChats: ChatService["getParticipatingChats"] = userId => {
 export default function createInMemoryChatService(): ChatService {
   return {
     createChat,
+    getParticipantsIds,
     getParticipatingChats,
   }
 }

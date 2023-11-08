@@ -9,8 +9,8 @@ export function useCheckoutSession(userId: string, priceId: string) {
     if (processing) {
       return
     }
+    startProcess()
     try {
-      startProcess()
       await createCheckout(
         userId,
         priceId,

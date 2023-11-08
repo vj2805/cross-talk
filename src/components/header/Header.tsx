@@ -1,7 +1,6 @@
 import { MessagesSquareIcon } from "@icons"
-import { getServerUser } from "@services"
 import { NextLink } from "@ui"
-import { cn } from "@utilities"
+import { cn, getServerUser } from "@utilities"
 import { CreateChatButton } from "../chat/CreateChatButton"
 import { UpgradeBanner } from "../subscription/UpgradeBanner"
 import { ProfileButton } from "../user/ProfileButton"

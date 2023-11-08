@@ -5,7 +5,7 @@ import { redirect } from "next/navigation"
 import { env } from "@env"
 import { adminRepo } from "@firebase-admin"
 import { stripe } from "@stripe"
-import { getServerUser } from "@services"
+import { getServerUser } from "@utilities"
 
 export async function manageSubscription() {
   const user = await getServerUser()

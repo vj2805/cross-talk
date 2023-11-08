@@ -1,5 +1,5 @@
-import { getServerUser } from "@services"
-import { chatService } from "@services/chat"
+import { getParticipatingChats } from "@services/chat"
+import { getServerUser } from "@utilities"
 import { ChatListRows } from "./ChatListRows"
 
 export const ChatList: React.FC = async () => {
@@ -9,7 +9,7 @@ export const ChatList: React.FC = async () => {
     return null
   }
 
-  const initialChats = await chatService.getParticipatingChats(user.id)
+  const initialChats = await getParticipatingChats(user.id)
 
   return <ChatListRows initialChats={initialChats} />
 }

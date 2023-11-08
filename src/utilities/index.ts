@@ -1,5 +1,6 @@
 export { v4 as generateId } from "uuid"
 export { createSafeContext } from "./createSafeContext"
+export { getServerUser } from "./getServerUser"
 export { joinFirstLetterOfEachWord } from "./joinFirstLetterOfEachWord"
 export { prettifyId } from "./prettifyId"
 export { cn } from "./shadcn"

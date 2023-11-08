@@ -1,17 +1,17 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 
 export function useProcess() {
   const [processing, setProcessing] = useState(false)
   const [error, setError] = useState<Nullish<Error>>(null)
 
-  function startProcess() {
+  const startProcess = useCallback(() => {
     setProcessing(true)
     setError(null)
-  }
+  }, [])
 
-  function stopProcess() {
+  const stopProcess = useCallback(() => {
     setProcessing(false)
-  }
+  }, [])
 
   return {
     error,

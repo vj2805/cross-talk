@@ -1,6 +1,6 @@
 "use client"
 
-import { signIn } from "@services"
+import { signIn } from "@services/user"
 import { Button } from "@ui"
 
 export const SignInButton: React.FC = () => (

@@ -1,4 +1,3 @@
-import { resolve } from "path"
 import { generateId } from "@utilities"
 import { ChatError } from "./ChatError"
 import type { Chat } from "@types"

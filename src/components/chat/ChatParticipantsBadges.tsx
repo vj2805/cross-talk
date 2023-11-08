@@ -1,6 +1,6 @@
 "use client"
 
-import { useParticipants } from "@hooks/useParticipants"
+import { useParticipantsIds } from "@hooks/useParticipantsIds"
 import { Spinner } from "@ui"
 import { cn } from "@utilities"
 
@@ -11,7 +11,7 @@ interface ChatParticipantsBadgesProps {
 export const ChatParticipantsBadges: React.FC<ChatParticipantsBadgesProps> = ({
   chatId,
 }) => {
-  const [participants, admin, loading] = useParticipants(chatId)
+  const [participants, admin, loading] = useParticipantsIds(chatId)
 
   if (loading) {
     return <Spinner />

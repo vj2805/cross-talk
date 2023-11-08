@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getParticipantsIds } from "@services/chat"
 import { useProcess } from "./useProcess"
 
-export function useParticipants(chatId: string) {
+export function useParticipantsIds(chatId: string) {
   const { error, processing, setError, startProcess, stopProcess } =
     useProcess()
   const [participantsIds, setParticipantsIds] =

@@ -1,10 +1,9 @@
 "use client"
 
 import { useParticipatingChats } from "@hooks"
-import { useSyncedUser } from "@stores"
+import { useSyncedUser } from "@stores/syncedUser"
 import { cn } from "@utilities"
 import { MessageSquareIcon } from "@icons"
-import { Spinner } from "@ui"
 import { CreateChatButton } from "./CreateChatButton"
 import { ChatRow } from "./ChatRow"
 import type { Chat } from "@types"

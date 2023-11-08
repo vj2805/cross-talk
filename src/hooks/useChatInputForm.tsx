@@ -4,8 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import * as zod from "zod"
-import { addMessage, getMessagesCount } from "@services"
-import { useSyncedUser } from "@stores"
+import { getMessagesCount, postMessage } from "@services/message"
+import { useSyncedUser } from "@stores/syncedUser"
 import { ToastAction, showToast } from "@ui"
 
 const ChatInputFormSchema = zod.object({
@@ -33,14 +33,7 @@ export function useChatInputForm(chatId: string) {
     }
     try {
       const count = await getMessagesCount(chatId)
-      if (count < 25) {
-        await addMessage({
-          chatId,
-          input,
-          user,
-        })
-        form.reset()
-      } else {
+      if (count >= 25) {
         showToast({
           action: (
             <ToastAction
@@ -56,7 +49,10 @@ export function useChatInputForm(chatId: string) {
           title: "Free plan limit exceeded!",
           variant: "destructive",
         })
+        return
       }
+      await postMessage(chatId, input, user)
+      form.reset()
     } catch (error) {
       form.setError("input", {
         message: JSON.stringify(error),

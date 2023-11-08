@@ -6,7 +6,8 @@ import {
   getNotSupportedLanguages,
   getSupportedLanguages,
 } from "@services/languages"
-import { setLanguage, useIsPro, useLanguage, useSubscription } from "@stores"
+import { useIsPro, useSubscription } from "@stores/subscription"
+import { setLanguage, useLanguage } from "@stores/language"
 import {
   NextLink,
   Select,

@@ -12,7 +12,7 @@ interface CreateChatButtonProps {
 export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
   large,
 }) => {
-  const { createChat, processing } = useCreateChat()
+  const { createNewChat: createChat, processing } = useCreateChat()
   return large ? (
     <Button
       variant="default"

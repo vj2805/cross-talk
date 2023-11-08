@@ -1,7 +1,8 @@
 "use client"
 
 import { useLastMessageInChat } from "@hooks/useLastMessageInChat"
-import { useLanguage, useSyncedUser } from "@stores"
+import { useLanguage } from "@stores/language"
+import { useSyncedUser } from "@stores/syncedUser"
 import { useRouter } from "@hooks"
 import { Skeleton } from "@ui"
 import { cn, prettifyId } from "@utilities"

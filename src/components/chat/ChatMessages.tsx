@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 import { useMessages } from "@hooks"
 import { MessageCircleIcon } from "@icons"
-import { useLanguage } from "@stores"
+import { useLanguage } from "@stores/language"
 import { cn } from "@utilities"
 import { Spinner } from "@ui"
 import { UserAvatar } from "../user/UserAvatar"

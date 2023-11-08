@@ -6,5 +6,5 @@ export interface ChatService {
   useParticipatingChats: (
     userId: string,
     intialChats: Chat[]
-  ) => Model.Observable<Chat[], Chat[]>
+  ) => Model.Observable<Chat[]>
 }

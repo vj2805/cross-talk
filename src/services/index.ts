@@ -1,5 +1,4 @@
 export { signIn, signOut } from "next-auth/react"
-export { addCheckoutSession } from "./checkout/addCheckoutSession"
 export { addMessage } from "./message/addMessage"
 export { getMessages } from "./message/getMessages"
 export { getMessagesCount } from "./message/getMessagesCount"

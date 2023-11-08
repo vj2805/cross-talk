@@ -2,7 +2,7 @@
 
 import { useEffect } from "react"
 import { useSession } from "@hooks"
-import { syncUser } from "@services"
+import { syncUser } from "@services/user"
 
 export const SyncedUserProvider: React.FC<
   React.PropsWithRequiredChildren

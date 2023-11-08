@@ -44,7 +44,7 @@ const useParticipatingChats: ChatService["useParticipatingChats"] = (
   return observable
 }
 
-export function createInMemoryChatService(): ChatService {
+export default function createInMemoryChatService(): ChatService {
   return {
     createChat,
     getParticipatingChats,

@@ -60,9 +60,13 @@ const useParticipatingChats: ChatService["useParticipatingChats"] = (
   ])
 
   useEffect(() => {
+    setObservable(([chats]) => [chats, true, undefined])
     getParticipatingChats(userId)
       .then(chats => setObservable([chats, false, undefined]))
       .catch(reason => setObservable([undefined, false, Error(reason)]))
+      .finally(() =>
+        setObservable(([chats, _, error]) => [chats, false, error])
+      )
   }, [chats, userId])
 
   return observable

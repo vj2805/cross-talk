@@ -19,6 +19,6 @@ declare global {
     > = T & VariantProps<V>
   }
   namespace Model {
-    type Observable<T> = [Uncertain<T>, boolean, Uncertain<string>]
+    type Observable<T> = [Uncertain<T>, boolean, Uncertain<Error>]
   }
 }

@@ -1,5 +1,5 @@
 import type { Language } from "@types"
-import type LanguageService from "./LanguageService"
+import type { LanguageService } from "./LanguageService"
 
 const AVAILABLE_LANGUAGES_MAP: Record<Language, string> = {
   de: "German",

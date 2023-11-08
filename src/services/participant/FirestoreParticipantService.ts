@@ -1,17 +1,21 @@
 import type { Participant } from "@types"
 import type { FirestoreDataConverter } from "firebase/firestore"
 
-export const participantConverter: FirestoreDataConverter<Participant> = {
+const participantConverter: FirestoreDataConverter<Participant> = {
   fromFirestore(snapshot, options) {
     const data = snapshot.data(options)
     return {
       email: data.email,
       id: snapshot.id,
       image: data.image,
+      name: data.name,
     }
   },
   toFirestore(participant) {
-    delete participant.id
-    return participant
+    return {
+      email: participant.email,
+      image: participant.image,
+      name: participant.name,
+    }
   },
 }

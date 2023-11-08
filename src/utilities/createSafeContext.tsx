@@ -2,7 +2,7 @@ import React from "react"
 
 const NONE = Symbol("NONE")
 
-export function createContext<T>(displayName: string) {
+export function createSafeContext<T>(displayName: string) {
   const Context = React.createContext<T | typeof NONE>(NONE)
 
   function Provider(props: Required<React.ProviderProps<T>>) {
@@ -12,7 +12,9 @@ export function createContext<T>(displayName: string) {
   function useContext() {
     const context = React.useContext(Context)
     if (context === NONE) {
-      throw new Error(`${displayName}Context must be used with its provider!`)
+      throw Error(
+        `useSafe${displayName}Context must be used with its provider!`
+      )
     }
     return context
   }

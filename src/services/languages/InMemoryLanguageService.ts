@@ -16,21 +16,24 @@ const AVAILABLE_LANGUAGES_MAP: Record<Language, string> = {
 
 const AVAILABLE_LANGUAGES = Object.keys(AVAILABLE_LANGUAGES_MAP) as Language[]
 
-function getLanguageName(languageCode: Language) {
-  return AVAILABLE_LANGUAGES_MAP[languageCode]
-}
+const getLanguageName: LanguageService["getLanguageName"] =
+  async languageCode => {
+    return AVAILABLE_LANGUAGES_MAP[languageCode]
+  }
 
 const NO_OF_LANGUAGES_IN_FREE = 2
 
-function getNotSupportedLanguages(isPro: boolean) {
-  return isPro ? [] : AVAILABLE_LANGUAGES.slice(NO_OF_LANGUAGES_IN_FREE)
-}
+const getNotSupportedLanguages: LanguageService["getNotSupportedLanguages"] =
+  async isPro => {
+    return isPro ? [] : AVAILABLE_LANGUAGES.slice(NO_OF_LANGUAGES_IN_FREE)
+  }
 
-function getSupportedLanguages(isPro: boolean) {
-  return isPro
-    ? AVAILABLE_LANGUAGES
-    : AVAILABLE_LANGUAGES.slice(0, NO_OF_LANGUAGES_IN_FREE)
-}
+const getSupportedLanguages: LanguageService["getSupportedLanguages"] =
+  async isPro => {
+    return isPro
+      ? AVAILABLE_LANGUAGES
+      : AVAILABLE_LANGUAGES.slice(0, NO_OF_LANGUAGES_IN_FREE)
+  }
 
 export default function createInMemoryLanguageService(): LanguageService {
   return {

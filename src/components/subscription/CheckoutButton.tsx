@@ -1,9 +1,10 @@
 "use client"
 
+import { useCheckoutSession } from "@hooks"
 import { useSubscription } from "@stores/subscription"
-import { useCheckoutSession, useSession } from "@hooks"
-import { cn } from "@utilities"
+import { useSyncedUser } from "@stores/syncedUser"
 import { Spinner } from "@ui"
+import { cn } from "@utilities"
 import { ManageSubscriptionButton } from "./ManageSubscriptionButton"
 
 interface CheckoutButtonProps {
@@ -11,12 +12,13 @@ interface CheckoutButtonProps {
 }
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
-  const { data: session } = useSession()
-  const { createCheckoutSession, processing } = useCheckoutSession({
-    priceId,
-    session,
-  })
+  const user = useSyncedUser()
   const subscription = useSubscription()
+
+  const { createCheckoutSession, processing } = useCheckoutSession(
+    user?.id,
+    priceId
+  )
 
   return (
     <div className="flex flex-col space-y-2">

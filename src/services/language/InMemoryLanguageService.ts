@@ -1,20 +1,5 @@
-import type { Language } from "./Language"
+import { AVAILABLE_LANGUAGES, LANGUAGE_CODES } from "./Language"
 import type { LanguageService } from "./LanguageService"
-
-const LANGUAGE_CODES: Record<Language, string> = {
-  English: "en",
-  French: "fr",
-  German: "de",
-  Hindi: "hi",
-  Japanese: "ja",
-  Kannada: "kn",
-  Malayalam: "ml",
-  Spanish: "es",
-  Tamil: "ta",
-  Telugu: "te",
-}
-
-const AVAILABLE_LANGUAGES = Object.keys(LANGUAGE_CODES) as Language[]
 
 const getLanguageCodes: LanguageService["getLanguageCodes"] = async () => {
   return LANGUAGE_CODES

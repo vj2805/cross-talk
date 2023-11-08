@@ -92,7 +92,10 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
               </p>
               <div className="flex space-x-2">
                 {message.translated ? (
-                  <p>{message.translated[language] || message.input}</p>
+                  <p>
+                    {(languageCode && message.translated?.[languageCode]) ||
+                      message.input}
+                  </p>
                 ) : (
                   <Spinner />
                 )}

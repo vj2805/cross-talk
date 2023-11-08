@@ -1,6 +1,6 @@
 import { useCollectionData } from "react-firebase-hooks/firestore"
-import { lastMessageRef } from "@services"
+import { lastMessageRef } from "@services/message"
 
-export function useLastMessageInChat(chatId: string) {
+export function useLastMessage(chatId: string) {
   return useCollectionData(lastMessageRef(chatId))
 }

@@ -9,8 +9,7 @@ export const SyncedPricingTiersProvider: React.FC<
 > = props => {
   useEffect(() => {
     async function fetchPricingTiers() {
-      const pricingTiers = await getPricingTiers()
-      setPricingTiers(pricingTiers)
+      setPricingTiers(await getPricingTiers())
     }
     fetchPricingTiers()
   }, [])

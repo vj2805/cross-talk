@@ -1,46 +1,27 @@
-import { useState } from "react"
-import { onSnapshot } from "firebase/firestore"
-import { addCheckoutSession } from "@services"
-import type { Session } from "next-auth"
+import { createCheckout } from "@services/checkout"
+import { useProcess } from "./useProcess"
 
-interface UseCreateCheckoutParams {
-  session: Nullish<Session>
-  priceId: string
-}
-
-export function useCheckoutSession({
-  priceId,
-  session,
-}: UseCreateCheckoutParams) {
-  const [processing, setProcessing] = useState(false)
-  const [error, setError] = useState<Nullish<Error>>(null)
+export function useCheckoutSession(userId: string, priceId: string) {
+  const { error, processing, setError, startProcess, stopProcess } =
+    useProcess()
 
   async function createCheckoutSession() {
-    if (!session?.user?.id) {
+    if (processing) {
       return
     }
-    setError(null)
-    let docRef
     try {
-      setProcessing(true)
-      docRef = await addCheckoutSession({
+      startProcess()
+      await createCheckout(
+        userId,
         priceId,
-        userId: session.user.id,
-      })
-    } catch {
-      setProcessing(false)
-      return
+        window.location.assign,
+        setError,
+        stopProcess
+      )
+    } catch (error) {
+      setError(error as Error)
+      stopProcess()
     }
-    onSnapshot(docRef, snapshot => {
-      const data = snapshot.data()
-      if (data?.error) {
-        setError(data.error)
-      }
-      if (data?.url) {
-        window.location.assign(data.url)
-      }
-      setProcessing(false)
-    })
   }
 
   return { createCheckoutSession, error, processing }

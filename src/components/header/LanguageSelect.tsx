@@ -2,12 +2,12 @@
 
 import { usePathname } from "@hooks"
 import {
-  getLanguageName,
-  getNotSupportedLanguages,
-  getSupportedLanguages,
-} from "@services/languages"
+  setPreferredLanguage,
+  useNotSupportedLanguages,
+  usePreferredLanguage,
+  useSupportedLanguages,
+} from "@stores/language"
 import { useIsPro, useSubscription } from "@stores/subscription"
-import { setLanguage, useLanguage } from "@stores/language"
 import {
   NextLink,
   Select,
@@ -21,36 +21,40 @@ import { cn } from "@utilities"
 import type { Language } from "@types"
 
 export const LanguageSelect: React.FC = () => {
-  const language = useLanguage()
+  const pathname = usePathname()
+  const preferredLanguage = usePreferredLanguage()
   const subscription = useSubscription()
   const isPro = useIsPro()
-  const pathname = usePathname()
+  const supportedLanguages = useSupportedLanguages(isPro)
+  const notSupportedLanguages = useNotSupportedLanguages(isPro)
 
   const isChatPage = pathname.includes("/chat")
 
   return (
     isChatPage && (
       <div>
-        <Select onValueChange={value => setLanguage(value as Language)}>
+        <Select
+          onValueChange={value => setPreferredLanguage(value as Language)}
+        >
           <SelectTrigger
             className={cn("w-[150px]", "text-black dark:text-white")}
           >
-            <SelectValue placeholder={getLanguageName(language)} />
+            <SelectValue placeholder={preferredLanguage} />
           </SelectTrigger>
           <SelectContent>
             {subscription === undefined ? (
               <Spinner />
             ) : (
               <>
-                {getSupportedLanguages(isPro).map(language => (
+                {supportedLanguages?.map(language => (
                   <SelectItem
                     key={language}
                     value={language}
                   >
-                    {getLanguageName(language)}
+                    {language}
                   </SelectItem>
                 ))}
-                {getNotSupportedLanguages(isPro).map(language => (
+                {notSupportedLanguages?.map(language => (
                   <NextLink
                     key={language}
                     prefetch={false}
@@ -67,7 +71,7 @@ export const LanguageSelect: React.FC = () => {
                         "text-gray-500 dark:text-white"
                       )}
                     >
-                      {getLanguageName(language)} (PRO)
+                      {language} (PRO)
                     </SelectItem>
                   </NextLink>
                 ))}

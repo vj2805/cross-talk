@@ -1,7 +1,7 @@
 import type { Language } from "@types"
 
 export interface LanguageService {
-  getLanguageName: (code: Language) => Promise<string>
-  getNotSupportedLanguages: (isPro: boolean) => Promise<Language[]>
-  getSupportedLanguages: (isPro: boolean) => Promise<Language[]>
+  getLanguageNames: () => Promise<Record<Language, string>>
+  getLanguagesInFree: () => Promise<Language[]>
+  getLanguagesOnlyInPro: () => Promise<Language[]>
 }

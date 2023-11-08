@@ -16,29 +16,25 @@ const AVAILABLE_LANGUAGES_MAP: Record<Language, string> = {
 
 const AVAILABLE_LANGUAGES = Object.keys(AVAILABLE_LANGUAGES_MAP) as Language[]
 
-const getLanguageName: LanguageService["getLanguageName"] =
-  async languageCode => {
-    return AVAILABLE_LANGUAGES_MAP[languageCode]
-  }
+const getLanguageNames: LanguageService["getLanguageNames"] = async () => {
+  return AVAILABLE_LANGUAGES_MAP
+}
 
 const NO_OF_LANGUAGES_IN_FREE = 2
 
-const getNotSupportedLanguages: LanguageService["getNotSupportedLanguages"] =
-  async isPro => {
-    return isPro ? [] : AVAILABLE_LANGUAGES.slice(NO_OF_LANGUAGES_IN_FREE)
-  }
+const getLanguagesInFree: LanguageService["getLanguagesInFree"] = async () => {
+  return AVAILABLE_LANGUAGES.slice(0, NO_OF_LANGUAGES_IN_FREE)
+}
 
-const getSupportedLanguages: LanguageService["getSupportedLanguages"] =
-  async isPro => {
-    return isPro
-      ? AVAILABLE_LANGUAGES
-      : AVAILABLE_LANGUAGES.slice(0, NO_OF_LANGUAGES_IN_FREE)
+const getLanguagesOnlyInPro: LanguageService["getLanguagesOnlyInPro"] =
+  async () => {
+    return AVAILABLE_LANGUAGES.slice(0, NO_OF_LANGUAGES_IN_FREE)
   }
 
 export default function createInMemoryLanguageService(): LanguageService {
   return {
-    getLanguageName,
-    getNotSupportedLanguages,
-    getSupportedLanguages,
+    getLanguageNames,
+    getLanguagesInFree,
+    getLanguagesOnlyInPro,
   }
 }

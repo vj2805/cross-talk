@@ -1,4 +1,5 @@
 export type { Chat } from "./Chat"
+export type { Checkout } from "./Checkout"
 export type { Language } from "./Language"
 export type { Message } from "./Message"
 export type { Participant } from "./Participant"

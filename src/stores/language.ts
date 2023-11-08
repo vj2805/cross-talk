@@ -3,7 +3,7 @@ import type { Language } from "@types"
 
 type LanguageStore = {
   availableLanguages: Uncertain<Language[]>
-  languageNames: Uncertain<Record<Language, string>>
+  languageCodes: Uncertain<Record<Language, string>>
   languagesInFree: Uncertain<Language[]>
   languagesOnlyInPro: Uncertain<Language[]>
   preferredLanguage: Language
@@ -11,18 +11,14 @@ type LanguageStore = {
 
 const useLanguageStore = create<LanguageStore>(() => ({
   availableLanguages: undefined,
-  languageNames: undefined,
+  languageCodes: undefined,
   languagesInFree: undefined,
   languagesOnlyInPro: undefined,
-  preferredLanguage: "en",
+  preferredLanguage: "English",
 }))
 
-export function usePreferredLanguage() {
-  return useLanguageStore(store => store.preferredLanguage)
-}
-
-export function useLanguageName(language: Language) {
-  return useLanguageStore(store => store.languageNames?.[language])
+export function useLanguageCode(language: Language) {
+  return useLanguageStore(store => store.languageCodes?.[language])
 }
 
 export function useSupportedLanguages(isPro: boolean) {
@@ -35,10 +31,14 @@ export function useNotSupportedLanguages(isPro: boolean) {
   return useLanguageStore(store => (isPro ? [] : store.languagesOnlyInPro))
 }
 
-export function setLanguageNames(languageNames: Record<Language, string>) {
+export function usePreferredLanguage() {
+  return useLanguageStore(store => store.preferredLanguage)
+}
+
+export function setLanguageCodes(languageCodes: Record<Language, string>) {
   useLanguageStore.setState({
-    availableLanguages: Object.keys(languageNames) as Language[],
-    languageNames,
+    availableLanguages: Object.keys(languageCodes) as Language[],
+    languageCodes,
   })
 }
 

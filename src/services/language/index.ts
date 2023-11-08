@@ -2,7 +2,7 @@ import createInMemoryLanguageService from "./InMemoryLanguageService"
 import type { LanguageService } from "./LanguageService"
 
 export const {
-  getLanguageNames,
+  getLanguageCodes,
   getLanguagesInFree,
   getLanguagesOnlyInPro,
 }: LanguageService = createInMemoryLanguageService()

@@ -2,12 +2,12 @@
 
 import { useEffect } from "react"
 import {
-  getLanguageNames,
+  getLanguageCodes,
   getLanguagesInFree,
   getLanguagesOnlyInPro,
 } from "@services/language"
 import {
-  setLanguageNames,
+  setLanguageCodes,
   setLanguagesInFree,
   setLanguagesOnlyInPro,
 } from "@stores/language"
@@ -17,7 +17,7 @@ export const SyncedLanguagesProvider: React.FC<
 > = props => {
   useEffect(() => {
     async function fetchLanguageNames() {
-      setLanguageNames(await getLanguageNames())
+      setLanguageCodes(await getLanguageCodes())
     }
     async function fetchLanguagesInFree() {
       setLanguagesInFree(await getLanguagesInFree())

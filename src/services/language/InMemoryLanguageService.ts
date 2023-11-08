@@ -1,23 +1,23 @@
 import type { Language } from "@types"
 import type { LanguageService } from "./LanguageService"
 
-const AVAILABLE_LANGUAGES_MAP: Record<Language, string> = {
-  de: "German",
-  en: "English",
-  es: "Spanish",
-  fr: "French",
-  hi: "Hindi",
-  ja: "Japanese",
-  kn: "Kannada",
-  ml: "Malayalam",
-  ta: "Tamil",
-  te: "Telugu",
+const LANGUAGE_CODES: Record<Language, string> = {
+  English: "en",
+  French: "fr",
+  German: "de",
+  Hindi: "hi",
+  Japanese: "ja",
+  Kannada: "kn",
+  Malayalam: "ml",
+  Spanish: "es",
+  Tamil: "ta",
+  Telugu: "te",
 }
 
-const AVAILABLE_LANGUAGES = Object.keys(AVAILABLE_LANGUAGES_MAP) as Language[]
+const AVAILABLE_LANGUAGES = Object.keys(LANGUAGE_CODES) as Language[]
 
-const getLanguageNames: LanguageService["getLanguageNames"] = async () => {
-  return AVAILABLE_LANGUAGES_MAP
+const getLanguageCodes: LanguageService["getLanguageCodes"] = async () => {
+  return LANGUAGE_CODES
 }
 
 const NO_OF_LANGUAGES_IN_FREE = 2
@@ -33,7 +33,7 @@ const getLanguagesOnlyInPro: LanguageService["getLanguagesOnlyInPro"] =
 
 export default function createInMemoryLanguageService(): LanguageService {
   return {
-    getLanguageNames,
+    getLanguageCodes,
     getLanguagesInFree,
     getLanguagesOnlyInPro,
   }

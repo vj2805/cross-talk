@@ -51,29 +51,29 @@ function lastMessageRef(chatId: string) {
   return query(messagesRef(chatId), orderBy("timestamp", "desc"), limit(1))
 }
 
-async function getLastMessage(chatId: string) {
+const getLastMessage: MessageService["getLastMessage"] = async chatId => {
   const snapshot = await getDocs(lastMessageRef(chatId))
   if (snapshot.empty) {
-    return null
+    return undefined
   }
   return snapshot.docs[0].data()
 }
 
-async function getMessages(chatId: string) {
+const getMessages: MessageService["getMessages"] = async chatId => {
   const snapshot = await getDocs(sortedMessagesRef(chatId))
   return snapshot.docs.map(doc => doc.data())
 }
 
-async function getMessagesCount(chatId: string) {
+const getMessagesCount: MessageService["getMessagesCount"] = async chatId => {
   const snapshot = await getCountFromServer(limitedMessagesRef(chatId))
   return snapshot.data().count
 }
 
-async function postMessage(
+const postMessage: MessageService["postMessage"] = async (
   chatId: string,
   input: string,
   user: Message["user"]
-) {
+) => {
   await addDoc(messagesRef(chatId), {
     id: "",
     input,

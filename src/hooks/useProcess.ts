@@ -2,7 +2,7 @@ import { useCallback, useState } from "react"
 
 export function useProcess() {
   const [processing, setProcessing] = useState(false)
-  const [error, setError] = useState<Uncertain<Error>>()
+  const [error, setError] = useState<Uncertain<Error>>(undefined)
 
   const startProcess = useCallback(() => {
     setProcessing(true)

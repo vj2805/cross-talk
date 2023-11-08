@@ -1,7 +1,7 @@
 import type { Message } from "@types"
 
 export interface MessageService {
-  getLastMessage: (chatId: string) => Promise<Nullish<Message>>
+  getLastMessage: (chatId: string) => Promise<Uncertain<Message>>
   getMessages: (chatId: string) => Promise<Message[]>
   getMessagesCount: (chatId: string) => Promise<number>
   postMessage: (

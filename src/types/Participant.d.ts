@@ -1,4 +1,4 @@
-export type Participant = {
+export interface Participant {
   email: string
   id: string
   image: string

@@ -1,9 +1,9 @@
 import { create } from "zustand"
-import type { Language } from "@services/language"
+import type { Language, LanguageCode } from "@services/language"
 
 type LanguageStore = {
   availableLanguages: Uncertain<Language[]>
-  languageCodes: Uncertain<Record<Language, string>>
+  languageCodes: Uncertain<Record<Language, LanguageCode>>
   languagesInFree: Uncertain<Language[]>
   languagesOnlyInPro: Uncertain<Language[]>
   preferredLanguage: Language
@@ -35,7 +35,9 @@ export function usePreferredLanguage() {
   return useLanguageStore(store => store.preferredLanguage)
 }
 
-export function setLanguageCodes(languageCodes: Record<Language, string>) {
+export function setLanguageCodes(
+  languageCodes: Record<Language, LanguageCode>
+) {
   useLanguageStore.setState({
     availableLanguages: Object.keys(languageCodes) as Language[],
     languageCodes,

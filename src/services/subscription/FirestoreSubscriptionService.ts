@@ -1,6 +1,5 @@
 import { collection, onSnapshot, query, where } from "firebase/firestore"
 import { clientRepo } from "@firebase"
-import { getPricingTiers } from "../pricing/getPricingTiers"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Subscription } from "./Subscription"
 import type { SubscriptionService } from "./SubscriptionService"
@@ -43,8 +42,5 @@ const syncSubscription: SubscriptionService["syncSubscription"] = (
 }
 
 export default function createFirestoreSubscriptionService(): SubscriptionService {
-  return {
-    getPricingTiers,
-    syncSubscription,
-  }
+  return { syncSubscription }
 }

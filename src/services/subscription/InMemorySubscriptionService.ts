@@ -1,4 +1,3 @@
-import { getPricingTiers } from "@services/pricing/getPricingTiers"
 import type { Subscription } from "./Subscription"
 import type { SubscriptionService } from "./SubscriptionService"
 
@@ -20,8 +19,5 @@ const syncSubscription: SubscriptionService["syncSubscription"] = (
 }
 
 export default function createInMemorySubscriptionService(): SubscriptionService {
-  return {
-    getPricingTiers,
-    syncSubscription,
-  }
+  return { syncSubscription }
 }

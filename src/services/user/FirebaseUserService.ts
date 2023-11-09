@@ -1,9 +1,8 @@
 import { signInWithCustomToken, signOut } from "firebase/auth"
 import { clientAuth } from "@backend/firebase"
-import type { Session } from "next-auth"
 import type { UserService } from "./UserService"
 
-async function syncUser(session: Nullish<Session>) {
+const syncUser: UserService["syncUser"] = async session => {
   if (session?.firebaseToken) {
     await signInWithCustomToken(clientAuth, session.firebaseToken)
   } else {

@@ -10,7 +10,7 @@ import {
   Spinner,
 } from "@components/ui"
 import { StarIcon } from "@components/ui/icons"
-import { signOut } from "@services/user"
+import { signOut } from "@services/auth"
 import { useIsPro, useSubscription } from "@stores/subscription"
 import { cn } from "@utilities/string"
 import { SignInButton } from "./SignInButton"

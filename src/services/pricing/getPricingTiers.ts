@@ -37,3 +37,7 @@ const pricingTiers: PricingTier[] = [
 export const getPricingTiers: PricingService["getPricingTiers"] = async () => {
   return pricingTiers
 }
+
+export default function createInMemoryPricingService(): PricingService {
+  return { getPricingTiers }
+}

@@ -1,7 +1,7 @@
 import NextAuth, { getServerSession } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { env } from "@env"
-import createAuthService from "./FirestoreAuthService"
+import createAuthService from "./InMemoryAuthService"
 import type { NextAuthOptions } from "next-auth"
 import type { AuthService } from "./AuthService"
 

@@ -12,12 +12,12 @@ interface CreateChatButtonProps {
 export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
   large,
 }) => {
-  const { createNewChat: createChat, processing } = useCreateChat()
+  const { createNewChat, processing } = useCreateChat()
   return large ? (
     <Button
       variant="default"
       disabled={processing}
-      onClick={createChat}
+      onClick={createNewChat}
     >
       {processing ? <Spinner /> : "Create a New Chat"}
     </Button>
@@ -26,7 +26,7 @@ export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
       variant="ghost"
       size="icon"
       disabled={processing}
-      onClick={createChat}
+      onClick={createNewChat}
     >
       {processing ? <Spinner /> : <MessageSquarePlusIcon />}
     </Button>

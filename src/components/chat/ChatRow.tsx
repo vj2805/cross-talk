@@ -3,7 +3,7 @@
 import { Skeleton } from "@components/ui"
 import { useRouter } from "@hooks"
 import { useLastMessage } from "@hooks/useLastMessage"
-import { usePreferredLanguage } from "@stores/language"
+import { useLanguageCode, usePreferredLanguage } from "@stores/language"
 import { useSyncedUser } from "@stores/syncedUser"
 import { cn, prettifyId } from "@utilities/string"
 import { UserAvatar } from "../user/UserAvatar"
@@ -17,6 +17,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const [message, loading] = useLastMessage(chatId)
   const user = useSyncedUser()
   const language = usePreferredLanguage()
+  const languageCode = useLanguageCode(language)
   const router = useRouter()
 
   if (loading) {
@@ -52,7 +53,8 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
             : "New Chat"}
         </p>
         <p className="text-gray-400 line-clamp-1">
-          {message?.translated?.[language] ?? "Get the conversation started..."}
+          {(languageCode && message?.translated?.[languageCode]) ??
+            "Get the conversation started..."}
         </p>
       </div>
       <div className="text-xs text-gray-400 text-right">

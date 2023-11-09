@@ -3,39 +3,39 @@ import type { CheckoutService } from "./CheckoutService"
 
 const checkouts: Map<string, Checkout[]> = new Map()
 
-function _createCheckout(userId: string, priceId: string) {
-  return new Promise<Checkout>(resolve => {
-    setTimeout(() => {
-      const existingCheckouts = checkouts.get(userId) ?? []
-      const newCheckout = {
-        cancel_url: window.location.origin,
-        price: priceId,
-        success_url: window.location.origin,
-      }
-      checkouts.set(userId, [...existingCheckouts, newCheckout])
-      resolve(newCheckout)
-    }, 1000)
-  })
-}
-
-const createCheckout: CheckoutService["createCheckout"] = async (
+const createCheckout: CheckoutService["createCheckout"] = (
   userId,
   priceId,
   onSuccess,
   onFailure,
   onDetach
 ) => {
-  const checkout = await _createCheckout(userId, priceId)
-  setTimeout(() => {
-    if (Math.random() < 0.5) {
-      onSuccess((checkout.url = window.location.origin))
-    } else {
-      onFailure(
-        (checkout.error = Error("CheckoutError [This is a simulated error]"))
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const response = window.confirm(
+        [
+          "This is a simulated checkout session!",
+          "Click OK to simulate SUCCESS / Click CANCEL to simulate FAILURE",
+        ].join("\n")
       )
-    }
-    onDetach()
-  }, 1000)
+      if (!response) {
+        onFailure(new Error("CheckoutError [This is a simulated error]"))
+        onDetach()
+        return
+      }
+      const existingCheckouts = checkouts.get(userId) ?? []
+      const checkout = {
+        cancel_url: window.location.origin,
+        price: priceId,
+        success_url: window.location.origin,
+      }
+      checkouts.set(userId, [...existingCheckouts, checkout])
+      window.alert("This is a simulated success!")
+      onSuccess(window.location.origin)
+      onDetach()
+      resolve()
+    }, 1000)
+  })
 }
 
 export default function createInMemoryCheckoutService(): CheckoutService {

@@ -1,17 +1,10 @@
 "use client"
 
-import { useEffect } from "react"
-import { useSession } from "@hooks"
-import { syncUser } from "@services/user"
+import { useSyncUser } from "../hooks/useSyncUser"
 
 export const SyncedUserProvider: React.FC<
   React.PropsWithRequiredChildren
 > = props => {
-  const { data: session } = useSession()
-
-  useEffect(() => {
-    syncUser(session)
-  }, [session])
-
+  useSyncUser()
   return props.children
 }

@@ -9,6 +9,7 @@ declare global {
   type Observable<T> =
     | { status: "error"; error: Error }
     | { status: "idle"; data: Nullish<T> }
+    | { status: "initial"; data: T }
     | { status: "loading" }
   namespace React {
     type Nodes<T extends string> = Record<T, React.ReactNode>

@@ -1,4 +1,4 @@
-import createUserService from "./FirebaseUserService"
+import createUserService from "./InMemoryUserService"
 import type { UserService } from "./UserService"
 
 export type { User } from "next-auth"

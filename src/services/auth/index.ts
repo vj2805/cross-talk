@@ -41,5 +41,3 @@ export async function getServerUser() {
   const session = await getServerSession(authOptions)
   return session?.user
 }
-
-export { signIn, signOut } from "next-auth/react"

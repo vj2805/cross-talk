@@ -3,5 +3,5 @@ import type { SubscriptionService } from "./SubscriptionService"
 
 export type { Subscription } from "./Subscription"
 
-export const { syncSubscription }: SubscriptionService =
+export const { createCheckout, syncSubscription }: SubscriptionService =
   createSubscriptionService()

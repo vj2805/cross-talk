@@ -1,4 +1,10 @@
-import { collection, onSnapshot, query, where } from "firebase/firestore"
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore"
 import { clientRepo } from "@backend/firebase"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Subscription } from "./Subscription"
@@ -19,17 +25,39 @@ const subscriptionConverter: FirestoreDataConverter<Subscription> = {
   },
 }
 
-function subscriptionsRef(userId: string) {
-  return collection(
-    clientRepo,
-    "customers",
-    userId,
-    "subscriptions"
+function activeSubscriptionRef(userId: string) {
+  return query(
+    collection(clientRepo, "customers", userId, "subscriptions"),
+    where("status", "==", "active")
   ).withConverter(subscriptionConverter)
 }
 
-function activeSubscriptionRef(userId: string) {
-  return query(subscriptionsRef(userId), where("status", "==", "active"))
+const createCheckout: SubscriptionService["createCheckout"] = async (
+  userId,
+  priceId,
+  onSuccess,
+  onFailure,
+  onDetach
+) => {
+  const checkoutRef = await addDoc(
+    collection(clientRepo, "customers", userId, "checkout_sessions"),
+    {
+      cancel_url: window.location.origin,
+      price: priceId,
+      success_url: window.location.origin,
+    }
+  )
+  const unsubscribe = onSnapshot(checkoutRef, snapshot => {
+    const checkout = snapshot.data()!
+    if (checkout.error) {
+      onFailure(checkout.error)
+    }
+    if (checkout.url) {
+      onSuccess(checkout.url)
+    }
+    unsubscribe()
+    onDetach()
+  })
 }
 
 const syncSubscription: SubscriptionService["syncSubscription"] = (
@@ -42,5 +70,5 @@ const syncSubscription: SubscriptionService["syncSubscription"] = (
 }
 
 export default function createFirestoreSubscriptionService(): SubscriptionService {
-  return { syncSubscription }
+  return { createCheckout, syncSubscription }
 }

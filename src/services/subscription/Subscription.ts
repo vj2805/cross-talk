@@ -31,3 +31,11 @@ export interface Subscription {
   // trial_end: Nullish<Timestamp>
   // trial_start: Nullish<Timestamp>
 }
+
+export type CheckoutErrorCode = "Simulation Failure"
+
+export class CheckoutError extends Error {
+  constructor(code: CheckoutErrorCode) {
+    super(`Checkout Error: ${code}`)
+  }
+}

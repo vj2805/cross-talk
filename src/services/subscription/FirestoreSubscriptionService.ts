@@ -1,6 +1,6 @@
 import { collection, onSnapshot, query, where } from "firebase/firestore"
 import { clientRepo } from "@firebase"
-import { pricingTiers } from "./InMemorySubscriptionService"
+import { getPricingTiers } from "./getPricingTiers"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Subscription } from "./Subscription"
 import type { SubscriptionService } from "./SubscriptionService"
@@ -31,10 +31,6 @@ function subscriptionsRef(userId: string) {
 
 function activeSubscriptionRef(userId: string) {
   return query(subscriptionsRef(userId), where("status", "==", "active"))
-}
-
-const getPricingTiers: SubscriptionService["getPricingTiers"] = async () => {
-  return pricingTiers
 }
 
 const syncSubscription: SubscriptionService["syncSubscription"] = (

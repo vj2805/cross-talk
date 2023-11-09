@@ -1,5 +1,5 @@
 import { CircleBackdrop, PricingCards } from "@components"
-import { getServerUser } from "@utilities/user"
+import { getServerUser } from "@services/auth"
 import { cn } from "@utilities/string"
 
 export default async function RegisterPage() {

@@ -1,12 +1,12 @@
 import { Button, NextLink } from "@components/ui"
 import { MessagesSquareIcon } from "@components/ui/icons"
+import { getServerUser } from "@services/auth"
 import { cn } from "@utilities/string"
-import { getServerUser } from "@utilities/user"
 import { CreateChatButton } from "../chat/CreateChatButton"
 import { UpgradeBanner } from "../subscription/UpgradeBanner"
 import { ProfileButton } from "../user/ProfileButton"
-import { Logo } from "./Logo"
 import { LanguageSelect } from "./LanguageSelect"
+import { Logo } from "./Logo"
 import { ThemeToggle } from "./ThemeToggle"
 
 export const Header: React.FC = async () => {

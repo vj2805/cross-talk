@@ -3,7 +3,7 @@
 import { getServerUser } from "@services/auth"
 import { subscriptions } from "@services/subscription/InMemorySubscriptionService"
 
-export default async function manageInMemorySubscription() {
+export async function manageSubscription() {
   const user = await getServerUser()
 
   if (!user) {

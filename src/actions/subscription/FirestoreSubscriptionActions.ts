@@ -12,7 +12,7 @@ function getReturnUrl(host: Nullish<string>) {
   return `${protocol}://${host}/subscribe`
 }
 
-export default async function manageSubscription() {
+export async function manageSubscription() {
   const user = await getServerUser()
 
   if (!user) {

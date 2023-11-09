@@ -2,12 +2,12 @@ import { Button, NextLink } from "@components/ui"
 import { MessagesSquareIcon } from "@components/ui/icons"
 import { cn } from "@utilities/string"
 import { getServerUser } from "@utilities/user"
-import { CreateChatButton } from "./chat/CreateChatButton"
-import { UpgradeBanner } from "./subscription/UpgradeBanner"
-import { ProfileButton } from "./user/ProfileButton"
-import { LanguageSelect } from "./preferences/LanguageSelect"
+import { CreateChatButton } from "../chat/CreateChatButton"
+import { UpgradeBanner } from "../subscription/UpgradeBanner"
+import { ProfileButton } from "../user/ProfileButton"
 import { Logo } from "./Logo"
-import { ThemeToggle } from "./preferences/ThemeToggle"
+import { LanguageSelect } from "./LanguageSelect"
+import { ThemeToggle } from "./ThemeToggle"
 
 export const Header: React.FC = async () => {
   const user = await getServerUser()

@@ -26,7 +26,7 @@ export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
       variant="ghost"
       disabled={processing}
       onClick={createChat}
-      className={cn("aspect-square", "p-0")}
+      className={cn("aspect-square", "px-0")}
     >
       {processing ? <Spinner /> : <MessageSquarePlusIcon />}
     </Button>

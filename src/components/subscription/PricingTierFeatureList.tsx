@@ -1,6 +1,6 @@
 import { cn } from "@utilities"
 import { CheckIcon } from "@icons"
-import type { PricingTier } from "@services/subscription"
+import type { PricingTier } from "@services/pricing"
 
 interface PricingTierFeatureListProps {
   features: PricingTier["features"]

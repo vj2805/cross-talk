@@ -1,4 +1,4 @@
-import { getPricingTiers } from "@services/subscription"
+import { getPricingTiers } from "@services/pricing"
 import { cn } from "@utilities"
 import { PricingCard } from "./PricingCard"
 

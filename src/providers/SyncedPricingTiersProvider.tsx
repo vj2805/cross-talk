@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import { getPricingTiers } from "@services/subscription"
+import { getPricingTiers } from "@services/pricing"
 import { setPricingTiers } from "@stores/subscription"
 
 export const SyncedPricingTiersProvider: React.FC<

@@ -1,7 +1,7 @@
 import GoogleProvider from "next-auth/providers/google"
 import { FirestoreAdapter } from "@auth/firebase-adapter"
 import { env } from "./env"
-import { adminAuth, adminRepo } from "./firebase-admin"
+import { adminAuth, adminRepo } from "./backend/firebase-admin"
 import type { CallbacksOptions, NextAuthOptions } from "next-auth"
 
 const jwt: CallbacksOptions["jwt"] = async ({ user, token }) => {

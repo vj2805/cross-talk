@@ -1,4 +1,4 @@
-import createSubscriptionService from "./InMemorySubscriptionService"
+import createSubscriptionService from "./LocalStorageSubscriptionService"
 import type { SubscriptionService } from "./SubscriptionService"
 
 export type {

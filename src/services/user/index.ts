@@ -1,4 +1,8 @@
+import createUserService from "./FirebaseUserService"
+import type { UserService } from "./UserService"
+
 export type { User } from "next-auth"
 
 export { signIn, signOut } from "next-auth/react"
-export { syncUser } from "./syncUser"
+
+export const { syncUser }: UserService = createUserService()

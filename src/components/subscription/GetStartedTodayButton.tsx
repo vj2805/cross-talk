@@ -1,4 +1,4 @@
-import { NextLink } from "@ui"
+import { NextLink } from "@components/ui"
 import { cn } from "@utilities/string"
 
 export const GetStartedTodayButton: React.FC = () => (

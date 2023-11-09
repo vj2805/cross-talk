@@ -1,6 +1,5 @@
 "use client"
 
-import { useChatInputForm } from "@hooks"
 import {
   Button,
   Form,
@@ -11,6 +10,7 @@ import {
   Input,
   Spinner,
 } from "@components/ui"
+import { useMessageForm } from "@hooks/message"
 import { cn } from "@utilities/string"
 
 interface ChatInputProps {
@@ -18,7 +18,7 @@ interface ChatInputProps {
 }
 
 export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
-  const { form, onSubmit } = useChatInputForm(chatId)
+  const { form, onSubmit } = useMessageForm(chatId)
   return (
     <div className={cn("px-2", "bottom-0", "sticky")}>
       <Form {...form}>

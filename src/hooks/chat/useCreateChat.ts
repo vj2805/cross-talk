@@ -1,10 +1,8 @@
-"use client"
-
-import { useRouter } from "@hooks"
 import { createChat } from "@services/chat"
 import { dismissToast, showToast, updateToast } from "@ui"
 import { useSyncedUser } from "@stores/syncedUser"
-import { useProcess } from "./useProcess"
+import { useRouter } from "../builtins"
+import { useProcess } from "../useProcess"
 
 export function useCreateChat() {
   const { processing, startProcess, stopProcess } = useProcess()

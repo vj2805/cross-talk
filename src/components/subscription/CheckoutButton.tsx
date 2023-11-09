@@ -1,9 +1,9 @@
 "use client"
 
-import { useCheckout } from "@hooks"
+import { Spinner } from "@components/ui"
+import { useCheckout } from "@hooks/subscription"
 import { useSubscription } from "@stores/subscription"
 import { useSyncedUser } from "@stores/syncedUser"
-import { Spinner } from "@ui"
 import { cn } from "@utilities/string"
 import { ManageSubscriptionButton } from "./ManageSubscriptionButton"
 

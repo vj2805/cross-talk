@@ -1,15 +1,15 @@
 "use client"
 
-import { useTheme } from "@hooks"
-import { cn } from "@utilities/string"
 import {
   Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@ui"
+} from "@components/ui"
 import { Moon, Sun } from "@components/ui/icons"
+import { useTheme } from "@hooks/builtins"
+import { cn } from "@utilities/string"
 
 export const ThemeToggle: React.FC = () => {
   const { setTheme } = useTheme()

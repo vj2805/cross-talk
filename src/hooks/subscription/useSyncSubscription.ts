@@ -1,4 +1,3 @@
-"use client"
 import { useEffect } from "react"
 import { syncSubscription } from "@services/subscription"
 import { setSubscription } from "@stores/subscription"

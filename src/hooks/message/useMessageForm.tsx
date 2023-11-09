@@ -1,5 +1,3 @@
-"use client"
-
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -8,23 +6,23 @@ import { getMessagesCount, postMessage } from "@services/message"
 import { useSyncedUser } from "@stores/syncedUser"
 import { ToastAction, showToast } from "@ui"
 
-const ChatInputFormSchema = z.object({
+const MessageFormSchema = z.object({
   input: z.string().max(100),
 })
 
-type ChatInputFormSchemaType = z.infer<typeof ChatInputFormSchema>
+type MessageFormSchemaType = z.infer<typeof MessageFormSchema>
 
-export function useChatInputForm(chatId: string) {
+export function useMessageForm(chatId: string) {
   const user = useSyncedUser()
   const router = useRouter()
-  const form = useForm<ChatInputFormSchemaType>({
+  const form = useForm<MessageFormSchemaType>({
     defaultValues: {
       input: "",
     },
-    resolver: zodResolver(ChatInputFormSchema),
+    resolver: zodResolver(MessageFormSchema),
   })
 
-  async function onSubmit({ input }: ChatInputFormSchemaType) {
+  async function onSubmit({ input }: MessageFormSchemaType) {
     if (input.length === 0) {
       return
     }

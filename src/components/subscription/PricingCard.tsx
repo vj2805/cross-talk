@@ -1,8 +1,8 @@
 import { cn } from "@utilities/string"
 import { CheckoutButton } from "./CheckoutButton"
-import { PricingTierFeatureList } from "./PricingTierFeatureList"
 import { GetStartedTodayButton } from "./GetStartedTodayButton"
 import { PriceMonthly } from "./PriceMonthly"
+import { PricingTierFeatureList } from "./PricingTierFeatureList"
 import type { PricingTier } from "@services/pricing"
 
 interface PricingCardProps {

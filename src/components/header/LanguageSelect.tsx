@@ -1,6 +1,6 @@
 "use client"
 
-import { usePathname } from "@hooks"
+import { usePathname } from "@hooks/builtins"
 import {
   setPreferredLanguage,
   useNotSupportedLanguages,

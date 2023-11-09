@@ -1,8 +1,5 @@
 "use client"
 
-import { StarIcon } from "@components/ui/icons"
-import { signOut } from "@services/user"
-import { useIsPro, useSubscription } from "@stores/subscription"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +8,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   Spinner,
-} from "@ui"
+} from "@components/ui"
+import { StarIcon } from "@components/ui/icons"
+import { signOut } from "@services/user"
+import { useIsPro, useSubscription } from "@stores/subscription"
 import { cn } from "@utilities/string"
 import { SignInButton } from "./SignInButton"
 import { UserAvatar } from "./UserAvatar"

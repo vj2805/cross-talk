@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getParticipatingChats } from "@services/chat"
-import { useProcess } from "./useProcess"
+import { useProcess } from "../useProcess"
 import type { Chat } from "@services/chat"
 
 export function useParticipatingChats(userId: string, initialChats: Chat[]) {

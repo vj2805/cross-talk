@@ -1,5 +1,5 @@
 import { logo } from "@assets/images"
-import { AspectRatio, NextImage, NextLink } from "@ui"
+import { AspectRatio, NextImage, NextLink } from "@components/ui"
 import { cn } from "@utilities/string"
 
 export const Logo: React.FC = () => (

@@ -1,8 +1,8 @@
 "use client"
 
 import { Skeleton } from "@components/ui"
-import { useRouter } from "@hooks"
-import { useLastMessage } from "@hooks/useLastMessage"
+import { useLastMessage } from "@hooks/message"
+import { useRouter } from "@hooks/builtins"
 import { useLanguageCode, usePreferredLanguage } from "@stores/language"
 import { useSyncedUser } from "@stores/syncedUser"
 import { cn, prettifyId } from "@utilities/string"

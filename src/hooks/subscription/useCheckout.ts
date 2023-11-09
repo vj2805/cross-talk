@@ -1,5 +1,5 @@
 import { createCheckout } from "@services/subscription"
-import { useProcess } from "./useProcess"
+import { useProcess } from "../useProcess"
 
 export function useCheckout(userId: Uncertain<string>, priceId: string) {
   const { error, processing, setError, startProcess, stopProcess } =

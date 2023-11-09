@@ -8,6 +8,16 @@ const listenersMap: Map<
   Set<(subscription: Nullish<Subscription>) => void>
 > = new Map()
 
+function register(
+  userId: string,
+  onChange: (subscription: Nullish<Subscription>) => void
+) {
+  const existingListeners = listenersMap.get(userId) ?? new Set()
+  existingListeners.add(onChange)
+  listenersMap.set(userId, existingListeners)
+  return () => existingListeners.delete(onChange)
+}
+
 function notify(userId: string) {
   const subscription = subscriptions.get(userId) ?? null
   listenersMap.get(userId)?.forEach(listener => listener(subscription))
@@ -30,10 +40,7 @@ const syncSubscription: SubscriptionService["syncSubscription"] = (
   onChange
 ) => {
   setTimeout(() => void onChange(subscriptions.get(userId) ?? null), 1000)
-  const existingListeners = listenersMap.get(userId) ?? new Set()
-  existingListeners.add(onChange)
-  listenersMap.set(userId, existingListeners)
-  return () => existingListeners.delete(onChange)
+  return register(userId, onChange)
 }
 
 export default function createInMemorySubscriptionService(): SubscriptionService {

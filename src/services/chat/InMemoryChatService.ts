@@ -1,5 +1,5 @@
 import { generateId } from "@utilities"
-import { ChatError } from "./ChatError"
+import { ChatError } from "./Chat"
 import type { Chat } from "./Chat"
 import type { ChatService } from "./ChatService"
 

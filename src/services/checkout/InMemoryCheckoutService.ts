@@ -1,3 +1,4 @@
+import { CheckoutError } from "./Checkout"
 import type { Checkout } from "./Checkout"
 import type { CheckoutService } from "./CheckoutService"
 
@@ -19,7 +20,7 @@ const createCheckout: CheckoutService["createCheckout"] = (
         ].join("\n")
       )
       if (!response) {
-        onFailure(new Error("CheckoutError [This is a simulated error]"))
+        onFailure(new CheckoutError("Simulation Failure"))
         onDetach()
         return
       }

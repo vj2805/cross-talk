@@ -1,6 +1,6 @@
 "use client"
 
-import { useCheckoutSession } from "@hooks"
+import { useCheckout } from "@hooks"
 import { useSubscription } from "@stores/subscription"
 import { useSyncedUser } from "@stores/syncedUser"
 import { Spinner } from "@ui"
@@ -15,10 +15,7 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
   const user = useSyncedUser()
   const subscription = useSubscription()
 
-  const { createCheckoutSession, processing } = useCheckoutSession(
-    user?.id,
-    priceId
-  )
+  const { createCheckoutSession, processing } = useCheckout(user?.id, priceId)
 
   return (
     <div className="flex flex-col space-y-2">

@@ -1,3 +1,5 @@
+import { saveSubscription } from "@services/subscription/InMemorySubscriptionService"
+import { generateId } from "@utilities"
 import { CheckoutError } from "./Checkout"
 import type { Checkout } from "./Checkout"
 import type { CheckoutService } from "./CheckoutService"
@@ -29,6 +31,11 @@ const createCheckout: CheckoutService["createCheckout"] = (
         checkouts.set(userId, [...existingCheckouts, checkout])
         window.alert("This is a simulated success!")
         onSuccess(window.location.origin)
+        saveSubscription(userId, {
+          id: generateId(),
+          role: null,
+          status: "active",
+        })
       } else {
         onFailure(new CheckoutError("Simulation Failure"))
       }

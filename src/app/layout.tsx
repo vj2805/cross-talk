@@ -21,12 +21,7 @@ export default function RootLayout({
       <body>
         <SessionProvider>
           <SyncProvider>
-            <ThemeProvider
-              enableSystem
-              disableTransitionOnChange
-              attribute="class"
-              defaultTheme="dark"
-            >
+            <ThemeProvider>
               <Header />
               {children}
               <Toaster />

@@ -1,6 +1,3 @@
-import createCheckoutService from "./InMemoryCheckoutService"
-import type { CheckoutService } from "./CheckoutService"
+export type { CheckoutError, CheckoutErrorCode } from "@services/subscription"
 
-export type { Checkout, CheckoutError, CheckoutErrorCode } from "./Checkout"
-
-export const { createCheckout }: CheckoutService = createCheckoutService()
+export { createCheckout } from "@services/subscription"

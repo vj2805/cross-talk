@@ -3,7 +3,6 @@ import {
   SessionProvider,
   SubscriptionProvider,
   SyncedLanguagesProvider,
-  SyncedPricingTiersProvider,
   SyncedUserProvider,
   ThemeProvider,
 } from "@providers"
@@ -29,20 +28,18 @@ export default function RootLayout({
         <SessionProvider>
           <SyncedUserProvider>
             <SubscriptionProvider>
-              <SyncedPricingTiersProvider>
-                <SyncedLanguagesProvider>
-                  <ThemeProvider
-                    enableSystem
-                    disableTransitionOnChange
-                    attribute="class"
-                    defaultTheme="dark"
-                  >
-                    <Header />
-                    {children}
-                    <Toaster />
-                  </ThemeProvider>
-                </SyncedLanguagesProvider>
-              </SyncedPricingTiersProvider>
+              <SyncedLanguagesProvider>
+                <ThemeProvider
+                  enableSystem
+                  disableTransitionOnChange
+                  attribute="class"
+                  defaultTheme="dark"
+                >
+                  <Header />
+                  {children}
+                  <Toaster />
+                </ThemeProvider>
+              </SyncedLanguagesProvider>
             </SubscriptionProvider>
           </SyncedUserProvider>
         </SessionProvider>

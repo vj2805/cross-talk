@@ -1,6 +1,5 @@
 export { SessionProvider } from "./SessionProvider"
 export { SubscriptionProvider } from "./SubscriptionProvider"
 export { SyncedLanguagesProvider } from "./SyncedLanguagesProvider"
-export { SyncedPricingTiersProvider } from "./SyncedPricingTiersProvider"
 export { SyncedUserProvider } from "./SyncedUserProvider"
 export { ThemeProvider } from "./ThemeProvider"

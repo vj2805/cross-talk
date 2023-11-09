@@ -1,4 +1,4 @@
-import { createCheckout } from "@services/checkout"
+import { createCheckout } from "@services/subscription"
 import { useProcess } from "./useProcess"
 
 export function useCheckout(userId: Uncertain<string>, priceId: string) {

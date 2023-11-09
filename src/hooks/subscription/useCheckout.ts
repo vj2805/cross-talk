@@ -17,7 +17,7 @@ export function useCheckout(userId: Uncertain<string>, priceId: string) {
       await createCheckout(
         userId,
         priceId,
-        window.location.assign,
+        url => window.location.assign(url),
         setError,
         stopProcess
       )

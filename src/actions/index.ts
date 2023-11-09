@@ -1,1 +1,0 @@
-export { manageSubscription } from "./manageSubscription"

@@ -1,4 +1,5 @@
 import { generateId } from "@utilities/string"
+import { getServerUser } from "@services/auth"
 import { CheckoutError } from "./Subscription"
 import type { Subscription } from "./Subscription"
 import type { SubscriptionService } from "./SubscriptionService"
@@ -76,6 +77,37 @@ const syncSubscription: SubscriptionService["syncSubscription"] = (
   return register(userId, onChange)
 }
 
+async function manageSubscription() {
+  "use server"
+
+  const user = await getServerUser()
+
+  if (!user) {
+    return console.error("User not found!")
+  }
+
+  const subscription = subscriptions.get(user.id)
+
+  if (!subscription) {
+    return console.error("User has no known subscriptions!")
+  }
+
+  await new Promise<void>(resolve => {
+    setTimeout(() => {
+      const response = window.confirm(
+        [
+          "This is a simulated manage subscription session!",
+          "Click OK to simulate CANCEL SUBSCRIPTION / Click CANCEL to simulate nothing",
+        ].join("\n")
+      )
+      if (response) {
+        subscription.status = "canceled"
+      }
+      resolve()
+    }, 1000)
+  })
+}
+
 export default function createInMemorySubscriptionService(): SubscriptionService {
-  return { createCheckout, syncSubscription }
+  return { createCheckout, manageSubscription, syncSubscription }
 }

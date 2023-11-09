@@ -1,19 +1,19 @@
-import { generateId } from "@utilities/string"
 import { insert, remove, update } from "@utilities/array"
+import { generateId } from "@utilities/string"
 import type {
-  Adapter,
   AdapterAccount,
   AdapterSession,
   AdapterUser,
   VerificationToken,
 } from "next-auth/adapters"
+import type { AuthService } from "./AuthService"
 
 let users: AdapterUser[] = []
 let accounts: AdapterAccount[] = []
 let sessions: AdapterSession[] = []
 let tokens: VerificationToken[] = []
 
-export default function createInMemoryAuthAdapter(): Adapter {
+const createAuthAdapter: AuthService["createAuthAdapter"] = () => {
   return {
     async createSession(session) {
       return insert(sessions, session)
@@ -99,4 +99,15 @@ export default function createInMemoryAuthAdapter(): Adapter {
       return verificationToken ?? null
     },
   }
+}
+
+const createAuthToken: AuthService["createAuthToken"] = async userId => {
+  return userId
+    .split("")
+    .sort(() => Math.random() - 0.5)
+    .join("")
+}
+
+export default function createInMemoryAuthService() {
+  return { createAuthAdapter, createAuthToken }
 }

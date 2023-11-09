@@ -1,1 +1,1 @@
-export { manageSubscription } from "./InMemorySubscriptionActions"
+export { default as manageSubscription } from "./InMemorySubscriptionActions"

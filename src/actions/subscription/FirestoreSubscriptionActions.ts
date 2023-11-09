@@ -2,9 +2,9 @@
 
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
-import { adminRepo } from "@backend/firebase"
-import { stripe } from "@backend/stripe"
 import { env } from "@env"
+import { adminRepo } from "@backend/firebase-admin"
+import { stripe } from "@backend/stripe"
 import { getServerUser } from "@services/auth"
 
 function getReturnUrl(host: Nullish<string>) {
@@ -12,7 +12,7 @@ function getReturnUrl(host: Nullish<string>) {
   return `${protocol}://${host}/subscribe`
 }
 
-export async function manageSubscription() {
+export default async function manageSubscription() {
   const user = await getServerUser()
 
   if (!user) {

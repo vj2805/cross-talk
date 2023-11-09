@@ -1,8 +1,6 @@
 import { create } from "zustand"
 import type { Subscription } from "@services/subscription"
 
-export { setPricingTiers, usePricingTiers } from "./pricing"
-
 type SubscriptionStore = {
   isPro: boolean
   subscription: Optional<Subscription>

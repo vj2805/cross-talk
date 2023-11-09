@@ -1,3 +1,5 @@
+"use server"
+
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 import { adminRepo } from "@backend/firebase"
@@ -10,9 +12,7 @@ function getReturnUrl(host: Nullish<string>) {
   return `${protocol}://${host}/subscribe`
 }
 
-async function manageSubscription() {
-  "use server"
-
+export async function manageSubscription() {
   const user = await getServerUser()
 
   if (!user) {
@@ -31,8 +31,4 @@ async function manageSubscription() {
   })
 
   redirect(stripeSession.url)
-}
-
-export default function createFirestoreSubscriptionActions() {
-  return { manageSubscription }
 }

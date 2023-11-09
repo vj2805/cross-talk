@@ -2,9 +2,8 @@
 
 import { getServerUser } from "@services/auth"
 import { subscriptions } from "@services/subscription/InMemorySubscriptionService"
-import type { SubscriptionActions } from "./SubscriptionActions"
 
-async function manageSubscription() {
+export async function manageSubscription() {
   const user = await getServerUser()
 
   if (!user) {
@@ -31,8 +30,4 @@ async function manageSubscription() {
       resolve()
     }, 1000)
   })
-}
-
-export default function createInMemorySubscriptionActions(): SubscriptionActions {
-  return { manageSubscription }
 }

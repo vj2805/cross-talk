@@ -6,6 +6,10 @@ declare global {
   type Uncertain<T> = T | undefined
   type Optional<T> = T | null | undefined
   type WithId<T extends object> = Omit<T, "id"> & { id: string }
+  type Observable<T> =
+    | { status: "error"; error: Error }
+    | { status: "idle"; data: Nullish<T> }
+    | { status: "loading" }
   namespace React {
     type Nodes<T extends string> = Record<T, React.ReactNode>
     type PropsWithRequiredChildren = Required<React.PropsWithChildren>
@@ -17,11 +21,5 @@ declare global {
       T extends object,
       V extends (...args: any) => any,
     > = T & VariantProps<V>
-  }
-  namespace Model {
-    type Observable<T> =
-      | { status: "error"; error: Error }
-      | { status: "idle"; data: Nullish<T> }
-      | { status: "loading" }
   }
 }

@@ -1,4 +1,4 @@
-import type { PricingTier } from "./PricingTier"
+import type { PricingTier } from "../pricing/PricingTier"
 import type { Subscription } from "./Subscription"
 
 export interface SubscriptionService {

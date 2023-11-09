@@ -3,16 +3,16 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import * as zod from "zod"
+import { z } from "zod"
 import { getMessagesCount, postMessage } from "@services/message"
 import { useSyncedUser } from "@stores/syncedUser"
 import { ToastAction, showToast } from "@ui"
 
-const ChatInputFormSchema = zod.object({
-  input: zod.string().max(100),
+const ChatInputFormSchema = z.object({
+  input: z.string().max(100),
 })
 
-type ChatInputFormSchemaType = zod.infer<typeof ChatInputFormSchema>
+type ChatInputFormSchemaType = z.infer<typeof ChatInputFormSchema>
 
 export function useChatInputForm(chatId: string) {
   const user = useSyncedUser()

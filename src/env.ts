@@ -1,13 +1,13 @@
-import * as zod from "zod"
+import { z } from "zod"
 
-const EnvSchema = zod.object({
-  FIREBASE_CLIENT_EMAIL: zod.string(),
-  FIREBASE_PRIVATE_KEY: zod.string(),
-  FIREBASE_PROJECT_ID: zod.string(),
-  GOOGLE_CLIENT_ID: zod.string(),
-  GOOGLE_CLIENT_SECRET: zod.string(),
-  NODE_ENV: zod.union([zod.literal("development"), zod.literal("production")]),
-  STRIPE_SECRET_KEY: zod.string(),
+const EnvSchema = z.object({
+  FIREBASE_CLIENT_EMAIL: z.string(),
+  FIREBASE_PRIVATE_KEY: z.string(),
+  FIREBASE_PROJECT_ID: z.string(),
+  GOOGLE_CLIENT_ID: z.string(),
+  GOOGLE_CLIENT_SECRET: z.string(),
+  NODE_ENV: z.union([z.literal("development"), z.literal("production")]),
+  STRIPE_SECRET_KEY: z.string(),
 })
 
 export const env = EnvSchema.parse(process.env)

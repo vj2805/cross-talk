@@ -1,5 +1,5 @@
 import { MessagesSquareIcon } from "@icons"
-import { NextLink } from "@ui"
+import { Button, NextLink } from "@ui"
 import { cn, getServerUser } from "@utilities"
 import { CreateChatButton } from "../chat/CreateChatButton"
 import { UpgradeBanner } from "../subscription/UpgradeBanner"
@@ -32,7 +32,12 @@ export const Header: React.FC = async () => {
                 prefetch={false}
                 href="/chat"
               >
-                <MessagesSquareIcon className="text-black dark:text-white" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                >
+                  <MessagesSquareIcon className="text-black dark:text-white" />
+                </Button>
               </NextLink>
               <CreateChatButton />
             </>

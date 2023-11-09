@@ -22,7 +22,7 @@ const variants = cva(
     variants: {
       size: {
         default: cn("h-10", "px-4 py-2"),
-        icon: "h-10 w-10",
+        icon: cn("aspect-square h-10 py-2"),
         lg: cn("h-11", "px-8", "rounded-md"),
         sm: cn("h-9", "px-3", "rounded-md"),
       },

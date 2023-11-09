@@ -19,23 +19,22 @@ const createCheckout: CheckoutService["createCheckout"] = (
           "Click OK to simulate SUCCESS / Click CANCEL to simulate FAILURE",
         ].join("\n")
       )
-      if (!response) {
+      if (response) {
+        const existingCheckouts = checkouts.get(userId) ?? []
+        const checkout = {
+          cancel_url: window.location.origin,
+          price: priceId,
+          success_url: window.location.origin,
+        }
+        checkouts.set(userId, [...existingCheckouts, checkout])
+        window.alert("This is a simulated success!")
+        onSuccess(window.location.origin)
+      } else {
         onFailure(new CheckoutError("Simulation Failure"))
-        onDetach()
-        return
       }
-      const existingCheckouts = checkouts.get(userId) ?? []
-      const checkout = {
-        cancel_url: window.location.origin,
-        price: priceId,
-        success_url: window.location.origin,
-      }
-      checkouts.set(userId, [...existingCheckouts, checkout])
-      window.alert("This is a simulated success!")
-      onSuccess(window.location.origin)
       onDetach()
-      resolve()
     }, 1000)
+    resolve()
   })
 }
 

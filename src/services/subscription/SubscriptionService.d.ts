@@ -8,7 +8,6 @@ export interface SubscriptionService {
     onFailure: (error: Error) => void,
     onDetach: () => void
   ) => Promise<void>
-  manageSubscription: () => Promise<void>
   syncSubscription: (
     userId: string,
     onChange: (subscription: Nullish<Subscription>) => void

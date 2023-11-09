@@ -7,8 +7,5 @@ export type {
   Subscription,
 } from "./Subscription"
 
-export const {
-  createCheckout,
-  syncSubscription,
-  manageSubscription,
-}: SubscriptionService = createSubscriptionService()
+export const { createCheckout, syncSubscription }: SubscriptionService =
+  createSubscriptionService()

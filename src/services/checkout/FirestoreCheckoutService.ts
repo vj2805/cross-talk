@@ -1,35 +1,6 @@
 import { addDoc, collection, onSnapshot } from "firebase/firestore"
 import { clientRepo } from "@backend/firebase"
-import type { FirestoreDataConverter } from "firebase/firestore"
-import type { Checkout } from "./Checkout"
 import type { CheckoutService } from "./CheckoutService"
-
-const checkoutConverter: FirestoreDataConverter<Checkout> = {
-  fromFirestore(snapshot, options) {
-    const data = snapshot.data(options)
-    return {
-      cancel_url: data.cancel_url,
-      error: data.error,
-      price: data.price,
-      success_url: data.success_url,
-      url: data.url,
-    }
-  },
-  toFirestore(checkout) {
-    delete checkout.error
-    delete checkout.url
-    return checkout
-  },
-}
-
-function checkoutSessionsRef(userId: string) {
-  return collection(
-    clientRepo,
-    "customers",
-    userId,
-    "checkout_sessions"
-  ).withConverter(checkoutConverter)
-}
 
 const createCheckout: CheckoutService["createCheckout"] = async (
   userId,
@@ -38,12 +9,15 @@ const createCheckout: CheckoutService["createCheckout"] = async (
   onFailure,
   onDetach
 ) => {
-  const docRef = await addDoc(checkoutSessionsRef(userId), {
-    cancel_url: window.location.origin,
-    price: priceId,
-    success_url: window.location.origin,
-  })
-  const unsubscribe = onSnapshot(docRef, snapshot => {
+  const checkoutRef = await addDoc(
+    collection(clientRepo, "customers", userId, "checkout_sessions"),
+    {
+      cancel_url: window.location.origin,
+      price: priceId,
+      success_url: window.location.origin,
+    }
+  )
+  const unsubscribe = onSnapshot(checkoutRef, snapshot => {
     const checkout = snapshot.data()!
     if (checkout.error) {
       onFailure(checkout.error)

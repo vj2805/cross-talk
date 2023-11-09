@@ -1,7 +1,7 @@
 // import type { DocumentReference, Timestamp } from "firebase/firestore"
 // import type Stripe from "stripe"
 
-export type Subscription = {
+export interface Subscription {
   // cancel_at: Nullish<Timestamp>
   // cancel_at_period_end: boolean
   // cancelled_at: Nullish<Timestamp>

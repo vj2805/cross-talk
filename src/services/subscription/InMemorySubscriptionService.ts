@@ -29,6 +29,7 @@ const syncSubscription: SubscriptionService["syncSubscription"] = (
   userId,
   onChange
 ) => {
+  setTimeout(() => void onChange(subscriptions.get(userId) ?? null), 1000)
   const existingListeners = listenersMap.get(userId) ?? new Set()
   existingListeners.add(onChange)
   listenersMap.set(userId, existingListeners)

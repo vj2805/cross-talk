@@ -1,4 +1,4 @@
-import { generateId } from "@utilities"
+import { generateId } from "@utilities/string"
 import { ChatError } from "./Chat"
 import type { Chat } from "./Chat"
 import type { ChatService } from "./ChatService"

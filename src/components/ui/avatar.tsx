@@ -1,7 +1,7 @@
 "use client"
 
-import * as React from "react"
-import { cn } from "@/utilities/shadcn"
+import React from "react"
+import { cn } from "@utilities/string"
 import { NextImage } from "./builtins"
 import { PrimitiveAvatar } from "./primitives"
 

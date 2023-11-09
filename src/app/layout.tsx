@@ -1,6 +1,6 @@
 import { Header } from "@components"
+import { Toaster } from "@components/ui"
 import { SessionProvider, SyncProvider, ThemeProvider } from "@providers"
-import { Toaster } from "@ui"
 import type { Metadata } from "next"
 
 import "@styles.css"

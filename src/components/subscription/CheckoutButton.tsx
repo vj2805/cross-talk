@@ -4,7 +4,7 @@ import { useCheckout } from "@hooks"
 import { useSubscription } from "@stores/subscription"
 import { useSyncedUser } from "@stores/syncedUser"
 import { Spinner } from "@ui"
-import { cn } from "@utilities"
+import { cn } from "@utilities/string"
 import { ManageSubscriptionButton } from "./ManageSubscriptionButton"
 
 interface CheckoutButtonProps {

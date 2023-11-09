@@ -17,7 +17,7 @@ import {
   SelectValue,
   Spinner,
 } from "@ui"
-import { cn } from "@utilities"
+import { cn } from "@utilities/string"
 import type { Language } from "@services/language"
 
 export const LanguageSelect: React.FC = () => {

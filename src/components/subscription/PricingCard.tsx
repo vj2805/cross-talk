@@ -1,4 +1,4 @@
-import { cn } from "@utilities"
+import { cn } from "@utilities/string"
 import { CheckoutButton } from "./CheckoutButton"
 import { PricingTierFeatureList } from "./PricingTierFeatureList"
 import { GetStartedTodayButton } from "./GetStartedTodayButton"

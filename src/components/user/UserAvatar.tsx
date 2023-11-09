@@ -1,4 +1,4 @@
-import { cn, joinFirstLetterOfEachWord } from "@utilities"
+import { cn, joinFirstLetterOfEachWord } from "@utilities/string"
 import { Avatar, AvatarFallback, NextImage } from "@ui"
 
 interface UserAvatarProps {

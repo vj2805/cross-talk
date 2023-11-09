@@ -1,4 +1,4 @@
-import { generateId } from "@utilities"
+import { generateId } from "@utilities/string"
 import type { Message } from "./Message"
 import type { MessageService } from "./MessageService"
 

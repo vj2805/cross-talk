@@ -1,6 +1,6 @@
 import { ChatInput, ChatMessages, ChatParticipantsBadges } from "@components"
 import { getMessages } from "@services/message"
-import { getServerUser } from "@utilities"
+import { getServerUser } from "@utilities/user"
 
 interface ChatPageProps {
   params: {

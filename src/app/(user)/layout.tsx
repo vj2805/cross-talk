@@ -1,4 +1,4 @@
-import { cn } from "@utilities"
+import { cn } from "@utilities/string"
 
 export default function UserLayout({
   children,

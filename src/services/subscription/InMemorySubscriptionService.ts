@@ -1,4 +1,4 @@
-import { generateId } from "@utilities"
+import { generateId } from "@utilities/string"
 import { CheckoutError } from "./Subscription"
 import type { Subscription } from "./Subscription"
 import type { SubscriptionService } from "./SubscriptionService"

@@ -1,11 +1,11 @@
 "use client"
 
+import { Skeleton } from "@components/ui"
+import { useRouter } from "@hooks"
 import { useLastMessage } from "@hooks/useLastMessage"
 import { usePreferredLanguage } from "@stores/language"
 import { useSyncedUser } from "@stores/syncedUser"
-import { useRouter } from "@hooks"
-import { Skeleton } from "@ui"
-import { cn, prettifyId } from "@utilities"
+import { cn, prettifyId } from "@utilities/string"
 import { UserAvatar } from "../user/UserAvatar"
 import type { Chat } from "@services/chat"
 

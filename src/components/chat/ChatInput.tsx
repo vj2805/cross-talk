@@ -10,8 +10,8 @@ import {
   FormMessage,
   Input,
   Spinner,
-} from "@ui"
-import { cn } from "@utilities"
+} from "@components/ui"
+import { cn } from "@utilities/string"
 
 interface ChatInputProps {
   chatId: string

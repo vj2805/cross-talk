@@ -1,11 +1,10 @@
 "use client"
 
-import * as React from "react"
-import * as PrimitiveToast from "@radix-ui/react-toast"
+import React from "react"
 import { cva } from "class-variance-authority"
-import { X } from "lucide-react"
-import { cn } from "@/utilities/shadcn"
-import type { VariantProps } from "class-variance-authority"
+import { X } from "@components/ui/icons"
+import { cn } from "@utilities/string"
+import { PrimitiveToast } from "./primitives"
 
 export type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>
 export type ToastActionElement = React.ReactElement<typeof ToastAction>
@@ -81,8 +80,10 @@ ToastViewport.displayName = PrimitiveToast.Viewport.displayName
 
 export const Toast = React.forwardRef<
   React.ElementRef<typeof PrimitiveToast.Root>,
-  React.ComponentPropsWithoutRef<typeof PrimitiveToast.Root> &
-    VariantProps<typeof toastVariants>
+  React.PropsWithVariant<
+    React.ComponentPropsWithoutRef<typeof PrimitiveToast.Root>,
+    typeof toastVariants
+  >
 >(({ className, variant, ...props }, ref) => {
   return (
     <PrimitiveToast.Root

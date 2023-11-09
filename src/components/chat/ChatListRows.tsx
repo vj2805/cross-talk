@@ -1,11 +1,11 @@
 "use client"
 
+import { MessageSquareIcon } from "@components/ui/icons"
 import { useParticipatingChats } from "@hooks"
 import { useSyncedUser } from "@stores/syncedUser"
-import { cn } from "@utilities"
-import { MessageSquareIcon } from "@icons"
-import { CreateChatButton } from "./CreateChatButton"
+import { cn } from "@utilities/string"
 import { ChatRow } from "./ChatRow"
+import { CreateChatButton } from "./CreateChatButton"
 import type { Chat } from "@services/chat"
 
 interface ChatListRowsProps {

@@ -1,5 +1,5 @@
-import { cn } from "@utilities"
-import { CheckIcon } from "@icons"
+import { cn } from "@utilities/string"
+import { CheckIcon } from "@components/ui/icons"
 import type { PricingTier } from "@services/pricing"
 
 interface PricingTierFeatureListProps {

@@ -1,4 +1,4 @@
-import { cn } from "@utilities"
+import { cn } from "@utilities/string"
 import type { PricingTier } from "@services/pricing"
 
 interface PriceMonthlyProps {

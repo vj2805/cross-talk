@@ -1,6 +1,6 @@
 import { create } from "zustand"
-import { generateId } from "@utilities"
-import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
+import { generateId } from "@utilities/string"
+import type { ToastActionElement, ToastProps } from "./toast"
 
 const TOAST_LIMIT = 1
 

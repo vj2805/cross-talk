@@ -1,5 +1,5 @@
-import * as React from "react"
-import { cn } from "@/utilities/shadcn"
+import React from "react"
+import { cn } from "@utilities/string"
 
 export const Skeleton = React.forwardRef<
   React.ElementRef<"div">,

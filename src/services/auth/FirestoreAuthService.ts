@@ -1,5 +1,5 @@
 import { FirestoreAdapter } from "@auth/firebase-adapter"
-import { adminAuth, adminRepo } from "@backend/firebase-admin"
+import { adminAuth, adminRepo } from "@backend/firebase"
 import type { AuthService } from "./AuthService"
 
 const createAuthAdapter: AuthService["createAuthAdapter"] = () => {

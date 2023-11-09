@@ -1,5 +1,5 @@
 import { signInWithCustomToken, signOut } from "firebase/auth"
-import { clientAuth } from "@firebase"
+import { clientAuth } from "@backend/firebase"
 import type { Session } from "next-auth"
 import type { UserService } from "./UserService"
 

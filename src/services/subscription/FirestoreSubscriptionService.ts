@@ -1,5 +1,5 @@
 import { collection, onSnapshot, query, where } from "firebase/firestore"
-import { clientRepo } from "@firebase"
+import { clientRepo } from "@backend/firebase"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Subscription } from "./Subscription"
 import type { SubscriptionService } from "./SubscriptionService"

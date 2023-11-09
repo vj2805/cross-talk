@@ -3,7 +3,7 @@ import { clientAuth } from "@firebase"
 import type { Session } from "next-auth"
 import type { UserService } from "./UserService"
 
-export async function syncUser(session: Nullish<Session>) {
+async function syncUser(session: Nullish<Session>) {
   if (session?.firebaseToken) {
     await signInWithCustomToken(clientAuth, session.firebaseToken)
   } else {

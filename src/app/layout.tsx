@@ -1,11 +1,5 @@
 import { Header } from "@components"
-import {
-  SessionProvider,
-  SubscriptionProvider,
-  SyncedLanguagesProvider,
-  SyncedUserProvider,
-  ThemeProvider,
-} from "@providers"
+import { SessionProvider, SyncProvider, ThemeProvider } from "@providers"
 import { Toaster } from "@ui"
 import type { Metadata } from "next"
 
@@ -26,22 +20,18 @@ export default function RootLayout({
     >
       <body>
         <SessionProvider>
-          <SyncedUserProvider>
-            <SubscriptionProvider>
-              <SyncedLanguagesProvider>
-                <ThemeProvider
-                  enableSystem
-                  disableTransitionOnChange
-                  attribute="class"
-                  defaultTheme="dark"
-                >
-                  <Header />
-                  {children}
-                  <Toaster />
-                </ThemeProvider>
-              </SyncedLanguagesProvider>
-            </SubscriptionProvider>
-          </SyncedUserProvider>
+          <SyncProvider>
+            <ThemeProvider
+              enableSystem
+              disableTransitionOnChange
+              attribute="class"
+              defaultTheme="dark"
+            >
+              <Header />
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </SyncProvider>
         </SessionProvider>
       </body>
     </html>

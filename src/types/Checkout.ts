@@ -1,7 +1,7 @@
 import type { Model } from "./Model"
 
 export interface Checkout extends Model {
-  price: string
+  priceId: string
   successUrl: string
   cancelUrl: string
   response:

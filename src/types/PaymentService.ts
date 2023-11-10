@@ -1,12 +1,14 @@
-import type { Unsubscribe } from "./Unsubscribe"
 import type { Checkout } from "./Checkout"
+import type { Unsubscribe } from "./Unsubscribe"
+import type { User } from "./User"
 
 export interface PaymentService {
   createPaymentCheckout: (
-    userId: string,
-    priceId: string
+    userId: User["id"],
+    priceId: Checkout["priceId"]
   ) => Promise<Checkout["id"]>
   subscribeToPaymentCheckout: (
+    userId: User["id"],
     checkoutId: Checkout["id"],
     listener: (checkout: Checkout) => void
   ) => Unsubscribe

@@ -1,12 +1,13 @@
+import type { Chat } from "./Chat"
 import type { Message } from "./Message"
 
 export interface MessageService {
-  getLastMessage: (chatId: string) => Promise<Uncertain<Message>>
-  getMessages: (chatId: string) => Promise<Message[]>
-  getMessagesCount: (chatId: string) => Promise<number>
+  getLastMessage: (chatId: Chat["id"]) => Promise<Uncertain<Message>>
+  getMessages: (chatId: Chat["id"]) => Promise<Message[]>
+  getMessagesCount: (chatId: Chat["id"]) => Promise<number>
   postMessage: (
-    chatId: string,
-    input: string,
+    chatId: Chat["id"],
+    input: Message["input"],
     user: Message["user"]
   ) => Promise<void>
 }

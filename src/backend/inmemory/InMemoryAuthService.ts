@@ -6,7 +6,7 @@ import type {
   AdapterUser,
   VerificationToken,
 } from "next-auth/adapters"
-import type { AuthService } from "./AuthService"
+import type { AuthService } from "../../types/AuthService"
 
 let users: AdapterUser[] = []
 let accounts: AdapterAccount[] = []

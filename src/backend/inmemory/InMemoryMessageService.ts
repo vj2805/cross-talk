@@ -1,6 +1,6 @@
 import { generateId } from "@utilities/string"
-import type { Message } from "./Message"
-import type { MessageService } from "./MessageService"
+import type { Message } from "../../types/Message"
+import type { MessageService } from "../../types/MessageService"
 
 const messages: Map<string, Message[]> = new Map()
 

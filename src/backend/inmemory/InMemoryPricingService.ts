@@ -1,7 +1,7 @@
-import type { PricingService } from "./PricingService"
-import type { PricingTier } from "./PricingTier"
+import type { PricingService } from "../../types/PricingService"
+import type { PriceTier } from "../../types/PriceTier"
 
-const pricingTiers: PricingTier[] = [
+const pricingTiers: PriceTier[] = [
   {
     description: "Get chatting right away with anyone, anywhere!",
     features: [

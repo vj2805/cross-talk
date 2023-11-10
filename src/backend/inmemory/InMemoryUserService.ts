@@ -1,4 +1,4 @@
-import type { UserService } from "./UserService"
+import type { UserService } from "../../types/UserService"
 
 const syncUser: UserService["syncUser"] = session => {
   return new Promise(resolve => {

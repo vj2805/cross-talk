@@ -1,5 +1,5 @@
-import { AVAILABLE_LANGUAGES, LANGUAGE_CODES } from "./Language"
-import type { LanguageService } from "./LanguageService"
+import { AVAILABLE_LANGUAGES, LANGUAGE_CODES } from "../../types/Language"
+import type { LanguageService } from "../../types/LanguageService"
 
 const getLanguageCodes: LanguageService["getLanguageCodes"] = async () => {
   return LANGUAGE_CODES

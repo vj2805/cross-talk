@@ -1,7 +1,7 @@
 import { generateId } from "@utilities/string"
-import { CheckoutError } from "./Subscription"
-import type { Subscription } from "./Subscription"
-import type { SubscriptionService } from "./SubscriptionService"
+import { CheckoutError } from "@errors/CheckoutError"
+import type { Subscription } from "../../types/Subscription"
+import type { SubscriptionService } from "../../types/SubscriptionService"
 
 export const subscriptions: Map<string, Subscription> = new Map()
 

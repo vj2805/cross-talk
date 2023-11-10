@@ -31,11 +31,11 @@ const inMemoryPaymentService: PaymentService = {
         if (response) {
           const id = generateId()
           const checkout: Checkout = {
-            cancel_url: window.location.origin,
+            cancelUrl: window.location.origin,
             id,
-            price: _priceId,
+            priceId: _priceId,
             response: { status: "pending" },
-            success_url: window.location.origin,
+            successUrl: window.location.origin,
           }
           setCheckout({ [userId]: existingCheckouts.toSpliced(0, 0, checkout) })
           return resolve(id)
@@ -45,9 +45,9 @@ const inMemoryPaymentService: PaymentService = {
       }, 1000)
     })
   },
-  subscribeToPaymentCheckout(checkoutId, listener) {
+  subscribeToPaymentCheckout(userId, checkoutId, listener) {
     return subscribe(
-      store => store[checkoutId]?.find(checkout => checkout.id === checkoutId),
+      store => store[userId]?.find(checkout => checkout.id === checkoutId),
       checkout => checkout && listener(checkout)
     )
   },

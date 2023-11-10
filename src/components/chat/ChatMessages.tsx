@@ -3,13 +3,13 @@
 import { useEffect, useRef } from "react"
 import { Spinner } from "@/components/ui"
 import { MessageCircleIcon } from "@/components/ui/icons"
+import { useLanguageCode } from "@/hooks/useLanguageCode"
 import { useMessages } from "@/hooks/useMessages"
-import { usePreferredLanguage } from "@/stores/usePreferredLanguage"
-import { useLanguageCode } from "@/stores/useLanguageCode"
+import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { cn } from "@/utilities/string"
 import { UserAvatar } from "../user/UserAvatar"
-import type { User } from "next-auth"
 import type { Message } from "@/types/Message"
+import type { User } from "next-auth"
 
 interface ChatMessagesProps {
   chatId: string

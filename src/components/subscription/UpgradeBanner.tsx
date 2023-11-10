@@ -2,8 +2,8 @@
 
 import { Button } from "@/components/ui"
 import { useRouter } from "@/hooks/useBuiltins"
-import { useIsPro } from "@/stores/useIsPro"
-import { useSubscription } from "@/stores/useSubscription"
+import { useIsPro } from "@/hooks/useIsPro"
+import { useSubscription } from "@/hooks/useSubscription"
 import { cn } from "@/utilities/string"
 
 export const UpgradeBanner: React.FC = () => {

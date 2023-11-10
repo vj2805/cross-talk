@@ -1,4 +1,4 @@
-import { useLanguageStore } from "./language"
+import { useLanguageStore } from "@/stores/language"
 
 export function useSupportedLanguages(isPro: boolean) {
   return useLanguageStore(store =>

@@ -2,11 +2,11 @@
 
 import { Skeleton } from "@/components/ui"
 import { useRouter } from "@/hooks/useBuiltins"
-import { usePreferredLanguage } from "@/stores/usePreferredLanguage"
-import { useLanguageCode } from "@/stores/useLanguageCode"
-import { useSyncedUser } from "@/stores/useSyncedUser"
-import { cn, prettifyId } from "@/utilities/string"
+import { useLanguageCode } from "@/hooks/useLanguageCode"
 import { useLastMessage } from "@/hooks/useLastMessage"
+import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
+import { useSyncedUser } from "@/hooks/useSyncedUser"
+import { cn, prettifyId } from "@/utilities/string"
 import { UserAvatar } from "../user/UserAvatar"
 import type { Chat } from "@/types/Chat"
 

@@ -1,8 +1,8 @@
-import { createChat } from "@/services/chat"
 import { dismissToast, showToast, updateToast } from "@/components/ui"
-import { useSyncedUser } from "@/stores/useSyncedUser"
+import { createChat } from "@/services/chat"
 import { useRouter } from "./useBuiltins"
 import { useProcess } from "./useProcess"
+import { useSyncedUser } from "./useSyncedUser"
 
 export function useCreateChat() {
   const { processing, startProcess, stopProcess } = useProcess()

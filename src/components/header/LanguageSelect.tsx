@@ -10,12 +10,12 @@ import {
   Spinner,
 } from "@/components/ui"
 import { usePathname } from "@/hooks/useBuiltins"
+import { useIsPro } from "@/hooks/useIsPro"
+import { useNotSupportedLanguages } from "@/hooks/useNotSupportedLanguages"
+import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
+import { useSubscription } from "@/hooks/useSubscription"
+import { useSupportedLanguages } from "@/hooks/useSupportedLanguages"
 import { setPreferredLanguage } from "@/stores/language"
-import { useIsPro } from "@/stores/useIsPro"
-import { useNotSupportedLanguages } from "@/stores/useNotSupportedLanguages"
-import { usePreferredLanguage } from "@/stores/usePreferredLanguage"
-import { useSubscription } from "@/stores/useSubscription"
-import { useSupportedLanguages } from "@/stores/useSupportedLanguages"
 import { cn } from "@/utilities/string"
 import type { Language } from "@/types/Language"
 

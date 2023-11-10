@@ -2,8 +2,8 @@
 
 import { Spinner } from "@/components/ui"
 import { useCheckout } from "@/hooks/useCheckout"
-import { useSubscription } from "@/stores/useSubscription"
-import { useSyncedUser } from "@/stores/useSyncedUser"
+import { useSubscription } from "@/hooks/useSubscription"
+import { useSyncedUser } from "@/hooks/useSyncedUser"
 import { cn } from "@/utilities/string"
 import { ManageSubscriptionButton } from "./ManageSubscriptionButton"
 

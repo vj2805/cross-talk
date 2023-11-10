@@ -1,7 +1,7 @@
 import { useEffect } from "react"
+import { useSyncedUser } from "@/hooks/useSyncedUser"
 import { syncSubscription } from "@/services/subscription"
 import { setSubscription } from "@/stores/subscription"
-import { useSyncedUser } from "@/stores/useSyncedUser"
 
 export function useSyncSubscription() {
   const syncUser = useSyncedUser()

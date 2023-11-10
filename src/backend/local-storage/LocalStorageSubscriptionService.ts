@@ -1,7 +1,7 @@
 import { getFromStorage, setToStorage } from "@utilities/storage"
 import { generateId } from "@utilities/string"
-import { CheckoutError } from "./Subscription"
-import type { SubscriptionService } from "./SubscriptionService"
+import { CheckoutError } from "@errors/CheckoutError"
+import type { SubscriptionService } from "../../types/SubscriptionService"
 
 const SUBSCRIPTION_KEY = "subscription"
 

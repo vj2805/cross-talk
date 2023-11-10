@@ -15,7 +15,7 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
   const user = useSyncedUser()
   const subscription = useSubscription()
 
-  const { createCheckoutSession, processing } = useCheckout(user?.id, priceId)
+  const { createCheckout, processing } = useCheckout(user?.id, priceId)
 
   return (
     <div className="flex flex-col space-y-2">
@@ -38,7 +38,7 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
         ) : subscription?.status === "active" ? (
           <ManageSubscriptionButton />
         ) : (
-          <button onClick={createCheckoutSession}>Subscribe</button>
+          <button onClick={createCheckout}>Subscribe</button>
         )}
       </div>
     </div>

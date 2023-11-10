@@ -1,11 +1,14 @@
-import { createCheckout } from "@services/subscription"
+import {
+  createPaymentCheckout,
+  subscribeToPaymentCheckout,
+} from "@services/payment"
 import { useProcess } from "../useProcess"
 
 export function useCheckout(userId: Uncertain<string>, priceId: string) {
   const { error, processing, setError, startProcess, stopProcess } =
     useProcess()
 
-  async function createCheckoutSession() {
+  async function createCheckout() {
     if (!userId) {
       return
     }
@@ -14,12 +17,27 @@ export function useCheckout(userId: Uncertain<string>, priceId: string) {
     }
     startProcess()
     try {
-      await createCheckout(
+      const checkoutId = await createPaymentCheckout(userId, priceId)
+      const unsubscribe = subscribeToPaymentCheckout(
         userId,
-        priceId,
-        url => window.location.assign(url),
-        setError,
-        stopProcess
+        checkoutId,
+        checkout => {
+          if (checkout.response.status === "pending") {
+            return
+          }
+          switch (checkout.response.status) {
+            case "failure": {
+              setError(checkout.response.error)
+              break
+            }
+            case "success": {
+              window.location.assign(checkout.response.url)
+              break
+            }
+          }
+          stopProcess()
+          unsubscribe()
+        }
       )
     } catch (error) {
       setError(error as Error)
@@ -27,5 +45,5 @@ export function useCheckout(userId: Uncertain<string>, priceId: string) {
     }
   }
 
-  return { createCheckoutSession, error, processing }
+  return { createCheckout, error, processing }
 }

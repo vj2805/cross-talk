@@ -10,7 +10,7 @@ export interface Checkout extends Model {
         error: Error
       }
     | {
-        status: "loading"
+        status: "pending"
       }
     | {
         status: "success"

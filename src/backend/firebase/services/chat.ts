@@ -8,7 +8,7 @@ import {
   where,
 } from "firebase/firestore"
 import { ChatError } from "@/errors/ChatError"
-import { clientRepo } from "./config/client"
+import { clientRepo } from "../client"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Chat } from "@/types/Chat"
 import type { ChatService } from "@/types/ChatService"

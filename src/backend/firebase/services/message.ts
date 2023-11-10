@@ -8,7 +8,7 @@ import {
   query,
   serverTimestamp,
 } from "firebase/firestore"
-import { clientRepo } from "./config/client"
+import { clientRepo } from "../client"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Message } from "@/types/Message"
 import type { MessageService } from "@/types/MessageService"

@@ -5,7 +5,7 @@ import {
   query,
   where,
 } from "firebase/firestore"
-import { clientRepo } from "./config/client"
+import { clientRepo } from "../client"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Subscription } from "@/types/Subscription"
 import type { SubscriptionService } from "@/types/SubscriptionService"

@@ -1,5 +1,5 @@
 import { signInWithCustomToken, signOut } from "firebase/auth"
-import { clientAuth } from "./config/client"
+import { clientAuth } from "../client"
 import type { UserService } from "@/types/UserService"
 
 export const firebaseUserService: UserService = {

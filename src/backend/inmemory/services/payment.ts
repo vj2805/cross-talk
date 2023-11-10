@@ -11,7 +11,7 @@ const {
 } = createStore<Record<string, Checkout[]>>()(subscribeWithSelector(() => ({})))
 
 const inMemoryPaymentService: PaymentService = {
-  createCheckout(userId, _priceId) {
+  createPaymentCheckout(userId, _priceId) {
     return new Promise((resolve, reject) => {
       const existingCheckouts = getCheckouts()[userId] ?? []
       if (
@@ -45,7 +45,7 @@ const inMemoryPaymentService: PaymentService = {
       }, 1000)
     })
   },
-  subscribeToCheckout(checkoutId, listener) {
+  subscribeToPaymentCheckout(checkoutId, listener) {
     return subscribe(
       store => store[checkoutId]?.find(checkout => checkout.id === checkoutId),
       checkout => checkout && listener(checkout)

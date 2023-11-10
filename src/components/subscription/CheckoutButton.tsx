@@ -3,7 +3,7 @@
 import { Spinner } from "@/components/ui"
 import { useCheckout } from "@/hooks/useCheckout"
 import { useSubscription } from "@/hooks/useSubscription"
-import { useSyncedUser } from "@/hooks/useSyncedUser"
+import { useUser } from "@/hooks/useUser"
 import { cn } from "@/utilities/string"
 import { ManageSubscriptionButton } from "./ManageSubscriptionButton"
 
@@ -12,7 +12,7 @@ interface CheckoutButtonProps {
 }
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
-  const user = useSyncedUser()
+  const user = useUser()
   const subscription = useSubscription()
 
   const { createCheckout, processing } = useCheckout(user?.id, priceId)

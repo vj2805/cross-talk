@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { getMessagesCount, postMessage } from "@/services/message"
 import { ToastAction, showToast } from "@/components/ui"
-import { useSyncedUser } from "./useSyncedUser"
+import { useUser } from "./useUser"
 
 const MessageFormSchema = z.object({
   input: z.string().max(100),
@@ -13,7 +13,7 @@ const MessageFormSchema = z.object({
 type MessageFormSchemaType = z.infer<typeof MessageFormSchema>
 
 export function useMessageForm(chatId: string) {
-  const user = useSyncedUser()
+  const user = useUser()
   const router = useRouter()
   const form = useForm<MessageFormSchemaType>({
     defaultValues: {

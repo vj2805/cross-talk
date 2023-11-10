@@ -1,10 +1,10 @@
 import { useEffect } from "react"
-import { useSyncedUser } from "@/hooks/useSyncedUser"
+import { useUser } from "@/hooks/useUser"
 import { syncSubscription } from "@/services/subscription"
 import { setSubscription } from "@/stores/subscription"
 
 export function useSyncSubscription() {
-  const syncUser = useSyncedUser()
+  const syncUser = useUser()
   useEffect(() => {
     if (syncUser) {
       return syncSubscription(syncUser.id, setSubscription)

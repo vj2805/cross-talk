@@ -2,7 +2,7 @@
 
 import { MessageSquareIcon } from "@/components/ui/icons"
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
-import { useSyncedUser } from "@/hooks/useSyncedUser"
+import { useUser } from "@/hooks/useUser"
 import { cn } from "@/utilities/string"
 import { ChatRow } from "./ChatRow"
 import { CreateChatButton } from "./CreateChatButton"
@@ -13,7 +13,7 @@ interface ChatListRowsProps {
 }
 
 export const ChatListRows: React.FC<ChatListRowsProps> = ({ initialChats }) => {
-  const user = useSyncedUser()
+  const user = useUser()
   const [chats, loading] = useParticipatingChats(user?.id!, initialChats)
 
   if (loading || !chats) {

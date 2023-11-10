@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui"
 import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
-import { useSyncedUser } from "@/hooks/useSyncedUser"
+import { useUser } from "@/hooks/useUser"
 import { cn, prettifyId } from "@/utilities/string"
 import { getLanguageCode } from "@/utilities/language"
 import { UserAvatar } from "../user/UserAvatar"
@@ -16,7 +16,7 @@ interface ChatRowProps {
 
 export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const [message, loading] = useLastMessage(chatId)
-  const user = useSyncedUser()
+  const user = useUser()
   const language = usePreferredLanguage()
   const router = useRouter()
 

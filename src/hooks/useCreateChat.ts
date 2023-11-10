@@ -2,11 +2,11 @@ import { dismissToast, showToast, updateToast } from "@/components/ui"
 import { createChat } from "@/services/chat"
 import { useRouter } from "./useBuiltins"
 import { useProcess } from "./useProcess"
-import { useSyncedUser } from "./useSyncedUser"
+import { useUser } from "./useUser"
 
 export function useCreateChat() {
   const { processing, startProcess, stopProcess } = useProcess()
-  const user = useSyncedUser()
+  const user = useUser()
   const router = useRouter()
 
   async function createNewChat() {

@@ -1,5 +1,5 @@
-import type { PricingService } from "@/types/PricingService"
 import type { PriceTier } from "@/types/PriceTier"
+import type { PricingService } from "@/types/PricingService"
 
 const priceTiers: PriceTier[] = [
   {

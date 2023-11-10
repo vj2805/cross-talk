@@ -1,4 +1,4 @@
-export interface PricingTier {
+export interface PriceTier {
   description: string
   features: string[]
   href: string
@@ -6,7 +6,7 @@ export interface PricingTier {
   priceMonthly?: PriceMonthly
 }
 
-interface PriceMonthly {
+export interface PriceMonthly {
   cost: string
   id: string
 }

@@ -1,1 +1,5 @@
-export { useSyncedUser } from "@/stores/syncedUser"
+import { useSyncedUserStore } from "@/stores/syncedUser"
+
+export function useSyncedUser() {
+  return useSyncedUserStore(store => store.user)
+}

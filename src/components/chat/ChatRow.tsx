@@ -2,11 +2,11 @@
 
 import { Skeleton } from "@/components/ui"
 import { useRouter } from "@/hooks/useBuiltins"
-import { useLanguageCode } from "@/hooks/useLanguageCode"
 import { useLastMessage } from "@/hooks/useLastMessage"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { useSyncedUser } from "@/hooks/useSyncedUser"
 import { cn, prettifyId } from "@/utilities/string"
+import { getLanguageCode } from "@/utilities/language"
 import { UserAvatar } from "../user/UserAvatar"
 import type { Chat } from "@/types/Chat"
 
@@ -18,7 +18,6 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const [message, loading] = useLastMessage(chatId)
   const user = useSyncedUser()
   const language = usePreferredLanguage()
-  const languageCode = useLanguageCode(language)
   const router = useRouter()
 
   if (loading) {
@@ -54,7 +53,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
             : "New Chat"}
         </p>
         <p className="text-gray-400 line-clamp-1">
-          {(languageCode && message?.translated?.[languageCode]) ??
+          {message?.translated?.[getLanguageCode(language)] ??
             "Get the conversation started..."}
         </p>
       </div>

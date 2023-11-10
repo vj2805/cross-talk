@@ -1,10 +1,14 @@
 import { create } from "zustand"
 import type { User } from "@/types/User"
 
-export const useSyncedUser = create<Observable<User>>(() => ({
-  status: "loading",
+type SyncedUserStore = {
+  user: Optional<User>
+}
+
+export const useSyncedUserStore = create<SyncedUserStore>(() => ({
+  user: undefined,
 }))
 
 export function setSyncedUser(user: Nullish<User>) {
-  useSyncedUser.setState({ status: "idle", value: user })
+  useSyncedUserStore.setState({ user })
 }

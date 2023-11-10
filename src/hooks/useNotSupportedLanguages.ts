@@ -3,12 +3,9 @@ import { useLanguageStore } from "@/stores/language"
 
 export function useNotSupportedLanguages(isPro: boolean) {
   return useLanguageStore(store => {
-    if (store.availableLanguages.status !== "idle") {
+    if (!store.availableLanguages) {
       return undefined
     }
-    if (!store.availableLanguages.value) {
-      return undefined
-    }
-    return isPro ? [] : store.availableLanguages.value.pro
+    return isPro ? [] : store.availableLanguages.pro
   }, shallow)
 }

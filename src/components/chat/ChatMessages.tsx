@@ -3,10 +3,10 @@
 import { useEffect, useRef } from "react"
 import { Spinner } from "@/components/ui"
 import { MessageCircleIcon } from "@/components/ui/icons"
-import { useLanguageCode } from "@/hooks/useLanguageCode"
 import { useMessages } from "@/hooks/useMessages"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { cn } from "@/utilities/string"
+import { getLanguageCode } from "@/utilities/language"
 import { UserAvatar } from "../user/UserAvatar"
 import type { Message } from "@/types/Message"
 import type { User } from "next-auth"
@@ -23,7 +23,6 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   user,
 }) => {
   const language = usePreferredLanguage()
-  const languageCode = useLanguageCode(language)
   const messagesEndRef = useRef<React.ElementRef<"div">>(null)
   const [messages, loading] = useMessages(chatId, initialMessages)
 
@@ -94,7 +93,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
               <div className="flex space-x-2">
                 {message.translated ? (
                   <p>
-                    {(languageCode && message.translated?.[languageCode]) ||
+                    {message.translated?.[getLanguageCode(language)] ||
                       message.input}
                   </p>
                 ) : (

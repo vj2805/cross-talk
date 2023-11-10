@@ -3,7 +3,7 @@
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 import { env } from "@env"
-import { adminRepo } from "@backend/firebase-admin"
+import { adminRepo } from "@backend/firebase/admin"
 import { stripe } from "@backend/stripe"
 import { getServerUser } from "@services/auth"
 

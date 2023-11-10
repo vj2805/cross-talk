@@ -1,8 +1,8 @@
 import { collection, doc } from "firebase/firestore"
-import { clientRepo } from "@backend/firebase"
+import { clientRepo } from "@backend/firebase/client"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import type { Participant } from "./Participant"
-import type { ParticipantService } from "./ParticipantService"
+import type { Participant } from "../../types/Participant"
+import type { ParticipantService } from "../../types/ParticipantService"
 
 const participantConverter: FirestoreDataConverter<Participant> = {
   fromFirestore(snapshot, options) {

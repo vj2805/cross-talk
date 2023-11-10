@@ -5,10 +5,10 @@ import {
   query,
   where,
 } from "firebase/firestore"
-import { clientRepo } from "@backend/firebase"
+import { clientRepo } from "@backend/firebase/client"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import type { Subscription } from "./Subscription"
-import type { SubscriptionService } from "./SubscriptionService"
+import type { Subscription } from "../../types/Subscription"
+import type { SubscriptionService } from "../../types/SubscriptionService"
 
 const subscriptionConverter: FirestoreDataConverter<Subscription> = {
   fromFirestore(snapshot, options) {

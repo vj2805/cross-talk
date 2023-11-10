@@ -7,11 +7,11 @@ import {
   query,
   where,
 } from "firebase/firestore"
-import { clientRepo } from "@backend/firebase"
-import { ChatError } from "./Chat"
+import { clientRepo } from "@backend/firebase/client"
+import { ChatError } from "@errors/ChatError"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import type { Chat } from "./Chat"
-import type { ChatService } from "./ChatService"
+import type { Chat } from "../../types/Chat"
+import type { ChatService } from "../../types/ChatService"
 
 const chatConverter: FirestoreDataConverter<Chat> = {
   fromFirestore(snapshot, options) {

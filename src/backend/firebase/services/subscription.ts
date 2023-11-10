@@ -32,43 +32,33 @@ function activeSubscriptionRef(userId: string) {
   ).withConverter(subscriptionConverter)
 }
 
-const createCheckout: SubscriptionService["createCheckout"] = async (
-  userId,
-  priceId,
-  onSuccess,
-  onFailure,
-  onDetach
-) => {
-  const checkoutRef = await addDoc(
-    collection(clientRepo, "customers", userId, "checkout_sessions"),
-    {
-      cancel_url: window.location.origin,
-      price: priceId,
-      success_url: window.location.origin,
-    }
-  )
-  const unsubscribe = onSnapshot(checkoutRef, snapshot => {
-    const checkout = snapshot.data()!
-    if (checkout.error) {
-      onFailure(checkout.error)
-    }
-    if (checkout.url) {
-      onSuccess(checkout.url)
-    }
-    unsubscribe()
-    onDetach()
-  })
+const firestoreSubscriptionService: SubscriptionService = {
+  async createCheckout(userId, priceId, onSuccess, onFailure, onDetach) {
+    const checkoutRef = await addDoc(
+      collection(clientRepo, "customers", userId, "checkout_sessions"),
+      {
+        cancel_url: window.location.origin,
+        price: priceId,
+        success_url: window.location.origin,
+      }
+    )
+    const unsubscribe = onSnapshot(checkoutRef, snapshot => {
+      const checkout = snapshot.data()!
+      if (checkout.error) {
+        onFailure(checkout.error)
+      }
+      if (checkout.url) {
+        onSuccess(checkout.url)
+      }
+      unsubscribe()
+      onDetach()
+    })
+  },
+  syncSubscription(userId, onChange) {
+    return onSnapshot(activeSubscriptionRef(userId), snapshot => {
+      onChange(snapshot.empty ? null : snapshot.docs[0].data())
+    })
+  },
 }
 
-const syncSubscription: SubscriptionService["syncSubscription"] = (
-  userId,
-  onChange
-) => {
-  return onSnapshot(activeSubscriptionRef(userId), snapshot => {
-    onChange(snapshot.empty ? null : snapshot.docs[0].data())
-  })
-}
-
-export function createFirestoreSubscriptionService(): SubscriptionService {
-  return { createCheckout, syncSubscription }
-}
+export default firestoreSubscriptionService

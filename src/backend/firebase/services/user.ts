@@ -2,7 +2,7 @@ import { signInWithCustomToken, signOut } from "firebase/auth"
 import { clientAuth } from "../client"
 import type { UserService } from "@/types/UserService"
 
-export const firebaseUserService: UserService = {
+const firebaseUserService: UserService = {
   async syncUser(session) {
     if (session?.firebaseToken) {
       await signInWithCustomToken(clientAuth, session.firebaseToken)
@@ -12,3 +12,5 @@ export const firebaseUserService: UserService = {
     return session?.user ?? null
   },
 }
+
+export default firebaseUserService

@@ -1,3 +1,8 @@
-export interface Backend {}
-
-export const backend: Backend = {}
+export { default as authService } from "./inmemory/services/auth"
+export { default as chatService } from "./inmemory/services/chat"
+export { default as languageService } from "./inmemory/services/language"
+export { default as messageService } from "./inmemory/services/message"
+export { default as participantService } from "./inmemory/services/participant"
+export { default as pricingService } from "./inmemory/services/pricing"
+export { default as subscriptionService } from "./inmemory/services/subscription"
+export { default as userService } from "./inmemory/services/user"

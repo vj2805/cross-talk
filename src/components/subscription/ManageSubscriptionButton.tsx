@@ -1,4 +1,4 @@
-import { manageSubscription } from "@services/actions/manageSubscription"
+import { manageSubscription } from "@/actions/manageSubscription"
 
 export const ManageSubscriptionButton: React.FC = () => {
   async function onSubmit() {

@@ -2,33 +2,38 @@
 
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
-import { adminRepo } from "@/backend/firebase/admin"
-import { stripe } from "@/backend/stripe"
+import { createBillingPortalSession } from "@/backend/stripe"
 import { env } from "@/env"
 import { getServerUser } from "@/services/auth"
+import { adminRepo } from "../admin"
 
-function getReturnUrl(host: Nullish<string>) {
+function getReturnUrl() {
   const protocol = env["NODE_ENV"] === "development" ? "http" : "https"
+  const host = headers().get("host")
   return `${protocol}://${host}/subscribe`
+}
+
+async function getCustomerStripeId(userId: string) {
+  const snapshot = await adminRepo.collection("customers").doc(userId).get()
+  const stripeId = snapshot.data()?.stripeId
+  if (!stripeId) {
+    throw new Error(
+      `[manageSubscription] No customer record found with id (${userId})`
+    )
+  }
+  return stripeId
 }
 
 export async function manageSubscription() {
   const user = await getServerUser()
 
   if (!user) {
-    return console.error("User Not Found!")
+    throw new Error("[manageSubscription] User is null")
   }
 
-  const doc = await adminRepo.collection("customers").doc(user.id).get()
-
-  if (!doc.exists) {
-    return console.error("No customer record found with id ", user.id)
-  }
-
-  const stripeSession = await stripe.billingPortal.sessions.create({
-    customer: doc.data()!.stripeId,
-    return_url: getReturnUrl(headers().get("host")),
-  })
+  const stripeId = await getCustomerStripeId(user.id)
+  const returnUrl = getReturnUrl()
+  const stripeSession = await createBillingPortalSession(stripeId, returnUrl)
 
   redirect(stripeSession.url)
 }

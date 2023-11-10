@@ -2,10 +2,10 @@
 
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
-import { env } from "@env"
-import { adminRepo } from "@backend/firebase/admin"
-import { stripe } from "@backend/stripe"
-import { getServerUser } from "@services/auth"
+import { adminRepo } from "@/backend/firebase/admin"
+import { stripe } from "@/backend/stripe"
+import { env } from "@/env"
+import { getServerUser } from "@/services/auth"
 
 function getReturnUrl(host: Nullish<string>) {
   const protocol = env["NODE_ENV"] === "development" ? "http" : "https"

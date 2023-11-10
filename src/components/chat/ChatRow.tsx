@@ -2,8 +2,9 @@
 
 import { Skeleton } from "@/components/ui"
 import { useRouter } from "@/hooks/useBuiltins"
-import { useLanguageCode, usePreferredLanguage } from "@/stores/language"
-import { useSyncedUser } from "@/stores/syncedUser"
+import { usePreferredLanguage } from "@/stores/usePreferredLanguage"
+import { useLanguageCode } from "@/stores/useLanguageCode"
+import { useSyncedUser } from "@/stores/useSyncedUser"
 import { cn, prettifyId } from "@/utilities/string"
 import { useLastMessage } from "@/hooks/useLastMessage"
 import { UserAvatar } from "../user/UserAvatar"

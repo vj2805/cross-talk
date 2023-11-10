@@ -6,18 +6,10 @@ type SubscriptionStore = {
   subscription: Optional<Subscription>
 }
 
-const useSubscriptionStore = create<SubscriptionStore>(() => ({
+export const useSubscriptionStore = create<SubscriptionStore>(() => ({
   isPro: false,
   subscription: undefined,
 }))
-
-export function useSubscription() {
-  return useSubscriptionStore(store => store.subscription)
-}
-
-export function useIsPro() {
-  return useSubscriptionStore(store => store.isPro)
-}
 
 export function setSubscription(subscription: Nullish<Subscription>) {
   useSubscriptionStore.setState({

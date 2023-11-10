@@ -2,7 +2,7 @@
 
 import { MessageSquareIcon } from "@/components/ui/icons"
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
-import { useSyncedUser } from "@/stores/syncedUser"
+import { useSyncedUser } from "@/stores/useSyncedUser"
 import { cn } from "@/utilities/string"
 import { ChatRow } from "./ChatRow"
 import { CreateChatButton } from "./CreateChatButton"

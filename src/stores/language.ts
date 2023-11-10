@@ -9,31 +9,13 @@ type LanguageStore = {
   preferredLanguage: Language
 }
 
-const useLanguageStore = create<LanguageStore>(() => ({
+export const useLanguageStore = create<LanguageStore>(() => ({
   availableLanguages: undefined,
   languageCodes: undefined,
   languagesInFree: undefined,
   languagesOnlyInPro: undefined,
   preferredLanguage: "English",
 }))
-
-export function useLanguageCode(language: Language) {
-  return useLanguageStore(store => store.languageCodes?.[language])
-}
-
-export function useSupportedLanguages(isPro: boolean) {
-  return useLanguageStore(store =>
-    isPro ? store.availableLanguages : store.languagesInFree
-  )
-}
-
-export function useNotSupportedLanguages(isPro: boolean) {
-  return useLanguageStore(store => (isPro ? [] : store.languagesOnlyInPro))
-}
-
-export function usePreferredLanguage() {
-  return useLanguageStore(store => store.preferredLanguage)
-}
 
 export function setLanguageCodes(
   languageCodes: Record<Language, LanguageCode>

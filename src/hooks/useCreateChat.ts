@@ -1,6 +1,6 @@
 import { createChat } from "@/services/chat"
 import { dismissToast, showToast, updateToast } from "@/components/ui"
-import { useSyncedUser } from "@/stores/syncedUser"
+import { useSyncedUser } from "@/stores/useSyncedUser"
 import { useRouter } from "./useBuiltins"
 import { useProcess } from "./useProcess"
 

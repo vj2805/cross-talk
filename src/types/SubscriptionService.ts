@@ -1,15 +1,10 @@
+import type { User } from "./User"
+import type { Unsubscribe } from "./Unsubscribe"
 import type { Subscription } from "./Subscription"
 
 export interface SubscriptionService {
-  createCheckout: (
-    userId: string,
-    priceId: string,
-    onSuccess: (url: string) => void,
-    onFailure: (error: Error) => void,
-    onDetach: () => void
-  ) => Promise<void>
   syncSubscription: (
-    userId: string,
+    userId: User["id"],
     onChange: (subscription: Nullish<Subscription>) => void
-  ) => () => void
+  ) => Unsubscribe
 }

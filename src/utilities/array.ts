@@ -1,4 +1,8 @@
-function swap<T>(array: T[], fromIndex: number, toIndex: number) {
+export function shuffle<T>(array: T[]) {
+  return array.sort(() => Math.random() - 0.5)
+}
+
+export function swap<T>(array: T[], fromIndex: number, toIndex: number) {
   const element = array[fromIndex]
   array[fromIndex] = array[toIndex]
   array[toIndex] = element

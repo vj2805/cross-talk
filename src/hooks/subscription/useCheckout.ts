@@ -25,15 +25,11 @@ export function useCheckout(userId: Uncertain<string>, priceId: string) {
           if (checkout.response.status === "pending") {
             return
           }
-          switch (checkout.response.status) {
-            case "failure": {
-              setError(checkout.response.error)
-              break
-            }
-            case "success": {
-              window.location.assign(checkout.response.url)
-              break
-            }
+          if (checkout.response.status === "success") {
+            window.location.assign(checkout.response.url)
+          }
+          if (checkout.response.status === "failure") {
+            setError(checkout.response.error)
           }
           stopProcess()
           unsubscribe()

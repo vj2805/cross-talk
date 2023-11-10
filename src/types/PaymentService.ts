@@ -10,6 +10,6 @@ export interface PaymentService {
   subscribeToPaymentCheckout: (
     userId: User["id"],
     checkoutId: Checkout["id"],
-    listener: (checkout: Checkout) => void
+    onChange: (checkout: Checkout) => void
   ) => Unsubscribe
 }

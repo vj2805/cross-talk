@@ -52,12 +52,12 @@ const firebasePaymentService: PaymentService = {
     })
     return checkout.id
   },
-  subscribeToPaymentCheckout(userId, checkoutId, listener) {
+  subscribeToPaymentCheckout(userId, checkoutId, onChange) {
     return onSnapshot(checkoutRef(userId, checkoutId), snapshot => {
       if (!snapshot.exists()) {
         return
       }
-      listener(snapshot.data())
+      onChange(snapshot.data())
     })
   },
 }

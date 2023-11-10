@@ -45,10 +45,10 @@ const inMemoryPaymentService: PaymentService = {
       }, 1000)
     })
   },
-  subscribeToPaymentCheckout(userId, checkoutId, listener) {
+  subscribeToPaymentCheckout(userId, checkoutId, onChange) {
     return subscribe(
       store => store[userId]?.find(checkout => checkout.id === checkoutId),
-      checkout => checkout && listener(checkout)
+      checkout => checkout && onChange(checkout)
     )
   },
 }

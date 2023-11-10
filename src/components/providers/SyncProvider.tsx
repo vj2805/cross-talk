@@ -1,8 +1,8 @@
 "use client"
 
-import { useSyncLanguages } from "@hooks/language"
-import { useSyncSubscription } from "@hooks/subscription"
-import { useSyncUser } from "@hooks/user"
+import { useSyncLanguages } from "@/hooks/useSyncLanguages"
+import { useSyncSubscription } from "@/hooks/useSyncSubscription"
+import { useSyncUser } from "@/hooks/useSyncUser"
 
 export const SyncProvider: React.FC<
   React.PropsWithRequiredChildren

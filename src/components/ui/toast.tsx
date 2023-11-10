@@ -2,8 +2,8 @@
 
 import React from "react"
 import { cva } from "class-variance-authority"
-import { X } from "@components/ui/icons"
-import { cn } from "@utilities/string"
+import { X } from "@/components/ui/icons"
+import { cn } from "@/utilities/string"
 import { PrimitiveToast } from "./primitives"
 
 export type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>

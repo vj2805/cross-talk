@@ -1,6 +1,6 @@
-import { CircleBackdrop, PricingCards } from "@components"
-import { getServerUser } from "@services/auth"
-import { cn } from "@utilities/string"
+import { CircleBackdrop, PricingCards } from "@/components"
+import { getServerUser } from "@/services/auth"
+import { cn } from "@/utilities/string"
 
 export default async function RegisterPage() {
   const user = await getServerUser()

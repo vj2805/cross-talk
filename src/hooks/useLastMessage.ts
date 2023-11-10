@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import { getLastMessage } from "@services/message"
-import { useProcess } from "../useProcess"
-import type { Message } from "@services/message"
+import { getLastMessage } from "@/services/message"
+import { useProcess } from "./useProcess"
+import type { Message } from "@/types/Message"
 
 export function useLastMessage(chatId: string) {
   const { error, processing, setError, startProcess, stopProcess } =

@@ -1,8 +1,8 @@
 "use client"
 
-import { Spinner } from "@components/ui"
-import { useParticipantsIds } from "@hooks/participants"
-import { cn } from "@utilities/string"
+import { Spinner } from "@/components/ui"
+import { useParticipantsIds } from "@/hooks/useParticipantsIds"
+import { cn } from "@/utilities/string"
 
 interface ChatParticipantsBadgesProps {
   chatId: string

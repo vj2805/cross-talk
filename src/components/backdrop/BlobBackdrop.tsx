@@ -1,4 +1,4 @@
-import { cn } from "@utilities/string"
+import { cn } from "@/utilities/string"
 
 interface BlobBackdropProps {
   position: "end" | "start"

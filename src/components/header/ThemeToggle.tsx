@@ -6,10 +6,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@components/ui"
-import { Moon, Sun } from "@components/ui/icons"
-import { useTheme } from "@hooks/builtins"
-import { cn } from "@utilities/string"
+} from "@/components/ui"
+import { Moon, Sun } from "@/components/ui/icons"
+import { useTheme } from "@/hooks/useBuiltins"
+import { cn } from "@/utilities/string"
 
 export const ThemeToggle: React.FC = () => {
   const { setTheme } = useTheme()

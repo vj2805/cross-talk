@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { generateId } from "@utilities/string"
+import { generateId } from "@/utilities/string"
 import type { ToastActionElement, ToastProps } from "./toast"
 
 const TOAST_LIMIT = 1

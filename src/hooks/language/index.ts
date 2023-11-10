@@ -1,1 +1,0 @@
-export { useSyncLanguages } from "./useSyncLanguages"

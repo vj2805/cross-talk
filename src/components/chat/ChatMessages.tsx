@@ -1,14 +1,14 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { Spinner } from "@components/ui"
-import { MessageCircleIcon } from "@components/ui/icons"
-import { useMessages } from "@hooks/message"
-import { useLanguageCode, usePreferredLanguage } from "@stores/language"
-import { cn } from "@utilities/string"
+import { Spinner } from "@/components/ui"
+import { MessageCircleIcon } from "@/components/ui/icons"
+import { useMessages } from "@/hooks/useMessages"
+import { useLanguageCode, usePreferredLanguage } from "@/stores/language"
+import { cn } from "@/utilities/string"
 import { UserAvatar } from "../user/UserAvatar"
 import type { User } from "next-auth"
-import type { Message } from "@services/message"
+import type { Message } from "@/types/Message"
 
 interface ChatMessagesProps {
   chatId: string

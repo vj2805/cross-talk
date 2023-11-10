@@ -1,5 +1,6 @@
 "use client"
 
+import { useMessageForm } from "@/hooks/useMessageForm"
 import {
   Button,
   Form,
@@ -9,9 +10,8 @@ import {
   FormMessage,
   Input,
   Spinner,
-} from "@components/ui"
-import { useMessageForm } from "@hooks/message"
-import { cn } from "@utilities/string"
+} from "@/components/ui"
+import { cn } from "@/utilities/string"
 
 interface ChatInputProps {
   chatId: string

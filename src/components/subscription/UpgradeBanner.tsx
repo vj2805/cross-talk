@@ -1,9 +1,9 @@
 "use client"
 
-import { Button } from "@components/ui"
-import { useRouter } from "@hooks/builtins"
-import { useIsPro, useSubscription } from "@stores/subscription"
-import { cn } from "@utilities/string"
+import { Button } from "@/components/ui"
+import { useRouter } from "@/hooks/useBuiltins"
+import { useIsPro, useSubscription } from "@/stores/subscription"
+import { cn } from "@/utilities/string"
 
 export const UpgradeBanner: React.FC = () => {
   const router = useRouter()

@@ -2,8 +2,8 @@
 
 import React from "react"
 import { cva } from "class-variance-authority"
-import { Check, ChevronRight, Circle } from "@components/ui/icons"
-import { cn } from "@utilities/string"
+import { Check, ChevronRight, Circle } from "@/components/ui/icons"
+import { cn } from "@/utilities/string"
 import { PrimitiveDropdownMenu } from "./primitives"
 
 const contentVariants = cva(

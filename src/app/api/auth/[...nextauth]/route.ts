@@ -1,4 +1,4 @@
-import { createAuthHandler } from "@services/auth"
+import { createAuthHandler } from "@/services/auth"
 
 const authHandler = createAuthHandler()
 

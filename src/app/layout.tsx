@@ -1,13 +1,13 @@
-import { Header } from "@components"
+import { Header } from "@/components"
 import {
   SessionProvider,
   SyncProvider,
   ThemeProvider,
-} from "@components/providers"
-import { Toaster } from "@components/ui"
+} from "@/components/providers"
+import { Toaster } from "@/components/ui"
 import type { Metadata } from "next"
 
-import "@styles.css"
+import "@/styles.css"
 
 export const metadata: Metadata = {
   description: "A Chat SaaS",

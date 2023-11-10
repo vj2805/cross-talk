@@ -1,8 +1,8 @@
-import { demo } from "@assets/images"
-import { BlobBackdrop } from "@components"
-import { NextImage, NextLink } from "@components/ui"
-import { MoveRight } from "@components/ui/icons"
-import { cn } from "@utilities/string"
+import { demo } from "@/assets/images"
+import { BlobBackdrop } from "@/components"
+import { NextImage, NextLink } from "@/components/ui"
+import { MoveRight } from "@/components/ui/icons"
+import { cn } from "@/utilities/string"
 
 export default function HomePage() {
   return (

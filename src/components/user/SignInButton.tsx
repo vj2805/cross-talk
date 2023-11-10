@@ -1,7 +1,7 @@
 "use client"
 
-import { Button } from "@components/ui"
-import { signIn } from "@services/user"
+import { Button } from "@/components/ui"
+import { signIn } from "@/services/user"
 
 export const SignInButton: React.FC = () => (
   <Button

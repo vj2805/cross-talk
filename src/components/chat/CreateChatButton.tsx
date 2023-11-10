@@ -1,8 +1,8 @@
 "use client"
 
-import { Button, Spinner } from "@components/ui"
-import { MessageSquarePlusIcon } from "@components/ui/icons"
-import { useCreateChat } from "@hooks/chat"
+import { Button, Spinner } from "@/components/ui"
+import { MessageSquarePlusIcon } from "@/components/ui/icons"
+import { useCreateChat } from "@/hooks/useCreateChat"
 
 interface CreateChatButtonProps {
   large?: true

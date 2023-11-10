@@ -1,4 +1,4 @@
-import { ChatList } from "@components"
+import { ChatList } from "@/components"
 
 export default function ChatsPage() {
   return (

@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import type { Language, LanguageCode } from "@services/language"
+import type { Language, LanguageCode } from "@/types/Language"
 
 type LanguageStore = {
   availableLanguages: Uncertain<Language[]>

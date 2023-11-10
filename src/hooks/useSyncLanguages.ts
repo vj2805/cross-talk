@@ -3,12 +3,12 @@ import {
   getLanguageCodes,
   getLanguagesInFree,
   getLanguagesOnlyInPro,
-} from "@services/language"
+} from "@/services/language"
 import {
   setLanguageCodes,
   setLanguagesInFree,
   setLanguagesOnlyInPro,
-} from "@stores/language"
+} from "@/stores/language"
 
 async function fetchLanguageNames() {
   setLanguageCodes(await getLanguageCodes())

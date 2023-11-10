@@ -1,19 +1,21 @@
 "use server"
 
 import { getServerUser } from "@/services/auth"
-import { subscriptions } from "../services/subscription"
+import { getSubscriptions, setSubscription } from "../services/subscription"
 
 export async function manageSubscription() {
   const user = await getServerUser()
 
   if (!user) {
-    return console.error("User not found!")
+    throw new Error("[manageSubscription] User not found!")
   }
 
-  const subscription = subscriptions.get(user.id)
+  const subscription = getSubscriptions()[user.id]?.find(
+    subscription => subscription.status === "active"
+  )
 
   if (!subscription) {
-    return console.error("User has no known subscriptions!")
+    return new Error("[manageSubscription] User has no active subscriptions!")
   }
 
   await new Promise<void>(resolve => {
@@ -26,6 +28,7 @@ export async function manageSubscription() {
       )
       if (response) {
         subscription.status = "canceled"
+        setSubscription(store => ({ [user.id]: [...store[user.id]] }))
       }
       resolve()
     }, 1000)

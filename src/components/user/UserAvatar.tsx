@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, NextImage } from "@components/ui"
-import { cn, joinFirstLetterOfEachWord } from "@utilities/string"
+import { Avatar, AvatarFallback, NextImage } from "@/components/ui"
+import { cn, joinFirstLetterOfEachWord } from "@/utilities/string"
 
 interface UserAvatarProps {
   name?: Optional<string>

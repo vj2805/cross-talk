@@ -1,13 +1,14 @@
 "use client"
 
-import { usePathname } from "@hooks/builtins"
+import { usePathname } from "@/hooks/useBuiltins"
 import {
   setPreferredLanguage,
   useNotSupportedLanguages,
   usePreferredLanguage,
   useSupportedLanguages,
-} from "@stores/language"
-import { useIsPro, useSubscription } from "@stores/subscription"
+} from "@/stores/language"
+import { useIsPro, useSubscription } from "@/stores/subscription"
+import { cn } from "@/utilities/string"
 import {
   NextLink,
   Select,
@@ -16,9 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
   Spinner,
-} from "@ui"
-import { cn } from "@utilities/string"
-import type { Language } from "@services/language"
+} from "@/components/ui"
+import type { Language } from "@/types/Language"
 
 export const LanguageSelect: React.FC = () => {
   const pathname = usePathname()

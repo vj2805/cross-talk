@@ -1,12 +1,12 @@
-import { cn } from "@utilities/string"
+import { cn } from "@/utilities/string"
 import { CheckoutButton } from "./CheckoutButton"
 import { GetStartedTodayButton } from "./GetStartedTodayButton"
-import { PriceMonthly } from "./PriceMonthly"
+import { PriceMonthlyView } from "./PriceMonthly"
 import { PricingTierFeatureList } from "./PricingTierFeatureList"
-import type { PricingTier } from "@services/pricing"
+import type { PriceTier } from "@/types/PriceTier"
 
 interface PricingCardProps {
-  tier: PricingTier
+  tier: PriceTier
   redirect: boolean
 }
 
@@ -27,7 +27,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({ tier, redirect }) => (
     <h3 className="text-base font-semibold leading-7 text-cyan-600">
       {tier.id}
     </h3>
-    <PriceMonthly priceMonthly={tier.priceMonthly} />
+    <PriceMonthlyView priceMonthly={tier.priceMonthly} />
     <p className={cn("mt-6", "text-base leading-7 text-gray-600")}>
       {tier.description}
     </p>

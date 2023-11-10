@@ -1,13 +1,13 @@
 "use client"
 
-import { Skeleton } from "@components/ui"
-import { useLastMessage } from "@hooks/message"
-import { useRouter } from "@hooks/builtins"
-import { useLanguageCode, usePreferredLanguage } from "@stores/language"
-import { useSyncedUser } from "@stores/syncedUser"
-import { cn, prettifyId } from "@utilities/string"
+import { Skeleton } from "@/components/ui"
+import { useRouter } from "@/hooks/useBuiltins"
+import { useLanguageCode, usePreferredLanguage } from "@/stores/language"
+import { useSyncedUser } from "@/stores/syncedUser"
+import { cn, prettifyId } from "@/utilities/string"
+import { useLastMessage } from "@/hooks/useLastMessage"
 import { UserAvatar } from "../user/UserAvatar"
-import type { Chat } from "@services/chat"
+import type { Chat } from "@/types/Chat"
 
 interface ChatRowProps {
   chatId: Chat["id"]

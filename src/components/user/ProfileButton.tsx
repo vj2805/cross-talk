@@ -8,14 +8,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   Spinner,
-} from "@components/ui"
-import { StarIcon } from "@components/ui/icons"
-import { signOut } from "@services/user"
-import { useIsPro, useSubscription } from "@stores/subscription"
-import { cn } from "@utilities/string"
+} from "@/components/ui"
+import { StarIcon } from "@/components/ui/icons"
+import { signOut } from "@/services/user"
+import { useIsPro, useSubscription } from "@/stores/subscription"
+import { cn } from "@/utilities/string"
 import { SignInButton } from "./SignInButton"
 import { UserAvatar } from "./UserAvatar"
-import type { User } from "@services/user"
+import type { User } from "@/types/User"
 
 interface ProfileButtonProps {
   user?: User

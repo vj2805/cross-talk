@@ -1,9 +1,9 @@
-import { CheckIcon } from "@components/ui/icons"
-import { cn } from "@utilities/string"
-import type { PricingTier } from "@services/pricing"
+import { CheckIcon } from "@/components/ui/icons"
+import { cn } from "@/utilities/string"
+import type { PriceTier } from "@/types/PriceTier"
 
 interface PricingTierFeatureListProps {
-  features: PricingTier["features"]
+  features: PriceTier["features"]
 }
 
 export const PricingTierFeatureList: React.FC<PricingTierFeatureListProps> = ({

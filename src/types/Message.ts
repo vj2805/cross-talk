@@ -1,6 +1,6 @@
 import type { Model } from "./Model"
-import type { LanguageCode } from "@services/language"
-import type { User } from "@services/user"
+import type { LanguageCode } from "./Language"
+import type { User } from "./User"
 
 export interface Message extends Model {
   input: string

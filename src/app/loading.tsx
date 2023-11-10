@@ -1,5 +1,5 @@
-import { Spinner } from "@components/ui"
-import { cn } from "@utilities/string"
+import { Spinner } from "@/components/ui"
+import { cn } from "@/utilities/string"
 
 export default function RootLoading() {
   return (

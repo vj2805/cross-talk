@@ -1,11 +1,13 @@
-import { cn } from "@utilities/string"
-import type { PricingTier } from "@services/pricing"
+import { cn } from "@/utilities/string"
+import type { PriceMonthly } from "@/types/PriceMonthly"
 
 interface PriceMonthlyProps {
-  priceMonthly: PricingTier["priceMonthly"]
+  priceMonthly: Uncertain<PriceMonthly>
 }
 
-export const PriceMonthly: React.FC<PriceMonthlyProps> = ({ priceMonthly }) => (
+export const PriceMonthlyView: React.FC<PriceMonthlyProps> = ({
+  priceMonthly,
+}) => (
   <div className={cn("mt-4", "flex items-baseline gap-x-2")}>
     {priceMonthly ? (
       <>

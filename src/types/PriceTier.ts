@@ -1,3 +1,4 @@
+import type { PriceMonthly } from "./PriceMonthly"
 import type { Model } from "./Model"
 
 export interface PriceTier extends Model {
@@ -5,8 +6,4 @@ export interface PriceTier extends Model {
   features: string[]
   href: string
   priceMonthly?: PriceMonthly
-}
-
-export interface PriceMonthly extends Model {
-  cost: string
 }

@@ -1,8 +1,8 @@
-import { createStore } from "zustand/vanilla"
 import { subscribeWithSelector } from "zustand/middleware"
-import { generateId } from "@utilities/string"
-import type { PaymentService } from "@/types/PaymentService"
+import { createStore } from "zustand/vanilla"
+import { generateId } from "@/utilities/string"
 import type { Checkout } from "@/types/Checkout"
+import type { PaymentService } from "@/types/PaymentService"
 
 const {
   getState: getCheckouts,

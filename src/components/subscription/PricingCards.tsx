@@ -1,5 +1,5 @@
-import { getPricingTiers } from "@services/pricing"
-import { cn } from "@utilities/string"
+import { getPricingTiers } from "@/services/pricing"
+import { cn } from "@/utilities/string"
 import { PricingCard } from "./PricingCard"
 
 interface PricingCardsProps {

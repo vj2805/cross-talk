@@ -1,5 +1,5 @@
-import { CircleBackdrop, PricingCards } from "@components"
-import { cn } from "@utilities/string"
+import { CircleBackdrop, PricingCards } from "@/components"
+import { cn } from "@/utilities/string"
 
 export default function PricingPage() {
   return (

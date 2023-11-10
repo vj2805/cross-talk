@@ -2,9 +2,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { getMessagesCount, postMessage } from "@services/message"
-import { useSyncedUser } from "@stores/syncedUser"
-import { ToastAction, showToast } from "@ui"
+import { useSyncedUser } from "@/stores/syncedUser"
+import { getMessagesCount, postMessage } from "@/services/message"
+import { ToastAction, showToast } from "@/components/ui"
 
 const MessageFormSchema = z.object({
   input: z.string().max(100),

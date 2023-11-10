@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import type { Subscription } from "@services/subscription"
+import type { Subscription } from "@/types/Subscription"
 
 type SubscriptionStore = {
   isPro: boolean

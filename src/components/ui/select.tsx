@@ -1,8 +1,8 @@
 "use client"
 
 import React from "react"
-import { Check, ChevronDown } from "@components/ui/icons"
-import { cn } from "@utilities/string"
+import { Check, ChevronDown } from "@/components/ui/icons"
+import { cn } from "@/utilities/string"
 import { PrimitiveSelect } from "./primitives"
 
 export const Select = PrimitiveSelect.Root

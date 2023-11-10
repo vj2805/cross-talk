@@ -15,23 +15,22 @@ function getReturnUrl() {
 
 async function getCustomerStripeId(userId: string) {
   const snapshot = await adminRepo.collection("customers").doc(userId).get()
-  const stripeId = snapshot.data()?.stripeId
-  if (!stripeId) {
-    throw new Error(
-      `[manageSubscription] No customer record found with id (${userId})`
-    )
-  }
-  return stripeId
+  return snapshot.data()?.stripeId
 }
 
 export async function manageSubscription() {
   const user = await getServerUser()
-
   if (!user) {
     throw new Error("[manageSubscription] User is null")
   }
 
   const stripeId = await getCustomerStripeId(user.id)
+  if (!stripeId) {
+    throw new Error(
+      `[manageSubscription] No customer record found with id (${user.id})`
+    )
+  }
+
   const returnUrl = getReturnUrl()
   const stripeSession = await createBillingPortalSession(stripeId, returnUrl)
 

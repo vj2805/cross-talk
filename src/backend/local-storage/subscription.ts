@@ -1,6 +1,5 @@
 import { getFromStorage, setToStorage } from "@/utilities/storage"
 import { generateId } from "@/utilities/string"
-import { CheckoutError } from "@/errors/CheckoutError"
 import type { SubscriptionService } from "@/types/SubscriptionService"
 
 const SUBSCRIPTION_KEY = "subscription"
@@ -23,7 +22,7 @@ const localStorageSubscriptionService: SubscriptionService = {
             status: "active",
           })
         } else {
-          onFailure(new CheckoutError("Simulation Failure"))
+          onFailure(new Error("[createCheckout] Simulated Failure!"))
         }
         onDetach()
       }, 1000)

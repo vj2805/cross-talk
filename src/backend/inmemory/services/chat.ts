@@ -1,5 +1,4 @@
 import { generateId } from "@/utilities/string"
-import { ChatError } from "@/errors/ChatError"
 import type { Chat } from "@/types/Chat"
 import type { ChatService } from "@/types/ChatService"
 
@@ -24,7 +23,11 @@ const inMemoryChatSerice: ChatService = {
       setTimeout(() => {
         const chat = chats.find(chat => chat.id === chatId)
         if (!chat) {
-          reject(new ChatError(chatId, "Does Not Exist"))
+          reject(
+            new Error(
+              `[getParticipantsIds] Chat with id (${chatId}) does not exist!`
+            )
+          )
           return
         }
         resolve(chat.participantsIds)

@@ -7,7 +7,6 @@ import {
   query,
   where,
 } from "firebase/firestore"
-import { ChatError } from "@/errors/ChatError"
 import { clientRepo } from "../client"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Chat } from "@/types/Chat"
@@ -58,7 +57,9 @@ const firebaseChatService: ChatService = {
     const chat = await getDoc(chatRef(chatId))
     const data = chat.data()
     if (!data) {
-      throw new ChatError(chatId, "Does Not Exist")
+      throw new Error(
+        `[getParticipantsIds] Chat with id ${chatId} does not exist!`
+      )
     }
     return data.participantsIds
   },

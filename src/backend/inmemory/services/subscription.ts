@@ -1,5 +1,4 @@
 import { generateId } from "@/utilities/string"
-import { CheckoutError } from "@/errors/CheckoutError"
 import type { Subscription } from "@/types/Subscription"
 import type { SubscriptionService } from "@/types/SubscriptionService"
 
@@ -52,7 +51,7 @@ const inMemorySubscriptionService: SubscriptionService = {
             status: "active",
           })
         } else {
-          onFailure(new CheckoutError("Simulation Failure"))
+          onFailure(new Error("[createCheckout] Simulated Failure!"))
         }
         onDetach()
       }, 1000)

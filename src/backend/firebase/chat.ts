@@ -7,11 +7,11 @@ import {
   query,
   where,
 } from "firebase/firestore"
-import { clientRepo } from "@backend/firebase/client"
-import { ChatError } from "@errors/ChatError"
+import { ChatError } from "@/errors/ChatError"
+import { clientRepo } from "./config/client"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import type { Chat } from "../../types/Chat"
-import type { ChatService } from "../../types/ChatService"
+import type { Chat } from "@/types/Chat"
+import type { ChatService } from "@/types/ChatService"
 
 const chatConverter: FirestoreDataConverter<Chat> = {
   fromFirestore(snapshot, options) {
@@ -45,34 +45,27 @@ function participatingChatsRef(participantId: string) {
   )
 }
 
-const createChat: ChatService["createChat"] = async adminId => {
-  const chatRef = await addDoc(chatsRef(), {
-    adminId: adminId,
-    id: "",
-    participantsIds: [adminId],
-  })
-  return chatRef.id
-}
-
-const getParticipantsIds: ChatService["getParticipantsIds"] = async chatId => {
-  const chat = await getDoc(chatRef(chatId))
-  const data = chat.data()
-  if (!data) {
-    throw new ChatError(chatId, "Does Not Exist")
-  }
-  return data.participantsIds
-}
-
-const getParticipatingChats: ChatService["getParticipatingChats"] =
-  async userId => {
+const firebaseChatService: ChatService = {
+  async createChat(adminId) {
+    const chatRef = await addDoc(chatsRef(), {
+      adminId: adminId,
+      id: "",
+      participantsIds: [adminId],
+    })
+    return chatRef.id
+  },
+  async getParticipantsIds(chatId) {
+    const chat = await getDoc(chatRef(chatId))
+    const data = chat.data()
+    if (!data) {
+      throw new ChatError(chatId, "Does Not Exist")
+    }
+    return data.participantsIds
+  },
+  async getParticipatingChats(userId) {
     const snapshot = await getDocs(participatingChatsRef(userId))
     return snapshot.docs.map(doc => doc.data())
-  }
-
-export function createFirestoreChatService(): ChatService {
-  return {
-    createChat,
-    getParticipantsIds,
-    getParticipatingChats,
-  }
+  },
 }
+
+export default firebaseChatService

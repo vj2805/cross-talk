@@ -8,10 +8,10 @@ import {
   query,
   serverTimestamp,
 } from "firebase/firestore"
-import { clientRepo } from "@backend/firebase/client"
+import { clientRepo } from "./config/client"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import type { Message } from "../../types/Message"
-import type { MessageService } from "../../types/MessageService"
+import type { Message } from "@/types/Message"
+import type { MessageService } from "@/types/MessageService"
 
 const messageConverter: FirestoreDataConverter<Message> = {
   fromFirestore(snapshot, options) {
@@ -51,42 +51,33 @@ function lastMessageRef(chatId: string) {
   return query(messagesRef(chatId), orderBy("timestamp", "desc"), limit(1))
 }
 
-const getLastMessage: MessageService["getLastMessage"] = async chatId => {
-  const snapshot = await getDocs(lastMessageRef(chatId))
-  if (snapshot.empty) {
-    return undefined
-  }
-  return snapshot.docs[0].data()
+const firebaseMessageService: MessageService = {
+  async getLastMessage(chatId) {
+    const snapshot = await getDocs(lastMessageRef(chatId))
+    if (snapshot.empty) {
+      return undefined
+    }
+    return snapshot.docs[0].data()
+  },
+
+  async getMessages(chatId) {
+    const snapshot = await getDocs(sortedMessagesRef(chatId))
+    return snapshot.docs.map(doc => doc.data())
+  },
+
+  async getMessagesCount(chatId) {
+    const snapshot = await getCountFromServer(limitedMessagesRef(chatId))
+    return snapshot.data().count
+  },
+
+  async postMessage(chatId: string, input: string, user: Message["user"]) {
+    await addDoc(messagesRef(chatId), {
+      id: "",
+      input,
+      localeTimeString: serverTimestamp(),
+      user,
+    })
+  },
 }
 
-const getMessages: MessageService["getMessages"] = async chatId => {
-  const snapshot = await getDocs(sortedMessagesRef(chatId))
-  return snapshot.docs.map(doc => doc.data())
-}
-
-const getMessagesCount: MessageService["getMessagesCount"] = async chatId => {
-  const snapshot = await getCountFromServer(limitedMessagesRef(chatId))
-  return snapshot.data().count
-}
-
-const postMessage: MessageService["postMessage"] = async (
-  chatId: string,
-  input: string,
-  user: Message["user"]
-) => {
-  await addDoc(messagesRef(chatId), {
-    id: "",
-    input,
-    localeTimeString: serverTimestamp(),
-    user,
-  })
-}
-
-export default function createFirestoreMessageService(): MessageService {
-  return {
-    getLastMessage,
-    getMessages,
-    getMessagesCount,
-    postMessage,
-  }
-}
+export default firebaseMessageService

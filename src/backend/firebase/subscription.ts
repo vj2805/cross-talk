@@ -5,10 +5,10 @@ import {
   query,
   where,
 } from "firebase/firestore"
-import { clientRepo } from "@backend/firebase/client"
+import { clientRepo } from "./config/client"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import type { Subscription } from "../../types/Subscription"
-import type { SubscriptionService } from "../../types/SubscriptionService"
+import type { Subscription } from "@/types/Subscription"
+import type { SubscriptionService } from "@/types/SubscriptionService"
 
 const subscriptionConverter: FirestoreDataConverter<Subscription> = {
   fromFirestore(snapshot, options) {
@@ -69,6 +69,6 @@ const syncSubscription: SubscriptionService["syncSubscription"] = (
   })
 }
 
-export default function createFirestoreSubscriptionService(): SubscriptionService {
+export function createFirestoreSubscriptionService(): SubscriptionService {
   return { createCheckout, syncSubscription }
 }

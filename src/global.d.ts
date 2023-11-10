@@ -8,8 +8,8 @@ declare global {
   type WithId<T extends object> = Omit<T, "id"> & { id: string }
   type Observable<T> =
     | { status: "error"; error: Error }
-    | { status: "idle"; data: Nullish<T> }
-    | { status: "initial"; data: T }
+    | { status: "idle"; value: Nullish<T> }
+    | { status: "initial"; value: T }
     | { status: "loading" }
   namespace React {
     type Nodes<T extends string> = Record<T, React.ReactNode>

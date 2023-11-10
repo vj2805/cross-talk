@@ -1,12 +1,12 @@
-export interface PriceTier {
+import type { Model } from "./Model"
+
+export interface PriceTier extends Model {
   description: string
   features: string[]
   href: string
-  id: string
   priceMonthly?: PriceMonthly
 }
 
-export interface PriceMonthly {
+export interface PriceMonthly extends Model {
   cost: string
-  id: string
 }

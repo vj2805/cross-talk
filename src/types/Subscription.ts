@@ -1,7 +1,9 @@
 // import type { DocumentReference, Timestamp } from "firebase/firestore"
 // import type Stripe from "stripe"
 
-export interface Subscription {
+import type { Model } from "./Model"
+
+export interface Subscription extends Model {
   // cancel_at: Nullish<Timestamp>
   // cancel_at_period_end: boolean
   // cancelled_at: Nullish<Timestamp>
@@ -9,7 +11,6 @@ export interface Subscription {
   // current_period_end: Timestamp
   // current_period_start: Timestamp
   // ended_at: Nullish<Timestamp>
-  id?: string
   // items: Stripe.SubscriptionItem[]
   // latest_invoice?: string
   // metadata: Record<string, string>

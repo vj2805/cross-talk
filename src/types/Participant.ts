@@ -1,6 +1,7 @@
-export interface Participant {
+import type { Model } from "./Model"
+
+export interface Participant extends Model {
   email: string
-  id: string
   image: string
   name: string
 }

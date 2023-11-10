@@ -1,9 +1,9 @@
 import NextAuth, { getServerSession } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { env } from "@env"
-import createAuthService from "./InMemoryAuthService"
+import createAuthService from "@/backend/inmemory/InMemoryAuthService"
 import type { NextAuthOptions } from "next-auth"
-import type { AuthService } from "./AuthService"
+import type { AuthService } from "@/types/AuthService"
 
 const { createAuthAdapter, createAuthToken }: AuthService = createAuthService()
 

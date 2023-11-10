@@ -1,7 +1,7 @@
-import createMessageService from "./InMemoryMessageService"
-import type { MessageService } from "./MessageService"
+import createMessageService from "@/backend/inmemory/InMemoryMessageService"
+import type { MessageService } from "@/types/MessageService"
 
-export type { Message } from "./Message"
+export type { Message } from "@/types/Message"
 
 export const {
   getLastMessage,

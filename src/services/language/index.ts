@@ -1,7 +1,7 @@
-import createInMemoryLanguageService from "./InMemoryLanguageService"
-import type { LanguageService } from "./LanguageService"
+import createInMemoryLanguageService from "@/backend/inmemory/InMemoryLanguageService"
+import type { LanguageService } from "@/types/LanguageService"
 
-export type { Language, LanguageCode } from "./Language"
+export type { Language, LanguageCode } from "@/types/Language"
 
 export const {
   getLanguageCodes,

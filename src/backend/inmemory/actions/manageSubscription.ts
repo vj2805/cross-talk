@@ -1,7 +1,7 @@
 "use server"
 
-import { getServerUser } from "@services/auth"
-import { subscriptions } from "@backend/inmemory/InMemorySubscriptionService"
+import { getServerUser } from "@/services/auth"
+import { subscriptions } from "@/backend/inmemory/services/subscription"
 
 export async function manageSubscription() {
   const user = await getServerUser()

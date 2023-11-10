@@ -1,7 +1,7 @@
-import type { PricingService } from "../../types/PricingService"
-import type { PriceTier } from "../../types/PriceTier"
+import type { PricingService } from "@/types/PricingService"
+import type { PriceTier } from "@/types/PriceTier"
 
-const pricingTiers: PriceTier[] = [
+const priceTiers: PriceTier[] = [
   {
     description: "Get chatting right away with anyone, anywhere!",
     features: [
@@ -34,10 +34,10 @@ const pricingTiers: PriceTier[] = [
   },
 ]
 
-export const getPricingTiers: PricingService["getPricingTiers"] = async () => {
-  return pricingTiers
+const inMemoryPricingService: PricingService = {
+  async getPricingTiers() {
+    return priceTiers
+  },
 }
 
-export default function createInMemoryPricingService(): PricingService {
-  return { getPricingTiers }
-}
+export default inMemoryPricingService

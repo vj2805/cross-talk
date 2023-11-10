@@ -1,37 +1,21 @@
-import { create } from "zustand"
-import type { Language, LanguageCode } from "@/types/Language"
+import { createWithEqualityFn } from "zustand/traditional"
+import type { AvailableLanguages, Language } from "@/types/Language"
 
 type LanguageStore = {
-  availableLanguages: Uncertain<Language[]>
-  languageCodes: Uncertain<Record<Language, LanguageCode>>
-  languagesInFree: Uncertain<Language[]>
-  languagesOnlyInPro: Uncertain<Language[]>
+  availableLanguages: Observable<AvailableLanguages>
   preferredLanguage: Language
 }
 
-export const useLanguageStore = create<LanguageStore>(() => ({
-  availableLanguages: undefined,
-  languageCodes: undefined,
-  languagesInFree: undefined,
-  languagesOnlyInPro: undefined,
+export const useLanguageStore = createWithEqualityFn<LanguageStore>(() => ({
+  availableLanguages: { status: "loading" },
   preferredLanguage: "English",
 }))
 
-export function setLanguageCodes(
-  languageCodes: Record<Language, LanguageCode>
-) {
+export function setAvailableLanguages(availableLanguages: AvailableLanguages) {
   useLanguageStore.setState({
-    availableLanguages: Object.keys(languageCodes) as Language[],
-    languageCodes,
+    availableLanguages: { status: "idle", value: availableLanguages },
+    preferredLanguage: availableLanguages.free[0],
   })
-}
-
-export function setLanguagesInFree(languagesInFree: Language[]) {
-  useLanguageStore.setState({ languagesInFree })
-}
-
-export function setLanguagesOnlyInPro(languagesOnlyInPro: Language[]) {
-  useLanguageStore.setState({ languagesOnlyInPro })
 }
 
 export function setPreferredLanguage(preferredLanguage: Language) {

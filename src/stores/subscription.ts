@@ -1,19 +1,10 @@
 import { create } from "zustand"
 import type { Subscription } from "@/types/Subscription"
 
-type SubscriptionStore = {
-  isPro: boolean
-  subscription: Optional<Subscription>
-}
-
-export const useSubscriptionStore = create<SubscriptionStore>(() => ({
-  isPro: false,
-  subscription: undefined,
+export const useSubscriptionStore = create<Observable<Subscription>>(() => ({
+  status: "loading",
 }))
 
 export function setSubscription(subscription: Nullish<Subscription>) {
-  useSubscriptionStore.setState({
-    isPro: subscription?.status === "active",
-    subscription,
-  })
+  useSubscriptionStore.setState({ status: "idle", value: subscription })
 }

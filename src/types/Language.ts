@@ -16,3 +16,8 @@ export const LANGUAGE_CODES = {
 } as const
 
 export const AVAILABLE_LANGUAGES = Object.keys(LANGUAGE_CODES) as Language[]
+
+export type AvailableLanguages = {
+  free: Language[]
+  pro: Language[]
+}

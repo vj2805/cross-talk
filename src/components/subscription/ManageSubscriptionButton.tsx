@@ -9,8 +9,11 @@ export const ManageSubscriptionButton: React.FC = () => {
     }
   }
   return (
-    <form action={onSubmit}>
-      <button>Manage Subscription</button>
+    <form
+      action={onSubmit}
+      className="flex"
+    >
+      <button className="flex-1">Manage Subscription</button>
     </form>
   )
 }

@@ -1,27 +1,15 @@
-import { useEffect, useState } from "react"
-import { getParticipantsIds } from "@/services/chat"
-import { useProcess } from "./useProcess"
+import { useEffect } from "react"
+import { subscribeToParticipantsIds } from "@/services/chat"
+import { useObservableArray } from "./useObservable"
 
 export function useParticipantsIds(chatId: string) {
-  const { error, processing, setError, startProcess, stopProcess } =
-    useProcess()
-  const [participantsIds, setParticipantsIds] =
-    useState<Uncertain<string[]>>(undefined)
+  const [participantsIds, setParticipantsIds, setError] =
+    useObservableArray<string>()
 
-  useEffect(() => {
-    async function fetchParticipantsIds() {
-      startProcess()
-      try {
-        setParticipantsIds(await getParticipantsIds(chatId))
-      } catch (error) {
-        setError(error as Error)
-        setParticipantsIds(undefined)
-      } finally {
-        stopProcess()
-      }
-    }
-    fetchParticipantsIds()
-  }, [chatId, setError, startProcess, stopProcess])
+  useEffect(
+    () => subscribeToParticipantsIds(chatId, setParticipantsIds, setError),
+    [chatId, setParticipantsIds, setError]
+  )
 
-  return [participantsIds, processing, error] as const
+  return participantsIds
 }

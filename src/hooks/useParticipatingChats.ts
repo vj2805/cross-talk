@@ -1,28 +1,19 @@
-import { useEffect, useState } from "react"
-import { getParticipatingChats } from "@/services/chat"
+import { useEffect } from "react"
+import {
+  getParticipatingChats,
+  subscribeToParticipatingChats,
+} from "@/services/chat"
+import { useObservableArray } from "./useObservable"
 import { useProcess } from "./useProcess"
 import type { Chat } from "@/types/Chat"
 
 export function useParticipatingChats(userId: string, initialChats: Chat[]) {
-  const { error, processing, setError, startProcess, stopProcess } =
-    useProcess()
+  const [chats, setChats, setError] = useObservableArray<Chat>(initialChats)
 
-  const [chats, setChats] = useState<Uncertain<Chat[]>>(initialChats)
+  useEffect(
+    () => subscribeToParticipatingChats(userId, setChats, setError),
+    [userId, setChats, setError]
+  )
 
-  useEffect(() => {
-    async function fetchParticipatingChats() {
-      startProcess()
-      try {
-        setChats(await getParticipatingChats(userId))
-      } catch (error) {
-        setError(error as Error)
-        setChats(undefined)
-      } finally {
-        stopProcess()
-      }
-    }
-    fetchParticipatingChats()
-  }, [userId, setError, startProcess, stopProcess])
-
-  return [chats, processing, error] as const
+  return chats
 }

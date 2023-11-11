@@ -58,3 +58,12 @@ export function dismissToast(id: Toast["id"], delay: number) {
     }))
   }, delay)
 }
+
+export function showErrorToast(error: Error) {
+  return showToast({
+    description: error.message,
+    duration: 2000,
+    title: error.name,
+    variant: "destructive",
+  })
+}

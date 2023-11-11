@@ -1,1 +1,1 @@
-export { manageSubscription } from "@/backend/inmemory/actions/manageSubscription"
+export { manageSubscription } from "./internal/inmemory/manageSubscription"

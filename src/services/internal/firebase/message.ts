@@ -10,9 +10,9 @@ import {
   serverTimestamp,
 } from "firebase/firestore"
 import { clientRepo } from "@/backend/firebase/client"
-import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Message } from "@/types/Message"
 import type { MessageService } from "@/types/MessageService"
+import type { FirestoreDataConverter } from "firebase/firestore"
 
 const messageConverter: FirestoreDataConverter<Message> = {
   fromFirestore(snapshot, options) {
@@ -79,10 +79,19 @@ const firebaseMessageService: MessageService = {
       user,
     })
   },
-  subscribeToMessages(chatId, onChange) {
-    return onSnapshot(messagesRef(chatId), snapshot => {
-      onChange(snapshot.docs.map(doc => doc.data()))
-    })
+  subscribeToLastMessage(chatId, onChange, onError) {
+    return onSnapshot(
+      lastMessageRef(chatId),
+      snapshot => onChange(snapshot.docs[0]?.data()),
+      onError
+    )
+  },
+  subscribeToMessages(chatId, onChange, onError) {
+    return onSnapshot(
+      messagesRef(chatId),
+      snapshot => onChange(snapshot.docs.map(doc => doc.data())),
+      onError
+    )
   },
 }
 

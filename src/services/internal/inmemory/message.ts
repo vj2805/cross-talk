@@ -1,9 +1,9 @@
-import { createStore } from "zustand/vanilla"
 import { subscribeWithSelector } from "zustand/middleware"
+import { createStore } from "zustand/vanilla"
 import { generateId } from "@/utilities/string"
+import type { Chat } from "@/types/Chat"
 import type { Message } from "@/types/Message"
 import type { MessageService } from "@/types/MessageService"
-import type { Chat } from "@/types/Chat"
 
 const {
   getState: getMessages,
@@ -49,6 +49,9 @@ const inMemoryMessageService: MessageService = {
         resolve()
       }, 1000)
     })
+  },
+  subscribeToLastMessage(chatId, onChange) {
+    return subscribe(store => store[chatId]?.[0], onChange)
   },
   subscribeToMessages(chatId, onChange) {
     return subscribe(store => store[chatId] ?? [], onChange)

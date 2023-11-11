@@ -12,8 +12,14 @@ export interface MessageService {
     input: Message["input"],
     user: Message["user"]
   ) => Promise<void>
+  subscribeToLastMessage: (
+    chatId: Chat["id"],
+    onChange: Consumer<Uncertain<Message>>,
+    onError: Consumer<Error>
+  ) => Unsubscribe
   subscribeToMessages: (
     chatId: Chat["id"],
-    onChange: Consumer<Message[]>
+    onChange: Consumer<Message[]>,
+    onError: Consumer<Error>
   ) => Unsubscribe
 }

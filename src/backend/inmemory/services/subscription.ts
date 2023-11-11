@@ -4,16 +4,21 @@ import type { User } from "@/types/User"
 import type { Subscription } from "@/types/Subscription"
 import type { SubscriptionService } from "@/types/SubscriptionService"
 
-type SubscriptionStore = Record<User["id"], Subscription[]>
-
 export const {
   getState: getSubscriptions,
   setState: setSubscription,
   subscribe,
-} = createStore<SubscriptionStore>()(subscribeWithSelector(() => ({})))
+} = createStore<Record<User["id"], Subscription[]>>()(
+  subscribeWithSelector(() => ({}))
+)
 
 const inMemorySubscriptionService: SubscriptionService = {
   syncSubscription(userId, onChange) {
+    onChange(
+      getSubscriptions()[userId]?.find(
+        subscription => subscription.status === "active"
+      ) ?? null
+    )
     return subscribe(
       store =>
         store[userId]?.find(subscription => subscription.status === "active"),

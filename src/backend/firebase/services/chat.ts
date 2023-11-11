@@ -4,6 +4,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  onSnapshot,
   query,
   where,
 } from "firebase/firestore"
@@ -66,6 +67,11 @@ const firebaseChatService: ChatService = {
   async getParticipatingChats(userId) {
     const snapshot = await getDocs(participatingChatsRef(userId))
     return snapshot.docs.map(doc => doc.data())
+  },
+  subscribeToParticipatingChats(userId, onChange) {
+    return onSnapshot(participatingChatsRef(userId), snapshot => {
+      onChange(snapshot.docs.map(doc => doc.data()))
+    })
   },
 }
 

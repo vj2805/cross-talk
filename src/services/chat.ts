@@ -5,4 +5,5 @@ export const {
   createChat,
   getParticipantsIds,
   getParticipatingChats,
+  subscribeToParticipatingChats,
 }: ChatService = chatService

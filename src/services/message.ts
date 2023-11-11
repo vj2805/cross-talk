@@ -6,4 +6,5 @@ export const {
   getMessages,
   getMessagesCount,
   postMessage,
+  subscribeToMessages,
 }: MessageService = messageService

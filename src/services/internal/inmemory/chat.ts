@@ -1,5 +1,6 @@
 import { createStore } from "zustand/vanilla"
 import { subscribeWithSelector } from "zustand/middleware"
+import { shallow } from "zustand/shallow"
 import { generateId } from "@/utilities/string"
 import type { Chat } from "@/types/Chat"
 import type { ChatService } from "@/types/ChatService"
@@ -59,11 +60,29 @@ const inMemoryChatSerice: ChatService = {
       }, 1000)
     })
   },
+  subscribeToParticipantsIds(chatId, onChange, onError) {
+    return subscribe(
+      ({ chats }) => chats.find(chat => chat.id === chatId),
+      chat => {
+        if (!chat) {
+          return onError(new Error(`Chat with id (${chatId}) does not exist!`))
+        }
+        return onChange(chat.participantsIds)
+      },
+      {
+        fireImmediately: true,
+      }
+    )
+  },
   subscribeToParticipatingChats(userId, onChange) {
     return subscribe(
       ({ chats }) =>
         chats.filter(chat => chat.participantsIds.includes(userId)),
-      onChange
+      onChange,
+      {
+        equalityFn: shallow,
+        fireImmediately: true,
+      }
     )
   },
 }

@@ -5,7 +5,7 @@ import { useCheckout } from "@/hooks/useCheckout"
 import { useSubscription } from "@/hooks/useSubscription"
 import { useUser } from "@/hooks/useUser"
 import { cn } from "@/utilities/string"
-import { ManageSubscriptionButton } from "./ManageSubscriptionButton"
+import { ManageSubscriptionButton } from "../subscription/ManageSubscriptionButton"
 
 interface CheckoutButtonProps {
   priceId: string

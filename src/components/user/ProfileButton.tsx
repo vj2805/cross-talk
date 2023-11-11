@@ -1,5 +1,6 @@
 "use client"
 
+import { signOut } from "next-auth/react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +13,6 @@ import {
 import { StarIcon } from "@/components/ui/icons"
 import { useIsPro } from "@/hooks/useIsPro"
 import { useSubscription } from "@/hooks/useSubscription"
-import { signOut } from "@/services/user"
 import { cn } from "@/utilities/string"
 import { SignInButton } from "./SignInButton"
 import { UserAvatar } from "./UserAvatar"

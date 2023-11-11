@@ -1,3 +1,4 @@
+import type { OnChangeHandler } from "./OnChangeHandler"
 import type { Checkout } from "./Checkout"
 import type { Unsubscribe } from "./Unsubscribe"
 import type { User } from "./User"
@@ -10,6 +11,6 @@ export interface PaymentService {
   subscribeToPaymentCheckout: (
     userId: User["id"],
     checkoutId: Checkout["id"],
-    onChange: (checkout: Checkout) => void
+    onChange: OnChangeHandler<Checkout>
   ) => Unsubscribe
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getMessages } from "@/services/message"
+import { subscribeToMessages } from "@/services/message"
 import { useProcess } from "./useProcess"
 import type { Message } from "@/types/Message"
 
@@ -7,22 +7,15 @@ export function useMessages(chatId: string, initialMessages: Message[]) {
   const { error, processing, setError, startProcess, stopProcess } =
     useProcess()
 
-  const [messages, setMessages] =
-    useState<Uncertain<Message[]>>(initialMessages)
+  const [messages, setMessages] = useState<ObservableArray<Message>>({
+    status: "initial",
+    value: initialMessages,
+  })
 
   useEffect(() => {
-    async function fetchMessages() {
-      startProcess()
-      try {
-        setMessages(await getMessages(chatId))
-      } catch (error) {
-        setError(error as Error)
-        setMessages(undefined)
-      } finally {
-        stopProcess()
-      }
-    }
-    fetchMessages()
+    return subscribeToMessages(chatId, messages =>
+      setMessages({ status: "idle", value: messages })
+    )
   }, [chatId, startProcess, setError, stopProcess])
 
   return [messages, processing, error] as const

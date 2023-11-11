@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { cn } from "@utilities/string"
+import { cn } from "@/utilities/string"
 import { PrimitiveLabel } from "./primitives"
 
 export const Label = React.forwardRef<

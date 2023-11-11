@@ -13,7 +13,7 @@ import { useToasts } from "./use-toast"
 export const Toaster: React.FC = () => {
   const toasts = useToasts()
   return (
-    <ToastProvider>
+    <ToastProvider duration={1000}>
       {toasts.map(({ id, title, description, action, ...props }) => (
         <Toast
           key={id}

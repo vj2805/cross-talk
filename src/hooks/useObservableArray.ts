@@ -1,10 +1,14 @@
 import { useCallback, useState } from "react"
 
-export function useObservableArray<T>(initialValue: T[]) {
-  const [observable, set] = useState<ObservableArray<T>>({
-    status: "initial",
-    value: initialValue,
-  })
+export function useObservableArray<T>(initialValue?: T[]) {
+  const [observable, set] = useState<ObservableArray<T>>(
+    initialValue
+      ? {
+          status: "idle",
+          value: initialValue,
+        }
+      : { status: "loading" }
+  )
 
   const setValue = useCallback(
     (value: T[]) => set({ status: "idle", value }),

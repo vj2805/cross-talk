@@ -26,7 +26,8 @@ export function useCheckout(userId: Uncertain<string>, priceId: string) {
             return
           }
           if (checkout.response.status === "success") {
-            window.location.assign(checkout.response.url)
+            checkout.response.url &&
+              window.location.assign(checkout.response.url)
           }
           if (checkout.response.status === "failure") {
             setError(checkout.response.error)

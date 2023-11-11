@@ -1,27 +1,16 @@
-import { useEffect, useState } from "react"
-import { getLastMessage } from "@/services/message"
-import { useProcess } from "./useProcess"
+import { useEffect } from "react"
+import { subscribeToLastMessage } from "@/services/message"
+import { useObservable } from "./useObservable"
 import type { Message } from "@/types/Message"
 
 export function useLastMessage(chatId: string) {
-  const { error, processing, setError, startProcess, stopProcess } =
-    useProcess()
+  const [lastMessage, setLastMessage, setError] =
+    useObservable<Uncertain<Message>>()
 
-  const [lastMessage, setLastMessage] = useState<Uncertain<Message>>(undefined)
+  useEffect(
+    () => subscribeToLastMessage(chatId, setLastMessage, setError),
+    [chatId, setLastMessage, setError]
+  )
 
-  useEffect(() => {
-    async function fetchLastMessage() {
-      startProcess()
-      try {
-        setLastMessage(await getLastMessage(chatId))
-      } catch (error) {
-        setError(error as Error)
-        setLastMessage(undefined)
-      } finally {
-        stopProcess()
-      }
-    }
-  }, [chatId, startProcess, setError, stopProcess])
-
-  return [lastMessage, processing, error] as const
+  return lastMessage
 }

@@ -1,5 +1,5 @@
 import { collection, doc } from "firebase/firestore"
-import { clientRepo } from "../client"
+import { clientRepo } from "@/backend/firebase/client"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Participant } from "@/types/Participant"
 import type { ParticipantService } from "@/types/ParticipantService"

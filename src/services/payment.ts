@@ -1,4 +1,4 @@
-import { paymentService } from "@/backend"
+import { paymentService } from "./internal"
 import type { PaymentService } from "@/types/PaymentService"
 
 export const {

@@ -1,4 +1,4 @@
-import { messageService } from "@/backend"
+import { messageService } from "./internal"
 import type { MessageService } from "@/types/MessageService"
 
 export const {

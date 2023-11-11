@@ -9,7 +9,7 @@ import {
   query,
   serverTimestamp,
 } from "firebase/firestore"
-import { clientRepo } from "../client"
+import { clientRepo } from "@/backend/firebase/client"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Message } from "@/types/Message"
 import type { MessageService } from "@/types/MessageService"

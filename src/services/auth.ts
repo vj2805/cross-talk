@@ -1,7 +1,7 @@
-import NextAuth, { getServerSession } from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
-import { authService } from "@/backend"
+import { default as NextAuth, getServerSession } from "next-auth"
+import { default as GoogleProvider } from "next-auth/providers/google"
 import { env } from "@/env"
+import { authService } from "./internal"
 import type { AuthService } from "@/types/AuthService"
 import type { NextAuthOptions } from "next-auth"
 

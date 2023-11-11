@@ -1,4 +1,4 @@
-import { chatService } from "@/backend"
+import { chatService } from "./internal"
 import type { ChatService } from "@/types/ChatService"
 
 export const {

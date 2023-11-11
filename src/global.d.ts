@@ -17,7 +17,6 @@ declare global {
       }
     | { status: "loading" }
   >
-  type ObservableArray<T> = Observable<T[]>
   namespace React {
     type Nodes<T extends string> = Record<T, React.ReactNode>
     type PropsWithRequiredChildren = Required<React.PropsWithChildren>

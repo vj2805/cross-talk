@@ -1,13 +1,13 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { Spinner } from "@/components/ui"
+import { Spinner, showErrorToast } from "@/components/ui"
 import { MessageCircleIcon } from "@/components/ui/icons"
+import { UserAvatar } from "@/components/user/UserAvatar"
 import { useMessages } from "@/hooks/useMessages"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
-import { cn } from "@/utilities/string"
 import { getLanguageCode } from "@/utilities/language"
-import { UserAvatar } from "../user/UserAvatar"
+import { cn } from "@/utilities/string"
 import type { Message } from "@/types/Message"
 import type { User } from "next-auth"
 
@@ -24,17 +24,21 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
 }) => {
   const language = usePreferredLanguage()
   const messagesEndRef = useRef<React.ElementRef<"div">>(null)
-  const [messages, loading] = useMessages(chatId, initialMessages)
+  const messages = useMessages(chatId, initialMessages)
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
 
-  if (loading) {
+  if (messages.status === "loading") {
     return null
   }
 
-  if (messages?.length === 0) {
+  if (messages.status === "error") {
+    return void showErrorToast(messages.error)
+  }
+
+  if (messages.value.length === 0) {
     return (
       <div className="p-5">
         <div
@@ -62,7 +66,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
 
   return (
     <div className="p-5">
-      {messages?.map(message => {
+      {messages.value.map(message => {
         const isSender = message.user.id === user.id
         return (
           <div

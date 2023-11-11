@@ -26,4 +26,9 @@ export { Skeleton } from "./skeleton"
 export { Spinner } from "./spinner"
 export { ToastAction } from "./toast"
 export { Toaster } from "./toaster"
-export { dismissToast, showToast, updateToast } from "./use-toast"
+export {
+  dismissToast,
+  showErrorToast,
+  showToast,
+  updateToast,
+} from "./use-toast"

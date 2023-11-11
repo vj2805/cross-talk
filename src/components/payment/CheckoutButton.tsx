@@ -1,11 +1,11 @@
 "use client"
 
+import { ManageSubscriptionButton } from "@/components/subscription/ManageSubscriptionButton"
 import { Spinner } from "@/components/ui"
 import { useCheckout } from "@/hooks/useCheckout"
 import { useSubscription } from "@/hooks/useSubscription"
 import { useUser } from "@/hooks/useUser"
 import { cn } from "@/utilities/string"
-import { ManageSubscriptionButton } from "../subscription/ManageSubscriptionButton"
 
 interface CheckoutButtonProps {
   priceId: string

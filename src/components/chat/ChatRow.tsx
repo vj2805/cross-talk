@@ -1,13 +1,13 @@
 "use client"
 
-import { Skeleton } from "@/components/ui"
+import { Skeleton, showErrorToast } from "@/components/ui"
+import { UserAvatar } from "@/components/user/UserAvatar"
 import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { useUser } from "@/hooks/useUser"
-import { cn, prettifyId } from "@/utilities/string"
 import { getLanguageCode } from "@/utilities/language"
-import { UserAvatar } from "../user/UserAvatar"
+import { cn, prettifyId } from "@/utilities/string"
 import type { Chat } from "@/types/Chat"
 
 interface ChatRowProps {
@@ -15,12 +15,12 @@ interface ChatRowProps {
 }
 
 export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
-  const [message, loading] = useLastMessage(chatId)
+  const lastMessage = useLastMessage(chatId)
   const user = useUser()
   const language = usePreferredLanguage()
   const router = useRouter()
 
-  if (loading) {
+  if (lastMessage.status === "loading") {
     return (
       <div className={cn("p-5", "flex items-center space-x-2")}>
         <Skeleton className={cn("h-12 w-12", "rounded-full")} />
@@ -30,6 +30,10 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
         </div>
       </div>
     )
+  }
+
+  if (lastMessage.status === "error") {
+    return void showErrorToast(lastMessage.error)
   }
 
   return (
@@ -43,23 +47,23 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
       )}
     >
       <UserAvatar
-        name={message?.user.name || user?.name}
-        image={message?.user.image || user?.image}
+        name={lastMessage.value?.user.name || user?.name}
+        image={lastMessage.value?.user.image || user?.image}
       />
       <div className="flex-1">
         <p className="font-bold">
-          {message
-            ? (message.user.name ?? user?.name)?.split(" ")[0]
+          {lastMessage
+            ? (lastMessage.value?.user.name ?? user?.name)?.split(" ")[0]
             : "New Chat"}
         </p>
         <p className="text-gray-400 line-clamp-1">
-          {message?.translated?.[getLanguageCode(language)] ??
+          {lastMessage.value?.translated?.[getLanguageCode(language)] ??
             "Get the conversation started..."}
         </p>
       </div>
       <div className="text-xs text-gray-400 text-right">
         <p className="mb-auto">
-          {message?.localeTimeString ?? "No messages yet"}
+          {lastMessage.value?.localeTimeString ?? "No messages yet"}
         </p>
         <p className="">Chat #{prettifyId(chatId)}...</p>
       </div>

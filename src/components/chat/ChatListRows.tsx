@@ -1,5 +1,6 @@
 "use client"
 
+import { showErrorToast } from "@/components/ui"
 import { MessageSquareIcon } from "@/components/ui/icons"
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
 import { useUser } from "@/hooks/useUser"
@@ -14,13 +15,17 @@ interface ChatListRowsProps {
 
 export const ChatListRows: React.FC<ChatListRowsProps> = ({ initialChats }) => {
   const user = useUser()
-  const [chats, loading] = useParticipatingChats(user?.id!, initialChats)
+  const chats = useParticipatingChats(user?.id!, initialChats)
 
-  if (loading || !chats) {
+  if (chats.status === "loading") {
     return null
   }
 
-  if (chats.length === 0) {
+  if (chats.status === "error") {
+    return void showErrorToast(chats.error)
+  }
+
+  if (chats.value.length === 0) {
     return (
       <div
         className={cn(
@@ -40,7 +45,7 @@ export const ChatListRows: React.FC<ChatListRowsProps> = ({ initialChats }) => {
 
   return (
     <div>
-      {chats.map(chat => (
+      {chats.value.map(chat => (
         <ChatRow
           key={chat.id}
           chatId={chat.id}

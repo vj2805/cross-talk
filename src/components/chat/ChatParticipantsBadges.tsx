@@ -1,6 +1,6 @@
 "use client"
 
-import { Spinner } from "@/components/ui"
+import { Spinner, showErrorToast } from "@/components/ui"
 import { useParticipantsIds } from "@/hooks/useParticipantsIds"
 import { cn } from "@/utilities/string"
 
@@ -11,10 +11,14 @@ interface ChatParticipantsBadgesProps {
 export const ChatParticipantsBadges: React.FC<ChatParticipantsBadgesProps> = ({
   chatId,
 }) => {
-  const [participants, admin, loading] = useParticipantsIds(chatId)
+  const participantsIds = useParticipantsIds(chatId)
 
-  if (loading) {
+  if (participantsIds.status === "loading") {
     return <Spinner />
+  }
+
+  if (participantsIds.status === "error") {
+    return void showErrorToast(participantsIds.error)
   }
 
   return (

@@ -4,7 +4,7 @@ import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 import { adminRepo } from "@/backend/firebase/admin"
 import { createBillingPortalSession } from "@/backend/stripe"
-import { env } from "@/env"
+import { env } from "@/configs/env"
 import { getServerUser } from "@/services/auth"
 
 function getReturnUrl() {

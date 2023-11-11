@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { subscribeToMessages } from "@/services/message"
-import { useProcess } from "./useProcess"
+import { useObservableArray } from "./useObservable"
 import type { Message } from "@/types/Message"
 
 export function useMessages(chatId: string, initialMessages: Message[]) {
-  const { error, processing, setError, startProcess, stopProcess } =
-    useProcess()
+  const [messages, setMessages, setError] =
+    useObservableArray<Message>(initialMessages)
 
-  const [messages, setMessages] = useState<ObservableArray<Message>>({
-    status: "initial",
-    value: initialMessages,
-  })
+  useEffect(
+    () => subscribeToMessages(chatId, setMessages, setError),
+    [chatId, setMessages, setError]
+  )
 
-  useEffect(() => {
-    return subscribeToMessages(chatId, messages =>
-      setMessages({ status: "idle", value: messages })
-    )
-  }, [chatId, startProcess, setError, stopProcess])
-
-  return [messages, processing, error] as const
+  return messages
 }

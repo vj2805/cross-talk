@@ -1,3 +1,5 @@
+import type { OnChangeHandler } from "./OnChangeHandler"
+import type { Unsubscribe } from "firebase/auth"
 import type { Chat } from "./Chat"
 import type { Message } from "./Message"
 
@@ -10,4 +12,8 @@ export interface MessageService {
     input: Message["input"],
     user: Message["user"]
   ) => Promise<void>
+  subscribeToMessages: (
+    chatId: Chat["id"],
+    onChange: OnChangeHandler<Message[]>
+  ) => Unsubscribe
 }

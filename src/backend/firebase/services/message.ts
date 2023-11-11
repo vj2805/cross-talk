@@ -4,6 +4,7 @@ import {
   getCountFromServer,
   getDocs,
   limit,
+  onSnapshot,
   orderBy,
   query,
   serverTimestamp,
@@ -76,6 +77,11 @@ const firebaseMessageService: MessageService = {
       input,
       localeTimeString: serverTimestamp(),
       user,
+    })
+  },
+  subscribeToMessages(chatId, onChange) {
+    return onSnapshot(messagesRef(chatId), snapshot => {
+      onChange(snapshot.docs.map(doc => doc.data()))
     })
   },
 }

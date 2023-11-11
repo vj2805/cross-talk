@@ -6,10 +6,11 @@ declare global {
   type Uncertain<T> = T | undefined
   type Optional<T> = T | null | undefined
   type WithId<T extends object> = Omit<T, "id"> & { id: string }
-  type ObservableArray<T> =
+  type ObservableArray<T> = Readonly<
     | { status: "error"; error: Error }
-    | { status: "idle"; (): T }
-    | { status: "initial"; (): T }
+    | { status: "idle"; value: T }
+    | { status: "initial"; value: T }
+  >
   namespace React {
     type Nodes<T extends string> = Record<T, React.ReactNode>
     type PropsWithRequiredChildren = Required<React.PropsWithChildren>

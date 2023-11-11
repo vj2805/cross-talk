@@ -9,7 +9,7 @@ declare global {
   type ObservableArray<T> = Readonly<
     | { status: "error"; error: Error }
     | { status: "idle"; value: T[] }
-    | { status: "initial"; value: T[] }
+    | { status: "loading" }
   >
   namespace React {
     type Nodes<T extends string> = Record<T, React.ReactNode>

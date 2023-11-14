@@ -1,6 +1,6 @@
 import { default as NextAuth, getServerSession } from "next-auth"
 import { default as GoogleProvider } from "next-auth/providers/google"
-import { env } from "@/configs/env"
+import { safeEnv } from "@/configs/safeEnv"
 import { authService } from "./internal"
 import type { AuthService } from "@/types/AuthService"
 import type { NextAuthOptions } from "next-auth"
@@ -26,8 +26,8 @@ const authOptions: NextAuthOptions = {
   },
   providers: [
     GoogleProvider({
-      clientId: env["GOOGLE_CLIENT_ID"],
-      clientSecret: env["GOOGLE_CLIENT_SECRET"],
+      clientId: safeEnv["GOOGLE_CLIENT_ID"],
+      clientSecret: safeEnv["GOOGLE_CLIENT_SECRET"],
     }),
   ],
   session: { strategy: "jwt" },

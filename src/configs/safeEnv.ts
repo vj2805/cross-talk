@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-const EnvSchema = z.object({
+const SafeEnvSchema = z.object({
   FIREBASE_CLIENT_EMAIL: z.string(),
   FIREBASE_PRIVATE_KEY: z.string(),
   FIREBASE_PROJECT_ID: z.string(),
@@ -10,4 +10,4 @@ const EnvSchema = z.object({
   STRIPE_SECRET_KEY: z.string(),
 })
 
-export const env = EnvSchema.parse(process.env)
+export const safeEnv = SafeEnvSchema.parse(process.env)

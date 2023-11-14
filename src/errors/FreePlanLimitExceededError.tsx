@@ -1,6 +1,24 @@
-export class FreePlanLimitExceededError extends Toas {
+import { NextLink, ToastAction } from "@/components/ui"
+import type { ToastableError } from "@/components/ui"
+
+export class FreePlanLimitExceededError
+  extends Error
+  implements ToastableError
+{
   name = "Free Plan Limit Exceeded!"
-  ac
+  action = (
+    <ToastAction
+      altText="Upgrade"
+      asChild
+    >
+      <NextLink
+        prefetch={false}
+        href="/subscribe"
+      >
+        Upgrade to PRO
+      </NextLink>
+    </ToastAction>
+  )
   constructor(code: FreePlanLimitExceededErrorCode) {
     super(
       `You have exceeded the limit of ${code} for the FREE plan. Please upgrade to PRO`

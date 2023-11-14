@@ -2,11 +2,11 @@ import {
   createPaymentCheckout,
   subscribeToPaymentCheckout,
 } from "@/services/payment"
+import { showErrorToast } from "@/components/ui"
 import { useProcess } from "./useProcess"
 
 export function useCheckout(userId: Uncertain<string>, priceId: string) {
-  const { error, processing, setError, startProcess, stopProcess } =
-    useProcess()
+  const { processing, startProcess, stopProcess } = useProcess()
 
   async function createCheckout() {
     if (!userId) {
@@ -29,18 +29,18 @@ export function useCheckout(userId: Uncertain<string>, priceId: string) {
               window.location.assign(checkout.response.url)
           }
           if (checkout.response.status === "failure") {
-            setError(checkout.response.error)
+            showErrorToast(checkout.response.error)
           }
           stopProcess()
           unsubscribe()
         },
-        setError
+        showErrorToast
       )
     } catch (error) {
-      setError(error as Error)
+      showErrorToast(error as Error)
       stopProcess()
     }
   }
 
-  return { createCheckout, error, processing }
+  return { createCheckout, processing }
 }

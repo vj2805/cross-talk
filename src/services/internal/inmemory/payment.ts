@@ -9,7 +9,7 @@ import type { PaymentService } from "@/types/PaymentService"
 const inMemoryPaymentService: PaymentService = {
   createPaymentCheckout(userId, _priceId) {
     return new Promise((resolve, reject) => {
-      const existingCheckouts = getInMemoryState("checkouts")[userId] ?? []
+      let existingCheckouts = getInMemoryState("checkouts")[userId] ?? []
       if (
         existingCheckouts.some(
           checkout => checkout.response.status === "pending"
@@ -43,6 +43,7 @@ const inMemoryPaymentService: PaymentService = {
                 "Click OK to simulate SUCCESS / Click CANCEL to simulate CANCEL",
               ].join("\n")
             )
+            existingCheckouts = getInMemoryState("checkouts")[userId]
             const index = existingCheckouts?.findIndex(
               checkout => checkout.id === id
             )

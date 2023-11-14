@@ -1,10 +1,7 @@
 import { NextLink, ToastAction } from "@/components/ui"
-import type { ToastableError } from "@/components/ui"
+import { ToastableError } from "./ToastableError"
 
-export class FreePlanLimitExceededError
-  extends Error
-  implements ToastableError
-{
+export class FreePlanLimitExceededError extends ToastableError {
   name = "Free Plan Limit Exceeded!"
   action = (
     <ToastAction

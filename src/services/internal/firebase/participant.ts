@@ -40,7 +40,7 @@ function participantRef(userId: string) {
 }
 
 const firebaseParticipantService: ParticipantService = {
-  async addParticipantToChat(chatId, participantId) {
+  async addParticipantToChat({ chatId, participantId }) {
     const participant = await getDoc(participantRef(participantId))
     if (!participant.exists()) {
       throw new Error(`User with id (${participantId}) does not exist!`)

@@ -44,15 +44,15 @@ function participatingChatsRef(participantId: string) {
 }
 
 const firebaseChatService: ChatService = {
-  async createChat(adminId) {
+  async createChat({ adminId }) {
     const chatRef = await addDoc(chatsRef(), {
-      adminId: adminId,
+      adminId,
       id: "",
       participantsIds: [adminId],
     })
     return chatRef.id
   },
-  async getParticipantsIds(chatId) {
+  async getParticipantsIds({ chatId }) {
     const chat = await getDoc(chatRef(chatId))
     const data = chat.data()
     if (!data) {
@@ -62,24 +62,26 @@ const firebaseChatService: ChatService = {
     }
     return data.participantsIds
   },
-  async getParticipatingChats(userId) {
+  async getParticipatingChats({ userId }) {
     const snapshot = await getDocs(participatingChatsRef(userId))
     return snapshot.docs.map(doc => doc.data())
   },
-  subscribeToChat(chatId, onChange, onError) {
+  subscribeToChat({ chatId }, onChange, onError) {
     return onSnapshot(
       chatRef(chatId),
       snapshot => {
         const chat = snapshot.data()
         if (!chat) {
-          return onError(new Error(`Chat with id (${chatId}) does not exist!`))
+          return onError?.(
+            new Error(`Chat with id (${chatId}) does not exist!`)
+          )
         }
         return onChange(chat)
       },
       onError
     )
   },
-  subscribeToParticipatingChats(userId, onChange, onError) {
+  subscribeToParticipatingChats({ userId }, onChange, onError) {
     return onSnapshot(
       participatingChatsRef(userId),
       snapshot => onChange(snapshot.docs.map(doc => doc.data())),

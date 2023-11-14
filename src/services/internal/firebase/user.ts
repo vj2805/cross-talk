@@ -41,21 +41,21 @@ function userByEmailRef(email: string) {
 }
 
 const firebaseUserService: UserService = {
-  async getUserByEmail(email) {
+  async getUserByEmail({ email }) {
     const users = await getDocs(userByEmailRef(email))
     return users.docs[0].data()
   },
-  subscribeToUser(userId, onChange, onError) {
+  subscribeToUser({ userId }, onChange, onError) {
     return onSnapshot(
       userRef(userId),
       snapshot =>
         snapshot.exists()
           ? onChange(snapshot.data())
-          : onError(new Error(`User with id (${userId}) does not exist!`)),
+          : onError?.(new Error(`User with id (${userId}) does not exist!`)),
       onError
     )
   },
-  async syncUser(session) {
+  async syncUser({ session }) {
     if (session?.firebaseToken) {
       await signInWithCustomToken(clientAuth, session.firebaseToken)
     } else {

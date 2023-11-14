@@ -19,7 +19,7 @@ const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (session.user && token.sub) {
         session.user.id = token.sub
-        session.firebaseToken = await createAuthToken(token.sub)
+        session.firebaseToken = await createAuthToken({ userId: token.sub })
       }
       return session
     },

@@ -40,7 +40,7 @@ function checkoutRef(userId: string, checkoutId: string) {
 }
 
 const firebasePaymentService: PaymentService = {
-  async createPaymentCheckout(userId, priceId) {
+  async createPaymentCheckout({ userId, priceId }) {
     const checkout = await addDoc(checkoutsRef(userId), {
       cancelUrl: window.location.origin,
       id: "",
@@ -50,7 +50,7 @@ const firebasePaymentService: PaymentService = {
     })
     return checkout.id
   },
-  subscribeToPaymentCheckout(userId, checkoutId, onChange) {
+  subscribeToPaymentCheckout({ userId, checkoutId }, onChange) {
     return onSnapshot(checkoutRef(userId, checkoutId), snapshot => {
       if (!snapshot.exists()) {
         return

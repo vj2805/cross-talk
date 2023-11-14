@@ -51,7 +51,7 @@ function lastMessageRef(chatId: string) {
 }
 
 const firebaseMessageService: MessageService = {
-  async getLastMessage(chatId) {
+  async getLastMessage({ chatId }) {
     const snapshot = await getDocs(lastMessageRef(chatId))
     if (snapshot.empty) {
       return undefined
@@ -59,17 +59,17 @@ const firebaseMessageService: MessageService = {
     return snapshot.docs[0].data()
   },
 
-  async getMessages(chatId) {
+  async getMessages({ chatId }) {
     const snapshot = await getDocs(sortedMessagesRef(chatId))
     return snapshot.docs.map(doc => doc.data())
   },
 
-  async getMessagesCount(chatId) {
+  async getMessagesCount({ chatId }) {
     const snapshot = await getCountFromServer(limitedMessagesRef(chatId))
     return snapshot.data().count
   },
 
-  async postMessage(chatId: string, input: string, user: Message["user"]) {
+  async postMessage({ chatId, input, user }) {
     await addDoc(messagesRef(chatId), {
       id: "",
       input,
@@ -77,14 +77,14 @@ const firebaseMessageService: MessageService = {
       user,
     })
   },
-  subscribeToLastMessage(chatId, onChange, onError) {
+  subscribeToLastMessage({ chatId }, onChange, onError) {
     return onSnapshot(
       lastMessageRef(chatId),
       snapshot => onChange(snapshot.docs[0]?.data()),
       onError
     )
   },
-  subscribeToMessages(chatId, onChange, onError) {
+  subscribeToMessages({ chatId }, onChange, onError) {
     return onSnapshot(
       messagesRef(chatId),
       snapshot => onChange(snapshot.docs.map(doc => doc.data())),

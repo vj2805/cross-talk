@@ -1,6 +1,6 @@
 import type { Consumer } from "./Consumer"
 
-export type Fetch<Returns> = Returns extends void
+export type Obtain<Returns> = Returns extends void
   ? never
   : () => Promise<Returns>
 

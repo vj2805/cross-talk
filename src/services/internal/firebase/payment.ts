@@ -14,15 +14,17 @@ const checkoutConverter: FirestoreDataConverter<Checkout> = {
       response: data.url
         ? { status: "success", url: data.url }
         : data.error
-        ? { error: new Error(JSON.stringify(data.error)), status: "failure" }
+        ? { error: new Error(data.error.message), status: "failure" }
         : { status: "pending" },
       successUrl: data.success_url,
     }
   },
   toFirestore(checkout) {
-    delete checkout.id
-    delete checkout.response
-    return checkout
+    return {
+      cancel_url: checkout.cancelUrl,
+      price: checkout.priceId,
+      success_url: checkout.successUrl,
+    }
   },
 }
 

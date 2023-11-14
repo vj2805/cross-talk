@@ -1,4 +1,5 @@
 import {
+  Timestamp,
   addDoc,
   collection,
   getCountFromServer,
@@ -26,9 +27,11 @@ const messageConverter: FirestoreDataConverter<Message> = {
     }
   },
   toFirestore(message) {
-    delete message.id
-    delete message.translated
-    return message
+    return {
+      input: message.input,
+      timestamp: message.localeTimeString,
+      user: message.user,
+    }
   },
 }
 

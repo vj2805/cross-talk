@@ -23,8 +23,10 @@ const chatConverter: FirestoreDataConverter<Chat> = {
     }
   },
   toFirestore(chat) {
-    delete chat.id
-    return chat
+    return {
+      adminId: chat.adminId,
+      participantsIds: chat.participantsIds,
+    }
   },
 }
 

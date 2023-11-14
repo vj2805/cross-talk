@@ -23,8 +23,11 @@ const userConverter: FirestoreDataConverter<User> = {
     }
   },
   toFirestore(user) {
-    delete user.id
-    return user
+    return {
+      email: user.email,
+      image: user.image,
+      name: user.name,
+    }
   },
 }
 

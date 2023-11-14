@@ -14,8 +14,10 @@ const subscriptionConverter: FirestoreDataConverter<Subscription> = {
     }
   },
   toFirestore(subscription) {
-    delete subscription.id
-    return subscription
+    return {
+      role: subscription.role,
+      status: subscription.status,
+    }
   },
 }
 

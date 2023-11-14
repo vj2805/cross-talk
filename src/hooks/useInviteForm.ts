@@ -14,7 +14,7 @@ const InviteFormSchema = z.object({
 
 type InviteFormData = z.infer<typeof InviteFormSchema>
 
-export function useInviteForm(isPro: boolean, chat: Chat) {
+export function useInviteForm(chat: Chat, isPro: boolean) {
   const form = useForm<InviteFormData>({
     defaultValues: {
       email: "",

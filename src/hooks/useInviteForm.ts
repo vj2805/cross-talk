@@ -40,8 +40,11 @@ export function useInviteForm(chat: Chat, isPro: boolean) {
     }
 
     try {
-      const participant = await getUserByEmail(email)
-      await addParticipantToChat(chat.id, participant.id)
+      const participant = await getUserByEmail({ email })
+      await addParticipantToChat({
+        chatId: chat.id,
+        participantId: participant.id,
+      })
       showToast({
         description: "The user has been added to the chat successfully!",
         duration: 3000,

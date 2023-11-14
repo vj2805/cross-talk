@@ -1,4 +1,5 @@
-import { ChatInput, ChatMessages, ChatParticipantsBadges } from "@/components"
+import { ChatInput, ChatMessages } from "@/components"
+import { ChatControls } from "@/components/chat/ChatControls"
 import { getServerUser } from "@/services/auth"
 import { getMessages } from "@/services/message"
 
@@ -19,7 +20,7 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
 
   return (
     <>
-      <ChatParticipantsBadges chatId={chatId} />
+      <ChatControls chatId={chatId} />
       <div className="flex-1">
         <ChatMessages
           chatId={chatId}

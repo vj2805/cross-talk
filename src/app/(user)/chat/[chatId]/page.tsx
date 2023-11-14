@@ -16,7 +16,7 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
     return null
   }
 
-  let initialMessages = await getMessages(chatId)
+  let initialMessages = await getMessages({ chatId })
 
   return (
     <>

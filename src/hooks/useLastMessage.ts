@@ -8,7 +8,7 @@ export function useLastMessage(chatId: string) {
     useObservable<Uncertain<Message>>()
 
   useEffect(
-    () => subscribeToLastMessage(chatId, setLastMessage, setError),
+    () => subscribeToLastMessage({ chatId }, setLastMessage, setError),
     [chatId, setLastMessage, setError]
   )
 

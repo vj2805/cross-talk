@@ -8,7 +8,7 @@ export function useMessages(chatId: string, initialMessages: Message[]) {
     useObservableArray<Message>(initialMessages)
 
   useEffect(
-    () => subscribeToMessages(chatId, setMessages, setError),
+    () => subscribeToMessages({ chatId }, setMessages, setError),
     [chatId, setMessages, setError]
   )
 

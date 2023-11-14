@@ -3,12 +3,6 @@ import type { Message } from "./Message"
 import type { Mutate, Query, Subscribe } from "./Service"
 
 export interface MessageService {
-  getLastMessage: Query<
-    {
-      chatId: Chat["id"]
-    },
-    Uncertain<Message>
-  >
   getMessages: Query<
     {
       chatId: Chat["id"]

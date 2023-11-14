@@ -30,7 +30,7 @@ export function useMessageForm(chatId: string) {
       return
     }
     try {
-      const count = await getMessagesCount(chatId)
+      const count = await getMessagesCount({ chatId })
       if (count >= 25) {
         showToast({
           action: (
@@ -49,7 +49,7 @@ export function useMessageForm(chatId: string) {
         })
         return
       }
-      await postMessage(chatId, input, user)
+      await postMessage({ chatId, input, user })
       form.reset()
     } catch (error) {
       form.setError("input", {

@@ -51,24 +51,14 @@ function lastMessageRef(chatId: string) {
 }
 
 const firebaseMessageService: MessageService = {
-  async getLastMessage({ chatId }) {
-    const snapshot = await getDocs(lastMessageRef(chatId))
-    if (snapshot.empty) {
-      return undefined
-    }
-    return snapshot.docs[0].data()
-  },
-
   async getMessages({ chatId }) {
     const snapshot = await getDocs(sortedMessagesRef(chatId))
     return snapshot.docs.map(doc => doc.data())
   },
-
   async getMessagesCount({ chatId }) {
     const snapshot = await getCountFromServer(limitedMessagesRef(chatId))
     return snapshot.data().count
   },
-
   async postMessage({ chatId, input, user }) {
     await addDoc(messagesRef(chatId), {
       id: "",

@@ -59,12 +59,12 @@ export function dismissToast(id: Toast["id"], delay: number) {
   }, delay)
 }
 
-export interface ToastError extends Error {
+export interface ToastableError extends Error {
   action?: ToastActionElement
 }
 
 export function showErrorToast(
-  error: ToastError,
+  error: ToastableError,
   props: SafeOmit<ToastPropsWithoutId, "action" | "description" | "title"> = {}
 ) {
   return showToast({

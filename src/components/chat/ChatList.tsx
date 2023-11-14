@@ -11,5 +11,7 @@ export const ChatList: React.FC = async () => {
 
   const initialChats = await getParticipatingChats({ userId: user.id })
 
+  console.log(initialChats)
+
   return <ChatListRows initialChats={initialChats} />
 }

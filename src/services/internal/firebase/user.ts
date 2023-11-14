@@ -32,7 +32,7 @@ function userByEmailRef(email: string) {
 const firebaseUserService: UserService = {
   async getUserByEmail(email) {
     const users = await getDocs(userByEmailRef(email))
-    return users.docs[0]
+    return users.docs[0].data()
   },
   async syncUser(session) {
     if (session?.firebaseToken) {

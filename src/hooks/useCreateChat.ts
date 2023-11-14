@@ -20,7 +20,7 @@ export function useCreateChat() {
       variant: "default",
     })
     try {
-      const chatId = await createChat(user.id)
+      const chatId = await createChat({ adminId: user.id })
       updateToast(toastId, {
         description: "Redirecting to the new chat, Please wait...",
         title: "Created new chat!",

@@ -9,12 +9,6 @@ export interface ChatService {
     },
     Chat["id"]
   >
-  getParticipantsIds: Query<
-    {
-      chatId: Chat["id"]
-    },
-    Chat["participantsIds"]
-  >
   getParticipatingChats: Query<
     {
       userId: User["id"]

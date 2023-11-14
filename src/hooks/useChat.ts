@@ -7,7 +7,7 @@ export function useChat(chatId: string) {
   const [chat, setChat, setError] = useObservable<Chat>()
 
   useEffect(
-    () => subscribeToChat(chatId, setChat, setError),
+    () => subscribeToChat({ chatId }, setChat, setError),
     [chatId, setChat, setError]
   )
 

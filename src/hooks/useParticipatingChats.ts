@@ -7,7 +7,7 @@ export function useParticipatingChats(userId: string, initialChats: Chat[]) {
   const [chats, setChats, setError] = useObservableArray<Chat>(initialChats)
 
   useEffect(
-    () => subscribeToParticipatingChats(userId, setChats, setError),
+    () => subscribeToParticipatingChats({ userId }, setChats, setError),
     [userId, setChats, setError]
   )
 

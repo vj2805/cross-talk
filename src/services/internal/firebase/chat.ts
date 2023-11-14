@@ -52,16 +52,6 @@ const firebaseChatService: ChatService = {
     })
     return chatRef.id
   },
-  async getParticipantsIds({ chatId }) {
-    const chat = await getDoc(chatRef(chatId))
-    const data = chat.data()
-    if (!data) {
-      throw new Error(
-        `[getParticipantsIds] Chat with id ${chatId} does not exist!`
-      )
-    }
-    return data.participantsIds
-  },
   async getParticipatingChats({ userId }) {
     const snapshot = await getDocs(participatingChatsRef(userId))
     return snapshot.docs.map(doc => doc.data())

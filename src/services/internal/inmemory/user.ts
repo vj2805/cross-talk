@@ -1,4 +1,4 @@
-import { getInMemoryState } from "./store"
+import { getInMemoryState, subscribeToInMemoryStore } from "./store"
 import type { UserService } from "@/types/UserService"
 
 const inMemoryUserService: UserService = {
@@ -15,6 +15,19 @@ const inMemoryUserService: UserService = {
         resolve(user)
       }, 1000)
     })
+  },
+  subscribeToUser(userId, onChange, onError) {
+    return subscribeToInMemoryStore(
+      "users",
+      users => users.find(user => user.id === userId),
+      user =>
+        user
+          ? onChange(user)
+          : onError(new Error(`User with id (${userId}) does not exist!`)),
+      {
+        fireImmediately: true,
+      }
+    )
   },
   syncUser(session) {
     return new Promise(resolve => {

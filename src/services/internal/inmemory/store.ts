@@ -29,3 +29,10 @@ const store = createStore<InMemoryStore>()(
 export function getInMemoryState<Key extends keyof InMemoryStore>(key: Key) {
   return store.getState()[key]
 }
+
+export function setInMemoryStore<Key extends keyof InMemoryStore>(
+  key: Key,
+  update: (existing: InMemoryStore[Key]) => InMemoryStore[Key]
+) {
+  store.setState(store => ({ [key]: update(store[key]) }))
+}

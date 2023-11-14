@@ -7,7 +7,7 @@ export function useSyncSubscription() {
   const syncUser = useUser()
   useEffect(() => {
     if (syncUser) {
-      return syncSubscription(syncUser.id, setSubscription)
+      return syncSubscription({ userId: syncUser.id }, setSubscription)
     }
   }, [syncUser])
 }

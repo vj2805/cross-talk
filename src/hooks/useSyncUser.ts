@@ -6,6 +6,6 @@ import { useSession } from "./useBuiltins"
 export function useSyncUser() {
   const { data: session } = useSession()
   useEffect(() => {
-    syncUser(session).then(setUser)
+    syncUser({ session }).then(setUser)
   }, [session])
 }

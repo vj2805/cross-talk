@@ -19,7 +19,7 @@ declare global {
     | { status: "loading" }
   >
 
-  interface ToastError extends Error {
+  interface Error {
     action?: ToastActionElement
   }
 

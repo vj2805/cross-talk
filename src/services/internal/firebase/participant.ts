@@ -1,5 +1,13 @@
-import { collection, doc } from "firebase/firestore"
+import {
+  arrayUnion,
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore"
 import { clientRepo } from "@/backend/firebase/client"
+import { chatRef } from "./chat"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Participant } from "@/types/Participant"
 import type { ParticipantService } from "@/types/ParticipantService"
@@ -31,6 +39,20 @@ function participantRef(userId: string) {
   return doc(participantsRef(), userId)
 }
 
-const firebaseParticipantService: ParticipantService = {}
+const firebaseParticipantService: ParticipantService = {
+  async addParticipantToChat(chatId, participantId) {
+    const participant = await getDoc(participantRef(participantId))
+    if (!participant.exists()) {
+      throw new Error(`User with id (${participantId}) does not exist!`)
+    }
+    const chat = await getDoc(chatRef(chatId))
+    if (!chat.exists()) {
+      throw new Error(`Chat with id (${chatId}) does not exist!`)
+    }
+    updateDoc(chat.ref, {
+      participantsIds: arrayUnion(participantId),
+    })
+  },
+}
 
 export default firebaseParticipantService

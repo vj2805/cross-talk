@@ -1,5 +1,6 @@
 import { createStore } from "zustand/vanilla"
 import { subscribeWithSelector } from "zustand/middleware"
+import type { Chat } from "@/types/Chat"
 import type {
   AdapterAccount,
   AdapterSession,
@@ -9,6 +10,7 @@ import type {
 
 type InMemoryStore = {
   accounts: AdapterAccount[]
+  chats: Chat[]
   sessions: AdapterSession[]
   tokens: VerificationToken[]
   users: AdapterUser[]
@@ -17,6 +19,7 @@ type InMemoryStore = {
 const store = createStore<InMemoryStore>()(
   subscribeWithSelector<InMemoryStore>(() => ({
     accounts: [],
+    chats: [],
     sessions: [],
     tokens: [],
     users: [],

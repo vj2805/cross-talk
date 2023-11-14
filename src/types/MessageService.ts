@@ -1,25 +1,44 @@
 import type { Chat } from "./Chat"
-import type { Consumer } from "./Consumer"
 import type { Message } from "./Message"
-import type { Unsubscribe } from "./Unsubscribe"
+import type { Mutate, Query, Subscribe } from "./Service"
 
 export interface MessageService {
-  getLastMessage: (chatId: Chat["id"]) => Promise<Uncertain<Message>>
-  getMessages: (chatId: Chat["id"]) => Promise<Message[]>
-  getMessagesCount: (chatId: Chat["id"]) => Promise<number>
-  postMessage: (
-    chatId: Chat["id"],
-    input: Message["input"],
-    user: Message["user"]
-  ) => Promise<void>
-  subscribeToLastMessage: (
-    chatId: Chat["id"],
-    onChange: Consumer<Uncertain<Message>>,
-    onError: Consumer<Error>
-  ) => Unsubscribe
-  subscribeToMessages: (
-    chatId: Chat["id"],
-    onChange: Consumer<Message[]>,
-    onError: Consumer<Error>
-  ) => Unsubscribe
+  getLastMessage: Query<
+    {
+      chatId: Chat["id"]
+    },
+    Uncertain<Message>
+  >
+  getMessages: Query<
+    {
+      chatId: Chat["id"]
+    },
+    Message[]
+  >
+  getMessagesCount: Query<
+    {
+      chatId: Chat["id"]
+    },
+    number
+  >
+  postMessage: Mutate<
+    {
+      chatId: Chat["id"]
+      input: Message["input"]
+      user: Message["user"]
+    },
+    void
+  >
+  subscribeToLastMessage: Subscribe<
+    {
+      chatId: Chat["id"]
+    },
+    Uncertain<Message>
+  >
+  subscribeToMessages: Subscribe<
+    {
+      chatId: Chat["id"]
+    },
+    Message[]
+  >
 }

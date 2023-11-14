@@ -1,16 +1,20 @@
-import type { Consumer } from "./Consumer"
 import type { Checkout } from "./Checkout"
-import type { Unsubscribe } from "./Unsubscribe"
+import type { Mutate, Subscribe } from "./Service"
 import type { User } from "./User"
 
 export interface PaymentService {
-  createPaymentCheckout: (
-    userId: User["id"],
-    priceId: Checkout["priceId"]
-  ) => Promise<Checkout["id"]>
-  subscribeToPaymentCheckout: (
-    userId: User["id"],
-    checkoutId: Checkout["id"],
-    onChange: Consumer<Checkout>
-  ) => Unsubscribe
+  createPaymentCheckout: Mutate<
+    {
+      priceId: Checkout["priceId"]
+      userId: User["id"]
+    },
+    Checkout["id"]
+  >
+  subscribeToPaymentCheckout: Subscribe<
+    {
+      checkoutId: Checkout["id"]
+      userId: User["id"]
+    },
+    Checkout
+  >
 }

@@ -1,11 +1,12 @@
-import type { Consumer } from "./Consumer"
-import type { User } from "./User"
-import type { Unsubscribe } from "./Unsubscribe"
+import type { Subscribe } from "./Service"
 import type { Subscription } from "./Subscription"
+import type { User } from "./User"
 
 export interface SubscriptionService {
-  syncSubscription: (
-    userId: User["id"],
-    onChange: Consumer<Nullish<Subscription>>
-  ) => Unsubscribe
+  syncSubscription: Subscribe<
+    {
+      userId: User["id"]
+    },
+    Nullish<Subscription>
+  >
 }

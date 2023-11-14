@@ -1,11 +1,11 @@
 import { default as NextAuth, getServerSession } from "next-auth"
 import { default as GoogleProvider } from "next-auth/providers/google"
 import { safeEnv } from "@/configs/safeEnv"
-import { authBackend } from "@/backend/auth"
-import type { AuthBackend } from "@/types/AuthBackend"
+import { default as authService } from "./internal/firebase/auth"
+import type { AuthService } from "@/types/AuthService"
 import type { NextAuthOptions } from "next-auth"
 
-const { createAuthAdapter, createAuthToken }: AuthBackend = authBackend
+const { createAuthAdapter, createAuthToken }: AuthService = authService
 
 const authOptions: NextAuthOptions = {
   adapter: createAuthAdapter(),

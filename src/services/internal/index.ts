@@ -1,8 +1,0 @@
-export { default as chatService } from "./firebase/chat"
-export { default as languageService } from "./inmemory/language"
-export { default as messageService } from "./firebase/message"
-export { default as participantService } from "./firebase/participant"
-export { default as paymentService } from "./firebase/payment"
-export { default as pricingService } from "./inmemory/pricing"
-export { default as subscriptionService } from "./firebase/subscription"
-export { default as userService } from "./firebase/user"

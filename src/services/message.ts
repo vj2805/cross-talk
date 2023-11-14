@@ -1,4 +1,4 @@
-import { messageService } from "./internal"
+import { default as messageService } from "./internal/firebase/message"
 import type { MessageService } from "@/types/MessageService"
 
 export const {

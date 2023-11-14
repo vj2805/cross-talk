@@ -44,11 +44,11 @@ function checkoutRef(userId: string, checkoutId: string) {
 const firebasePaymentService: PaymentService = {
   async createPaymentCheckout({ userId, priceId }) {
     const checkout = await addDoc(checkoutsRef(userId), {
-      cancelUrl: window.location.origin,
+      cancelUrl: `${window.location.origin}/subscribe`,
       id: "",
       priceId,
       response: { status: "pending" },
-      successUrl: window.location.origin,
+      successUrl: `${window.location.origin}/subscribe`,
     })
     return checkout.id
   },

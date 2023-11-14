@@ -23,10 +23,8 @@ const chatConverter: FirestoreDataConverter<Chat> = {
     }
   },
   toFirestore(chat) {
-    return {
-      adminId: chat.adminId,
-      participantsIds: chat.participantsIds,
-    }
+    delete chat.id
+    return chat
   },
 }
 
@@ -34,7 +32,7 @@ function chatsRef() {
   return collection(clientRepo, "chats").withConverter(chatConverter)
 }
 
-function chatRef(chatId: string) {
+export function chatRef(chatId: string) {
   return doc(chatsRef(), chatId)
 }
 

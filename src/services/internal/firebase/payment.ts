@@ -20,11 +20,9 @@ const checkoutConverter: FirestoreDataConverter<Checkout> = {
     }
   },
   toFirestore(checkout) {
-    return {
-      cancel_url: checkout.cancelUrl,
-      price: checkout.priceId,
-      success_url: checkout.successUrl,
-    }
+    delete checkout.id
+    delete checkout.response
+    return checkout
   },
 }
 

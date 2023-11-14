@@ -26,11 +26,9 @@ const messageConverter: FirestoreDataConverter<Message> = {
     }
   },
   toFirestore(message) {
-    return {
-      input: message.input,
-      timestamp: message.localeTimeString,
-      user: message.user,
-    }
+    delete message.id
+    delete message.translated
+    return message
   },
 }
 

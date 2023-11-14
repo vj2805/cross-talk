@@ -14,6 +14,7 @@ import { useIsPro } from "@/hooks/useIsPro"
 import { useSubscription } from "@/hooks/useSubscription"
 import { signOut } from "@/services/user"
 import { cn } from "@/utilities/string"
+import { manageSubscription } from "@/actions/manageSubscription"
 import { SignInButton } from "./SignInButton"
 import { UserAvatar } from "./UserAvatar"
 import type { User } from "@/types/User"
@@ -56,7 +57,9 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
                 <p>PRO</p>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Manage</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => manageSubscription()}>
+                Manage
+              </DropdownMenuItem>
             </>
           )
         )}

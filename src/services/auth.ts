@@ -1,11 +1,11 @@
 import { default as NextAuth, getServerSession } from "next-auth"
 import { default as GoogleProvider } from "next-auth/providers/google"
 import { safeEnv } from "@/configs/safeEnv"
-import { authService } from "./internal"
-import type { AuthService } from "@/types/AuthService"
+import { authBackend } from "@/backend/auth"
+import type { AuthBackend } from "@/types/AuthBackend"
 import type { NextAuthOptions } from "next-auth"
 
-const { createAuthAdapter, createAuthToken }: AuthService = authService
+const { createAuthAdapter, createAuthToken }: AuthBackend = authBackend
 
 const authOptions: NextAuthOptions = {
   adapter: createAuthAdapter(),

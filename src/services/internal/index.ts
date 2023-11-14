@@ -1,4 +1,3 @@
-export { default as authService } from "./firebase/auth"
 export { default as chatService } from "./firebase/chat"
 export { default as languageService } from "./inmemory/language"
 export { default as messageService } from "./firebase/message"

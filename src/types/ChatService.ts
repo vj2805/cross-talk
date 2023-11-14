@@ -7,9 +7,9 @@ export interface ChatService {
   createChat: (adminId: User["id"]) => Promise<Chat["id"]>
   getParticipantsIds: (chatId: Chat["id"]) => Promise<Chat["participantsIds"]>
   getParticipatingChats: (userId: User["id"]) => Promise<Chat[]>
-  subscribeToParticipantsIds: (
+  subscribeToChat: (
     chatId: Chat["id"],
-    onChange: Consumer<Chat["participantsIds"]>,
+    onChange: Consumer<Chat>,
     onError: Consumer<Error>
   ) => Unsubscribe
   subscribeToParticipatingChats: (

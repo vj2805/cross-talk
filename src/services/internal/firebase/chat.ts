@@ -68,7 +68,7 @@ const firebaseChatService: ChatService = {
     const snapshot = await getDocs(participatingChatsRef(userId))
     return snapshot.docs.map(doc => doc.data())
   },
-  subscribeToParticipantsIds(chatId, onChange, onError) {
+  subscribeToChat(chatId, onChange, onError) {
     return onSnapshot(
       chatRef(chatId),
       snapshot => {
@@ -76,7 +76,7 @@ const firebaseChatService: ChatService = {
         if (!chat) {
           return onError(new Error(`Chat with id (${chatId}) does not exist!`))
         }
-        return onChange(chat.participantsIds)
+        return onChange(chat)
       },
       onError
     )

@@ -5,6 +5,6 @@ export const {
   createChat,
   getParticipantsIds,
   getParticipatingChats,
-  subscribeToParticipantsIds,
+  subscribeToChat,
   subscribeToParticipatingChats,
 }: ChatService = chatService

@@ -60,14 +60,14 @@ const inMemoryChatSerice: ChatService = {
       }, 1000)
     })
   },
-  subscribeToParticipantsIds(chatId, onChange, onError) {
+  subscribeToChat(chatId, onChange, onError) {
     return subscribe(
       ({ chats }) => chats.find(chat => chat.id === chatId),
       chat => {
         if (!chat) {
           return onError(new Error(`Chat with id (${chatId}) does not exist!`))
         }
-        return onChange(chat.participantsIds)
+        return onChange(chat)
       },
       {
         fireImmediately: true,

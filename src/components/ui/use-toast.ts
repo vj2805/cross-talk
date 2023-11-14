@@ -59,11 +59,16 @@ export function dismissToast(id: Toast["id"], delay: number) {
   }, delay)
 }
 
+export interface ToastError extends Error {
+  action?: ToastActionElement
+}
+
 export function showErrorToast(
-  error: Error,
-  props: SafeOmit<ToastPropsWithoutId, "description" | "title"> = {}
+  error: ToastError,
+  props: SafeOmit<ToastPropsWithoutId, "action" | "description" | "title"> = {}
 ) {
   return showToast({
+    action: error.action,
     description: error.message,
     duration: 2000,
     title: error.name,

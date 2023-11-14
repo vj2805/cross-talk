@@ -5,6 +5,14 @@ export { Avatar, AvatarFallback } from "./avatar"
 export { Badge } from "./badge"
 export { Button } from "./button"
 export {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./dialog"
+export {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,

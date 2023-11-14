@@ -17,10 +17,9 @@ export function useCheckout(userId: Uncertain<string>, priceId: string) {
     }
     startProcess()
     try {
-      const checkoutId = await createPaymentCheckout(userId, priceId)
+      const checkoutId = await createPaymentCheckout({ priceId, userId })
       const unsubscribe = subscribeToPaymentCheckout(
-        userId,
-        checkoutId,
+        { checkoutId, userId },
         checkout => {
           if (checkout.response.status === "pending") {
             return
@@ -34,7 +33,8 @@ export function useCheckout(userId: Uncertain<string>, priceId: string) {
           }
           stopProcess()
           unsubscribe()
-        }
+        },
+        setError
       )
     } catch (error) {
       setError(error as Error)

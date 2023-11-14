@@ -1,56 +1,60 @@
 import { insert, remove, shuffle, update } from "@/utilities/array"
 import { generateId } from "@/utilities/string"
-import type {
-  AdapterAccount,
-  AdapterSession,
-  AdapterUser,
-  VerificationToken,
-} from "next-auth/adapters"
+import { getInMemoryState } from "./store"
 import type { AuthService } from "@/types/AuthService"
-
-let users: AdapterUser[] = []
-let accounts: AdapterAccount[] = []
-let sessions: AdapterSession[] = []
-let tokens: VerificationToken[] = []
 
 const inMemoryAuthService: AuthService = {
   createAuthAdapter() {
     return {
       async createSession(session) {
-        return insert(sessions, session)
+        return insert(getInMemoryState("sessions"), session)
       },
       async createUser(userInit) {
-        return insert(users, { id: generateId(), ...userInit })
+        return insert(getInMemoryState("users"), {
+          id: generateId(),
+          ...userInit,
+        })
       },
       async createVerificationToken(verificationToken) {
-        return insert(tokens, verificationToken)
+        return insert(getInMemoryState("tokens"), verificationToken)
       },
       async deleteSession(sessionToken) {
-        remove(sessions, session => session.sessionToken === sessionToken)
+        remove(
+          getInMemoryState("sessions"),
+          session => session.sessionToken === sessionToken
+        )
       },
       async deleteUser(userId) {
-        remove(users, user => user.id === userId)
-        remove(accounts, account => account.userId === userId)
-        remove(sessions, session => session.userId === userId)
+        remove(getInMemoryState("users"), user => user.id === userId)
+        remove(
+          getInMemoryState("accounts"),
+          account => account.userId === userId
+        )
+        remove(
+          getInMemoryState("sessions"),
+          session => session.userId === userId
+        )
       },
       async getSessionAndUser(sessionToken) {
-        const session = sessions.find(
+        const session = getInMemoryState("sessions").find(
           session => session.sessionToken === sessionToken
         )
         if (!session) {
           return null
         }
-        const user = users.find(user => user.id === session.userId)
+        const user = getInMemoryState("users").find(
+          user => user.id === session.userId
+        )
         if (!user) {
           return null
         }
         return { session, user }
       },
       async getUser(id) {
-        return users.find(user => user.id === id) || null
+        return getInMemoryState("users").find(user => user.id === id) || null
       },
       async getUserByAccount({ provider, providerAccountId }) {
-        const account = accounts.find(
+        const account = getInMemoryState("accounts").find(
           account =>
             account.provider === provider &&
             account.providerAccountId === providerAccountId
@@ -58,41 +62,48 @@ const inMemoryAuthService: AuthService = {
         if (!account) {
           return null
         }
-        return users.find(user => user.id === account.userId) || null
+        return (
+          getInMemoryState("users").find(user => user.id === account.userId) ||
+          null
+        )
       },
       async getUserByEmail(email) {
-        return users.find(user => user.email === email) || null
+        return (
+          getInMemoryState("users").find(user => user.email === email) || null
+        )
       },
       async linkAccount(account) {
-        return insert(accounts, account)
+        return insert(getInMemoryState("accounts"), account)
       },
       async unlinkAccount({ provider, providerAccountId }) {
         remove(
-          accounts,
+          getInMemoryState("accounts"),
           account =>
             account.provider === provider &&
             account.providerAccountId === providerAccountId
         )
       },
       async updateSession(partialSession) {
-        const index = sessions.findIndex(
+        const index = getInMemoryState("sessions").findIndex(
           session => session.sessionToken === partialSession.sessionToken
         )
         if (index < 0) {
           return null
         }
-        return update(sessions, index, partialSession)
+        return update(getInMemoryState("sessions"), index, partialSession)
       },
       async updateUser(partialUser) {
         if (!partialUser.id) {
           throw new Error("[updateUser] Missing User Id")
         }
-        const index = users.findIndex(user => user.id === partialUser.id)
-        return update(users, index, partialUser)
+        const index = getInMemoryState("users").findIndex(
+          user => user.id === partialUser.id
+        )
+        return update(getInMemoryState("users"), index, partialUser)
       },
       async useVerificationToken({ identifier, token }) {
         const [verificationToken] = remove(
-          tokens,
+          getInMemoryState("tokens"),
           verificationToken =>
             verificationToken.identifier === identifier &&
             verificationToken.token === token

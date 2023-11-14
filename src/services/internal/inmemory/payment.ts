@@ -1,23 +1,15 @@
-import { subscribeWithSelector } from "zustand/middleware"
-import { createStore } from "zustand/vanilla"
 import { generateId } from "@/utilities/string"
-import { setSubscription } from "./subscription"
-import type { Checkout } from "@/types/Checkout"
+import {
+  getInMemoryState,
+  setInMemoryState,
+  subscribeToInMemoryStore,
+} from "./store"
 import type { PaymentService } from "@/types/PaymentService"
-import type { User } from "@/types/User"
-
-const {
-  getState: getCheckouts,
-  setState: setCheckout,
-  subscribe,
-} = createStore<Record<User["id"], Checkout[]>>()(
-  subscribeWithSelector(() => ({}))
-)
 
 const inMemoryPaymentService: PaymentService = {
   createPaymentCheckout(userId, _priceId) {
     return new Promise((resolve, reject) => {
-      const existingCheckouts = getCheckouts()[userId] ?? []
+      const existingCheckouts = getInMemoryState("checkouts")[userId] ?? []
       if (
         existingCheckouts.some(
           checkout => checkout.response.status === "pending"
@@ -34,7 +26,8 @@ const inMemoryPaymentService: PaymentService = {
         )
         if (response) {
           const id = generateId()
-          setCheckout({
+          setInMemoryState("checkouts", checkouts => ({
+            ...checkouts,
             [userId]: existingCheckouts.toSpliced(0, 0, {
               cancelUrl: window.location.origin,
               id,
@@ -42,7 +35,7 @@ const inMemoryPaymentService: PaymentService = {
               response: { status: "pending" },
               successUrl: window.location.origin,
             }),
-          })
+          }))
           setTimeout(() => {
             const response = window.confirm(
               [
@@ -50,12 +43,12 @@ const inMemoryPaymentService: PaymentService = {
                 "Click OK to simulate SUCCESS / Click CANCEL to simulate CANCEL",
               ].join("\n")
             )
-            const existingCheckouts = getCheckouts()[userId]
             const index = existingCheckouts?.findIndex(
               checkout => checkout.id === id
             )
             if (response) {
-              setCheckout({
+              setInMemoryState("checkouts", checkouts => ({
+                ...checkouts,
                 [userId]: existingCheckouts.with(index, {
                   ...existingCheckouts[index],
                   response: {
@@ -63,16 +56,18 @@ const inMemoryPaymentService: PaymentService = {
                     url: null,
                   },
                 }),
-              })
-              setSubscription(store => ({
-                [userId]: (store[userId] ?? []).toSpliced(0, 0, {
+              }))
+              setInMemoryState("subscriptions", subscriptions => ({
+                ...subscriptions,
+                [userId]: (subscriptions[userId] ?? []).toSpliced(0, 0, {
                   id: generateId(),
                   role: null,
                   status: "active",
                 }),
               }))
             } else {
-              setCheckout({
+              setInMemoryState("checkouts", checkouts => ({
+                ...checkouts,
                 [userId]: existingCheckouts.with(index, {
                   ...existingCheckouts[index],
                   response: {
@@ -82,7 +77,7 @@ const inMemoryPaymentService: PaymentService = {
                     status: "failure",
                   },
                 }),
-              })
+              }))
             }
           }, 3000)
           return resolve(id)
@@ -93,13 +88,14 @@ const inMemoryPaymentService: PaymentService = {
     })
   },
   subscribeToPaymentCheckout(userId, checkoutId, onChange) {
-    const checkout = getCheckouts()[userId]?.find(
-      checkout => checkout.id === checkoutId
-    )
-    checkout && onChange(checkout)
-    return subscribe(
-      store => store[userId]?.find(checkout => checkout.id === checkoutId),
-      checkout => checkout && onChange(checkout)
+    return subscribeToInMemoryStore(
+      "checkouts",
+      checkouts =>
+        checkouts[userId]?.find(checkout => checkout.id === checkoutId),
+      checkout => checkout && onChange(checkout),
+      {
+        fireImmediately: true,
+      }
     )
   },
 }

@@ -1,7 +1,7 @@
-import type { Consumer } from "./Consumer"
-import type { Unsubscribe } from "firebase/auth"
 import type { Chat } from "./Chat"
+import type { Consumer } from "./Consumer"
 import type { Message } from "./Message"
+import type { Unsubscribe } from "./Unsubscribe"
 
 export interface MessageService {
   getLastMessage: (chatId: Chat["id"]) => Promise<Uncertain<Message>>

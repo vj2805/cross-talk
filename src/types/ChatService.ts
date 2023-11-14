@@ -1,7 +1,7 @@
-import type { User } from "./User"
-import type { Consumer } from "./Consumer"
-import type { Unsubscribe } from "firebase/auth"
 import type { Chat } from "./Chat"
+import type { Consumer } from "./Consumer"
+import type { Unsubscribe } from "./Unsubscribe"
+import type { User } from "./User"
 
 export interface ChatService {
   createChat: (adminId: User["id"]) => Promise<Chat["id"]>

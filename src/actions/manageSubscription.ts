@@ -1,1 +1,1 @@
-export { manageSubscription } from "./internal/inmemory/manageSubscription"
+export { manageSubscription } from "./internal/firebase/manageSubscription"

@@ -1,26 +1,16 @@
 "use client"
 
-import { Spinner, showErrorToast } from "@/components/ui"
-import { useChat } from "@/hooks/useChat"
 import { cn } from "@/utilities/string"
+import { ParticipantBadge } from "./ParticipantBadge"
+import type { Chat } from "@/types/Chat"
 
 interface ChatParticipantsBadgesProps {
-  chatId: string
+  chat: Chat
 }
 
 export const ChatParticipantsBadges: React.FC<ChatParticipantsBadgesProps> = ({
-  chatId,
+  chat,
 }) => {
-  const chat = useChat(chatId)
-
-  if (chat.status === "loading") {
-    return <Spinner />
-  }
-
-  if (chat.status === "error") {
-    return void showErrorToast(chat.error)
-  }
-
   return (
     <div className={cn("m-5", "p-2", "border rounded-xl")}>
       <div
@@ -28,8 +18,15 @@ export const ChatParticipantsBadges: React.FC<ChatParticipantsBadgesProps> = ({
           "p-2",
           "flex flex-wrap justify-center md:justify-start items-center gap-2"
         )}
-      ></div>
-      ChatMembersBadges
+      >
+        {chat.participantsIds.map(participantId => (
+          <ParticipantBadge
+            key={participantId}
+            participantId={participantId}
+            isAdmin={participantId === chat.adminId}
+          />
+        ))}
+      </div>
     </div>
   )
 }

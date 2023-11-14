@@ -1,5 +1,6 @@
 import { create } from "zustand"
 import { generateId } from "@/utilities/string"
+import type { ToastableError } from "@/errors/ToastableError"
 import type { ToastActionElement, ToastProps } from "./toast"
 
 const TOAST_LIMIT = 1
@@ -57,10 +58,6 @@ export function dismissToast(id: Toast["id"], delay: number) {
       toasts: store.toasts.filter(toast => toast.id !== id),
     }))
   }, delay)
-}
-
-export interface ToastableError extends Error {
-  action?: ToastActionElement
 }
 
 export function showErrorToast(

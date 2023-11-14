@@ -40,5 +40,3 @@ export {
   showToast,
   updateToast,
 } from "./use-toast"
-
-export type { ToastableError } from "./use-toast"

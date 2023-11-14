@@ -1,3 +1,4 @@
+import type { ToastActionElement } from "./components/ui/toast"
 import type { VariantProps } from "class-variance-authority"
 
 declare global {
@@ -17,6 +18,11 @@ declare global {
       }
     | { status: "loading" }
   >
+
+  interface ToastError extends Error {
+    action?: ToastActionElement
+  }
+
   namespace React {
     type Nodes<T extends string> = Record<T, React.ReactNode>
     type PropsWithRequiredChildren = Required<React.PropsWithChildren>

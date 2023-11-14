@@ -1,3 +1,5 @@
+"use client"
+
 import { useChat } from "@/hooks/useChat"
 import { useUser } from "@/hooks/useUser"
 import { Spinner, showErrorToast } from "../ui"

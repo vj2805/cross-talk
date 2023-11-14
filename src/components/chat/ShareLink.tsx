@@ -1,5 +1,6 @@
+"use client"
+
 import { useId } from "react"
-import { env } from "@/configs/env"
 import {
   Button,
   Dialog,
@@ -89,7 +90,7 @@ export const ShareLink: React.FC<ShareLinkProps> = ({ chatId }) => {
 }
 
 function createLinkToChat(chatId: string) {
-  const protocol = env["NODE_ENV"] === "development" ? "http" : "https"
+  const protocol = process.env.NODE_ENV === "development" ? "http" : "https"
   const host = window.location.host
   return `${protocol}://${host}/chat/${chatId}`
 }

@@ -21,7 +21,7 @@ const messageConverter: FirestoreDataConverter<Message> = {
     return {
       id: snapshot.id,
       input: data.input,
-      localeTimeString: data.timestamp.toDate().toLocaleTimeString(),
+      localeTimeString: data.timestamp.toDate().toLocaleString(),
       translated: data.translated,
       user: data.user,
     }

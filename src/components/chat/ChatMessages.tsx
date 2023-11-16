@@ -2,12 +2,12 @@
 
 import { useEffect, useRef } from "react"
 import { Spinner } from "@/components/ui"
-import { MessageCircleIcon } from "@/components/ui/icons"
 import { UserAvatar } from "@/components/user/UserAvatar"
 import { useMessages } from "@/hooks/useMessages"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { cn } from "@/utilities/string"
 import { getLanguageCode } from "@/constants/languages"
+import { StartConversation } from "./StartConversation"
 import type { Message } from "@/types/Message"
 import type { User } from "next-auth"
 
@@ -39,29 +39,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   }
 
   if (messages.data.length === 0) {
-    return (
-      <div className={cn("p-5", "flex-1")}>
-        <div
-          className={cn(
-            "p-20",
-            "bg-indigo-500",
-            "text-white font-extralight",
-            "rounded-xl",
-            "flex flex-col justify-center items-center space-y-2"
-          )}
-        >
-          <MessageCircleIcon className="h-10 w-10" />
-          <h2>
-            <span className="font-bold">Invite a friend</span> &{" "}
-            <span className="font-bold">
-              Send your first message in ANY language
-            </span>{" "}
-            below to get started!
-          </h2>
-          <p>The AI will auto-dect & translate it all for you...</p>
-        </div>
-      </div>
-    )
+    return <StartConversation language={language} />
   }
 
   return (

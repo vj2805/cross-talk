@@ -1,5 +1,8 @@
-import { AVAILABLE_LANGUAGES } from "@/types/Language"
+import { LANGUAGE_CODES } from "@/constants/languageCodes"
+import type { Language } from "@/types/Language"
 import type { LanguageService } from "@/types/LanguageService"
+
+const AVAILABLE_LANGUAGES = Object.keys(LANGUAGE_CODES) as Language[]
 
 const NO_OF_LANGUAGES_IN_FREE = 2
 

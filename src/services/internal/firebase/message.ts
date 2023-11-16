@@ -42,7 +42,7 @@ function messagesRef(chatId: string) {
 }
 
 function limitedMessagesRef(chatId: string) {
-  return query(messagesRef(chatId), limit(15))
+  return query(messagesRef(chatId), limit(25))
 }
 
 function sortedMessagesRef(chatId: string) {
@@ -79,7 +79,7 @@ const firebaseMessageService: MessageService = {
   },
   subscribeToMessages({ chatId }, onChange, onError) {
     return onSnapshot(
-      messagesRef(chatId),
+      sortedMessagesRef(chatId),
       snapshot => onChange(snapshot.docs.map(doc => doc.data())),
       onError
     )

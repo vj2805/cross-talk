@@ -21,7 +21,7 @@ const messageConverter: FirestoreDataConverter<Message> = {
     return {
       id: snapshot.id,
       input: data.input,
-      localeTimeString: data.timestamp.toDate().toLocaleString(),
+      timestamp: data.timestamp,
       translated: data.translated,
       user: data.user,
     }
@@ -29,7 +29,7 @@ const messageConverter: FirestoreDataConverter<Message> = {
   toFirestore(message) {
     return {
       input: message.input,
-      timestamp: message.localeTimeString,
+      timestamp: message.timestamp,
       user: message.user,
     }
   },
@@ -66,7 +66,7 @@ const firebaseMessageService: MessageService = {
     await addDoc(messagesRef(chatId), {
       id: "",
       input,
-      localeTimeString: serverTimestamp(),
+      timestamp: serverTimestamp(),
       user,
     })
   },

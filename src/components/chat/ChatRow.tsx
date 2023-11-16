@@ -1,13 +1,14 @@
 "use client"
 
-import { Skeleton } from "@/components/ui"
-import { UserAvatar } from "@/components/user/UserAvatar"
-import { getLanguageCode } from "@/constants/languages"
+import { UserError } from "@/errors/UserError"
 import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { useUser } from "@/hooks/useUser"
-import { cn, prettifyId } from "@/utilities/string"
+import { cn } from "@/utilities/string"
+import { ChatRowSkeleton } from "./ChatRowSkeleton"
+import { ChatRowThatHasNoMessages } from "./ChatRowThatHasNoMessages"
+import { ChatRowWithLastMessage } from "./ChatRowWithLastMessage"
 import type { Chat } from "@/types/Chat"
 
 interface ChatRowProps {
@@ -20,16 +21,12 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const language = usePreferredLanguage()
   const router = useRouter()
 
+  if (!user) {
+    throw new UserError("User is NOT signed in!")
+  }
+
   if (lastMessage.status === "loading") {
-    return (
-      <div className={cn("p-5", "flex items-center space-x-2")}>
-        <Skeleton className={cn("h-12 w-12", "rounded-full")} />
-        <div className={cn("flex-1", "space-y-2")}>
-          <Skeleton className="h-4 w-full" />
-          <Skeleton className="h-4 w-1/4" />
-        </div>
-      </div>
-    )
+    return <ChatRowSkeleton />
   }
 
   if (lastMessage.status === "error") {
@@ -46,27 +43,20 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
         "cursor-pointer"
       )}
     >
-      <UserAvatar
-        name={lastMessage.data?.user.name || user?.name}
-        image={lastMessage.data?.user.image || user?.image}
-      />
-      <div className="flex-1">
-        <p className="font-bold">
-          {lastMessage
-            ? (lastMessage.data?.user.name ?? user?.name)?.split(" ")[0]
-            : "New Chat"}
-        </p>
-        <p className="text-gray-400 line-clamp-1">
-          {lastMessage.data?.translated?.[getLanguageCode(language)] ??
-            "Get the conversation started..."}
-        </p>
-      </div>
-      <div className="text-xs text-gray-400 text-right">
-        <p className="mb-auto">
-          {lastMessage.data?.localeTimeString ?? "No messages yet"}
-        </p>
-        <p className="">Chat #{prettifyId(chatId)}...</p>
-      </div>
+      {!lastMessage.data ? (
+        <ChatRowThatHasNoMessages
+          chatId={chatId}
+          language={language}
+          user={user}
+        />
+      ) : (
+        <ChatRowWithLastMessage
+          chatId={chatId}
+          lastMessage={lastMessage.data}
+          language={language}
+          user={user}
+        />
+      )}
     </div>
   )
 }

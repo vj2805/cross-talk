@@ -4,14 +4,9 @@ const NONE = Symbol()
 
 export function useObservable<T>(initialValue: T | typeof NONE = NONE) {
   const [observable, set] = useState<Observable<T>>(
-    initialValue === NONE
-      ? { status: "loading" }
-      : { status: "idle", value: initialValue }
+    initialValue === NONE ? { status: "loading" } : createValue(initialValue)
   )
-  const setValue = useCallback(
-    (value: T) => set({ status: "idle", value }),
-    [set]
-  )
+  const setValue = useCallback((value: T) => set(createValue(value)), [set])
   const setError = useCallback(
     (error: Error) => set({ error, status: "error" }),
     [set]
@@ -21,4 +16,10 @@ export function useObservable<T>(initialValue: T | typeof NONE = NONE) {
 
 export function useObservableArray<T>(initialValue: T[] | typeof NONE = NONE) {
   return useObservable<T[]>(initialValue)
+}
+
+function createValue<T>(value: T): Observable<T> {
+  const observable = () => value
+  observable.status = "idle" as const
+  return observable
 }

@@ -3,6 +3,7 @@ import type { Language } from "@/types/Language"
 const TRANSLATIONS: Record<
   Language,
   Record<
+    | "End of Messages"
     | "Get the conversation started..."
     | "Invite a friend"
     | "Let's get you started by creating your first chat!"
@@ -14,6 +15,7 @@ const TRANSLATIONS: Record<
   >
 > = {
   English: {
+    "End of Messages": "End of Messages",
     "Get the conversation started...": "Get the conversation started...",
     "Invite a friend": "Invite a friend",
     "Let's get you started by creating your first chat!":
@@ -26,6 +28,7 @@ const TRANSLATIONS: Record<
     "Welcome!": "Welcome!",
   },
   French: {
+    "End of Messages": "Fin des messages",
     "Get the conversation started...": "Lancez la conversation...",
     "Invite a friend": "Invite un ami",
     "Let's get you started by creating your first chat!":
@@ -38,6 +41,7 @@ const TRANSLATIONS: Record<
     "Welcome!": "Bienvenue!",
   },
   German: {
+    "End of Messages": "Ende der Nachrichten",
     "Get the conversation started...": "Beginnen Sie das Gespräch...",
     "Invite a friend": "Einen Freund einladen",
     "Let's get you started by creating your first chat!":
@@ -50,6 +54,7 @@ const TRANSLATIONS: Record<
     "Welcome!": "Willkommen!",
   },
   Hindi: {
+    "End of Messages": "संदेशों का अंत",
     "Get the conversation started...": "बातचीत शुरू करें...",
     "Invite a friend": "किसी मित्र को आमंत्रित करें",
     "Let's get you started by creating your first chat!":
@@ -62,6 +67,7 @@ const TRANSLATIONS: Record<
     "Welcome!": "स्वागत!",
   },
   Japanese: {
+    "End of Messages": "メッセージの終わり",
     "Get the conversation started...": "会話を始めましょう...",
     "Invite a friend": "友達を招待する",
     "Let's get you started by creating your first chat!":
@@ -74,6 +80,7 @@ const TRANSLATIONS: Record<
     "Welcome!": "いらっしゃいませ！",
   },
   Kannada: {
+    "End of Messages": "ಸಂದೇಶಗಳ ಅಂತ್ಯ",
     "Get the conversation started...": "ಸಂಭಾಷಣೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿ...",
     "Invite a friend": "ಸ್ನೇಹಿತನನ್ನು ಆಮಂತ್ರಿಸು",
     "Let's get you started by creating your first chat!":
@@ -86,6 +93,7 @@ const TRANSLATIONS: Record<
     "Welcome!": "ಸ್ವಾಗತ!",
   },
   Malayalam: {
+    "End of Messages": "സന്ദേശങ്ങളുടെ അവസാനം",
     "Get the conversation started...": "സംഭാഷണം ആരംഭിക്കുക...",
     "Invite a friend": "ഒരു സുഹൃത്തിനെ ക്ഷണിക്കുക",
     "Let's get you started by creating your first chat!":
@@ -98,6 +106,7 @@ const TRANSLATIONS: Record<
     "Welcome!": "സ്വാഗതം!",
   },
   Spanish: {
+    "End of Messages": "Fin de mensajes",
     "Get the conversation started...": "Inicie la conversación...",
     "Invite a friend": "Invitar a un amigo",
     "Let's get you started by creating your first chat!":
@@ -110,6 +119,7 @@ const TRANSLATIONS: Record<
     "Welcome!": "¡Bienvenido!",
   },
   Tamil: {
+    "End of Messages": "செய்திகள் முடிவுற்றன",
     "Get the conversation started...": "உரையாடலைத் தொடங்கவும்...",
     "Invite a friend": "நண்பரை அழை",
     "Let's get you started by creating your first chat!":
@@ -122,6 +132,7 @@ const TRANSLATIONS: Record<
     "Welcome!": "நல்வரவு!",
   },
   Telugu: {
+    "End of Messages": "సందేశాల ముగింపు",
     "Get the conversation started...": "సంభాషణను ప్రారంభించండి...",
     "Invite a friend": "స్నేహితుడిని ఆహ్వానించు",
     "Let's get you started by creating your first chat!":

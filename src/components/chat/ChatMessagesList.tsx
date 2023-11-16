@@ -5,6 +5,7 @@ import { Spinner } from "@/components/ui"
 import { UserAvatar } from "@/components/user/UserAvatar"
 import { cn } from "@/utilities/string"
 import { getLanguageCode } from "@/utilities/languages"
+import { getTranslation } from "@/utilities/translations"
 import type { Language } from "@/types/Language"
 import type { Message } from "@/types/Message"
 import type { User } from "next-auth"
@@ -73,7 +74,7 @@ export const ChatMessagesList: React.FC<{
         className="sr-only"
         ref={messagesEndRef}
       >
-        End of Messages
+        {getTranslation("End of Messages", language)}
       </li>
     </ul>
   )

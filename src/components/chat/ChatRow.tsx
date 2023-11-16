@@ -47,23 +47,23 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
       )}
     >
       <UserAvatar
-        name={lastMessage()?.user.name || user?.name}
-        image={lastMessage()?.user.image || user?.image}
+        name={lastMessage.data?.user.name || user?.name}
+        image={lastMessage.data?.user.image || user?.image}
       />
       <div className="flex-1">
         <p className="font-bold">
           {lastMessage
-            ? (lastMessage()?.user.name ?? user?.name)?.split(" ")[0]
+            ? (lastMessage.data?.user.name ?? user?.name)?.split(" ")[0]
             : "New Chat"}
         </p>
         <p className="text-gray-400 line-clamp-1">
-          {lastMessage()?.translated?.[getLanguageCode(language)] ??
+          {lastMessage.data?.translated?.[getLanguageCode(language)] ??
             "Get the conversation started..."}
         </p>
       </div>
       <div className="text-xs text-gray-400 text-right">
         <p className="mb-auto">
-          {lastMessage()?.localeTimeString ?? "No messages yet"}
+          {lastMessage.data?.localeTimeString ?? "No messages yet"}
         </p>
         <p className="">Chat #{prettifyId(chatId)}...</p>
       </div>

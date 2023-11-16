@@ -21,13 +21,11 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
   return (
     <>
       <ChatControls chatId={chatId} />
-      <div className="flex-1">
-        <ChatMessages
-          chatId={chatId}
-          user={user}
-          initialMessages={initialMessages}
-        />
-      </div>
+      <ChatMessages
+        chatId={chatId}
+        user={user}
+        initialMessages={initialMessages}
+      />
       <ChatInput chatId={chatId} />
     </>
   )

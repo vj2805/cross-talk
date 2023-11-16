@@ -38,7 +38,7 @@ export function useInviteForm(chat: Chat, isPro: boolean) {
 
     if (!isPro && chat.participantsIds.length >= 2) {
       return void showErrorToast(
-        new FreePlanLimitExceededError("no of users in a single chat")
+        new FreePlanLimitExceededError("2 users per chat")
       )
     }
 

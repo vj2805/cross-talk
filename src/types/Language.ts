@@ -1,4 +1,4 @@
-import type { getLanguageCode } from "@/constants/languages"
+import type { getLanguageCode } from "@/utilities/languages"
 
 export type Language =
   | "English"

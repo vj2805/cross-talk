@@ -33,7 +33,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   }
 
   if (lastMessage.status === "error") {
-    return void showErrorToast(lastMessage.error)
+    throw lastMessage.error
   }
 
   return (

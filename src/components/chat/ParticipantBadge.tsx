@@ -21,7 +21,7 @@ export const ParticipantBadge: React.FC<ParticipantBadgeProps> = ({
   }
 
   if (participant.status === "error") {
-    return void showErrorToast(participant.error)
+    throw participant.error
   }
 
   return (

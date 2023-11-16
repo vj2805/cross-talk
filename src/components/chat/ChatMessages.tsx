@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { Spinner, showErrorToast } from "@/components/ui"
+import { Spinner } from "@/components/ui"
 import { MessageCircleIcon } from "@/components/ui/icons"
 import { UserAvatar } from "@/components/user/UserAvatar"
 import { useMessages } from "@/hooks/useMessages"
@@ -31,16 +31,16 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   }, [messages])
 
   if (messages.status === "loading") {
-    return null
+    return <Spinner />
   }
 
   if (messages.status === "error") {
-    return void showErrorToast(messages.error)
+    throw messages.error
   }
 
   if (messages.data.length === 0) {
     return (
-      <div className="p-5">
+      <div className={cn("p-5", "flex-1")}>
         <div
           className={cn(
             "p-20",
@@ -65,7 +65,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   }
 
   return (
-    <div className="p-5">
+    <div className={cn("p-5", "flex-1")}>
       {messages.data.map(message => {
         const isSender = message.user.id === user.id
         return (

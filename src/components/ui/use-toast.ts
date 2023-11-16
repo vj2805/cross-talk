@@ -25,6 +25,7 @@ export function useToasts() {
 
 function createToast(props: ToastPropsWithoutId): Toast {
   return {
+    duration: 2000,
     ...props,
     id: generateId(),
     onOpenChange(open) {

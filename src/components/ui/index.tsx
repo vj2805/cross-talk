@@ -11,6 +11,8 @@ export {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
+  DialogFooter,
 } from "./dialog"
 export {
   DropdownMenu,

@@ -1,8 +1,8 @@
 "use client"
 
-import { cn } from "@/utilities/string"
 import { useParticipant } from "@/hooks/useParticipant"
-import { Badge, Spinner, showErrorToast } from "../ui"
+import { cn } from "@/utilities/string"
+import { Badge, Spinner } from "../ui"
 import { UserAvatar } from "../user/UserAvatar"
 
 interface ParticipantBadgeProps {

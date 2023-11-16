@@ -4,8 +4,10 @@ import { useId } from "react"
 import {
   Button,
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -15,7 +17,6 @@ import {
   showToast,
 } from "../ui"
 import { CopyIcon } from "../ui/icons"
-import { DialogClose, DialogFooter } from "../ui/dialog"
 
 interface ShareLinkProps {
   chatId: string

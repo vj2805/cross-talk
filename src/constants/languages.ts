@@ -1,6 +1,6 @@
 import type { Language } from "@/types/Language"
 
-export const LANGUAGE_CODES = {
+const LANGUAGE_CODES = {
   English: "en",
   French: "fr",
   German: "de",
@@ -12,3 +12,13 @@ export const LANGUAGE_CODES = {
   Tamil: "ta",
   Telugu: "te",
 } as const satisfies Record<Language, string>
+
+const AVAILABLE_LANGUAGES = Object.keys(LANGUAGE_CODES) as Language[]
+
+export function getAvailableLanguages() {
+  return AVAILABLE_LANGUAGES
+}
+
+export function getLanguageCode(language: Language) {
+  return LANGUAGE_CODES[language]
+}

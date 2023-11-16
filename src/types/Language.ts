@@ -1,4 +1,4 @@
-import type { LANGUAGE_CODES } from "@/constants/languageCodes"
+import type { getLanguageCode } from "@/constants/languages"
 
 export type Language =
   | "English"
@@ -12,7 +12,7 @@ export type Language =
   | "Tamil"
   | "Telugu"
 
-export type LanguageCode = (typeof LANGUAGE_CODES)[Language]
+export type LanguageCode = ReturnType<typeof getLanguageCode>
 
 export type AvailableLanguages = {
   free: Language[]

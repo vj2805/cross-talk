@@ -22,10 +22,10 @@ export const ChatListRows: React.FC<ChatListRowsProps> = ({ initialChats }) => {
   }
 
   if (chats.status === "error") {
-    return void showErrorToast(chats.error)
+    throw chats.error
   }
 
-  if (chats().length === 0) {
+  if (chats.data.length === 0) {
     return (
       <div
         className={cn(
@@ -45,7 +45,7 @@ export const ChatListRows: React.FC<ChatListRowsProps> = ({ initialChats }) => {
 
   return (
     <div>
-      {chats().map(chat => (
+      {chats.data.map(chat => (
         <ChatRow
           key={chat.id}
           chatId={chat.id}

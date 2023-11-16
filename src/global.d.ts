@@ -8,7 +8,7 @@ declare global {
   type WithId<T extends object> = Omit<T, "id"> & { id: string }
   type Observable<T> =
     | {
-        (): T
+        data: T
         status: "idle"
       }
     | {

@@ -38,7 +38,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
     return void showErrorToast(messages.error)
   }
 
-  if (messages().length === 0) {
+  if (messages.data.length === 0) {
     return (
       <div className="p-5">
         <div
@@ -66,7 +66,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
 
   return (
     <div className="p-5">
-      {messages().map(message => {
+      {messages.data.map(message => {
         const isSender = message.user.id === user.id
         return (
           <div

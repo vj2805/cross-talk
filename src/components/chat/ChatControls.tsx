@@ -2,9 +2,9 @@
 
 import { useChat } from "@/hooks/useChat"
 import { useUser } from "@/hooks/useUser"
-import { Spinner, showErrorToast } from "../ui"
-import { ChatParticipantsBadges } from "./ChatParticipantsBadges"
+import { Spinner } from "../ui"
 import { AdminControls } from "./AdminControls"
+import { ChatParticipantsBadges } from "./ChatParticipantsBadges"
 
 interface ChatControlsProps {
   chatId: string
@@ -19,13 +19,13 @@ export const ChatControls: React.FC<ChatControlsProps> = ({ chatId }) => {
   }
 
   if (chat.status === "error") {
-    return void showErrorToast(chat.error)
+    throw chat.error
   }
 
   return (
     <>
-      {user.id === chat.value.adminId && <AdminControls chat={chat.value} />}
-      <ChatParticipantsBadges chat={chat.value} />
+      {user.id === chat().adminId && <AdminControls chat={chat()} />}
+      <ChatParticipantsBadges chat={chat()} />
     </>
   )
 }

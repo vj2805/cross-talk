@@ -31,12 +31,12 @@ export const ParticipantBadge: React.FC<ParticipantBadgeProps> = ({
     >
       <div className="flex items-center space-x-2">
         <UserAvatar
-          name={participant.value.name}
-          image={participant.value.image}
+          name={participant().name}
+          image={participant().image}
         />
       </div>
       <div>
-        <p>{participant.value.email}</p>
+        <p>{participant().email}</p>
         {isAdmin && <p className="text-indigo-400 animate-pulse">Admin</p>}
       </div>
     </Badge>

@@ -24,7 +24,7 @@ export const ChatControls: React.FC<ChatControlsProps> = ({ chatId }) => {
 
   return (
     <>
-      {user?.id === chat.value.adminId && <AdminControls chat={chat.value} />}
+      {user.id === chat.value.adminId && <AdminControls chat={chat.value} />}
       <ChatParticipantsBadges chat={chat.value} />
     </>
   )

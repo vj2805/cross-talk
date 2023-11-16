@@ -1,6 +1,6 @@
 "use client"
 
-import { Spinner } from "@/components/ui"
+import { Spinner, showErrorToast } from "@/components/ui"
 import { useMessages } from "@/hooks/useMessages"
 import { ChatMessagesList } from "./ChatMessagesList"
 import { StartConversation } from "./StartConversation"
@@ -25,7 +25,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   }
 
   if (messages.status === "error") {
-    throw messages.error
+    return void showErrorToast(messages.error)
   }
 
   if (messages.data.length === 0) {

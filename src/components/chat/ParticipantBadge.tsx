@@ -2,7 +2,7 @@
 
 import { useParticipant } from "@/hooks/useParticipant"
 import { cn } from "@/utilities/string"
-import { Badge, Spinner } from "../ui"
+import { Badge, Spinner, showErrorToast } from "../ui"
 import { UserAvatar } from "../user/UserAvatar"
 
 interface ParticipantBadgeProps {
@@ -21,7 +21,7 @@ export const ParticipantBadge: React.FC<ParticipantBadgeProps> = ({
   }
 
   if (participant.status === "error") {
-    throw participant.error
+    return void showErrorToast(participant.error)
   }
 
   return (

@@ -5,6 +5,7 @@ import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
 import { useUser } from "@/hooks/useUser"
 import { cn } from "@/utilities/string"
+import { showErrorToast } from "../ui"
 import { ChatRowSkeleton } from "./ChatRowSkeleton"
 import { ChatRowThatHasNoMessages } from "./ChatRowThatHasNoMessages"
 import { ChatRowWithLastMessage } from "./ChatRowWithLastMessage"
@@ -20,7 +21,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const router = useRouter()
 
   if (!user) {
-    throw new UserError("User is NOT signed in!")
+    return void showErrorToast(new UserError("User is NOT signed in!"))
   }
 
   if (lastMessage.status === "loading") {
@@ -28,7 +29,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   }
 
   if (lastMessage.status === "error") {
-    throw lastMessage.error
+    return void showErrorToast(lastMessage.error)
   }
 
   return (

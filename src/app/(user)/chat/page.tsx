@@ -6,7 +6,7 @@ export default async function ChatsPage() {
   const user = await getServerUser()
 
   if (!user) {
-    throw null
+    return null
   }
 
   const initialChats = await getParticipatingChats({ userId: user.id })

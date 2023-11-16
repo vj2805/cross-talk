@@ -1,16 +1,39 @@
-import { UserError } from "@/errors/UserError"
-import { getServerUser } from "@/services/auth"
-import { getParticipatingChats } from "@/services/chat"
-import { ChatListRows } from "./ChatListRows"
+"use client"
 
-export const ChatList: React.FC = async () => {
-  const user = await getServerUser()
+import { useParticipatingChats } from "@/hooks/useParticipatingChats"
+import { Spinner } from "../ui"
+import { ChatRow } from "./ChatRow"
+import { WelcomeToChats } from "./WelcomeToChats"
+import type { User } from "@/types/User"
+import type { Chat } from "@/types/Chat"
 
-  if (!user) {
-    throw new UserError("User is NOT signed in!")
+interface ChatListProps {
+  initialChats: Chat[]
+  user: User
+}
+
+export const ChatList: React.FC<ChatListProps> = async ({
+  initialChats,
+  user,
+}) => {
+  const chats = useParticipatingChats(user.id, initialChats)
+
+  if (chats.status === "loading") {
+    return <Spinner />
   }
 
-  const initialChats = await getParticipatingChats({ userId: user.id })
+  if (chats.status === "error") {
+    throw chats.error
+  }
 
-  return <ChatListRows initialChats={initialChats} />
+  if (chats.data.length === 0) {
+    return <WelcomeToChats />
+  }
+
+  return chats.data.map(chat => (
+    <ChatRow
+      key={chat.id}
+      chatId={chat.id}
+    />
+  ))
 }

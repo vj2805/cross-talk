@@ -1,12 +1,12 @@
 "use client"
 
-import { Skeleton, showErrorToast } from "@/components/ui"
+import { Skeleton } from "@/components/ui"
 import { UserAvatar } from "@/components/user/UserAvatar"
+import { getLanguageCode } from "@/constants/languages"
 import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { useUser } from "@/hooks/useUser"
-import { getLanguageCode } from "@/utilities/language"
 import { cn, prettifyId } from "@/utilities/string"
 import type { Chat } from "@/types/Chat"
 

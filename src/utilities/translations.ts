@@ -4,6 +4,7 @@ const TRANSLATIONS: Record<
   Language,
   Record<
     | "Chat"
+    | "Create a New Chat"
     | "End of Messages"
     | "Get the conversation started..."
     | "Invite a friend"
@@ -18,6 +19,7 @@ const TRANSLATIONS: Record<
 > = {
   English: {
     Chat: "Chat",
+    "Create a New Chat": "Create a New Chat",
     "End of Messages": "End of Messages",
     "Get the conversation started...": "Get the conversation started...",
     "Invite a friend": "Invite a friend",
@@ -33,6 +35,7 @@ const TRANSLATIONS: Record<
   },
   French: {
     Chat: "Conversation",
+    "Create a New Chat": "Créer une nouvelle conversation",
     "End of Messages": "Fin des messages",
     "Get the conversation started...": "Lancez la conversation...",
     "Invite a friend": "Invite un ami",
@@ -48,6 +51,7 @@ const TRANSLATIONS: Record<
   },
   German: {
     Chat: "Gespräch",
+    "Create a New Chat": "Erstellen Sie eine neue Konversation",
     "End of Messages": "Ende der Nachrichten",
     "Get the conversation started...": "Beginnen Sie das Gespräch...",
     "Invite a friend": "Einen Freund einladen",
@@ -63,6 +67,7 @@ const TRANSLATIONS: Record<
   },
   Hindi: {
     Chat: "बातचीत",
+    "Create a New Chat": "एक नई बातचीत बनाएं",
     "End of Messages": "संदेशों का अंत",
     "Get the conversation started...": "बातचीत शुरू करें...",
     "Invite a friend": "किसी मित्र को आमंत्रित करें",
@@ -78,6 +83,7 @@ const TRANSLATIONS: Record<
   },
   Japanese: {
     Chat: "会話",
+    "Create a New Chat": "新しい会話を作成する",
     "End of Messages": "メッセージの終わり",
     "Get the conversation started...": "会話を始めましょう...",
     "Invite a friend": "友達を招待する",
@@ -93,6 +99,7 @@ const TRANSLATIONS: Record<
   },
   Kannada: {
     Chat: "ಸಂಭಾಷಣೆ",
+    "Create a New Chat": "ಹೊಸ ಸಂವಾದವನ್ನು ರಚಿಸಿ",
     "End of Messages": "ಸಂದೇಶಗಳ ಅಂತ್ಯ",
     "Get the conversation started...": "ಸಂಭಾಷಣೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿ...",
     "Invite a friend": "ಸ್ನೇಹಿತನನ್ನು ಆಮಂತ್ರಿಸು",
@@ -108,6 +115,7 @@ const TRANSLATIONS: Record<
   },
   Malayalam: {
     Chat: "സംഭാഷണം",
+    "Create a New Chat": "ഒരു പുതിയ സംഭാഷണം സൃഷ്ടിക്കുക",
     "End of Messages": "സന്ദേശങ്ങളുടെ അവസാനം",
     "Get the conversation started...": "സംഭാഷണം ആരംഭിക്കുക...",
     "Invite a friend": "ഒരു സുഹൃത്തിനെ ക്ഷണിക്കുക",
@@ -123,6 +131,7 @@ const TRANSLATIONS: Record<
   },
   Spanish: {
     Chat: "Conversación",
+    "Create a New Chat": "Crear una nueva conversación",
     "End of Messages": "Fin de mensajes",
     "Get the conversation started...": "Inicie la conversación...",
     "Invite a friend": "Invitar a un amigo",
@@ -138,6 +147,7 @@ const TRANSLATIONS: Record<
   },
   Tamil: {
     Chat: "அரட்டை",
+    "Create a New Chat": "புது அரட்டையை உருவாக்கு",
     "End of Messages": "செய்திகள் முடிவுற்றன",
     "Get the conversation started...": "உரையாடலைத் தொடங்கவும்...",
     "Invite a friend": "நண்பரை அழை",
@@ -153,6 +163,7 @@ const TRANSLATIONS: Record<
   },
   Telugu: {
     Chat: "సంభాషణ",
+    "Create a New Chat": "కొత్త సంభాషణను సృష్టించండి",
     "End of Messages": "సందేశాల ముగింపు",
     "Get the conversation started...": "సంభాషణను ప్రారంభించండి...",
     "Invite a friend": "స్నేహితుడిని ఆహ్వానించు",

@@ -51,10 +51,7 @@ const firebaseUserService: UserService = {
   subscribeToUser({ userId }, onChange, onError) {
     return onSnapshot(
       userRef(userId),
-      snapshot =>
-        snapshot.exists()
-          ? onChange(snapshot.data())
-          : onError?.(new Error(`User with id (${userId}) does not exist!`)),
+      snapshot => snapshot.exists() && onChange(snapshot.data()),
       onError
     )
   },

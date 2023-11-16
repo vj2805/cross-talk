@@ -1,6 +1,5 @@
 "use client"
 
-import { UserError } from "@/errors/UserError"
 import { useChat } from "@/hooks/useChat"
 import { useUser } from "@/hooks/useUser"
 import { Spinner } from "../ui"
@@ -16,7 +15,7 @@ export const ChatControls: React.FC<ChatControlsProps> = ({ chatId }) => {
   const chat = useChat(chatId)
 
   if (!user) {
-    throw new UserError("User is NOT signed in!")
+    return null
   }
 
   if (chat.status === "loading") {

@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation"
 import { ChatList } from "@/components"
 import { getServerUser } from "@/services/auth"
 import { getParticipatingChats } from "@/services/chat"
@@ -6,7 +7,7 @@ export default async function ChatsPage() {
   const user = await getServerUser()
 
   if (!user) {
-    return null
+    return redirect("/")
   }
 
   const initialChats = await getParticipatingChats({ userId: user.id })

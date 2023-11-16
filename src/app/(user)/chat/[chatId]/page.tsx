@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation"
 import { ChatInput, ChatMessages } from "@/components"
 import { ChatControls } from "@/components/chat/ChatControls"
 import { getServerUser } from "@/services/auth"
@@ -13,7 +14,7 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
   const user = await getServerUser()
 
   if (!user) {
-    return null
+    return redirect("/")
   }
 
   let initialMessages = await getMessages({ chatId })

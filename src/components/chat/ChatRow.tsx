@@ -1,6 +1,5 @@
 "use client"
 
-import { UserError } from "@/errors/UserError"
 import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
 import { useUser } from "@/hooks/useUser"
@@ -21,7 +20,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const router = useRouter()
 
   if (!user) {
-    return void showErrorToast(new UserError("User is NOT signed in!"))
+    return null
   }
 
   if (lastMessage.status === "loading") {

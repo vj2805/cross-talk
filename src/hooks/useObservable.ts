@@ -14,10 +14,6 @@ export function useObservable<T>(initialValue: T | typeof NONE = NONE) {
   return [observable, setValue, setError] as const
 }
 
-export function useObservableArray<T>(initialValue: T[] | typeof NONE = NONE) {
-  return useObservable<T[]>(initialValue)
-}
-
 function createValue<T>(value: T): Observable<T> {
   const observable = () => value
   observable.status = "idle" as const

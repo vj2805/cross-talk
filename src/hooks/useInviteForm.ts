@@ -28,10 +28,13 @@ export function useInviteForm(chat: Chat, isPro: boolean) {
       return
     }
 
-    showToast({
-      description: "Please wait while we send the invite...",
-      title: "Sending Invite...",
-    })
+    showToast(
+      {
+        description: "Please wait while we send the invite...",
+        title: "Sending Invite...",
+      },
+      2000
+    )
 
     if (!isPro && chat.participantsIds.length >= 2) {
       return void showErrorToast(
@@ -45,12 +48,14 @@ export function useInviteForm(chat: Chat, isPro: boolean) {
         chatId: chat.id,
         participantId: participant.id,
       })
-      showToast({
-        description: "The user has been added to the chat successfully!",
-        duration: 3000,
-        title: "Added to chat",
-        variant: "success",
-      })
+      showToast(
+        {
+          description: "The user has been added to the chat successfully!",
+          title: "Added to chat",
+          variant: "success",
+        },
+        3000
+      )
     } catch (error) {
       showErrorToast(error as Error)
     } finally {

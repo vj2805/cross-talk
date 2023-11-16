@@ -13,6 +13,7 @@ import {
   DialogTrigger,
   Input,
   Label,
+  dismissToast,
   showErrorToast,
   showToast,
 } from "../ui"
@@ -29,12 +30,15 @@ export const ShareLink: React.FC<ShareLinkProps> = ({ chatId }) => {
   async function copyLinkToClipboard() {
     try {
       await window.navigator.clipboard.writeText(linkToChat)
-      showToast({
-        description:
-          "Share this to the person you want to chat with! (NOTE: They must be added to the chat to access it!)",
-        title: "Copied Successfully!",
-        variant: "success",
-      })
+      showToast(
+        {
+          description:
+            "Share this to the person you want to chat with! (NOTE: They must be added to the chat to access it!)",
+          title: "Copied Successfully!",
+          variant: "success",
+        },
+        2000
+      )
     } catch (error) {
       showErrorToast(error as Error)
     }

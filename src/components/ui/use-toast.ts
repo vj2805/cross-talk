@@ -37,11 +37,17 @@ function createToast(props: ToastPropsWithoutId): Toast {
   }
 }
 
-export function showToast(props: ToastPropsWithoutId) {
+export function showToast(
+  props: SafeOmit<ToastPropsWithoutId, "duration">,
+  duration?: number
+) {
   const toast = createToast(props)
   useToastStore.setState(store => ({
     toasts: [toast, ...store.toasts].slice(0, TOAST_LIMIT),
   }))
+  if (duration !== undefined) {
+    dismissToast(toast.id, duration)
+  }
   return toast.id
 }
 
@@ -65,12 +71,14 @@ export function showErrorToast(
   error: ToastableError,
   props: SafeOmit<ToastPropsWithoutId, "action" | "description" | "title"> = {}
 ) {
-  return showToast({
-    action: error.action,
-    description: error.message,
-    duration: 2000,
-    title: error.name,
-    variant: "destructive",
-    ...props,
-  })
+  return showToast(
+    {
+      action: error.action,
+      description: error.message,
+      title: error.name,
+      variant: "destructive",
+      ...props,
+    },
+    2000
+  )
 }

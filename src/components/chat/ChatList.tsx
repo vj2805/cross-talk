@@ -1,7 +1,6 @@
 "use client"
 
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
-import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { Spinner } from "../ui"
 import { ChatRow } from "./ChatRow"
 import { WelcomeToChats } from "./WelcomeToChats"
@@ -18,7 +17,6 @@ export const ChatList: React.FC<ChatListProps> = async ({
   user,
 }) => {
   const chats = useParticipatingChats(user.id, initialChats)
-  const language = usePreferredLanguage()
 
   if (chats.status === "loading") {
     return <Spinner />
@@ -29,7 +27,7 @@ export const ChatList: React.FC<ChatListProps> = async ({
   }
 
   if (chats.data.length === 0) {
-    return <WelcomeToChats language={language} />
+    return <WelcomeToChats />
   }
 
   return chats.data.map(chat => (

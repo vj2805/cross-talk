@@ -1,14 +1,11 @@
+import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { cn } from "@/utilities/string"
 import { getTranslation } from "@/utilities/translations"
 import { MessageSquareIcon } from "../ui/icons"
 import { CreateChatButton } from "./CreateChatButton"
-import type { Language } from "@/types/Language"
 
-interface WelcomeToChatsProps {
-  language: Language
-}
-
-export const WelcomeToChats: React.FC<WelcomeToChatsProps> = ({ language }) => {
+export const WelcomeToChats: React.FC = () => {
+  const language = usePreferredLanguage()
   return (
     <div
       className={cn(

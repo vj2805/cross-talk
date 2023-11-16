@@ -3,20 +3,25 @@
 import { useEffect, useRef } from "react"
 import { Spinner } from "@/components/ui"
 import { UserAvatar } from "@/components/user/UserAvatar"
-import { cn } from "@/utilities/string"
+import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { getLanguageCode } from "@/utilities/languages"
+import { cn } from "@/utilities/string"
 import { getTranslation } from "@/utilities/translations"
-import type { Language } from "@/types/Language"
 import type { Message } from "@/types/Message"
 import type { User } from "next-auth"
 
-export const ChatMessagesList: React.FC<{
-  language: Language
+interface ChatMessagesListProps {
   messages: Message[]
   user: User
-}> = ({ language, messages, user }) => {
-  const messagesEndRef = useRef<React.ElementRef<"li">>(null)
+}
 
+export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
+  messages,
+  user,
+}) => {
+  const language = usePreferredLanguage()
+
+  const messagesEndRef = useRef<React.ElementRef<"li">>(null)
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])

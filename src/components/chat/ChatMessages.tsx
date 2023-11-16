@@ -2,9 +2,8 @@
 
 import { Spinner } from "@/components/ui"
 import { useMessages } from "@/hooks/useMessages"
-import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
-import { StartConversation } from "./StartConversation"
 import { ChatMessagesList } from "./ChatMessagesList"
+import { StartConversation } from "./StartConversation"
 import type { Message } from "@/types/Message"
 import type { User } from "next-auth"
 
@@ -19,7 +18,6 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   initialMessages,
   user,
 }) => {
-  const language = usePreferredLanguage()
   const messages = useMessages(chatId, initialMessages)
 
   if (messages.status === "loading") {
@@ -31,12 +29,11 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   }
 
   if (messages.data.length === 0) {
-    return <StartConversation language={language} />
+    return <StartConversation />
   }
 
   return (
     <ChatMessagesList
-      language={language}
       messages={messages.data}
       user={user}
     />

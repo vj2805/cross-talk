@@ -3,7 +3,6 @@
 import { UserError } from "@/errors/UserError"
 import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
-import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { useUser } from "@/hooks/useUser"
 import { cn } from "@/utilities/string"
 import { ChatRowSkeleton } from "./ChatRowSkeleton"
@@ -18,7 +17,6 @@ interface ChatRowProps {
 export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const lastMessage = useLastMessage(chatId)
   const user = useUser()
-  const language = usePreferredLanguage()
   const router = useRouter()
 
   if (!user) {
@@ -46,14 +44,12 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
       {!lastMessage.data ? (
         <ChatRowThatHasNoMessages
           chatId={chatId}
-          language={language}
           user={user}
         />
       ) : (
         <ChatRowWithLastMessage
           chatId={chatId}
           lastMessage={lastMessage.data}
-          language={language}
           user={user}
         />
       )}

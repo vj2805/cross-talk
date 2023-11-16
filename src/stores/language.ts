@@ -1,4 +1,4 @@
-import { create } from "zustand"
+import { createWithEqualityFn } from "zustand/traditional"
 import type { AvailableLanguages, Language } from "@/types/Language"
 
 type LanguageStore = {
@@ -6,7 +6,7 @@ type LanguageStore = {
   preferredLanguage: Language
 }
 
-export const useLanguageStore = create<LanguageStore>(() => ({
+export const useLanguageStore = createWithEqualityFn<LanguageStore>(() => ({
   availableLanguages: undefined,
   preferredLanguage: "English",
 }))

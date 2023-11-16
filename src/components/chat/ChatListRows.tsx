@@ -1,6 +1,5 @@
 "use client"
 
-import { showErrorToast } from "@/components/ui"
 import { MessageSquareIcon } from "@/components/ui/icons"
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
 import { useUser } from "@/hooks/useUser"

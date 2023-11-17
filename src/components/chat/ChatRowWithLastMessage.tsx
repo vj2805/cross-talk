@@ -2,6 +2,7 @@ import { UserAvatar } from "@/components/user/UserAvatar"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { getLanguageCode } from "@/utilities/languages"
 import { prettifyId } from "@/utilities/string"
+import { getTimestampString } from "@/utilities/timestamps"
 import type { Message } from "@/types/Message"
 import type { User } from "@/types/User"
 
@@ -27,7 +28,7 @@ export const ChatRowWithLastMessage: React.FC<{
         </p>
       </div>
       <div className="text-xs text-gray-400 text-right">
-        <p className="mb-auto">{lastMessage.timestamp}</p>
+        <p className="mb-auto">{getTimestampString(lastMessage.timestamp)}</p>
         <p className="">Chat #{prettifyId(chatId)}...</p>
       </div>
     </>

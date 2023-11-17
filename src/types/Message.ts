@@ -5,7 +5,7 @@ import type { Timestamp } from "./Timestamp"
 
 export interface Message extends Model {
   input: string
-  timestamp: string
+  timestamp: Timestamp
   user: User
   translated?: Record<LanguageCode, string>
 }

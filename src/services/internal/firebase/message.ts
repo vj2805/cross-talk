@@ -73,7 +73,7 @@ const firebaseMessageService: MessageService = {
   subscribeToLastMessage({ chatId }, onChange, onError) {
     return onSnapshot(
       lastMessageRef(chatId),
-      snapshot => onChange(snapshot.docs[0]?.data()),
+      snapshot => onChange(snapshot.empty ? null : snapshot.docs[0].data()),
       onError
     )
   },

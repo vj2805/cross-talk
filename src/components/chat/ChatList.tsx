@@ -16,21 +16,21 @@ export const ChatList: React.FC<ChatListProps> = async ({
   initialChats,
   user,
 }) => {
-  const chats = useParticipatingChats(user.id, initialChats)
+  const [chats, status, error] = useParticipatingChats(user.id, initialChats)
 
-  if (chats.status === "loading") {
+  if (status === "loading") {
     return <Spinner />
   }
 
-  if (chats.status === "error") {
-    return void showErrorToast(chats.error)
+  if (status === "error") {
+    return void showErrorToast(error)
   }
 
-  if (chats.data.length === 0) {
+  if (chats.length === 0) {
     return <WelcomeToChats />
   }
 
-  return chats.data.map(chat => (
+  return chats.map(chat => (
     <ChatRow
       key={chat.id}
       chatId={chat.id}

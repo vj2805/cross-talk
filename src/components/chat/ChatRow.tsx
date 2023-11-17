@@ -15,20 +15,20 @@ interface ChatRowProps {
 }
 
 export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
-  const lastMessage = useLastMessage(chatId)
-  const user = useUser()
+  const [lastMessage, status, error] = useLastMessage(chatId)
+  const [user] = useUser()
   const router = useRouter()
 
   if (!user) {
     return null
   }
 
-  if (lastMessage.status === "loading") {
+  if (status === "loading") {
     return <ChatRowSkeleton />
   }
 
-  if (lastMessage.status === "error") {
-    return void showErrorToast(lastMessage.error)
+  if (status === "error") {
+    return void showErrorToast(error)
   }
 
   return (
@@ -41,7 +41,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
         "cursor-pointer"
       )}
     >
-      {!lastMessage.data ? (
+      {!lastMessage ? (
         <ChatRowThatHasNoMessages
           chatId={chatId}
           user={user}
@@ -49,7 +49,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
       ) : (
         <ChatRowWithLastMessage
           chatId={chatId}
-          lastMessage={lastMessage.data}
+          lastMessage={lastMessage}
           user={user}
         />
       )}

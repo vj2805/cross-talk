@@ -18,23 +18,23 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   initialMessages,
   user,
 }) => {
-  const messages = useMessages(chatId, initialMessages)
+  const [messages, status, error] = useMessages(chatId, initialMessages)
 
-  if (messages.status === "loading") {
+  if (status === "loading") {
     return <Spinner />
   }
 
-  if (messages.status === "error") {
-    return void showErrorToast(messages.error)
+  if (status === "error") {
+    return void showErrorToast(error)
   }
 
-  if (messages.data.length === 0) {
+  if (messages.length === 0) {
     return <StartConversation />
   }
 
   return (
     <ChatMessagesList
-      messages={messages.data}
+      messages={messages}
       user={user}
     />
   )

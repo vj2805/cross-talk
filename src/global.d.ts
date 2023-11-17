@@ -7,15 +7,9 @@ declare global {
   type Optional<T> = T | null | undefined
   type WithId<T extends object> = Omit<T, "id"> & { id: string }
   type Observable<T> =
-    | {
-        data: T
-        status: "idle"
-      }
-    | {
-        error: Error
-        status: "error"
-      }
-    | { status: "loading" }
+    | [T, "idle", undefined]
+    | [undefined, "error", Error]
+    | [undefined, "loading", undefined]
   namespace React {
     type Nodes<T extends string> = Record<T, React.ReactNode>
     type PropsWithRequiredChildren = Required<React.PropsWithChildren>

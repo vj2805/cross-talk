@@ -14,14 +14,14 @@ export const ParticipantBadge: React.FC<ParticipantBadgeProps> = ({
   isAdmin,
   participantId,
 }) => {
-  const participant = useParticipant(participantId)
+  const [participant, status, error] = useParticipant(participantId)
 
-  if (participant.status === "loading") {
+  if (status === "loading") {
     return <Spinner />
   }
 
-  if (participant.status === "error") {
-    return void showErrorToast(participant.error)
+  if (status === "error") {
+    return void showErrorToast(error)
   }
 
   return (
@@ -31,12 +31,12 @@ export const ParticipantBadge: React.FC<ParticipantBadgeProps> = ({
     >
       <div className="flex items-center space-x-2">
         <UserAvatar
-          name={participant.data.name}
-          image={participant.data.image}
+          name={participant.name}
+          image={participant.image}
         />
       </div>
       <div>
-        <p>{participant.data.email}</p>
+        <p>{participant.email}</p>
         {isAdmin && <p className="text-indigo-400 animate-pulse">Admin</p>}
       </div>
     </Badge>

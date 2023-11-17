@@ -11,25 +11,25 @@ interface ChatControlsProps {
 }
 
 export const ChatControls: React.FC<ChatControlsProps> = ({ chatId }) => {
-  const user = useUser()
-  const chat = useChat(chatId)
+  const [user] = useUser()
+  const [chat, status, error] = useChat(chatId)
 
   if (!user) {
     return null
   }
 
-  if (chat.status === "loading") {
+  if (status === "loading") {
     return <Spinner />
   }
 
-  if (chat.status === "error") {
-    return void showErrorToast(chat.error)
+  if (status === "error") {
+    return void showErrorToast(error)
   }
 
   return (
     <>
-      {user.id === chat.data.adminId && <AdminControls chat={chat.data} />}
-      <ChatParticipantsBadges chat={chat.data} />
+      {user.id === chat.adminId && <AdminControls chat={chat} />}
+      <ChatParticipantsBadges chat={chat} />
     </>
   )
 }

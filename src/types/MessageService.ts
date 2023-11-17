@@ -27,7 +27,7 @@ export interface MessageService {
     {
       chatId: Chat["id"]
     },
-    Uncertain<Message>
+    Nullish<Message>
   >
   subscribeToMessages: Subscribe<
     {

@@ -56,12 +56,13 @@ const firebaseUserService: UserService = {
     )
   },
   async syncUser({ session }) {
-    if (session?.firebaseToken) {
+    if (session?.user && session?.firebaseToken) {
       await signInWithCustomToken(clientAuth, session.firebaseToken)
+      return session.user
     } else {
       await signOut(clientAuth)
+      return null
     }
-    return session?.user ?? null
   },
 }
 

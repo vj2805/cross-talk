@@ -26,14 +26,14 @@ export function useCheckout() {
             }
             stop()
             unsubscribe()
-            dismissToast(2000)
+            dismissToast()
           },
           error => updateToast({ error })
         )
       } catch (error) {
         updateToast({ error: error as Error })
         stop()
-        dismissToast(2000)
+        dismissToast()
       }
     },
     {

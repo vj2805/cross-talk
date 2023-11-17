@@ -52,7 +52,7 @@ export const DeleteChatButton: React.FC<DeleteChatButtonProps> = ({
     } catch (error) {
       updateToast({ error: error as Error })
     } finally {
-      dismissToast(2000)
+      dismissToast()
     }
   }
 

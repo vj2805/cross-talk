@@ -38,7 +38,7 @@ export const ShareLink: React.FC<ShareLinkProps> = ({ chatId }) => {
     } catch (error) {
       updateToast({ error: error as Error })
     } finally {
-      dismissToast(2000)
+      dismissToast()
     }
   }
 

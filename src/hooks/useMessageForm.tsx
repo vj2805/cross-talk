@@ -42,7 +42,7 @@ export function useMessageForm(chatId: string) {
         message: JSON.stringify(error),
       })
     } finally {
-      dismissToast(2000)
+      dismissToast()
     }
   }
 

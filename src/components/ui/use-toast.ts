@@ -122,7 +122,7 @@ type Toast = Omit<ToasterToast, "id">
 export function showToast({ error, ...props }: Toast) {
   const id = generateId()
 
-  const update = (props: ToasterToast) =>
+  const update = (props: Toast) =>
     dispatch({
       toast: { ...props, id },
       type: "update",

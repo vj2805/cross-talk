@@ -50,7 +50,7 @@ export function useInviteForm(chat: Chat, isPro: boolean) {
     } catch (error) {
       updateToast({ error: error as Error })
     } finally {
-      dismissToast(3000)
+      dismissToast()
       form.reset()
     }
   }

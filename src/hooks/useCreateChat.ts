@@ -22,7 +22,7 @@ export function useCreateChat() {
     } catch (error) {
       updateToast({ error: error as Error })
     } finally {
-      dismissToast(2000)
+      dismissToast()
     }
   })
 }

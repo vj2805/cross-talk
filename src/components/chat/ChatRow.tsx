@@ -2,7 +2,7 @@
 
 import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
-import { useUser } from "@/hooks/useUser"
+import { useRequiredUser } from "@/hooks/useRequiredUser"
 import { cn } from "@/utilities/string"
 import { showErrorToast } from "../ui"
 import { ChatRowSkeleton } from "./ChatRowSkeleton"
@@ -16,7 +16,7 @@ interface ChatRowProps {
 
 export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const [lastMessage, status, error] = useLastMessage(chatId)
-  const [user] = useUser()
+  const [user] = useRequiredUser()
   const router = useRouter()
 
   if (!user) {

@@ -1,7 +1,7 @@
 "use client"
 
 import { useChat } from "@/hooks/useChat"
-import { useUser } from "@/hooks/useUser"
+import { useRequiredUser } from "@/hooks/useRequiredUser"
 import { Spinner, showErrorToast } from "../ui"
 import { AdminControls } from "./AdminControls"
 import { ChatParticipantsBadges } from "./ChatParticipantsBadges"
@@ -11,7 +11,7 @@ interface ChatControlsProps {
 }
 
 export const ChatControls: React.FC<ChatControlsProps> = ({ chatId }) => {
-  const [user] = useUser()
+  const [user] = useRequiredUser()
   const [chat, status, error] = useChat(chatId)
 
   if (!user) {

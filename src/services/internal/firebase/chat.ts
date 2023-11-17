@@ -2,16 +2,15 @@ import {
   addDoc,
   collection,
   doc,
-  getDoc,
   getDocs,
   onSnapshot,
   query,
   where,
 } from "firebase/firestore"
 import { clientRepo } from "@/backend/firebase/client"
-import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Chat } from "@/types/Chat"
 import type { ChatService } from "@/types/ChatService"
+import type { FirestoreDataConverter } from "firebase/firestore"
 
 const chatConverter: FirestoreDataConverter<Chat> = {
   fromFirestore(snapshot, options) {

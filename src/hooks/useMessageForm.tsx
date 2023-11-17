@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { showErrorToast } from "@/components/ui"
+import { showToast } from "@/components/ui"
 import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
 import { getMessagesCount, postMessage } from "@/services/message"
 import { useUser } from "./useUser"
@@ -13,7 +13,7 @@ const MessageFormSchema = z.object({
 type MessageFormSchemaType = z.infer<typeof MessageFormSchema>
 
 export function useMessageForm(chatId: string) {
-  const user = useUser()
+  const [user] = useUser()
   const form = useForm<MessageFormSchemaType>({
     defaultValues: {
       input: "",
@@ -28,10 +28,11 @@ export function useMessageForm(chatId: string) {
     if (!user) {
       return
     }
+    const [dismissToast, updateToast] = showToast({ open: false })
     try {
       const count = await getMessagesCount({ chatId })
       if (count >= 25) {
-        showErrorToast(new FreePlanLimitExceededError("25 messages per chat"))
+        updateToast(new FreePlanLimitExceededError("25 messages per chat"))
         return
       }
       await postMessage({ chatId, input, user })
@@ -40,6 +41,8 @@ export function useMessageForm(chatId: string) {
       form.setError("input", {
         message: JSON.stringify(error),
       })
+    } finally {
+      dismissToast(2000)
     }
   }
 

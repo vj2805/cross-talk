@@ -4,7 +4,7 @@ import { syncSubscription } from "@/services/subscription"
 import { setSubscription } from "@/stores/subscription"
 
 export function useSyncSubscription() {
-  const syncUser = useUser()
+  const [syncUser] = useUser()
   useEffect(() => {
     if (syncUser) {
       return syncSubscription({ userId: syncUser.id }, setSubscription)

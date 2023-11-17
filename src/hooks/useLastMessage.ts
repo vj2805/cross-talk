@@ -5,7 +5,7 @@ import type { Message } from "@/types/Message"
 
 export function useLastMessage(chatId: string) {
   const [lastMessage, setLastMessage, setError] =
-    useObservable<Uncertain<Message>>()
+    useObservable<Nullish<Message>>()
 
   useEffect(
     () => subscribeToLastMessage({ chatId }, setLastMessage, setError),

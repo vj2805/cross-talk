@@ -1,5 +1,4 @@
 import {
-  Timestamp,
   addDoc,
   collection,
   getCountFromServer,
@@ -11,6 +10,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore"
 import { clientRepo } from "@/backend/firebase/client"
+import { getTimestampString } from "@/utilities/timestamps"
 import type { Message } from "@/types/Message"
 import type { MessageService } from "@/types/MessageService"
 import type { FirestoreDataConverter } from "firebase/firestore"
@@ -21,7 +21,7 @@ const messageConverter: FirestoreDataConverter<Message> = {
     return {
       id: snapshot.id,
       input: data.input,
-      timestamp: data.timestamp,
+      timestamp: getTimestampString(data.timestamp),
       translated: data.translated,
       user: data.user,
     }

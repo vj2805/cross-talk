@@ -10,7 +10,7 @@ interface ChatListProps {
   user: User
 }
 
-export const ChatList: React.FC<ChatListProps> = async ({ user }) => {
+export const ChatList: React.FC<ChatListProps> = ({ user }) => {
   const [chats, status, error] = useParticipatingChats(user.id)
 
   if (status === "loading") {

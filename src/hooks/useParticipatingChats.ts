@@ -3,8 +3,8 @@ import { subscribeToParticipatingChats } from "@/services/chat"
 import { useObservable } from "./useObservable"
 import type { Chat } from "@/types/Chat"
 
-export function useParticipatingChats(userId: string, initialChats: Chat[]) {
-  const [chats, setChats, setError] = useObservable<Chat[]>(initialChats)
+export function useParticipatingChats(userId: string) {
+  const [chats, setChats, setError] = useObservable<Chat[]>()
 
   useEffect(() => {
     if (userId) {

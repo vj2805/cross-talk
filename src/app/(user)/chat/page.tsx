@@ -11,10 +11,7 @@ export default async function ChatsPage() {
 
   return (
     <div>
-      <ChatList
-        initialChats={[]}
-        user={user}
-      />
+      <ChatList user={user} />
     </div>
   )
 }

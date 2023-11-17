@@ -3,8 +3,8 @@
 import { ManageSubscriptionButton } from "@/components/subscription/ManageSubscriptionButton"
 import { Spinner } from "@/components/ui"
 import { useCheckout } from "@/hooks/useCheckout"
+import { useRequiredUser } from "@/hooks/useRequiredUser"
 import { useSubscription } from "@/hooks/useSubscription"
-import { useUser } from "@/hooks/useUser"
 import { cn } from "@/utilities/string"
 
 interface CheckoutButtonProps {
@@ -12,10 +12,13 @@ interface CheckoutButtonProps {
 }
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
-  const user = useUser()
+  const [user] = useRequiredUser()
+  const [createCheckout, processing] = useCheckout()
   const subscription = useSubscription()
 
-  const { createCheckout, processing } = useCheckout(user?.id, priceId)
+  if (!user) {
+    return null
+  }
 
   return (
     <div className="flex flex-col space-y-2">
@@ -38,7 +41,9 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
         ) : subscription?.status === "active" ? (
           <ManageSubscriptionButton />
         ) : (
-          <button onClick={createCheckout}>Subscribe</button>
+          <button onClick={() => createCheckout(user.id, priceId)}>
+            Subscribe
+          </button>
         )}
       </div>
     </div>

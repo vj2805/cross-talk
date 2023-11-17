@@ -2,25 +2,17 @@ import { dismissToast, showToast, updateToast } from "@/components/ui"
 import { createChat } from "@/services/chat"
 import { useRouter } from "./useBuiltins"
 import { useProcess } from "./useProcess"
-import { useUser } from "./useUser"
 
 export function useCreateChat() {
-  const { processing, startProcess, stopProcess } = useProcess()
-  const user = useUser()
   const router = useRouter()
-
-  async function createNewChat() {
-    if (!user) {
-      return
-    }
-    startProcess()
+  return useProcess(async (_, adminId: string) => {
     const toastId = showToast({
       description: "Hold tight while we create your new chat...",
       title: "Creating new chat...",
       variant: "default",
     })
     try {
-      const chatId = await createChat({ adminId: user.id })
+      const chatId = await createChat({ adminId })
       updateToast(toastId, {
         description: "Redirecting to the new chat, Please wait...",
         title: "Created new chat!",
@@ -35,9 +27,6 @@ export function useCreateChat() {
       })
     } finally {
       dismissToast(toastId, 2000)
-      stopProcess()
     }
-  }
-
-  return { createNewChat, processing }
+  })
 }

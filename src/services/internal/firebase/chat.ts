@@ -63,9 +63,7 @@ const firebaseChatService: ChatService = {
       snapshot => {
         const chat = snapshot.data()
         if (!chat) {
-          return onError?.(
-            new Error(`Chat with id (${chatId}) does not exist!`)
-          )
+          return
         }
         return onChange(chat)
       },

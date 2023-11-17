@@ -3,8 +3,8 @@ import { generateId } from "@/utilities/string"
 import type { ToastableError } from "@/errors/ToastableError"
 import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
 
-const TOAST_LIMIT = 1
-const TOAST_REMOVE_DELAY = 1000000
+const TOAST_LIMIT = 2
+const TOAST_REMOVE_DELAY = 1_000_000
 
 type ToasterToast = ToastProps & {
   id: string
@@ -120,7 +120,7 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, "id">
 
-export function showToast({ error, ...props }: Toast) {
+export function showToast({ error, duration = 2000, ...props }: Toast) {
   const id = generateId()
 
   const update = (props: Toast) =>
@@ -132,16 +132,15 @@ export function showToast({ error, ...props }: Toast) {
 
   dispatch({
     toast: {
-      ...props,
       action: error?.action,
       description: error?.message,
-      id,
-      onOpenChange: open => {
-        if (!open) dismiss()
-      },
-      open: true,
+      duration,
       title: error?.name,
       variant: error && "destructive",
+      ...props,
+      id,
+      onOpenChange: open => !open && dismiss(),
+      open: true,
     },
     type: "add",
   })

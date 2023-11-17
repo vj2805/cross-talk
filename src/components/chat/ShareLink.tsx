@@ -26,19 +26,16 @@ export const ShareLink: React.FC<ShareLinkProps> = ({ chatId }) => {
   const linkToChat = createLinkToChat(chatId)
 
   async function copyLinkToClipboard() {
-    const [dismissToast, updateToast] = showToast({ open: false })
     try {
       await window.navigator.clipboard.writeText(linkToChat)
-      updateToast({
+      showToast({
         description:
           "Share this to the person you want to chat with! (NOTE: They must be added to the chat to access it!)",
         title: "Copied Successfully!",
         variant: "success",
       })
     } catch (error) {
-      updateToast({ error: error as Error })
-    } finally {
-      dismissToast()
+      showToast({ error: error as Error })
     }
   }
 

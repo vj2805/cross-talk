@@ -28,11 +28,12 @@ export function useMessageForm(chatId: string) {
     if (!user) {
       return
     }
-    const [dismissToast, updateToast] = showToast({ open: false })
     try {
       const count = await getMessagesCount({ chatId })
       if (count >= 25) {
-        updateToast(new FreePlanLimitExceededError("25 messages per chat"))
+        showToast({
+          error: new FreePlanLimitExceededError("25 messages per chat"),
+        })
         return
       }
       await postMessage({ chatId, input, user })
@@ -41,8 +42,6 @@ export function useMessageForm(chatId: string) {
       form.setError("input", {
         message: JSON.stringify(error),
       })
-    } finally {
-      dismissToast()
     }
   }
 

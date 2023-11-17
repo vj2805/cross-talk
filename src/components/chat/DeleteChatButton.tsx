@@ -38,21 +38,19 @@ export const DeleteChatButton: React.FC<DeleteChatButtonProps> = ({
   }
 
   async function handleDeleteChat() {
-    const [dismissToast, updateToast] = showToast({
-      description: translate("Please wait while we delete the chat..."),
-      title: translate("Deleting chat"),
+    showToast({
+      description: "Please wait while we delete the chat...",
+      title: "Deleting chat",
     })
     try {
       await deleteChat(chatId)
-      updateToast({
-        description: `${translate("Deleted Chat with id")} ${chatId}`,
+      showToast({
+        description: `${"Deleted Chat with id"} ${chatId}`,
         variant: "success",
       })
       router.replace("/chat")
     } catch (error) {
-      updateToast({ error: error as Error })
-    } finally {
-      dismissToast()
+      showToast({ error: error as Error })
     }
   }
 

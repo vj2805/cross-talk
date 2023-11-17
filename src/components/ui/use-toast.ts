@@ -119,7 +119,7 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, "id">
 
-export function showToast({ ...props }: Toast) {
+export function showToast({ error, ...props }: Toast) {
   const id = generateId()
 
   const update = (props: ToasterToast) =>
@@ -132,11 +132,15 @@ export function showToast({ ...props }: Toast) {
   dispatch({
     toast: {
       ...props,
+      action: error?.action,
+      description: error?.message,
       id,
       onOpenChange: open => {
         if (!open) dismiss()
       },
       open: true,
+      title: error?.name,
+      variant: error && "destructive",
     },
     type: "add",
   })

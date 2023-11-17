@@ -29,10 +29,12 @@ function activeSubscriptionRef(userId: string) {
 }
 
 const firestoreSubscriptionService: SubscriptionService = {
-  syncSubscription({ userId }, onChange) {
-    return onSnapshot(activeSubscriptionRef(userId), snapshot => {
-      onChange(snapshot.empty ? null : snapshot.docs[0].data())
-    })
+  syncSubscription({ userId }, onChange, onError) {
+    return onSnapshot(
+      activeSubscriptionRef(userId),
+      snapshot => onChange(snapshot.empty ? null : snapshot.docs[0].data()),
+      onError
+    )
   },
 }
 

@@ -9,9 +9,10 @@ type ToastNodes = React.Nodes<"description" | "title"> & {
   action: ToastActionElement
 }
 
-type ToastPropsWithoutId = Partial<ToastNodes> & SafeOmit<ToastProps, "id">
+type ToastWithoutId = Partial<ToastNodes> &
+  SafeOmit<ToastProps, "id"> & { error?: ToastableError }
 
-type Toast = WithId<ToastPropsWithoutId>
+type Toast = WithId<ToastWithoutId>
 
 type ToastStore = {
   toasts: Toast[]
@@ -19,66 +20,57 @@ type ToastStore = {
 
 const useToastStore = create<ToastStore>(() => ({ toasts: [] }))
 
+const setToastStore = useToastStore.setState
+
 export function useToasts() {
   return useToastStore(store => store.toasts)
 }
 
-function createToast(props: ToastPropsWithoutId): Toast {
+function createToast({
+  action,
+  description,
+  open,
+  title,
+  variant,
+  error,
+  ...props
+}: ToastWithoutId): Toast {
+  const id = generateId()
   return {
-    duration: 2000,
+    action: error ? error.action : action,
+    description: error ? error.message : description,
+    open: open ?? true,
+    title: error ? error.name : title,
+    variant: error ? "destructive" : variant,
     ...props,
-    id: generateId(),
-    onOpenChange(open) {
-      if (!open) {
-        dismissToast(this.id, 0)
-      }
-    },
-    open: true,
+    id,
   }
 }
 
-export function showToast(
-  props: SafeOmit<ToastPropsWithoutId, "duration">,
-  duration?: number
-) {
+export function showToast(props: ToastWithoutId) {
   const toast = createToast(props)
-  useToastStore.setState(store => ({
+
+  setToastStore(store => ({
     toasts: [toast, ...store.toasts].slice(0, TOAST_LIMIT),
   }))
-  if (duration !== undefined) {
-    dismissToast(toast.id, duration)
+
+  const id = toast.id
+
+  function dismissToast(delay = 0) {
+    setTimeout(() => {
+      setToastStore(store => ({
+        toasts: store.toasts.filter(toast => toast.id !== id),
+      }))
+    }, delay)
   }
-  return toast.id
-}
 
-export function updateToast(id: Toast["id"], props: ToastPropsWithoutId) {
-  useToastStore.setState(store => ({
-    toasts: store.toasts.map(toast => {
-      return toast.id !== id ? toast : { ...toast, ...props }
-    }),
-  }))
-}
-
-export function dismissToast(id: Toast["id"], delay: number) {
-  setTimeout(() => {
-    useToastStore.setState(store => ({
-      toasts: store.toasts.filter(toast => toast.id !== id),
+  function updateToast(props: ToastWithoutId) {
+    setToastStore(store => ({
+      toasts: store.toasts.map(toast =>
+        toast.id !== id ? toast : { ...toast, ...props }
+      ),
     }))
-  }, delay)
-}
+  }
 
-export function showErrorToast(
-  error: ToastableError,
-  props: SafeOmit<ToastPropsWithoutId, "action" | "description" | "title"> = {}
-) {
-  return showToast(
-    {
-      action: error.action,
-      description: error.message,
-      title: error.name,
-      variant: "destructive",
-      ...props,
-    },
-    2000
-  )
+  return [dismissToast, updateToast] as const
 }

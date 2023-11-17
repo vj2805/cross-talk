@@ -4,7 +4,7 @@ import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
 import { cn } from "@/utilities/string"
-import { showErrorToast } from "../ui"
+import { showToast } from "../ui"
 import { ChatRowSkeleton } from "./ChatRowSkeleton"
 import { ChatRowThatHasNoMessages } from "./ChatRowThatHasNoMessages"
 import { ChatRowWithLastMessage } from "./ChatRowWithLastMessage"
@@ -28,7 +28,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   }
 
   if (status === "error") {
-    return void showErrorToast(error)
+    return void showToast({ error })
   }
 
   return (

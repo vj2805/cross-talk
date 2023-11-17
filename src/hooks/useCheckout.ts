@@ -1,4 +1,4 @@
-import { showErrorToast } from "@/components/ui"
+import { showToast } from "@/components/ui"
 import {
   createPaymentCheckout,
   subscribeToPaymentCheckout,
@@ -8,6 +8,7 @@ import { useProcess } from "./useProcess"
 export function useCheckout() {
   return useProcess(
     async (stop, userId: string, priceId: string) => {
+      const [dismissToast, updateToast] = showToast({ open: false })
       try {
         const checkoutId = await createPaymentCheckout({ priceId, userId })
         const unsubscribe = subscribeToPaymentCheckout(
@@ -21,16 +22,18 @@ export function useCheckout() {
                 window.location.assign(checkout.response.url)
             }
             if (checkout.response.status === "failure") {
-              showErrorToast(checkout.response.error)
+              updateToast({ error: checkout.response.error })
             }
             stop()
             unsubscribe()
+            dismissToast(2000)
           },
-          showErrorToast
+          error => updateToast({ error })
         )
       } catch (error) {
-        showErrorToast(error as Error)
+        updateToast({ error: error as Error })
         stop()
+        dismissToast(2000)
       }
     },
     {

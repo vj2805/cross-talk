@@ -1,7 +1,7 @@
 "use client"
 
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
-import { Spinner, showErrorToast } from "../ui"
+import { Spinner, showToast } from "../ui"
 import { ChatRow } from "./ChatRow"
 import { WelcomeToChats } from "./WelcomeToChats"
 import type { User } from "@/types/User"
@@ -23,7 +23,7 @@ export const ChatList: React.FC<ChatListProps> = async ({
   }
 
   if (status === "error") {
-    return void showErrorToast(error)
+    return void showToast({ error })
   }
 
   if (chats.length === 0) {

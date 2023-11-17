@@ -2,7 +2,7 @@
 
 import { useChat } from "@/hooks/useChat"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
-import { Spinner, showErrorToast } from "../ui"
+import { Spinner, showToast } from "../ui"
 import { AdminControls } from "./AdminControls"
 import { ChatParticipantsBadges } from "./ChatParticipantsBadges"
 
@@ -23,7 +23,7 @@ export const ChatControls: React.FC<ChatControlsProps> = ({ chatId }) => {
   }
 
   if (status === "error") {
-    return void showErrorToast(error)
+    return void showToast({ error })
   }
 
   return (

@@ -38,7 +38,7 @@ export const DeleteChatButton: React.FC<DeleteChatButtonProps> = ({
   }
 
   async function handleDeleteChat() {
-    const { dismissToast, updateToast } = showToast({
+    const [dismissToast, updateToast] = showToast({
       description: translate("Please wait while we delete the chat..."),
       title: translate("Deleting chat"),
     })

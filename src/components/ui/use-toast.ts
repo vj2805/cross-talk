@@ -1,3 +1,4 @@
+import React from "react"
 import { generateId } from "@/utilities/string"
 import type { ToastableError } from "@/errors/ToastableError"
 import type { ToastActionElement, ToastProps } from "@/components/ui/toast"

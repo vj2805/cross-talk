@@ -5,6 +5,7 @@ import { MessagesSquareIcon } from "@/components/ui/icons"
 import { ProfileButton } from "@/components/user/ProfileButton"
 import { getServerUser } from "@/services/auth"
 import { cn } from "@/utilities/string"
+import { SignInButton } from "../user/SignInButton"
 import { LanguageSelect } from "./LanguageSelect"
 import { Logo } from "./Logo"
 import { ThemeToggle } from "./ThemeToggle"
@@ -51,7 +52,7 @@ export const Header: React.FC = async () => {
             </NextLink>
           )}
           <ThemeToggle />
-          <ProfileButton user={user} />
+          {user ? <ProfileButton user={user} /> : <SignInButton />}
         </nav>
       </div>
       <UpgradeBanner />

@@ -1,5 +1,6 @@
 "use client"
 
+import { manageSubscription } from "@/actions/manageSubscription"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,21 +15,17 @@ import { useIsPro } from "@/hooks/useIsPro"
 import { useSubscription } from "@/hooks/useSubscription"
 import { signOut } from "@/services/user"
 import { cn } from "@/utilities/string"
-import { manageSubscription } from "@/actions/manageSubscription"
-import { SignInButton } from "./SignInButton"
 import { UserAvatar } from "./UserAvatar"
 import type { User } from "@/types/User"
 
 interface ProfileButtonProps {
-  user?: User
+  user: User
 }
 
 export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
   const subscription = useSubscription()
   const isPro = useIsPro()
-  return !user ? (
-    <SignInButton />
-  ) : (
+  return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar

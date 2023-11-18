@@ -3,7 +3,7 @@
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
 import { Spinner, showToast } from "../ui"
 import { ChatRow } from "./ChatRow"
-import { WelcomeToChats } from "./WelcomeToChats"
+import { EmptyChatList } from "./EmptyChatList"
 import type { User } from "@/types/User"
 
 interface ChatListProps {
@@ -22,7 +22,7 @@ export const ChatList: React.FC<ChatListProps> = ({ user }) => {
   }
 
   if (chats.length === 0) {
-    return <WelcomeToChats />
+    return <EmptyChatList />
   }
 
   return chats.map(chat => (

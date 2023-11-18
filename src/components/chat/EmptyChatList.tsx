@@ -3,7 +3,7 @@ import { cn } from "@/utilities/string"
 import { MessageSquareIcon } from "../ui/icons"
 import { CreateChatButton } from "./CreateChatButton"
 
-export const WelcomeToChats: React.FC = () => {
+export const EmptyChatList: React.FC = () => {
   const translate = useTranslate()
   return (
     <div

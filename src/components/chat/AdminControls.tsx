@@ -1,5 +1,5 @@
 import { cn } from "@/utilities/string"
-import { InviteUser } from "./InviteUser"
+import { InviteUserToChat } from "./InviteUserToChat"
 import { ShareChatLink } from "./ShareChatLink"
 import { DeleteChatButton } from "./DeleteChatButton"
 import type { Chat } from "@/types/Chat"
@@ -10,7 +10,7 @@ interface AdminControlsProps {
 
 export const AdminControls: React.FC<AdminControlsProps> = ({ chat }) => (
   <div className={cn("m-5 mb-0", "flex justify-end space-x-2")}>
-    <InviteUser chat={chat} />
+    <InviteUserToChat chat={chat} />
     <ShareChatLink chatId={chat.id} />
     <DeleteChatButton
       chatId={chat.id}

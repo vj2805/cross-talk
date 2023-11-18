@@ -19,11 +19,11 @@ import {
 import { PlusCircleIcon } from "../ui/icons"
 import type { Chat } from "@/types/Chat"
 
-interface InviteUserProps {
+interface InviteUserToChatProps {
   chat: Chat
 }
 
-export const InviteUser: React.FC<InviteUserProps> = ({ chat }) => {
+export const InviteUserToChat: React.FC<InviteUserToChatProps> = ({ chat }) => {
   const isPro = useIsPro()
   const { form, onSubmit } = useInviteForm(chat, isPro)
   return (

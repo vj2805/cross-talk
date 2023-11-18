@@ -17,20 +17,17 @@ export function useProcess<Parameters extends any[], Return>(
   const start = useCallback(() => setRunning(true), [setRunning])
   const stop = useCallback(() => setRunning(false), [setRunning])
 
-  const run = useCallback(
-    async (...parameters: Parameters) => {
-      if (running) {
-        throw new Error("Process already running!")
-      }
-      start()
-      try {
-        return await execute(stop, ...parameters)
-      } finally {
-        options.shouldStopFinally && stop()
-      }
-    },
-    [execute, start, stop, running, options]
-  )
+  async function run(...parameters: Parameters) {
+    if (running) {
+      throw new Error("Process already running!")
+    }
+    start()
+    try {
+      return await execute(stop, ...parameters)
+    } finally {
+      options.shouldStopFinally && stop()
+    }
+  }
 
   return [run, running] as const
 }

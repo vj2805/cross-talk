@@ -6,12 +6,9 @@ import { useIsPro } from "./useIsPro"
 import { useProcess } from "./useProcess"
 
 export function useCreateChat() {
-  const [isPro, status] = useIsPro()
+  const [isPro] = useIsPro()
   const router = useRouter()
   return useProcess(async (_, adminId: string) => {
-    if (status !== "loading") {
-      return
-    }
     showToast({
       description: "Hold tight while we create your new chat...",
       duration: 2000,

@@ -4,7 +4,9 @@ import {
   ChatMessages,
   SignInRequiredAlert,
 } from "@/components"
+import { ErrorAlert, NextLink } from "@/components/ui"
 import { getServerUser } from "@/services/auth"
+import { isUserParticipantOfChat } from "@/services/participant"
 
 interface ChatPageProps {
   params: {
@@ -17,6 +19,26 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
 
   if (!user) {
     return <SignInRequiredAlert />
+  }
+
+  try {
+    const hasAccess = await isUserParticipantOfChat({ chatId, userId: user.id })
+    if (!hasAccess) {
+      throw {
+        action: (
+          <NextLink
+            prefetch={false}
+            href="/chat"
+          >
+            Go Back
+          </NextLink>
+        ),
+        message: `You do not have permission to access the chat with id ${chatId}`,
+        name: "Permission Error!",
+      }
+    }
+  } catch (error) {
+    return <ErrorAlert error={error as Error} />
   }
 
   return (

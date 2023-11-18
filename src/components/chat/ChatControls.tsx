@@ -3,7 +3,7 @@
 import { useChat } from "@/hooks/useChat"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
 import { Spinner, showToast } from "../ui"
-import { AdminControls } from "./AdminControls"
+import { ChatAdminControls } from "./ChatAdminControls"
 import { ChatParticipantsBadges } from "./ChatParticipantsBadges"
 
 interface ChatControlsProps {
@@ -28,7 +28,7 @@ export const ChatControls: React.FC<ChatControlsProps> = ({ chatId }) => {
 
   return (
     <>
-      {user.id === chat.adminId && <AdminControls chat={chat} />}
+      {user.id === chat.adminId && <ChatAdminControls chat={chat} />}
       <ChatParticipantsBadges chat={chat} />
     </>
   )

@@ -1,7 +1,7 @@
 import { default as NextAuth, getServerSession } from "next-auth"
 import { default as GoogleProvider } from "next-auth/providers/google"
 import { safeEnv } from "@/configs/safeEnv"
-import { default as authService } from "./internal/firebase/auth"
+import { default as authService } from "./internal/inmemory/auth"
 import type { AuthService } from "@/types/AuthService"
 import type { NextAuthOptions } from "next-auth"
 

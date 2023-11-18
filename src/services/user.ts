@@ -1,4 +1,4 @@
-import { default as userService } from "./internal/firebase/user"
+import { default as userService } from "./internal/inmemory/user"
 import type { UserService } from "@/types/UserService"
 
 export { signIn, signOut } from "next-auth/react"

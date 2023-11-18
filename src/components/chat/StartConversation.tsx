@@ -1,10 +1,9 @@
 import { MessageCircleIcon } from "@/components/ui/icons"
-import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
+import { useTranslate } from "@/hooks/useTranslate"
 import { cn } from "@/utilities/string"
-import { getTranslation } from "@/utilities/translations"
 
 export const StartConversation: React.FC = () => {
-  const language = usePreferredLanguage()
+  const translate = useTranslate()
   return (
     <div className={cn("p-5", "flex-1")}>
       <div
@@ -18,22 +17,16 @@ export const StartConversation: React.FC = () => {
       >
         <MessageCircleIcon className="h-10 w-10" />
         <h2>
-          <span className="font-bold">
-            {getTranslation("Invite a friend", language)}
-          </span>
+          <span className="font-bold">{translate("Invite a friend")}</span>
           {" & "}
           <span className="font-bold">
-            {getTranslation(
-              "Send your first message in ANY language below to get started!",
-              language
+            {translate(
+              "Send your first message in ANY language below to get started!"
             )}
           </span>
         </h2>
         <p>
-          {getTranslation(
-            "The AI will auto-detect & translate it all for you...",
-            language
-          )}
+          {translate("The AI will auto-detect & translate it all for you...")}
         </p>
       </div>
     </div>

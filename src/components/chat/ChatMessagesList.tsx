@@ -3,10 +3,9 @@
 import { useEffect, useRef } from "react"
 import { Spinner } from "@/components/ui"
 import { UserAvatar } from "@/components/user/UserAvatar"
-import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
-import { getLanguageCode } from "@/utilities/languages"
+import { usePreferredLanguageCode } from "@/hooks/usePreferredLanguageCode"
+import { useTranslate } from "@/hooks/useTranslate"
 import { cn } from "@/utilities/string"
-import { getTranslation } from "@/utilities/translations"
 import type { Message } from "@/types/Message"
 import type { User } from "next-auth"
 
@@ -19,7 +18,8 @@ export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
   messages,
   user,
 }) => {
-  const language = usePreferredLanguage()
+  const languageCode = usePreferredLanguageCode()
+  const translate = useTranslate()
 
   const messagesEndRef = useRef<React.ElementRef<"li">>(null)
   useEffect(() => {
@@ -58,10 +58,7 @@ export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
               </p>
               <div className="flex space-x-2">
                 {message.translated ? (
-                  <p>
-                    {message.translated?.[getLanguageCode(language)] ||
-                      message.input}
-                  </p>
+                  <p>{message.translated?.[languageCode] || message.input}</p>
                 ) : (
                   <Spinner />
                 )}
@@ -79,7 +76,7 @@ export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
         className="sr-only"
         ref={messagesEndRef}
       >
-        {getTranslation("End of Messages", language)}
+        {translate("End of Messages")}
       </li>
     </ul>
   )

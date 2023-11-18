@@ -1,11 +1,10 @@
-import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
+import { useTranslate } from "@/hooks/useTranslate"
 import { cn } from "@/utilities/string"
-import { getTranslation } from "@/utilities/translations"
 import { MessageSquareIcon } from "../ui/icons"
 import { CreateChatButton } from "./CreateChatButton"
 
 export const WelcomeToChats: React.FC = () => {
-  const language = usePreferredLanguage()
+  const translate = useTranslate()
   return (
     <div
       className={cn(
@@ -14,14 +13,9 @@ export const WelcomeToChats: React.FC = () => {
       )}
     >
       <MessageSquareIcon className="h-10 w-10" />
-      <h1 className="text-5xl font-extralight">
-        {getTranslation("Welcome!", language)}
-      </h1>
+      <h1 className="text-5xl font-extralight">{translate("Welcome!")}</h1>
       <h2 className="pb-10">
-        {getTranslation(
-          "Let's get you started by creating your first chat!",
-          language
-        )}
+        {translate("Let's get you started by creating your first chat!")}
       </h2>
       <CreateChatButton large />
     </div>

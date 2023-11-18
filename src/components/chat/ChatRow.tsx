@@ -5,10 +5,9 @@ import { showToast } from "@/components/ui"
 import { UserAvatar } from "@/components/user/UserAvatar"
 import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
-import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
+import { usePreferredLanguageCode } from "@/hooks/usePreferredLanguageCode"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
 import { useTranslate } from "@/hooks/useTranslate"
-import { getLanguageCode } from "@/utilities/languages"
 import { cn, prettifyId } from "@/utilities/string"
 import { getTimestampString } from "@/utilities/timestamps"
 import type { Chat } from "@/types/Chat"
@@ -21,7 +20,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const [lastMessage, status, error] = useLastMessage(chatId)
   const [user] = useRequiredUser()
   const router = useRouter()
-  const language = usePreferredLanguage()
+  const languageCode = usePreferredLanguageCode()
   const translate = useTranslate()
 
   if (!user) {
@@ -58,8 +57,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
         </p>
         <p className="text-gray-400 line-clamp-1">
           {lastMessage
-            ? lastMessage.translated?.[getLanguageCode(language)] ??
-              lastMessage.input
+            ? lastMessage.translated?.[languageCode] ?? lastMessage.input
             : translate("Get the conversation started...")}
         </p>
       </div>

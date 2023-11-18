@@ -20,14 +20,7 @@ const inMemoryUserService: UserService = {
     })
   },
   async syncUser({ session }) {
-    const user = session?.user
-    if (user && session?.firebaseToken) {
-      set("currentlySignedInUser", () => user)
-      return user
-    } else {
-      set("currentlySignedInUser", () => null)
-      return null
-    }
+    return session?.user ?? null
   },
 }
 

@@ -17,13 +17,13 @@ import {
 } from "../ui"
 import { CopyIcon } from "../ui/icons"
 
-interface ShareChatLinkProps {
+interface CopyChatLinkProps {
   chatId: string
 }
 
-export const ShareChatLink: React.FC<ShareChatLinkProps> = ({ chatId }) => {
+export const CopyChatLink: React.FC<CopyChatLinkProps> = ({ chatId }) => {
   const id = useId()
-  const linkToChat = createLinkToChat(chatId)
+  const linkToChat = createChatLink(chatId)
 
   async function copyLinkToClipboard() {
     try {
@@ -89,7 +89,7 @@ export const ShareChatLink: React.FC<ShareChatLinkProps> = ({ chatId }) => {
   )
 }
 
-function createLinkToChat(chatId: string) {
+function createChatLink(chatId: string) {
   const protocol = process.env.NODE_ENV === "development" ? "http" : "https"
   const host = window.location.host
   return `${protocol}://${host}/chat/${chatId}`

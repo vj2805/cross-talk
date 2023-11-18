@@ -1,18 +1,13 @@
 import { showToast } from "@/components/ui"
-import {
-  createPaymentCheckout,
-  subscribeToPaymentCheckout,
-} from "@/services/payment"
+import { createPaymentCheckout } from "@/services/payment"
 import { useProcess } from "./useProcess"
 
 export function useCheckout() {
   return useProcess(
     async (stop, userId: string, priceId: string) => {
       try {
-        const checkoutId = await createPaymentCheckout({ priceId, userId })
-        const unsubscribe = subscribeToPaymentCheckout(
-          { checkoutId, userId },
-          checkout => {
+        const unsubscribe = await createPaymentCheckout({
+          listener: checkout => {
             if (checkout.response.status === "pending") {
               return
             }
@@ -26,8 +21,9 @@ export function useCheckout() {
             stop()
             unsubscribe()
           },
-          error => showToast({ error })
-        )
+          priceId,
+          userId,
+        })
       } catch (error) {
         showToast({ error: error as Error })
         stop()

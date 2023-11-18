@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, onSnapshot } from "firebase/firestore"
+import { addDoc, collection, onSnapshot } from "firebase/firestore"
 import { clientRepo } from "@/backend/firebase/client"
 import type { Checkout } from "@/types/Checkout"
 import type { PaymentService } from "@/types/PaymentService"
@@ -37,12 +37,8 @@ function checkoutsRef(userId: string) {
   ).withConverter(checkoutConverter)
 }
 
-function checkoutRef(userId: string, checkoutId: string) {
-  return doc(checkoutsRef(userId), checkoutId)
-}
-
 const firebasePaymentService: PaymentService = {
-  async createPaymentCheckout({ userId, priceId }) {
+  async createPaymentCheckout({ listener, priceId, userId }) {
     const checkout = await addDoc(checkoutsRef(userId), {
       cancelUrl: `${window.location.origin}/subscribe`,
       id: "",
@@ -50,14 +46,10 @@ const firebasePaymentService: PaymentService = {
       response: { status: "pending" },
       successUrl: `${window.location.origin}/subscribe`,
     })
-    return checkout.id
-  },
-  subscribeToPaymentCheckout({ userId, checkoutId }, onChange) {
-    return onSnapshot(checkoutRef(userId, checkoutId), snapshot => {
-      if (!snapshot.exists()) {
-        return
+    return onSnapshot(checkout, snapshot => {
+      if (snapshot.exists()) {
+        listener(snapshot.data())
       }
-      onChange(snapshot.data())
     })
   },
 }

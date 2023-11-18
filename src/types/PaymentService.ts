@@ -1,5 +1,6 @@
 import type { Checkout } from "./Checkout"
-import type { Mutate, Subscribe } from "./Service"
+import type { Consumer } from "./Consumer"
+import type { Mutate, Unsubscribe } from "./Service"
 import type { User } from "./User"
 
 export interface PaymentService {
@@ -7,14 +8,8 @@ export interface PaymentService {
     {
       priceId: Checkout["priceId"]
       userId: User["id"]
+      listener: Consumer<Checkout>
     },
-    Checkout["id"]
-  >
-  subscribeToPaymentCheckout: Subscribe<
-    {
-      checkoutId: Checkout["id"]
-      userId: User["id"]
-    },
-    Checkout
+    Unsubscribe
   >
 }

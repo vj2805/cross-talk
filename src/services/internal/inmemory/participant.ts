@@ -28,6 +28,17 @@ const inmemoryParticipantService: ParticipantService = {
       )
     )
   },
+  async isUserParticipantOfChat({ chatId, userId }) {
+    const participant = get("users").some(user => user.id === userId)
+    if (!participant) {
+      throw new UserError("User does not exist!")
+    }
+    const chat = get("chats").find(chat => chat.id === chatId)
+    if (!chat) {
+      throw new ChatError("Chat does not exist!")
+    }
+    return chat.participantsIds.includes(userId)
+  },
 }
 
 export default inmemoryParticipantService

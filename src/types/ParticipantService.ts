@@ -1,5 +1,5 @@
 import type { Chat } from "./Chat"
-import type { Mutate } from "./Service"
+import type { Mutate, Query } from "./Service"
 import type { User } from "./User"
 
 export interface ParticipantService {
@@ -9,5 +9,12 @@ export interface ParticipantService {
       participantId: User["id"]
     },
     void
+  >
+  isUserParticipantOfChat: Query<
+    {
+      chatId: Chat["id"]
+      userId: User["id"]
+    },
+    boolean
   >
 }

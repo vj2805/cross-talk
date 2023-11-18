@@ -40,7 +40,7 @@ function participantRef(userId: string) {
 }
 
 const firebaseParticipantService: ParticipantService = {
-  async addParticipantToChat(chatId, participantId) {
+  async addParticipantToChat({ chatId, participantId }) {
     const participant = await getDoc(participantRef(participantId))
     if (!participant.exists()) {
       throw new Error(`User with id (${participantId}) does not exist!`)
@@ -52,6 +52,17 @@ const firebaseParticipantService: ParticipantService = {
     updateDoc(chat.ref, {
       participantsIds: arrayUnion(participantId),
     })
+  },
+  async isUserParticipantOfChat({ chatId, userId }) {
+    const participant = await getDoc(participantRef(userId))
+    if (!participant.exists()) {
+      throw new Error(`User with id (${userId}) does not exist!`)
+    }
+    const chat = await getDoc(chatRef(chatId))
+    if (!chat.exists()) {
+      throw new Error(`Chat with id (${chatId}) does not exist!`)
+    }
+    return chat.data().participantsIds.includes(userId)
   },
 }
 

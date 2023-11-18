@@ -1,5 +1,7 @@
+export { SignInRequiredAlert } from "./SignInRequiredAlert"
 export { BlobBackdrop } from "./backdrop/BlobBackdrop"
 export { CircleBackdrop } from "./backdrop/CircleBackdrop"
+export { ChatControls } from "./chat/ChatControls"
 export { ChatInput } from "./chat/ChatInput"
 export { ChatList } from "./chat/ChatList"
 export { ChatMessages } from "./chat/ChatMessages"

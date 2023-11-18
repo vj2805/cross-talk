@@ -1,15 +1,34 @@
-import { getServerUser } from "@/services/auth"
-import { getParticipatingChats } from "@/services/chat"
-import { ChatListRows } from "./ChatListRows"
+"use client"
 
-export const ChatList: React.FC = async () => {
-  const user = await getServerUser()
+import { useParticipatingChats } from "@/hooks/useParticipatingChats"
+import { ErrorAlert, Spinner } from "../ui"
+import { ChatRow } from "./ChatRow"
+import { EmptyChatList } from "./EmptyChatList"
+import type { User } from "@/types/User"
 
-  if (!user) {
-    return null
+interface ChatListProps {
+  user: User
+}
+
+export const ChatList: React.FC<ChatListProps> = ({ user }) => {
+  const [chats, status, error] = useParticipatingChats(user.id)
+
+  if (status === "loading") {
+    return <Spinner />
   }
 
-  const initialChats = await getParticipatingChats(user.id)
+  if (status === "error") {
+    return <ErrorAlert error={error} />
+  }
 
-  return <ChatListRows initialChats={initialChats} />
+  if (chats.length === 0) {
+    return <EmptyChatList />
+  }
+
+  return chats.map(chat => (
+    <ChatRow
+      key={chat.id}
+      chatId={chat.id}
+    />
+  ))
 }

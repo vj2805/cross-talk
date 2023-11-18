@@ -2,16 +2,17 @@ import {
   addDoc,
   collection,
   doc,
-  getDoc,
+  documentId,
+  getCountFromServer,
   getDocs,
   onSnapshot,
   query,
   where,
 } from "firebase/firestore"
 import { clientRepo } from "@/backend/firebase/client"
-import type { FirestoreDataConverter } from "firebase/firestore"
 import type { Chat } from "@/types/Chat"
 import type { ChatService } from "@/types/ChatService"
+import type { FirestoreDataConverter } from "firebase/firestore"
 
 const chatConverter: FirestoreDataConverter<Chat> = {
   fromFirestore(snapshot, options) {
@@ -23,8 +24,10 @@ const chatConverter: FirestoreDataConverter<Chat> = {
     }
   },
   toFirestore(chat) {
-    delete chat.id
-    return chat
+    return {
+      adminId: chat.adminId,
+      participantsIds: chat.participantsIds,
+    }
   },
 }
 
@@ -44,42 +47,37 @@ function participatingChatsRef(participantId: string) {
 }
 
 const firebaseChatService: ChatService = {
-  async createChat(adminId) {
+  async createChat({ adminId }) {
     const chatRef = await addDoc(chatsRef(), {
-      adminId: adminId,
-      id: "",
+      adminId,
+      id: documentId(),
       participantsIds: [adminId],
     })
     return chatRef.id
   },
-  async getParticipantsIds(chatId) {
-    const chat = await getDoc(chatRef(chatId))
-    const data = chat.data()
-    if (!data) {
-      throw new Error(
-        `[getParticipantsIds] Chat with id ${chatId} does not exist!`
-      )
-    }
-    return data.participantsIds
+  async getParticipatingChatCount({ userId }) {
+    const snapshot = await getCountFromServer(participatingChatsRef(userId))
+    const aggregate = snapshot.data()
+    return aggregate.count
   },
-  async getParticipatingChats(userId) {
+  async getParticipatingChats({ userId }) {
     const snapshot = await getDocs(participatingChatsRef(userId))
     return snapshot.docs.map(doc => doc.data())
   },
-  subscribeToChat(chatId, onChange, onError) {
+  subscribeToChat({ chatId }, onChange, onError) {
     return onSnapshot(
       chatRef(chatId),
       snapshot => {
         const chat = snapshot.data()
         if (!chat) {
-          return onError(new Error(`Chat with id (${chatId}) does not exist!`))
+          return
         }
         return onChange(chat)
       },
       onError
     )
   },
-  subscribeToParticipatingChats(userId, onChange, onError) {
+  subscribeToParticipatingChats({ userId }, onChange, onError) {
     return onSnapshot(
       participatingChatsRef(userId),
       snapshot => onChange(snapshot.docs.map(doc => doc.data())),

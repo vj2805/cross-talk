@@ -6,7 +6,7 @@ const firebaseAuthService: AuthService = {
   createAuthAdapter() {
     return FirestoreAdapter(adminRepo)
   },
-  createAuthToken(userId) {
+  createAuthToken({ userId }) {
     return adminAuth.createCustomToken(userId)
   },
 }

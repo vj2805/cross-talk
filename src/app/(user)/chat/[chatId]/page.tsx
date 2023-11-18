@@ -1,7 +1,12 @@
-import { ChatInput, ChatMessages } from "@/components"
-import { ChatControls } from "@/components/chat/ChatControls"
+import {
+  ChatControls,
+  ChatInput,
+  ChatMessages,
+  SignInRequiredAlert,
+} from "@/components"
+import { ErrorAlert, NextLink } from "@/components/ui"
 import { getServerUser } from "@/services/auth"
-import { getMessages } from "@/services/message"
+import { isUserParticipantOfChat } from "@/services/participant"
 
 interface ChatPageProps {
   params: {
@@ -13,21 +18,39 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
   const user = await getServerUser()
 
   if (!user) {
-    return null
+    return <SignInRequiredAlert />
   }
 
-  let initialMessages = await getMessages(chatId)
+  try {
+    const hasAccess = await isUserParticipantOfChat({ chatId, userId: user.id })
+    if (!hasAccess) {
+      throw {
+        action: (
+          <NextLink
+            prefetch={false}
+            href="/chat"
+          >
+            Go Back
+          </NextLink>
+        ),
+        message: `You do not have permission to access the chat with id ${chatId}`,
+        name: "Permission Error!",
+      }
+    }
+  } catch (error) {
+    return <ErrorAlert error={error as Error} />
+  }
 
   return (
     <>
-      <ChatControls chatId={chatId} />
-      <div className="flex-1">
-        <ChatMessages
-          chatId={chatId}
-          user={user}
-          initialMessages={initialMessages}
-        />
-      </div>
+      <ChatControls
+        chatId={chatId}
+        userId={user.id}
+      />
+      <ChatMessages
+        chatId={chatId}
+        user={user}
+      />
       <ChatInput chatId={chatId} />
     </>
   )

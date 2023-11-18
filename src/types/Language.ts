@@ -1,21 +1,18 @@
-export type Language = keyof typeof LANGUAGE_CODES
+import type { getLanguageCode } from "@/utilities/languages"
 
-export type LanguageCode = (typeof LANGUAGE_CODES)[Language]
+export type Language =
+  | "English"
+  | "French"
+  | "German"
+  | "Hindi"
+  | "Japanese"
+  | "Kannada"
+  | "Malayalam"
+  | "Spanish"
+  | "Tamil"
+  | "Telugu"
 
-export const LANGUAGE_CODES = {
-  English: "en",
-  French: "fr",
-  German: "de",
-  Hindi: "hi",
-  Japanese: "ja",
-  Kannada: "kn",
-  Malayalam: "ml",
-  Spanish: "es",
-  Tamil: "ta",
-  Telugu: "te",
-} as const
-
-export const AVAILABLE_LANGUAGES = Object.keys(LANGUAGE_CODES) as Language[]
+export type LanguageCode = ReturnType<typeof getLanguageCode>
 
 export type AvailableLanguages = {
   free: Language[]

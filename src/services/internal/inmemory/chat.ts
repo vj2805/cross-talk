@@ -1,83 +1,42 @@
-import { shallow } from "zustand/shallow"
 import { generateId } from "@/utilities/string"
-import {
-  getInMemoryState,
-  setInMemoryState,
-  subscribeToInMemoryStore,
-} from "./store"
+import { get, set, subscribe } from "./store"
 import type { ChatService } from "@/types/ChatService"
 
-const inMemoryChatSerice: ChatService = {
-  createChat(adminId) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        const id = generateId()
-        setInMemoryState("chats", chats =>
-          chats
-            .toSpliced(-1, 0, {
-              adminId,
-              id,
-              participantsIds: [adminId],
-            })
-            .sort((x, y) => x.id.localeCompare(y.id))
-        )
-        resolve(id)
-      }, 1000)
-    })
+const inmemoryChatService: ChatService = {
+  async createChat({ adminId }) {
+    const id = `chat:${generateId()}`
+    set("chats", chats =>
+      chats.toSpliced(-1, 0, {
+        adminId,
+        id,
+        participantsIds: [adminId],
+      })
+    )
+    return id
   },
-  getParticipantsIds(chatId) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const chat = getInMemoryState("chats").find(chat => chat.id === chatId)
-        if (!chat) {
-          reject(
-            new Error(
-              `[getParticipantsIds] Chat with id (${chatId}) does not exist!`
-            )
-          )
-          return
-        }
-        resolve(chat.participantsIds)
-      }, 1000)
-    })
-  },
-  getParticipatingChats(userId) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(
-          getInMemoryState("chats").filter(chat =>
-            chat.participantsIds.includes(userId)
-          )
-        )
-      }, 1000)
-    })
-  },
-  subscribeToChat(chatId, onChange, onError) {
-    return subscribeToInMemoryStore(
-      "chats",
-      chats => chats.find(chat => chat.id === chatId),
-      chat => {
-        if (!chat) {
-          return onError(new Error(`Chat with id (${chatId}) does not exist!`))
-        }
-        return onChange(chat)
-      },
-      {
-        fireImmediately: true,
-      }
+  async getParticipatingChatCount({ userId }) {
+    return get("chats").reduce(
+      (count, chat) => count + (chat.participantsIds.includes(userId) ? 1 : 0),
+      0
     )
   },
-  subscribeToParticipatingChats(userId, onChange) {
-    return subscribeToInMemoryStore(
-      "chats",
-      chats => chats.filter(chat => chat.participantsIds.includes(userId)),
-      onChange,
-      {
-        equalityFn: shallow,
-        fireImmediately: true,
+  async getParticipatingChats({ userId }) {
+    return get("chats").filter(chat => chat.participantsIds.includes(userId))
+  },
+  subscribeToChat({ chatId }, onChange) {
+    return subscribe("chats", chats => {
+      const chat = chats.find(chat => chat.id === chatId)
+      if (!chat) {
+        return
       }
+      onChange(chat)
+    })
+  },
+  subscribeToParticipatingChats({ userId }, onChange) {
+    return subscribe("chats", chats =>
+      onChange(chats.filter(chat => chat.participantsIds.includes(userId)))
     )
   },
 }
 
-export default inMemoryChatSerice
+export default inmemoryChatService

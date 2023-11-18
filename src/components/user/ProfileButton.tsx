@@ -1,5 +1,6 @@
 "use client"
 
+import { manageSubscription } from "@/actions/manageSubscription"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,23 +12,23 @@ import {
 } from "@/components/ui"
 import { StarIcon } from "@/components/ui/icons"
 import { useIsPro } from "@/hooks/useIsPro"
-import { useSubscription } from "@/hooks/useSubscription"
 import { signOut } from "@/services/user"
 import { cn } from "@/utilities/string"
-import { SignInButton } from "./SignInButton"
 import { UserAvatar } from "./UserAvatar"
 import type { User } from "@/types/User"
 
 interface ProfileButtonProps {
-  user?: User
+  user: User
 }
 
 export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
-  const subscription = useSubscription()
-  const isPro = useIsPro()
-  return !user ? (
-    <SignInButton />
-  ) : (
+  const [isPro, status] = useIsPro()
+
+  if (status === "error") {
+    return null
+  }
+
+  return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
@@ -38,8 +39,8 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
       <DropdownMenuContent className="text-center">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {subscription === undefined ? (
-          <DropdownMenuItem>
+        {status === "loading" ? (
+          <DropdownMenuItem className="flex items-center justify-center">
             <Spinner />
           </DropdownMenuItem>
         ) : (
@@ -56,11 +57,21 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
                 <p>PRO</p>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Manage</DropdownMenuItem>
+              <DropdownMenuItem
+                className="flex items-center justify-center"
+                onClick={() => manageSubscription()}
+              >
+                Manage
+              </DropdownMenuItem>
             </>
           )
         )}
-        <DropdownMenuItem onClick={() => signOut()}>Signout</DropdownMenuItem>
+        <DropdownMenuItem
+          className="flex items-center justify-center"
+          onClick={() => signOut()}
+        >
+          Sign Out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

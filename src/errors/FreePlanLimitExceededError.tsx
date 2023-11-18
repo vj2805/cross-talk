@@ -1,7 +1,7 @@
 import { NextLink, ToastAction } from "@/components/ui"
-import { ToastableError } from "./ToastableError"
+import { ErrorWithAction } from "./ErrorWithAction"
 
-export class FreePlanLimitExceededError extends ToastableError {
+export class FreePlanLimitExceededError extends ErrorWithAction {
   name = "Free Plan Limit Exceeded!"
   action = (
     <ToastAction
@@ -10,7 +10,7 @@ export class FreePlanLimitExceededError extends ToastableError {
     >
       <NextLink
         prefetch={false}
-        href="/subscribe"
+        href="/register"
       >
         Upgrade to PRO
       </NextLink>
@@ -23,4 +23,7 @@ export class FreePlanLimitExceededError extends ToastableError {
   }
 }
 
-export type FreePlanLimitExceededErrorCode = "no of users in a single chat"
+export type FreePlanLimitExceededErrorCode =
+  | "2 users per chat"
+  | "3 chats per user"
+  | "25 messages per chat"

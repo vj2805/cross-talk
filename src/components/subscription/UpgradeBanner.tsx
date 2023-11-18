@@ -3,21 +3,19 @@
 import { Button } from "@/components/ui"
 import { useRouter } from "@/hooks/useBuiltins"
 import { useIsPro } from "@/hooks/useIsPro"
-import { useSubscription } from "@/hooks/useSubscription"
 import { cn } from "@/utilities/string"
 
 export const UpgradeBanner: React.FC = () => {
   const router = useRouter()
-  const subscription = useSubscription()
-  const isPro = useIsPro()
+  const [isPro, status] = useIsPro()
 
-  if (subscription === undefined || isPro) {
+  if (status !== "idle" || isPro) {
     return null
   }
 
   return (
     <Button
-      onClick={() => router.push("/subscribe")}
+      onClick={() => router.push("/register")}
       className={cn(
         "w-full",
         "p-2",

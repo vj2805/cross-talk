@@ -23,8 +23,11 @@ const userConverter: FirestoreDataConverter<User> = {
     }
   },
   toFirestore(user) {
-    delete user.id
-    return user
+    return {
+      email: user.email,
+      image: user.image,
+      name: user.name,
+    }
   },
 }
 
@@ -41,27 +44,25 @@ function userByEmailRef(email: string) {
 }
 
 const firebaseUserService: UserService = {
-  async getUserByEmail(email) {
+  async getUserByEmail({ email }) {
     const users = await getDocs(userByEmailRef(email))
     return users.docs[0].data()
   },
-  subscribeToUser(userId, onChange, onError) {
+  subscribeToUser({ userId }, onChange, onError) {
     return onSnapshot(
       userRef(userId),
-      snapshot =>
-        snapshot.exists()
-          ? onChange(snapshot.data())
-          : onError(new Error(`User with id (${userId}) does not exist!`)),
+      snapshot => snapshot.exists() && onChange(snapshot.data()),
       onError
     )
   },
-  async syncUser(session) {
-    if (session?.firebaseToken) {
+  async syncUser({ session }) {
+    if (session?.user && session?.firebaseToken) {
       await signInWithCustomToken(clientAuth, session.firebaseToken)
+      return session.user
     } else {
       await signOut(clientAuth)
+      return null
     }
-    return session?.user ?? null
   },
 }
 

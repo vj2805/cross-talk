@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import * as React from "react"
 import { X } from "@/components/ui/icons"
 import { cn } from "@/utilities/string"
 import { PrimitiveDialog } from "./primitives"

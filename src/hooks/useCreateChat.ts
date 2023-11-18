@@ -1,43 +1,39 @@
-import { dismissToast, showToast, updateToast } from "@/components/ui"
-import { createChat } from "@/services/chat"
+import { showToast } from "@/components/ui"
+import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
+import { createChat, getParticipatingChatCount } from "@/services/chat"
 import { useRouter } from "./useBuiltins"
+import { useIsPro } from "./useIsPro"
 import { useProcess } from "./useProcess"
-import { useUser } from "./useUser"
 
 export function useCreateChat() {
-  const { processing, startProcess, stopProcess } = useProcess()
-  const user = useUser()
+  const [isPro] = useIsPro()
   const router = useRouter()
-
-  async function createNewChat() {
-    if (!user) {
-      return
-    }
-    startProcess()
-    const toastId = showToast({
+  return useProcess(async (_, adminId: string) => {
+    showToast({
       description: "Hold tight while we create your new chat...",
+      duration: 2000,
       title: "Creating new chat...",
       variant: "default",
     })
     try {
-      const chatId = await createChat(user.id)
-      updateToast(toastId, {
+      if (!isPro) {
+        const participatingChatCount = await getParticipatingChatCount({
+          userId: adminId,
+        })
+        if (participatingChatCount >= 3) {
+          throw new FreePlanLimitExceededError("3 chats per user")
+        }
+      }
+      const chatId = await createChat({ adminId })
+      showToast({
         description: "Redirecting to the new chat, Please wait...",
+        duration: 2000,
         title: "Created new chat!",
         variant: "success",
       })
       router.push(`/chat/${chatId}`)
     } catch (error) {
-      updateToast(toastId, {
-        description: JSON.stringify(error),
-        title: "Something Went Wrong!",
-        variant: "destructive",
-      })
-    } finally {
-      dismissToast(toastId, 2000)
-      stopProcess()
+      showToast({ error: error as Error })
     }
-  }
-
-  return { createNewChat, processing }
+  })
 }

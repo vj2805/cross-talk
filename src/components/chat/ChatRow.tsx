@@ -1,13 +1,15 @@
 "use client"
 
-import { Skeleton, showErrorToast } from "@/components/ui"
+import { ChatRowSkeleton } from "@/components/chat/ChatRowSkeleton"
+import { ErrorAlert } from "@/components/ui"
 import { UserAvatar } from "@/components/user/UserAvatar"
 import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
-import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
-import { useUser } from "@/hooks/useUser"
-import { getLanguageCode } from "@/utilities/language"
+import { usePreferredLanguageCode } from "@/hooks/usePreferredLanguageCode"
+import { useRequiredUser } from "@/hooks/useRequiredUser"
+import { useTranslate } from "@/hooks/useTranslate"
 import { cn, prettifyId } from "@/utilities/string"
+import { getTimestampString } from "@/utilities/timestamps"
 import type { Chat } from "@/types/Chat"
 
 interface ChatRowProps {
@@ -15,25 +17,22 @@ interface ChatRowProps {
 }
 
 export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
-  const lastMessage = useLastMessage(chatId)
-  const user = useUser()
-  const language = usePreferredLanguage()
+  const [lastMessage, status, error] = useLastMessage(chatId)
+  const [user] = useRequiredUser()
   const router = useRouter()
+  const languageCode = usePreferredLanguageCode()
+  const translate = useTranslate()
 
-  if (lastMessage.status === "loading") {
-    return (
-      <div className={cn("p-5", "flex items-center space-x-2")}>
-        <Skeleton className={cn("h-12 w-12", "rounded-full")} />
-        <div className={cn("flex-1", "space-y-2")}>
-          <Skeleton className="h-4 w-full" />
-          <Skeleton className="h-4 w-1/4" />
-        </div>
-      </div>
-    )
+  if (!user) {
+    return null
   }
 
-  if (lastMessage.status === "error") {
-    return void showErrorToast(lastMessage.error)
+  if (status === "loading") {
+    return <ChatRowSkeleton />
+  }
+
+  if (status === "error") {
+    return <ErrorAlert error={error} />
   }
 
   return (
@@ -47,25 +46,30 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
       )}
     >
       <UserAvatar
-        name={lastMessage.value?.user.name || user?.name}
-        image={lastMessage.value?.user.image || user?.image}
+        name={lastMessage?.user.name ?? user.name}
+        image={lastMessage?.user.image ?? user.image}
       />
       <div className="flex-1">
         <p className="font-bold">
           {lastMessage
-            ? (lastMessage.value?.user.name ?? user?.name)?.split(" ")[0]
-            : "New Chat"}
+            ? (lastMessage.user.name ?? user.name)?.split(" ")[0]
+            : translate("New Chat")}
         </p>
         <p className="text-gray-400 line-clamp-1">
-          {lastMessage.value?.translated?.[getLanguageCode(language)] ??
-            "Get the conversation started..."}
+          {lastMessage
+            ? lastMessage.translated?.[languageCode] ?? lastMessage.input
+            : translate("Get the conversation started...")}
         </p>
       </div>
       <div className="text-xs text-gray-400 text-right">
         <p className="mb-auto">
-          {lastMessage.value?.localeTimeString ?? "No messages yet"}
+          {lastMessage
+            ? getTimestampString(lastMessage.timestamp)
+            : translate("No messages yet")}
         </p>
-        <p className="">Chat #{prettifyId(chatId)}...</p>
+        <p className="font-thin">
+          {translate("Chat")} #{prettifyId(chatId)}...
+        </p>
       </div>
     </div>
   )

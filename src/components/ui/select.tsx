@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import * as React from "react"
 import { Check, ChevronDown } from "@/components/ui/icons"
 import { cn } from "@/utilities/string"
 import { PrimitiveSelect } from "./primitives"

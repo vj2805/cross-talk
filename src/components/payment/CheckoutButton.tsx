@@ -3,8 +3,8 @@
 import { ManageSubscriptionButton } from "@/components/subscription/ManageSubscriptionButton"
 import { Spinner } from "@/components/ui"
 import { useCheckout } from "@/hooks/useCheckout"
-import { useSubscription } from "@/hooks/useSubscription"
-import { useUser } from "@/hooks/useUser"
+import { useIsPro } from "@/hooks/useIsPro"
+import { useRequiredUser } from "@/hooks/useRequiredUser"
 import { cn } from "@/utilities/string"
 
 interface CheckoutButtonProps {
@@ -12,33 +12,49 @@ interface CheckoutButtonProps {
 }
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
-  const user = useUser()
-  const subscription = useSubscription()
+  const [user] = useRequiredUser()
+  const [createCheckout, processing] = useCheckout()
+  const [isPro, status] = useIsPro()
 
-  const { createCheckout, processing } = useCheckout(user?.id, priceId)
+  if (!user || status === "error") {
+    return null
+  }
 
   return (
     <div className="flex flex-col space-y-2">
+      {isPro && (
+        <>
+          <hr className="mt-5" />
+          <p className="pt-5 text-center text-xs text-indigo-600">
+            You are subscribed to PRO
+          </p>
+        </>
+      )}
       <div
         className={cn(
-          "mt-8",
+          "mt-8 flex",
           "block",
           "px-3.5 py-2",
-          "bg-cyan-500 hover:bg-cyan-400 disabled:bg-cyan-500/50",
+          "bg-indigo-500 hover:bg-indigo-600 disabled:bg-indigo-500/50",
           "text-center text-sm font-semibold leading-6 text-white disabled:text-white",
           "rounded-md",
           "shadow-sm",
           "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500",
-          "cursor-pointer  disabled:cursor-default",
+          "cursor-pointer disabled:cursor-default",
           "disabled:opacity-80"
         )}
       >
-        {subscription === undefined || processing ? (
+        {status === "loading" || processing ? (
           <Spinner />
-        ) : subscription?.status === "active" ? (
+        ) : isPro ? (
           <ManageSubscriptionButton />
         ) : (
-          <button onClick={createCheckout}>Subscribe</button>
+          <form
+            className="flex"
+            onSubmit={() => createCheckout(user.id, priceId)}
+          >
+            <button className="flex-1">Subscribe</button>
+          </form>
         )}
       </div>
     </div>

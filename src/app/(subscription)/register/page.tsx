@@ -1,9 +1,14 @@
-import { CircleBackdrop, PricingCards } from "@/components"
+import { CircleBackdrop, PricingCards, SignInRequiredAlert } from "@/components"
 import { getServerUser } from "@/services/auth"
 import { cn } from "@/utilities/string"
 
 export default async function RegisterPage() {
   const user = await getServerUser()
+
+  if (!user) {
+    return <SignInRequiredAlert />
+  }
+
   return (
     <div
       className={cn(
@@ -29,7 +34,7 @@ export default async function RegisterPage() {
               "text-4xl font-bold tracking-tight sm:text-5xl"
             )}
           >
-            Let&apos;s handle your Membership {user?.name?.split(" ")[0]}
+            Let&apos;s handle your Membership {user.name?.split(" ")[0]}
           </p>
         </div>
         <div className="relative">

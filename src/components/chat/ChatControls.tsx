@@ -1,29 +1,33 @@
+"use client"
+
 import { useChat } from "@/hooks/useChat"
-import { useUser } from "@/hooks/useUser"
-import { Spinner, showErrorToast } from "../ui"
+import { ErrorAlert, Spinner } from "../ui"
+import { ChatAdminControls } from "./ChatAdminControls"
 import { ChatParticipantsBadges } from "./ChatParticipantsBadges"
-import { AdminControls } from "./AdminControls"
 
 interface ChatControlsProps {
   chatId: string
+  userId: string
 }
 
-export const ChatControls: React.FC<ChatControlsProps> = ({ chatId }) => {
-  const user = useUser()
-  const chat = useChat(chatId)
+export const ChatControls: React.FC<ChatControlsProps> = ({
+  chatId,
+  userId,
+}) => {
+  const [chat, status, error] = useChat(chatId)
 
-  if (chat.status === "loading") {
+  if (status === "loading") {
     return <Spinner />
   }
 
-  if (chat.status === "error") {
-    return void showErrorToast(chat.error)
+  if (status === "error") {
+    return <ErrorAlert error={error} />
   }
 
   return (
     <>
-      {user?.id === chat.value.adminId && <AdminControls chat={chat.value} />}
-      <ChatParticipantsBadges chat={chat.value} />
+      {userId === chat.adminId && <ChatAdminControls chat={chat} />}
+      <ChatParticipantsBadges chat={chat} />
     </>
   )
 }

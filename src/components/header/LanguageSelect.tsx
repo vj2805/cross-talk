@@ -9,23 +9,22 @@ import {
   SelectValue,
   Spinner,
 } from "@/components/ui"
+import { useAvailableLanguages } from "@/hooks/useAvailableLanguages"
 import { usePathname } from "@/hooks/useBuiltins"
-import { useIsPro } from "@/hooks/useIsPro"
-import { useNotSupportedLanguages } from "@/hooks/useNotSupportedLanguages"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
-import { useSubscription } from "@/hooks/useSubscription"
-import { useSupportedLanguages } from "@/hooks/useSupportedLanguages"
 import { setPreferredLanguage } from "@/stores/language"
 import { cn } from "@/utilities/string"
+import { ErrorAlert } from "../ui"
 import type { Language } from "@/types/Language"
 
 export const LanguageSelect: React.FC = () => {
   const pathname = usePathname()
   const preferredLanguage = usePreferredLanguage()
-  const subscription = useSubscription()
-  const isPro = useIsPro()
-  const supportedLanguages = useSupportedLanguages(isPro)
-  const notSupportedLanguages = useNotSupportedLanguages(isPro)
+  const [supported, unsupported, status, error] = useAvailableLanguages()
+
+  if (status === "error") {
+    return <ErrorAlert error={error} />
+  }
 
   const isChatPage = pathname.includes("/chat")
 
@@ -41,11 +40,11 @@ export const LanguageSelect: React.FC = () => {
             <SelectValue placeholder={preferredLanguage} />
           </SelectTrigger>
           <SelectContent>
-            {subscription === undefined ? (
+            {status === "loading" ? (
               <Spinner />
             ) : (
               <>
-                {supportedLanguages?.map(language => (
+                {supported.map(language => (
                   <SelectItem
                     key={language}
                     value={language}
@@ -53,11 +52,11 @@ export const LanguageSelect: React.FC = () => {
                     {language}
                   </SelectItem>
                 ))}
-                {notSupportedLanguages?.map(language => (
+                {unsupported.map(language => (
                   <NextLink
                     key={language}
                     prefetch={false}
-                    href="/subscribe"
+                    href="/register"
                   >
                     <SelectItem
                       key={language}

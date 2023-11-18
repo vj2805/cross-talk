@@ -20,15 +20,17 @@ const messageConverter: FirestoreDataConverter<Message> = {
     return {
       id: snapshot.id,
       input: data.input,
-      localeTimeString: data.timestamp.toDate().toLocaleTimeString(),
+      timestamp: data.timestamp,
       translated: data.translated,
       user: data.user,
     }
   },
   toFirestore(message) {
-    delete message.id
-    delete message.translated
-    return message
+    return {
+      input: message.input,
+      timestamp: message.timestamp,
+      user: message.user,
+    }
   },
 }
 
@@ -39,7 +41,7 @@ function messagesRef(chatId: string) {
 }
 
 function limitedMessagesRef(chatId: string) {
-  return query(messagesRef(chatId), limit(15))
+  return query(messagesRef(chatId), limit(25))
 }
 
 function sortedMessagesRef(chatId: string) {
@@ -51,42 +53,32 @@ function lastMessageRef(chatId: string) {
 }
 
 const firebaseMessageService: MessageService = {
-  async getLastMessage(chatId) {
-    const snapshot = await getDocs(lastMessageRef(chatId))
-    if (snapshot.empty) {
-      return undefined
-    }
-    return snapshot.docs[0].data()
-  },
-
-  async getMessages(chatId) {
+  async getMessages({ chatId }) {
     const snapshot = await getDocs(sortedMessagesRef(chatId))
     return snapshot.docs.map(doc => doc.data())
   },
-
-  async getMessagesCount(chatId) {
+  async getMessagesCount({ chatId }) {
     const snapshot = await getCountFromServer(limitedMessagesRef(chatId))
     return snapshot.data().count
   },
-
-  async postMessage(chatId: string, input: string, user: Message["user"]) {
+  async postMessage({ chatId, input, user }) {
     await addDoc(messagesRef(chatId), {
       id: "",
       input,
-      localeTimeString: serverTimestamp(),
+      timestamp: serverTimestamp(),
       user,
     })
   },
-  subscribeToLastMessage(chatId, onChange, onError) {
+  subscribeToLastMessage({ chatId }, onChange, onError) {
     return onSnapshot(
       lastMessageRef(chatId),
-      snapshot => onChange(snapshot.docs[0]?.data()),
+      snapshot => onChange(snapshot.empty ? null : snapshot.docs[0].data()),
       onError
     )
   },
-  subscribeToMessages(chatId, onChange, onError) {
+  subscribeToMessages({ chatId }, onChange, onError) {
     return onSnapshot(
-      messagesRef(chatId),
+      sortedMessagesRef(chatId),
       snapshot => onChange(snapshot.docs.map(doc => doc.data())),
       onError
     )

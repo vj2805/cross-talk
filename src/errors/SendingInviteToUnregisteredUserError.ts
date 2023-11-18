@@ -1,6 +1,4 @@
-import { ToastableError } from "./ToastableError"
-
-export class SendingInviteToUnregisteredUser extends ToastableError {
+export class SendingInviteToUnregisteredUser extends Error {
   name = "User not found!"
   constructor() {
     super(

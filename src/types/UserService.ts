@@ -1,14 +1,24 @@
-import type { Consumer } from "./Consumer"
-import type { Unsubscribe } from "./Unsubscribe"
 import type { Session } from "next-auth"
+import type { Mutate, Query, Subscribe } from "./Service"
 import type { User } from "./User"
 
 export interface UserService {
-  getUserByEmail: (email: string) => Promise<User>
-  subscribeToUser: (
-    userId: string,
-    onChange: Consumer<User>,
-    onError: Consumer<Error>
-  ) => Unsubscribe
-  syncUser: (session: Nullish<Session>) => Promise<Nullish<User>>
+  getUserByEmail: Query<
+    {
+      email: string
+    },
+    User
+  >
+  subscribeToUser: Subscribe<
+    {
+      userId: string
+    },
+    User
+  >
+  syncUser: Mutate<
+    {
+      session: Nullish<Session>
+    },
+    Nullish<User>
+  >
 }

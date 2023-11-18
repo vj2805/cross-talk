@@ -7,7 +7,7 @@ export function useParticipant(participantId: string) {
   const [participant, setParticipant, setError] = useObservable<User>()
 
   useEffect(
-    () => subscribeToUser(participantId, setParticipant, setError),
+    () => subscribeToUser({ userId: participantId }, setParticipant, setError),
     [participantId, setParticipant, setError]
   )
 

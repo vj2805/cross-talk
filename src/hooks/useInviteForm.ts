@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { showErrorToast, showToast } from "@/components/ui"
+import { showToast } from "@/components/ui"
 import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
 import { addParticipantToChat } from "@/services/participant"
 import { getUserByEmail } from "@/services/user"
@@ -21,36 +21,36 @@ export function useInviteForm(chat: Chat, isPro: boolean) {
     },
     resolver: zodResolver(InviteFormSchema),
   })
-  const user = useUser()
+  const [user] = useUser()
 
   async function onSubmit({ email }: InviteFormData) {
     if (chat.adminId !== user?.id) {
       return
     }
 
-    showToast({
+    const [dismissToast, updateToast] = showToast({
       description: "Please wait while we send the invite...",
       title: "Sending Invite...",
     })
 
-    if (!isPro && chat.participantsIds.length >= 2) {
-      return void showErrorToast(
-        new FreePlanLimitExceededError("no of users in a single chat")
-      )
-    }
-
     try {
-      const participant = await getUserByEmail(email)
-      await addParticipantToChat(chat.id, participant.id)
-      showToast({
+      if (!isPro && chat.participantsIds.length >= 2) {
+        throw new FreePlanLimitExceededError("2 users per chat")
+      }
+      const participant = await getUserByEmail({ email })
+      await addParticipantToChat({
+        chatId: chat.id,
+        participantId: participant.id,
+      })
+      updateToast({
         description: "The user has been added to the chat successfully!",
-        duration: 3000,
         title: "Added to chat",
         variant: "success",
       })
     } catch (error) {
-      showErrorToast(error as Error)
+      updateToast({ error: error as Error })
     } finally {
+      dismissToast()
       form.reset()
     }
   }

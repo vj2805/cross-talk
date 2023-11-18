@@ -1,20 +1,16 @@
-import { subscribeToInMemoryStore } from "./store"
+import { subscribe } from "./store"
 import type { SubscriptionService } from "@/types/SubscriptionService"
 
-const inMemorySubscriptionService: SubscriptionService = {
-  syncSubscription(userId, onChange) {
-    return subscribeToInMemoryStore(
-      "subscriptions",
-      subscriptions =>
-        subscriptions[userId]?.find(
-          subscription => subscription.status === "active"
-        ),
-      subscription => onChange(subscription ?? null),
-      {
-        fireImmediately: true,
-      }
-    )
+const inmemorySubscriptionService: SubscriptionService = {
+  syncSubscription({ userId }, onChange) {
+    return subscribe("subscriptions", subscriptions => {
+      const subscription = subscriptions.find(
+        subscription =>
+          subscription.id.includes(userId) && subscription.status === "active"
+      )
+      onChange(subscription ?? null)
+    })
   },
 }
 
-export default inMemorySubscriptionService
+export default inmemorySubscriptionService

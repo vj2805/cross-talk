@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, onSnapshot } from "firebase/firestore"
+import { addDoc, collection, onSnapshot } from "firebase/firestore"
 import { clientRepo } from "@/backend/firebase/client"
 import type { Checkout } from "@/types/Checkout"
 import type { PaymentService } from "@/types/PaymentService"
@@ -14,15 +14,17 @@ const checkoutConverter: FirestoreDataConverter<Checkout> = {
       response: data.url
         ? { status: "success", url: data.url }
         : data.error
-        ? { error: new Error(JSON.stringify(data.error)), status: "failure" }
+        ? { error: new Error(data.error.message), status: "failure" }
         : { status: "pending" },
       successUrl: data.success_url,
     }
   },
   toFirestore(checkout) {
-    delete checkout.id
-    delete checkout.response
-    return checkout
+    return {
+      cancel_url: checkout.cancelUrl,
+      price: checkout.priceId,
+      success_url: checkout.successUrl,
+    }
   },
 }
 
@@ -35,27 +37,19 @@ function checkoutsRef(userId: string) {
   ).withConverter(checkoutConverter)
 }
 
-function checkoutRef(userId: string, checkoutId: string) {
-  return doc(checkoutsRef(userId), checkoutId)
-}
-
 const firebasePaymentService: PaymentService = {
-  async createPaymentCheckout(userId, priceId) {
+  async createPaymentCheckout({ listener, priceId, userId }) {
     const checkout = await addDoc(checkoutsRef(userId), {
-      cancelUrl: window.location.origin,
+      cancelUrl: `${window.location.origin}/register`,
       id: "",
       priceId,
       response: { status: "pending" },
-      successUrl: window.location.origin,
+      successUrl: `${window.location.origin}/register`,
     })
-    return checkout.id
-  },
-  subscribeToPaymentCheckout(userId, checkoutId, onChange) {
-    return onSnapshot(checkoutRef(userId, checkoutId), snapshot => {
-      if (!snapshot.exists()) {
-        return
+    return onSnapshot(checkout, snapshot => {
+      if (snapshot.exists()) {
+        listener(snapshot.data())
       }
-      onChange(snapshot.data())
     })
   },
 }

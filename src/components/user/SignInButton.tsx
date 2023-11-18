@@ -3,9 +3,15 @@
 import { Button } from "@/components/ui"
 import { signIn } from "@/services/user"
 
-export const SignInButton: React.FC = () => (
+interface SignInButtonProps {
+  variant?: React.ComponentPropsWithoutRef<typeof Button>["variant"]
+}
+
+export const SignInButton: React.FC<SignInButtonProps> = ({
+  variant = "outline",
+}) => (
   <Button
-    variant="outline"
+    variant={variant}
     onClick={() => signIn()}
   >
     Sign In

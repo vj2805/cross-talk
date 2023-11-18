@@ -1,7 +1,4 @@
-import { paymentService } from "./internal"
+import { default as paymentService } from "./internal/firebase/payment"
 import type { PaymentService } from "@/types/PaymentService"
 
-export const {
-  createPaymentCheckout,
-  subscribeToPaymentCheckout,
-}: PaymentService = paymentService
+export const { createPaymentCheckout }: PaymentService = paymentService

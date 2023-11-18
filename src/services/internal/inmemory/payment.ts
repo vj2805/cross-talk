@@ -1,103 +1,55 @@
+import { PaymentError } from "@/errors/PaymentError"
 import { generateId } from "@/utilities/string"
-import {
-  getInMemoryState,
-  setInMemoryState,
-  subscribeToInMemoryStore,
-} from "./store"
+import { get, set, subscribe } from "./store"
 import type { PaymentService } from "@/types/PaymentService"
 
-const inMemoryPaymentService: PaymentService = {
-  createPaymentCheckout(userId, _priceId) {
-    return new Promise((resolve, reject) => {
-      const existingCheckouts = getInMemoryState("checkouts")[userId] ?? []
-      if (
-        existingCheckouts.some(
-          checkout => checkout.response.status === "pending"
-        )
-      ) {
-        return reject(new Error("[createCheckout] A pending checkout exists!"))
-      }
-      setTimeout(() => {
-        const response = window.confirm(
-          [
-            "This is a simulated checkout session!",
-            "Click OK to simulate SUCCESS / Click CANCEL to simulate NETWORK ERROR",
-          ].join("\n")
-        )
-        if (response) {
-          const id = generateId()
-          setInMemoryState("checkouts", checkouts => ({
-            ...checkouts,
-            [userId]: existingCheckouts.toSpliced(0, 0, {
-              cancelUrl: window.location.origin,
-              id,
-              priceId: _priceId,
-              response: { status: "pending" },
-              successUrl: window.location.origin,
-            }),
-          }))
-          setTimeout(() => {
-            const response = window.confirm(
-              [
-                "This is a simulated payment session!",
-                "Click OK to simulate SUCCESS / Click CANCEL to simulate CANCEL",
-              ].join("\n")
-            )
-            const index = existingCheckouts?.findIndex(
-              checkout => checkout.id === id
-            )
-            if (response) {
-              setInMemoryState("checkouts", checkouts => ({
-                ...checkouts,
-                [userId]: existingCheckouts.with(index, {
-                  ...existingCheckouts[index],
-                  response: {
-                    status: "success",
-                    url: null,
-                  },
-                }),
-              }))
-              setInMemoryState("subscriptions", subscriptions => ({
-                ...subscriptions,
-                [userId]: (subscriptions[userId] ?? []).toSpliced(0, 0, {
-                  id: generateId(),
-                  role: null,
-                  status: "active",
-                }),
-              }))
-            } else {
-              setInMemoryState("checkouts", checkouts => ({
-                ...checkouts,
-                [userId]: existingCheckouts.with(index, {
-                  ...existingCheckouts[index],
-                  response: {
-                    error: new Error(
-                      "[createCheckout] Simulated Payment Failure!"
-                    ),
-                    status: "failure",
-                  },
-                }),
-              }))
-            }
-          }, 3000)
-          return resolve(id)
-        } else {
-          return reject(new Error("[createCheckout] Simulated Network Error!"))
-        }
-      }, 1000)
-    })
-  },
-  subscribeToPaymentCheckout(userId, checkoutId, onChange) {
-    return subscribeToInMemoryStore(
-      "checkouts",
-      checkouts =>
-        checkouts[userId]?.find(checkout => checkout.id === checkoutId),
-      checkout => checkout && onChange(checkout),
-      {
-        fireImmediately: true,
-      }
+const inmemoryPaymentService: PaymentService = {
+  async createPaymentCheckout({ listener, priceId, userId }) {
+    if (
+      get("checkouts").find(
+        checkout =>
+          checkout.id.includes(userId) && checkout.response.status === "pending"
+      )
+    ) {
+      throw new PaymentError("A checkout session is already pending!")
+    }
+
+    const id = `user:${userId}:checkout:${generateId()}`
+
+    set("checkouts", checkouts =>
+      checkouts.toSpliced(-1, 0, {
+        cancelUrl: window.location.origin,
+        id,
+        priceId,
+        response: { status: "pending" },
+        successUrl: window.location.origin,
+      })
     )
+
+    setTimeout(() => {
+      set("checkouts", checkouts =>
+        checkouts.map(checkout =>
+          checkout.id !== id
+            ? checkout
+            : {
+                ...checkout,
+                response: {
+                  status: "success" as const,
+                  url: null,
+                },
+              }
+        )
+      )
+    }, 2500)
+
+    return subscribe("checkouts", checkouts => {
+      const checkout = checkouts.find(checkout => checkout.id === id)
+      if (!checkout) {
+        return
+      }
+      listener(checkout)
+    })
   },
 }
 
-export default inMemoryPaymentService
+export default inmemoryPaymentService

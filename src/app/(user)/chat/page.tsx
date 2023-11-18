@@ -1,9 +1,16 @@
-import { ChatList } from "@/components"
+import { ChatList, SignInRequiredAlert } from "@/components"
+import { getServerUser } from "@/services/auth"
 
-export default function ChatsPage() {
+export default async function ChatsPage() {
+  const user = await getServerUser()
+
+  if (!user) {
+    return <SignInRequiredAlert />
+  }
+
   return (
     <div>
-      <ChatList />
+      <ChatList user={user} />
     </div>
   )
 }

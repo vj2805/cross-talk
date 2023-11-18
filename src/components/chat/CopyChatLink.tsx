@@ -1,28 +1,29 @@
+"use client"
+
 import { useId } from "react"
-import { env } from "@/configs/env"
 import {
   Button,
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
   Input,
   Label,
-  showErrorToast,
   showToast,
 } from "../ui"
 import { CopyIcon } from "../ui/icons"
-import { DialogClose, DialogFooter } from "../ui/dialog"
 
-interface ShareLinkProps {
+interface CopyChatLinkProps {
   chatId: string
 }
 
-export const ShareLink: React.FC<ShareLinkProps> = ({ chatId }) => {
+export const CopyChatLink: React.FC<CopyChatLinkProps> = ({ chatId }) => {
   const id = useId()
-  const linkToChat = createLinkToChat(chatId)
+  const linkToChat = createChatLink(chatId)
 
   async function copyLinkToClipboard() {
     try {
@@ -34,7 +35,7 @@ export const ShareLink: React.FC<ShareLinkProps> = ({ chatId }) => {
         variant: "success",
       })
     } catch (error) {
-      showErrorToast(error as Error)
+      showToast({ error: error as Error })
     }
   }
 
@@ -88,8 +89,8 @@ export const ShareLink: React.FC<ShareLinkProps> = ({ chatId }) => {
   )
 }
 
-function createLinkToChat(chatId: string) {
-  const protocol = env["NODE_ENV"] === "development" ? "http" : "https"
+function createChatLink(chatId: string) {
+  const protocol = process.env.NODE_ENV === "development" ? "http" : "https"
   const host = window.location.host
   return `${protocol}://${host}/chat/${chatId}`
 }

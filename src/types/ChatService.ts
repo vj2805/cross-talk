@@ -1,20 +1,36 @@
 import type { Chat } from "./Chat"
-import type { Consumer } from "./Consumer"
-import type { Unsubscribe } from "./Unsubscribe"
+import type { Mutate, Query, Subscribe } from "./Service"
 import type { User } from "./User"
 
 export interface ChatService {
-  createChat: (adminId: User["id"]) => Promise<Chat["id"]>
-  getParticipantsIds: (chatId: Chat["id"]) => Promise<Chat["participantsIds"]>
-  getParticipatingChats: (userId: User["id"]) => Promise<Chat[]>
-  subscribeToChat: (
-    chatId: Chat["id"],
-    onChange: Consumer<Chat>,
-    onError: Consumer<Error>
-  ) => Unsubscribe
-  subscribeToParticipatingChats: (
-    userId: User["id"],
-    onChange: Consumer<Chat[]>,
-    onError: Consumer<Error>
-  ) => Unsubscribe
+  createChat: Mutate<
+    {
+      adminId: User["id"]
+    },
+    Chat["id"]
+  >
+  getParticipatingChatCount: Query<
+    {
+      userId: User["id"]
+    },
+    number
+  >
+  getParticipatingChats: Query<
+    {
+      userId: User["id"]
+    },
+    Chat[]
+  >
+  subscribeToChat: Subscribe<
+    {
+      chatId: string
+    },
+    Chat
+  >
+  subscribeToParticipatingChats: Subscribe<
+    {
+      userId: string
+    },
+    Chat[]
+  >
 }

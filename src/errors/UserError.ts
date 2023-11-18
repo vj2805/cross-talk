@@ -5,4 +5,4 @@ export class UserError extends Error {
   }
 }
 
-export type UserErrorCode = "User is NOT signed in!"
+export type UserErrorCode = "User does not exist!" | "User is NOT signed in!"

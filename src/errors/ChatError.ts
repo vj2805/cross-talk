@@ -1,6 +1,4 @@
-import { ToastableError } from "./ToastableError"
-
-export class ChatError extends ToastableError {
+export class ChatError extends Error {
   name = "Chat Error"
   constructor(code: ChatErrorCode) {
     super(code)

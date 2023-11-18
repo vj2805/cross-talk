@@ -25,6 +25,7 @@ export function createStore<Store extends Record<string, any>>(
       if (options.fireImmediately) {
         listener(store[key])
       }
+      return () => existing.delete(listener)
     },
   }
 }

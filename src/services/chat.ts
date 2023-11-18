@@ -1,4 +1,4 @@
-import { default as chatService } from "./internal/inmemory/chat"
+import { default as chatService } from "./internal/firebase/chat"
 import type { ChatService } from "@/types/ChatService"
 
 export const {

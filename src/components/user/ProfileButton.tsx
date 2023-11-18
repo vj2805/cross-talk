@@ -22,7 +22,12 @@ interface ProfileButtonProps {
 }
 
 export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
-  const [isPro, loading] = useIsPro()
+  const [isPro, status] = useIsPro()
+
+  if (status === "error") {
+    return null
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -34,7 +39,7 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
       <DropdownMenuContent className="text-center">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {loading ? (
+        {status === "loading" ? (
           <DropdownMenuItem className="flex items-center justify-center">
             <Spinner />
           </DropdownMenuItem>

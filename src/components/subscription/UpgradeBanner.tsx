@@ -7,9 +7,9 @@ import { cn } from "@/utilities/string"
 
 export const UpgradeBanner: React.FC = () => {
   const router = useRouter()
-  const [isPro, loading] = useIsPro()
+  const [isPro, status] = useIsPro()
 
-  if (loading || isPro) {
+  if (status !== "idle" || isPro) {
     return null
   }
 

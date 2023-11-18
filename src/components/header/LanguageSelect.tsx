@@ -57,7 +57,7 @@ export const LanguageSelect: React.FC = () => {
                   <NextLink
                     key={language}
                     prefetch={false}
-                    href="/subscribe"
+                    href="/register"
                   >
                     <SelectItem
                       key={language}

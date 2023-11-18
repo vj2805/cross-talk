@@ -3,7 +3,7 @@ import { cn } from "@/utilities/string"
 
 export const GetStartedTodayButton: React.FC = () => (
   <NextLink
-    href="/subscribe"
+    href="/register"
     className={cn(
       "block",
       "mt-8",

@@ -10,7 +10,7 @@ import { getServerUser } from "@/services/auth"
 function getReturnUrl() {
   const protocol = safeEnv["NODE_ENV"] === "development" ? "http" : "https"
   const host = headers().get("host")
-  return `${protocol}://${host}/subscribe`
+  return `${protocol}://${host}/register`
 }
 
 async function getCustomerStripeId(userId: string) {

@@ -40,11 +40,11 @@ function checkoutsRef(userId: string) {
 const firebasePaymentService: PaymentService = {
   async createPaymentCheckout({ listener, priceId, userId }) {
     const checkout = await addDoc(checkoutsRef(userId), {
-      cancelUrl: `${window.location.origin}/subscribe`,
+      cancelUrl: `${window.location.origin}/register`,
       id: "",
       priceId,
       response: { status: "pending" },
-      successUrl: `${window.location.origin}/subscribe`,
+      successUrl: `${window.location.origin}/register`,
     })
     return onSnapshot(checkout, snapshot => {
       if (snapshot.exists()) {

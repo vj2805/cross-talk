@@ -10,7 +10,7 @@ export class FreePlanLimitExceededError extends ToastableError {
     >
       <NextLink
         prefetch={false}
-        href="/subscribe"
+        href="/register"
       >
         Upgrade to PRO
       </NextLink>

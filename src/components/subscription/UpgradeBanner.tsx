@@ -3,15 +3,13 @@
 import { Button } from "@/components/ui"
 import { useRouter } from "@/hooks/useBuiltins"
 import { useIsPro } from "@/hooks/useIsPro"
-import { useSubscription } from "@/hooks/useSubscription"
 import { cn } from "@/utilities/string"
 
 export const UpgradeBanner: React.FC = () => {
   const router = useRouter()
-  const subscription = useSubscription()
-  const isPro = useIsPro()
+  const [isPro, loading] = useIsPro()
 
-  if (subscription === undefined || isPro) {
+  if (loading || isPro) {
     return null
   }
 

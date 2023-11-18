@@ -12,7 +12,6 @@ import {
 } from "@/components/ui"
 import { StarIcon } from "@/components/ui/icons"
 import { useIsPro } from "@/hooks/useIsPro"
-import { useSubscription } from "@/hooks/useSubscription"
 import { signOut } from "@/services/user"
 import { cn } from "@/utilities/string"
 import { UserAvatar } from "./UserAvatar"
@@ -23,8 +22,7 @@ interface ProfileButtonProps {
 }
 
 export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
-  const subscription = useSubscription()
-  const isPro = useIsPro()
+  const [isPro, loading] = useIsPro()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -36,7 +34,7 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
       <DropdownMenuContent className="text-center">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {subscription === undefined ? (
+        {loading ? (
           <DropdownMenuItem className="flex items-center justify-center">
             <Spinner />
           </DropdownMenuItem>

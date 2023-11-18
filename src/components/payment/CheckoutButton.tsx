@@ -3,8 +3,8 @@
 import { ManageSubscriptionButton } from "@/components/subscription/ManageSubscriptionButton"
 import { Spinner } from "@/components/ui"
 import { useCheckout } from "@/hooks/useCheckout"
+import { useIsPro } from "@/hooks/useIsPro"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
-import { useSubscription } from "@/hooks/useSubscription"
 import { cn } from "@/utilities/string"
 
 interface CheckoutButtonProps {
@@ -14,7 +14,7 @@ interface CheckoutButtonProps {
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
   const [user] = useRequiredUser()
   const [createCheckout, processing] = useCheckout()
-  const subscription = useSubscription()
+  const [isPro, loading] = useIsPro()
 
   if (!user) {
     return null
@@ -22,7 +22,7 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
 
   return (
     <div className="flex flex-col space-y-2">
-      {subscription?.status === "active" && (
+      {isPro && (
         <>
           <hr className="mt-5" />
           <p className="pt-5 text-center text-xs text-indigo-600">
@@ -44,9 +44,9 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
           "disabled:opacity-80"
         )}
       >
-        {subscription === undefined || processing ? (
+        {loading || processing ? (
           <Spinner />
-        ) : subscription?.status === "active" ? (
+        ) : isPro ? (
           <ManageSubscriptionButton />
         ) : (
           <form

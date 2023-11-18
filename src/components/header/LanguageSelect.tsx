@@ -13,7 +13,6 @@ import { usePathname } from "@/hooks/useBuiltins"
 import { useIsPro } from "@/hooks/useIsPro"
 import { useNotSupportedLanguages } from "@/hooks/useNotSupportedLanguages"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
-import { useSubscription } from "@/hooks/useSubscription"
 import { useSupportedLanguages } from "@/hooks/useSupportedLanguages"
 import { setPreferredLanguage } from "@/stores/language"
 import { cn } from "@/utilities/string"
@@ -22,10 +21,9 @@ import type { Language } from "@/types/Language"
 export const LanguageSelect: React.FC = () => {
   const pathname = usePathname()
   const preferredLanguage = usePreferredLanguage()
-  const subscription = useSubscription()
-  const isPro = useIsPro()
-  const supportedLanguages = useSupportedLanguages(isPro)
-  const notSupportedLanguages = useNotSupportedLanguages(isPro)
+  const [isPro, loading] = useIsPro()
+  const supportedLanguages = useSupportedLanguages(!!isPro)
+  const notSupportedLanguages = useNotSupportedLanguages(!!isPro)
 
   const isChatPage = pathname.includes("/chat")
 
@@ -41,7 +39,7 @@ export const LanguageSelect: React.FC = () => {
             <SelectValue placeholder={preferredLanguage} />
           </SelectTrigger>
           <SelectContent>
-            {subscription === undefined ? (
+            {loading ? (
               <Spinner />
             ) : (
               <>

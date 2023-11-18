@@ -1,7 +1,7 @@
 "use client"
 
-import { Spinner, showToast } from "@/components/ui"
 import { useMessages } from "@/hooks/useMessages"
+import { ErrorAlert, Spinner } from "../ui"
 import { ChatMessagesList } from "./ChatMessagesList"
 import { StartConversation } from "./StartConversation"
 import type { User } from "next-auth"
@@ -19,7 +19,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({ chatId, user }) => {
   }
 
   if (status === "error") {
-    return void showToast({ error })
+    return <ErrorAlert error={error} />
   }
 
   if (messages.length === 0) {

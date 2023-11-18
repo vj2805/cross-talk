@@ -1,7 +1,7 @@
 import { cn } from "@/utilities/string"
-import { InviteUserToChat } from "./InviteUserToChat"
 import { CopyChatLink } from "./CopyChatLink"
 import { DeleteChatButton } from "./DeleteChatButton"
+import { InviteUserToChat } from "./InviteUserToChat"
 import type { Chat } from "@/types/Chat"
 
 interface ChatAdminControlsProps {

@@ -14,15 +14,16 @@ import { usePathname } from "@/hooks/useBuiltins"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { setPreferredLanguage } from "@/stores/language"
 import { cn } from "@/utilities/string"
+import { ErrorAlert } from "../ui"
 import type { Language } from "@/types/Language"
 
 export const LanguageSelect: React.FC = () => {
   const pathname = usePathname()
   const preferredLanguage = usePreferredLanguage()
-  const [supported, unsupported, status] = useAvailableLanguages()
+  const [supported, unsupported, status, error] = useAvailableLanguages()
 
   if (status === "error") {
-    return null
+    return <ErrorAlert error={error} />
   }
 
   const isChatPage = pathname.includes("/chat")

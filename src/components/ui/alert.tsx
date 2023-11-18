@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "@/utilities/string"
+import type { ErrorWithAction } from "@/errors/ErrorWithAction"
 
 const variants = cva(
   cn(
@@ -63,3 +64,22 @@ export const AlertDescription = React.forwardRef<
   />
 ))
 AlertDescription.displayName = AlertDescription.name
+
+interface ErrorAlertProps {
+  error: ErrorWithAction
+}
+
+export const ErrorAlert: React.FC<ErrorAlertProps> = ({ error }) => (
+  <Alert
+    variant="destructive"
+    className="flex mx-2 w-auto items-center"
+  >
+    <AlertTitle className="pr-4 text-xl font-bold border-r border-destructive">
+      {error.name}
+    </AlertTitle>
+    <AlertDescription className="pl-5 justify-end font-extrabold">
+      {error.message}
+    </AlertDescription>
+    {error.action}
+  </Alert>
+)

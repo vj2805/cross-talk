@@ -1,5 +1,9 @@
-import { ChatInput, ChatMessages } from "@/components"
-import { ChatControls } from "@/components/chat/ChatControls"
+import {
+  ChatControls,
+  ChatInput,
+  ChatMessages,
+  SignInRequiredAlert,
+} from "@/components"
 import { getServerUser } from "@/services/auth"
 
 interface ChatPageProps {
@@ -12,7 +16,7 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
   const user = await getServerUser()
 
   if (!user) {
-    return null
+    return <SignInRequiredAlert />
   }
 
   return (

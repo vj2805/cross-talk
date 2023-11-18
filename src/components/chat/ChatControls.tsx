@@ -1,7 +1,7 @@
 "use client"
 
 import { useChat } from "@/hooks/useChat"
-import { Spinner, showToast } from "../ui"
+import { ErrorAlert, Spinner } from "../ui"
 import { ChatAdminControls } from "./ChatAdminControls"
 import { ChatParticipantsBadges } from "./ChatParticipantsBadges"
 
@@ -21,7 +21,7 @@ export const ChatControls: React.FC<ChatControlsProps> = ({
   }
 
   if (status === "error") {
-    return void showToast({ error })
+    return <ErrorAlert error={error} />
   }
 
   return (

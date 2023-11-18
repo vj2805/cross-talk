@@ -1,6 +1,6 @@
 export * from "./builtins"
 
-export { Alert, AlertDescription, AlertTitle } from "./alert"
+export { Alert, AlertDescription, AlertTitle, ErrorAlert } from "./alert"
 export { AspectRatio } from "./aspect-ratio"
 export { Avatar, AvatarFallback } from "./avatar"
 export { Badge } from "./badge"

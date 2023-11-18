@@ -9,6 +9,12 @@ export interface ChatService {
     },
     Chat["id"]
   >
+  getParticipatingChatCount: Query<
+    {
+      userId: User["id"]
+    },
+    number
+  >
   getParticipatingChats: Query<
     {
       userId: User["id"]

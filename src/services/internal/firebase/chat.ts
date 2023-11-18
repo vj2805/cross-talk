@@ -2,6 +2,8 @@ import {
   addDoc,
   collection,
   doc,
+  documentId,
+  getCountFromServer,
   getDocs,
   onSnapshot,
   query,
@@ -48,10 +50,15 @@ const firebaseChatService: ChatService = {
   async createChat({ adminId }) {
     const chatRef = await addDoc(chatsRef(), {
       adminId,
-      id: "",
+      id: documentId(),
       participantsIds: [adminId],
     })
     return chatRef.id
+  },
+  async getParticipatingChatCount({ userId }) {
+    const snapshot = await getCountFromServer(participatingChatsRef(userId))
+    const aggregate = snapshot.data()
+    return aggregate.count
   },
   async getParticipatingChats({ userId }) {
     const snapshot = await getDocs(participatingChatsRef(userId))

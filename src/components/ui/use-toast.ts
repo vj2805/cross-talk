@@ -6,34 +6,35 @@ import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
 const TOAST_LIMIT = 2
 const TOAST_REMOVE_DELAY = 1_000_000
 
-type ToasterToast = ToastProps & {
-  id: string
+type ToastWithoutId = SafeOmit<ToastProps, "id" | "title"> & {
   title?: React.ReactNode
   description?: React.ReactNode
   action?: ToastActionElement
   error?: ToastableError
 }
 
+type Toast = WithId<ToastWithoutId>
+
 type Action =
   | {
       type: "add"
-      toast: ToasterToast
+      toast: Toast
     }
   | {
       type: "dismiss"
-      toastId?: ToasterToast["id"]
+      toastId?: Toast["id"]
     }
   | {
       type: "remove"
-      toastId?: ToasterToast["id"]
+      toastId?: Toast["id"]
     }
   | {
       type: "update"
-      toast: Partial<ToasterToast>
+      toast: Partial<Toast>
     }
 
 interface State {
-  toasts: ToasterToast[]
+  toasts: Toast[]
 }
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
@@ -117,8 +118,6 @@ function dispatch(action: Action) {
     listener(memoryState)
   })
 }
-
-type ToastWithoutId = SafeOmit<ToasterToast, "id">
 
 export function showToast({
   error,

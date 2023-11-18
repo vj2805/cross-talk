@@ -1,7 +1,7 @@
 "use client"
 
 import { ChatRowSkeleton } from "@/components/chat/ChatRowSkeleton"
-import { showToast } from "@/components/ui"
+import { ErrorAlert } from "@/components/ui"
 import { UserAvatar } from "@/components/user/UserAvatar"
 import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
@@ -32,7 +32,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   }
 
   if (status === "error") {
-    return void showToast({ error })
+    return <ErrorAlert error={error} />
   }
 
   return (

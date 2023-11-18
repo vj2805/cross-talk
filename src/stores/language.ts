@@ -2,18 +2,18 @@ import { createWithEqualityFn } from "zustand/traditional"
 import type { AvailableLanguages, Language } from "@/types/Language"
 
 type LanguageStore = {
-  availableLanguages: Optional<AvailableLanguages>
+  availableLanguages: Observable<AvailableLanguages>
   preferredLanguage: Language
 }
 
 export const useLanguageStore = createWithEqualityFn<LanguageStore>(() => ({
-  availableLanguages: undefined,
+  availableLanguages: [undefined, "loading", undefined],
   preferredLanguage: "English",
 }))
 
 export function setAvailableLanguages(availableLanguages: AvailableLanguages) {
   useLanguageStore.setState({
-    availableLanguages,
+    availableLanguages: [availableLanguages, "idle", undefined],
     preferredLanguage: availableLanguages.free[0],
   })
 }

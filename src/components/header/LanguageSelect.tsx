@@ -9,11 +9,9 @@ import {
   SelectValue,
   Spinner,
 } from "@/components/ui"
+import { useAvailableLanguages } from "@/hooks/useAvailableLanguages"
 import { usePathname } from "@/hooks/useBuiltins"
-import { useIsPro } from "@/hooks/useIsPro"
-import { useNotSupportedLanguages } from "@/hooks/useNotSupportedLanguages"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
-import { useSupportedLanguages } from "@/hooks/useSupportedLanguages"
 import { setPreferredLanguage } from "@/stores/language"
 import { cn } from "@/utilities/string"
 import type { Language } from "@/types/Language"
@@ -21,9 +19,11 @@ import type { Language } from "@/types/Language"
 export const LanguageSelect: React.FC = () => {
   const pathname = usePathname()
   const preferredLanguage = usePreferredLanguage()
-  const [isPro, loading] = useIsPro()
-  const supportedLanguages = useSupportedLanguages(!!isPro)
-  const notSupportedLanguages = useNotSupportedLanguages(!!isPro)
+  const [supported, unsupported, status] = useAvailableLanguages()
+
+  if (status === "error") {
+    return null
+  }
 
   const isChatPage = pathname.includes("/chat")
 
@@ -39,11 +39,11 @@ export const LanguageSelect: React.FC = () => {
             <SelectValue placeholder={preferredLanguage} />
           </SelectTrigger>
           <SelectContent>
-            {loading ? (
+            {status === "loading" ? (
               <Spinner />
             ) : (
               <>
-                {supportedLanguages?.map(language => (
+                {supported.map(language => (
                   <SelectItem
                     key={language}
                     value={language}
@@ -51,7 +51,7 @@ export const LanguageSelect: React.FC = () => {
                     {language}
                   </SelectItem>
                 ))}
-                {notSupportedLanguages?.map(language => (
+                {unsupported.map(language => (
                   <NextLink
                     key={language}
                     prefetch={false}

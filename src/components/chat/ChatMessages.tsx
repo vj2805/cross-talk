@@ -9,16 +9,11 @@ import type { User } from "next-auth"
 
 interface ChatMessagesProps {
   chatId: string
-  initialMessages: Message[]
   user: User
 }
 
-export const ChatMessages: React.FC<ChatMessagesProps> = ({
-  chatId,
-  initialMessages,
-  user,
-}) => {
-  const [messages, status, error] = useMessages(chatId, initialMessages)
+export const ChatMessages: React.FC<ChatMessagesProps> = ({ chatId, user }) => {
+  const [messages, status, error] = useMessages(chatId)
 
   if (status === "loading") {
     return <Spinner />

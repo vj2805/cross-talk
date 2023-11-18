@@ -24,7 +24,6 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
       <ChatMessages
         chatId={chatId}
         user={user}
-        initialMessages={[]}
       />
       <ChatInput chatId={chatId} />
     </>

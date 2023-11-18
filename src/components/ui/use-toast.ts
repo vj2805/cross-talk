@@ -118,12 +118,16 @@ function dispatch(action: Action) {
   })
 }
 
-type Toast = Omit<ToasterToast, "id">
+type ToastWithoutId = SafeOmit<ToasterToast, "id">
 
-export function showToast({ error, duration = 2000, ...props }: Toast) {
+export function showToast({
+  error,
+  duration = 2000,
+  ...props
+}: ToastWithoutId) {
   const id = generateId()
 
-  const update = (props: Toast) =>
+  const update = (props: ToastWithoutId) =>
     dispatch({
       toast: { ...props, id },
       type: "update",

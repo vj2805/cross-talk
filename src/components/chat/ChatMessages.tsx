@@ -4,7 +4,6 @@ import { Spinner, showToast } from "@/components/ui"
 import { useMessages } from "@/hooks/useMessages"
 import { ChatMessagesList } from "./ChatMessagesList"
 import { StartConversation } from "./StartConversation"
-import type { Message } from "@/types/Message"
 import type { User } from "next-auth"
 
 interface ChatMessagesProps {

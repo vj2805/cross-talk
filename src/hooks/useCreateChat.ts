@@ -1,10 +1,9 @@
 import { showToast } from "@/components/ui"
-import { createChat, getParticipatingChatCount } from "@/services/chat"
-import { sleep } from "@/utilities/sleep"
 import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
+import { createChat, getParticipatingChatCount } from "@/services/chat"
 import { useRouter } from "./useBuiltins"
-import { useProcess } from "./useProcess"
 import { useIsPro } from "./useIsPro"
+import { useProcess } from "./useProcess"
 
 export function useCreateChat() {
   const isPro = useIsPro()

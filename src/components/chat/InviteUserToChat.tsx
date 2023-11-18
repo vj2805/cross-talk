@@ -24,8 +24,8 @@ interface InviteUserToChatProps {
 }
 
 export const InviteUserToChat: React.FC<InviteUserToChatProps> = ({ chat }) => {
-  const isPro = useIsPro()
-  const { form, onSubmit } = useInviteForm(chat, isPro)
+  const [isPro] = useIsPro()
+  const { form, onSubmit } = useInviteForm(chat, !!isPro)
   return (
     <Dialog>
       <DialogTrigger asChild>

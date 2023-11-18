@@ -25,4 +25,5 @@ export class FreePlanLimitExceededError extends ToastableError {
 
 export type FreePlanLimitExceededErrorCode =
   | "2 users per chat"
+  | "3 chats per user"
   | "25 messages per chat"

@@ -13,12 +13,15 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
   const user = await getServerUser()
 
   if (!user) {
-    return redirect("/")
+    return null
   }
 
   return (
     <>
-      <ChatControls chatId={chatId} />
+      <ChatControls
+        chatId={chatId}
+        userId={user.id}
+      />
       <ChatMessages
         chatId={chatId}
         user={user}

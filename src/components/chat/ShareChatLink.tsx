@@ -17,11 +17,11 @@ import {
 } from "../ui"
 import { CopyIcon } from "../ui/icons"
 
-interface ShareLinkProps {
+interface ShareChatLinkProps {
   chatId: string
 }
 
-export const ShareLink: React.FC<ShareLinkProps> = ({ chatId }) => {
+export const ShareChatLink: React.FC<ShareChatLinkProps> = ({ chatId }) => {
   const id = useId()
   const linkToChat = createLinkToChat(chatId)
 

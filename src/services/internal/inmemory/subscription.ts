@@ -1,7 +1,7 @@
 import { subscribe } from "./store"
 import type { SubscriptionService } from "@/types/SubscriptionService"
 
-const firestoreSubscriptionService: SubscriptionService = {
+const inmemorySubscriptionService: SubscriptionService = {
   syncSubscription({ userId }, onChange) {
     return subscribe("subscriptions", subscriptions => {
       const subscription = subscriptions.find(
@@ -13,4 +13,4 @@ const firestoreSubscriptionService: SubscriptionService = {
   },
 }
 
-export default firestoreSubscriptionService
+export default inmemorySubscriptionService

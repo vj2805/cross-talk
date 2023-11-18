@@ -1,8 +1,8 @@
 import { UserError } from "@/errors/UserError"
-import { get, set, subscribe } from "./store"
+import { get, subscribe } from "./store"
 import type { UserService } from "@/types/UserService"
 
-const inMemoryUserService: UserService = {
+const inmemoryUserService: UserService = {
   async getUserByEmail({ email }) {
     const user = get("users").find(user => user.email === email)
     if (!user) {
@@ -24,4 +24,4 @@ const inMemoryUserService: UserService = {
   },
 }
 
-export default inMemoryUserService
+export default inmemoryUserService

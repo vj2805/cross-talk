@@ -40,7 +40,7 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {subscription === undefined ? (
-          <DropdownMenuItem>
+          <DropdownMenuItem className="flex items-center justify-center">
             <Spinner />
           </DropdownMenuItem>
         ) : (
@@ -57,13 +57,21 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
                 <p>PRO</p>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => manageSubscription()}>
+              <DropdownMenuItem
+                className="flex items-center justify-center"
+                onClick={() => manageSubscription()}
+              >
                 Manage
               </DropdownMenuItem>
             </>
           )
         )}
-        <DropdownMenuItem onClick={() => signOut()}>Signout</DropdownMenuItem>
+        <DropdownMenuItem
+          className="flex items-center justify-center"
+          onClick={() => signOut()}
+        >
+          Sign Out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

@@ -1,0 +1,34 @@
+import { UserError } from "@/errors/UserError"
+import { get, set, subscribe } from "./store"
+import type { UserService } from "@/types/UserService"
+
+const inMemoryUserService: UserService = {
+  async getUserByEmail({ email }) {
+    const user = get("users").find(user => user.email === email)
+    if (!user) {
+      throw new UserError("User does not exist!")
+    }
+    return user
+  },
+  subscribeToUser({ userId }, onChange) {
+    return subscribe("users", users => {
+      const user = users.find(user => user.id === userId)
+      if (!user) {
+        return
+      }
+      onChange(user)
+    })
+  },
+  async syncUser({ session }) {
+    const user = session?.user
+    if (user && session?.firebaseToken) {
+      set("currentlySignedInUser", () => user)
+      return user
+    } else {
+      set("currentlySignedInUser", () => null)
+      return null
+    }
+  },
+}
+
+export default inMemoryUserService

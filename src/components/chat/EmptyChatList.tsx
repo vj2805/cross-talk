@@ -14,7 +14,7 @@ export const EmptyChatList: React.FC = () => {
     >
       <MessageSquareIcon className="h-10 w-10" />
       <h1 className="text-5xl font-extralight">{translate("Welcome!")}</h1>
-      <h2 className="pb-10">
+      <h2 className="py-10 text-center">
         {translate("Let's get you started by creating your first chat!")}
       </h2>
       <CreateChatButton large />

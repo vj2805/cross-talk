@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation"
 import { ChatInput, ChatMessages } from "@/components"
 import { ChatControls } from "@/components/chat/ChatControls"
 import { getServerUser } from "@/services/auth"

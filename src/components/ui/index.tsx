@@ -1,18 +1,19 @@
 export * from "./builtins"
 
+export { Alert, AlertDescription, AlertTitle } from "./alert"
 export { AspectRatio } from "./aspect-ratio"
 export { Avatar, AvatarFallback } from "./avatar"
 export { Badge } from "./badge"
 export { Button } from "./button"
 export {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogClose,
-  DialogFooter,
 } from "./dialog"
 export {
   DropdownMenu,

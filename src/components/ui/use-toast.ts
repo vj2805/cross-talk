@@ -6,14 +6,14 @@ import { generateId } from "@/utilities/string"
 const TOAST_LIMIT = 2
 const TOAST_REMOVE_DELAY = 1_000_000
 
-type ToastWithoutId = SafeOmit<ToastProps, "id" | "title"> & {
+type ToastWithoutId = Omit<ToastProps, "id" | "title"> & {
   title?: React.ReactNode
   description?: React.ReactNode
   action?: ToastActionElement
   error?: ErrorWithAction
 }
 
-type Toast = WithId<ToastWithoutId>
+type Toast = ToastWithoutId & { id: string }
 
 type Action =
   | {

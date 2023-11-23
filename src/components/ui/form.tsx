@@ -13,10 +13,11 @@ type FormFieldName<
 
 type FormItemId = string
 
-const FormFieldNameContext =
-  React.createContext<Uncertain<FormFieldName>>(undefined)
+const FormFieldNameContext = React.createContext<FormFieldName | undefined>(
+  undefined
+)
 
-const FormItemIdContext = React.createContext<Uncertain<FormItemId>>(undefined)
+const FormItemIdContext = React.createContext<FormItemId | undefined>(undefined)
 
 const useFormField = () => {
   const fieldName = React.useContext(FormFieldNameContext)

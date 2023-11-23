@@ -13,7 +13,7 @@ export const SyncProvider: React.FC<
 
   // Syncing user
   useEffect(() => {
-    syncUser({ session })
+    syncUser(session)
   }, [session])
 
   // Syncing subscription

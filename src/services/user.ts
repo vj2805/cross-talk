@@ -73,7 +73,7 @@ export async function isUserParticipantOfChat(chatId: string, userId: string) {
   return chat.data().participantsIds.includes(userId)
 }
 
-export async function syncUser(session?: Session) {
+export async function syncUser(session: Session | null) {
   if (session?.user && session?.firebaseToken) {
     await signInWithCustomToken(clientAuth, session.firebaseToken)
     return session.user

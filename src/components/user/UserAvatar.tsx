@@ -2,8 +2,8 @@ import { Avatar, AvatarFallback, NextImage } from "@/components/ui"
 import { cn } from "@/utilities/string"
 
 interface UserAvatarProps {
-  name?: Optional<string>
-  image?: Optional<string>
+  name?: string | null
+  image?: string | null
   className?: string
 }
 

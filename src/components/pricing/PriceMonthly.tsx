@@ -2,7 +2,7 @@ import type { PriceMonthly } from "@/types/PriceMonthly"
 import { cn } from "@/utilities/string"
 
 interface PriceMonthlyProps {
-  priceMonthly: Uncertain<PriceMonthly>
+  priceMonthly?: PriceMonthly
 }
 
 export const PriceMonthlyView: React.FC<PriceMonthlyProps> = ({

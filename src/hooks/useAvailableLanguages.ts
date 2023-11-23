@@ -26,8 +26,8 @@ export function useAvailableLanguages() {
     }
 
     return [
-      availableLanguages.free.concat(isPro ? availableLanguages.pro : []),
-      isPro ? [] : availableLanguages.pro,
+      availableLanguages[0].concat(isPro ? availableLanguages[1] : []),
+      isPro ? [] : availableLanguages[1],
       "idle",
       undefined,
     ] as const

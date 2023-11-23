@@ -1,17 +1,17 @@
 import { useSession } from "next-auth/react"
-import type { UseSessionOptions } from "next-auth/react"
 
-export function useRequiredUser(
-  onUnauthenticated: UseSessionOptions<true>["onUnauthenticated"] = undefined
-) {
-  const { data: session, status } = useSession({
-    onUnauthenticated,
-    required: true,
-  })
+export function useRequiredUser() {
+  const { data: session, status } = useSession({ required: true })
   switch (status) {
-    case "authenticated":
-      return [session.user!, status] as const
+    case "authenticated": {
+      const { user } = session
+      if (!user) {
+        const unexpected = new Error("[useRequiredUser] returned unexpected")
+        return [undefined, "error", unexpected] as const
+      }
+      return [user, status, undefined] as const
+    }
     case "loading":
-      return [undefined, status] as const
+      return [undefined, status, undefined] as const
   }
 }

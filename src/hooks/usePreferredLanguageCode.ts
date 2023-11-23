@@ -1,6 +1,15 @@
-import { useLanguageStore } from "@/stores/language"
-import { getLanguageCode } from "@/utilities/languages"
+import { shallow } from "zustand/shallow"
+import { useStore } from "@/stores/store"
 
 export function usePreferredLanguageCode() {
-  return useLanguageStore(store => getLanguageCode(store.preferredLanguage))
+  return useStore(store => {
+    switch (store.status) {
+      case "error":
+        return [undefined, store.status, store.error] as const
+      case "idle":
+        return [store.language.preferred.code, store.status, undefined] as const
+      case "loading":
+        return [undefined, store.status, undefined] as const
+    }
+  }, shallow)
 }

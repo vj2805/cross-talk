@@ -1,15 +1,19 @@
-import { useEffect } from "react"
-import { subscribeToMessages } from "@/services/message"
-import type { Message } from "@/types/Message"
-import { useObservable } from "./useObservable"
+import { useCollectionData } from "react-firebase-hooks/firestore"
+import { sortedMessagesRef } from "@/services/message"
 
 export function useMessages(chatId: string) {
-  const [messages, setMessages, setError] = useObservable<Message[]>()
-
-  useEffect(
-    () => subscribeToMessages({ chatId }, setMessages, setError),
-    [chatId, setMessages, setError]
+  const [messages, loading, error] = useCollectionData(
+    sortedMessagesRef(chatId)
   )
-
-  return messages
+  if (loading) {
+    return [undefined, "loading", undefined] as const
+  }
+  if (error) {
+    return [undefined, "error", error] as const
+  }
+  if (!messages) {
+    const unexpected = new Error("[useMessages] returned unexpected")
+    return [undefined, "error", unexpected] as const
+  }
+  return [messages, "idle", undefined] as const
 }

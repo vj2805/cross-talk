@@ -13,9 +13,9 @@ import { useAvailableLanguages } from "@/hooks/useAvailableLanguages"
 import { usePathname } from "@/hooks/useBuiltins"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { setPreferredLanguage } from "@/stores/language"
+import type { Language } from "@/types/Language"
 import { cn } from "@/utilities/string"
 import { ErrorAlert } from "../ui"
-import type { Language } from "@/types/Language"
 
 export const LanguageSelect: React.FC = () => {
   const pathname = usePathname()

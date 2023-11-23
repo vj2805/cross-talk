@@ -1,6 +1,6 @@
 import { CheckIcon } from "@/components/ui/icons"
-import { cn } from "@/utilities/string"
 import type { PriceTier } from "@/types/PriceTier"
+import { cn } from "@/utilities/string"
 
 interface PricingTierFeatureListProps {
   features: PriceTier["features"]

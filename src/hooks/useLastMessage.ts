@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { subscribeToLastMessage } from "@/services/message"
-import { useObservable } from "./useObservable"
 import type { Message } from "@/types/Message"
+import { useObservable } from "./useObservable"
 
 export function useLastMessage(chatId: string) {
   const [lastMessage, setLastMessage, setError] =

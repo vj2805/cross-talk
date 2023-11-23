@@ -1,10 +1,10 @@
 "use client"
 
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
+import type { User } from "@/types/User"
 import { ErrorAlert, Spinner } from "../ui"
 import { ChatRow } from "./ChatRow"
 import { EmptyChatList } from "./EmptyChatList"
-import type { User } from "@/types/User"
 
 interface ChatListProps {
   user: User

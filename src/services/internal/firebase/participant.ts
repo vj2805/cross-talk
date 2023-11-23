@@ -6,11 +6,11 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore"
-import { clientRepo } from "@/backend/firebase/client"
-import { chatRef } from "./chat"
 import type { FirestoreDataConverter } from "firebase/firestore"
+import { clientRepo } from "@/backend/firebase/client"
 import type { Participant } from "@/types/Participant"
 import type { ParticipantService } from "@/types/ParticipantService"
+import { chatRef } from "./chat"
 
 const participantConverter: FirestoreDataConverter<Participant> = {
   fromFirestore(snapshot, options) {

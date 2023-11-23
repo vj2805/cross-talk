@@ -1,13 +1,13 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import type { User } from "next-auth"
 import { Spinner } from "@/components/ui"
 import { UserAvatar } from "@/components/user/UserAvatar"
 import { usePreferredLanguageCode } from "@/hooks/usePreferredLanguageCode"
 import { useTranslate } from "@/hooks/useTranslate"
-import { cn } from "@/utilities/string"
 import type { Message } from "@/types/Message"
-import type { User } from "next-auth"
+import { cn } from "@/utilities/string"
 
 interface ChatMessagesListProps {
   messages: Message[]

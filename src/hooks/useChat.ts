@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { subscribeToChat } from "@/services/chat"
-import { useObservable } from "./useObservable"
 import type { Chat } from "@/types/Chat"
+import { useObservable } from "./useObservable"
 
 export function useChat(chatId: string) {
   const [chat, setChat, setError] = useObservable<Chat>()

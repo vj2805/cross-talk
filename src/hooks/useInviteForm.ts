@@ -5,8 +5,8 @@ import { showToast } from "@/components/ui"
 import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
 import { addParticipantToChat } from "@/services/participant"
 import { getUserByEmail } from "@/services/user"
-import { useUser } from "./useUser"
 import type { Chat } from "@/types/Chat"
+import { useUser } from "./useUser"
 
 const InviteFormSchema = z.object({
   email: z.string().email("Please enter a valid email address!"),

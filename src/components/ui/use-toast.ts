@@ -1,7 +1,7 @@
 import * as React from "react"
-import { generateId } from "@/utilities/string"
 import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
 import type { ErrorWithAction } from "@/errors/ErrorWithAction"
+import { generateId } from "@/utilities/string"
 
 const TOAST_LIMIT = 2
 const TOAST_REMOVE_DELAY = 1_000_000

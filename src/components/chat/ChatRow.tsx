@@ -8,9 +8,9 @@ import { useLastMessage } from "@/hooks/useLastMessage"
 import { usePreferredLanguageCode } from "@/hooks/usePreferredLanguageCode"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
 import { useTranslate } from "@/hooks/useTranslate"
+import type { Chat } from "@/types/Chat"
 import { cn, prettifyId } from "@/utilities/string"
 import { getTimestampString } from "@/utilities/timestamps"
-import type { Chat } from "@/types/Chat"
 
 interface ChatRowProps {
   chatId: Chat["id"]

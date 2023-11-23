@@ -1,8 +1,8 @@
 import { addDoc, collection, onSnapshot } from "firebase/firestore"
+import type { FirestoreDataConverter } from "firebase/firestore"
 import { clientRepo } from "@/backend/firebase/client"
 import type { Checkout } from "@/types/Checkout"
 import type { PaymentService } from "@/types/PaymentService"
-import type { FirestoreDataConverter } from "firebase/firestore"
 
 const checkoutConverter: FirestoreDataConverter<Checkout> = {
   fromFirestore(snapshot, options) {

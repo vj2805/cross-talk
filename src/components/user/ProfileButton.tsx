@@ -13,9 +13,9 @@ import {
 import { StarIcon } from "@/components/ui/icons"
 import { useIsPro } from "@/hooks/useIsPro"
 import { signOut } from "@/services/user"
+import type { User } from "@/types/User"
 import { cn } from "@/utilities/string"
 import { UserAvatar } from "./UserAvatar"
-import type { User } from "@/types/User"
 
 interface ProfileButtonProps {
   user: User

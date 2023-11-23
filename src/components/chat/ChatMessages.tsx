@@ -1,10 +1,10 @@
 "use client"
 
+import type { User } from "next-auth"
 import { useMessages } from "@/hooks/useMessages"
 import { ErrorAlert, Spinner } from "../ui"
 import { ChatMessagesList } from "./ChatMessagesList"
 import { StartConversation } from "./StartConversation"
-import type { User } from "next-auth"
 
 interface ChatMessagesProps {
   chatId: string

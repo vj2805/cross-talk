@@ -1,5 +1,5 @@
-import { getAvailableLanguages } from "@/utilities/languages"
 import type { LanguageService } from "@/types/LanguageService"
+import { getAvailableLanguages } from "@/utilities/languages"
 
 const NO_OF_LANGUAGES_IN_FREE = 2
 

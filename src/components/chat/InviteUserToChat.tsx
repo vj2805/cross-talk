@@ -2,6 +2,7 @@
 
 import { useInviteForm } from "@/hooks/useInviteForm"
 import { useIsPro } from "@/hooks/useIsPro"
+import type { Chat } from "@/types/Chat"
 import {
   Button,
   Dialog,
@@ -17,7 +18,6 @@ import {
   Input,
 } from "../ui"
 import { PlusCircleIcon } from "../ui/icons"
-import type { Chat } from "@/types/Chat"
 
 interface InviteUserToChatProps {
   chat: Chat

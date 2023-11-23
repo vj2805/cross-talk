@@ -1,8 +1,8 @@
 import { getApp, getApps, initializeApp } from "firebase/app"
+import type { FirebaseOptions } from "firebase/app"
 import { getAuth } from "firebase/auth"
 import { getFirestore } from "firebase/firestore"
 import { getFunctions } from "firebase/functions"
-import type { FirebaseOptions } from "firebase/app"
 
 const clientAppOptions: FirebaseOptions = {
   apiKey: "AIzaSyBu8Hl6s5k8uBbiXYXX4PoFmjr_mqE7Wj4",

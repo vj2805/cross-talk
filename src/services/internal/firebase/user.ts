@@ -7,10 +7,10 @@ import {
   query,
   where,
 } from "firebase/firestore"
+import type { FirestoreDataConverter } from "firebase/firestore"
 import { clientAuth, clientRepo } from "@/backend/firebase/client"
 import type { User } from "@/types/User"
 import type { UserService } from "@/types/UserService"
-import type { FirestoreDataConverter } from "firebase/firestore"
 
 const userConverter: FirestoreDataConverter<User> = {
   fromFirestore(snapshot, options) {

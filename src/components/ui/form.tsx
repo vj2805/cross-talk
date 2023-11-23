@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { cn } from "@/utilities/string"
-import { PrimitiveForm, PrimitiveSlot } from "./primitives"
 import { Label } from "./label"
+import { PrimitiveForm, PrimitiveSlot } from "./primitives"
 
 type FormFieldName<
   FieldValues extends PrimitiveForm.FieldValues = PrimitiveForm.FieldValues,

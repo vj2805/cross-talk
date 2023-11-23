@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Header } from "@/components"
 import {
   SessionProvider,
@@ -5,7 +6,6 @@ import {
   ThemeProvider,
 } from "@/components/providers"
 import { Toaster } from "@/components/ui"
-import type { Metadata } from "next"
 
 import "@/styles.css"
 

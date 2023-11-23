@@ -1,8 +1,8 @@
 import { collection, onSnapshot, query, where } from "firebase/firestore"
+import type { FirestoreDataConverter } from "firebase/firestore"
 import { clientRepo } from "@/backend/firebase/client"
 import type { Subscription } from "@/types/Subscription"
 import type { SubscriptionService } from "@/types/SubscriptionService"
-import type { FirestoreDataConverter } from "firebase/firestore"
 
 const subscriptionConverter: FirestoreDataConverter<Subscription> = {
   fromFirestore(snapshot, options) {

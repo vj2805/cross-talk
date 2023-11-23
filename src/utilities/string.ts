@@ -1,6 +1,6 @@
 import { clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
 import type { ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
 export { v4 as generateId } from "uuid"
 

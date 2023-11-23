@@ -27,18 +27,14 @@
     ],
     "sort-keys-fix/sort-keys-fix": ["error"],
     "import/first": ["error"],
-    "import/newline-after-import": ["error"],
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "type"
-        ],
+        "alphabetize": {
+          "order": "asc",
+          "orderImportKind": "desc"
+        },
+        "groups": ["builtin", "external", "internal", "parent", "sibling"],
         "newlines-between": "never",
         "pathGroups": [
           {

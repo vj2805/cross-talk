@@ -1,8 +1,8 @@
 "use client"
 
+import type { Chat } from "@/types/Chat"
 import { cn } from "@/utilities/string"
 import { ParticipantBadge } from "./ParticipantBadge"
-import type { Chat } from "@/types/Chat"
 
 interface ChatParticipantsBadgesProps {
   chat: Chat

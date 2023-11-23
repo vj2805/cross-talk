@@ -17,9 +17,7 @@ export function useCreateChat() {
     })
     try {
       if (!isPro) {
-        const participatingChatCount = await getParticipatingChatCount({
-          userId: adminId,
-        })
+        const participatingChatCount = await getParticipatingChatCount(adminId)
         if (participatingChatCount >= 3) {
           throw new FreePlanLimitExceededError("3 chats per user")
         }

@@ -54,12 +54,11 @@ export async function createChat(adminId: string) {
   return chatRef.id
 }
 
-export const getParticipatingChatCount: ChatService["getParticipatingChatCount"] =
-  async ({ userId }) => {
-    const snapshot = await getCountFromServer(participatingChatsRef(userId))
-    const aggregate = snapshot.data()
-    return aggregate.count
-  }
+export async function getParticipatingChatCount(userId: string) {
+  const snapshot = await getCountFromServer(participatingChatsRef(userId))
+  const aggregate = snapshot.data()
+  return aggregate.count
+}
 
 export const getParticipatingChats: ChatService["getParticipatingChats"] =
   async ({ userId }) => {

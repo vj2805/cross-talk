@@ -2,7 +2,7 @@ import { FirestoreAdapter } from "@auth/firebase-adapter"
 import { getServerSession } from "next-auth"
 import type { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
-import { getEnv } from "@/configs/env"
+import { env } from "@/configs/env"
 import { adminAuth, adminRepo } from "@/configs/firebase-admin"
 
 export const authOptions: NextAuthOptions = {
@@ -24,8 +24,8 @@ export const authOptions: NextAuthOptions = {
   },
   providers: [
     GoogleProvider({
-      clientId: getEnv("GOOGLE_CLIENT_ID"),
-      clientSecret: getEnv("GOOGLE_CLIENT_SECRET"),
+      clientId: env["GOOGLE_CLIENT_ID"],
+      clientSecret: env["GOOGLE_CLIENT_SECRET"],
     }),
   ],
   session: { strategy: "jwt" },

@@ -1,7 +1,7 @@
 import { Stripe } from "stripe"
-import { getEnv } from "@/configs/env"
+import { env } from "@/configs/env"
 
-const stripe = new Stripe(getEnv("STRIPE_SECRET_KEY"), {
+const stripe = new Stripe(env["STRIPE_SECRET_KEY"], {
   apiVersion: "2023-10-16",
 })
 

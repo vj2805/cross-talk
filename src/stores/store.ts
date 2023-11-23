@@ -1,3 +1,4 @@
+import type { User } from "next-auth"
 import { createWithEqualityFn } from "zustand/traditional"
 import {
   getLanguageCode,
@@ -36,24 +37,29 @@ export const useStore = createWithEqualityFn<Store>()(() => ({
   status: "loading",
 }))
 
+const setStore = useStore.setState
+
 export function setIsPro(isPro: boolean) {
   const supported = getSupportedLanguages(isPro)
   const unsupported = getUnsupportedLanguages(isPro)
-  useStore.setState({
-    language: {
-      preferred: {
-        code: getLanguageCode(supported[0]),
-        name: supported[0],
-        translate(phrase) {
-          return getTranslation(phrase, this.name)
+  setStore(
+    {
+      language: {
+        preferred: {
+          code: getLanguageCode(supported[0]),
+          name: supported[0],
+          translate(phrase) {
+            return getTranslation(phrase, this.name)
+          },
         },
+        supported,
+        unsupported,
       },
-      supported,
-      unsupported,
+      status: "ready",
+      subscription: {
+        isPro,
+      },
     },
-    status: "ready",
-    subscription: {
-      isPro,
-    },
-  })
+    true
+  )
 }

@@ -4,44 +4,41 @@ import { z } from "zod"
 import { showToast } from "@/components/ui"
 import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
 import { getMessagesCount, postMessage } from "@/services/message"
-import { useUser } from "./useUser"
+import { useIsPro } from "./useIsPro"
+import { useRequiredUser } from "./useRequiredUser"
 
 const MessageFormSchema = z.object({
-  input: z.string().max(100),
+  input: z.string().min(1).max(100),
 })
 
 type MessageFormSchemaType = z.infer<typeof MessageFormSchema>
 
 export function useMessageForm(chatId: string) {
-  const [user] = useUser()
+  const [user, userStatus] = useRequiredUser()
+  const [isPro, isProStatus] = useIsPro()
   const form = useForm<MessageFormSchemaType>({
-    defaultValues: {
-      input: "",
-    },
+    defaultValues: { input: "" },
     resolver: zodResolver(MessageFormSchema),
   })
 
   async function onSubmit({ input }: MessageFormSchemaType) {
-    if (input.length === 0) {
+    if (userStatus !== "authenticated") {
       return
     }
-    if (!user) {
+    if (isProStatus !== "ready") {
       return
     }
     try {
-      const count = await getMessagesCount({ chatId })
-      if (count >= 25) {
-        showToast({
-          error: new FreePlanLimitExceededError("25 messages per chat"),
-        })
-        return
+      if (!isPro) {
+        const count = await getMessagesCount({ chatId })
+        if (count >= 25) {
+          throw new FreePlanLimitExceededError("25 messages per chat")
+        }
       }
       await postMessage({ chatId, input, user })
       form.reset()
     } catch (error) {
-      form.setError("input", {
-        message: JSON.stringify(error),
-      })
+      showToast({ error: error as Error })
     }
   }
 

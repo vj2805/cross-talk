@@ -15,28 +15,26 @@ const InviteFormSchema = z.object({
 type InviteFormData = z.infer<typeof InviteFormSchema>
 
 export function useInviteForm(chat: Chat, isPro: boolean) {
+  const [user, status] = useRequiredUser()
+
   const form = useForm<InviteFormData>({
     defaultValues: {
       email: "",
     },
     resolver: zodResolver(InviteFormSchema),
   })
-  const [user, status] = useRequiredUser()
 
   async function onSubmit({ email }: InviteFormData) {
     if (status !== "authenticated") {
       return
     }
-
     if (chat.adminId !== user.id) {
       return
     }
-
-    const [dismissToast, updateToast] = showToast({
+    showToast({
       description: "Please wait while we send the invite...",
       title: "Sending Invite...",
     })
-
     try {
       if (!isPro && chat.participantsIds.length >= 2) {
         throw new FreePlanLimitExceededError("2 users per chat")
@@ -46,18 +44,16 @@ export function useInviteForm(chat: Chat, isPro: boolean) {
         chatId: chat.id,
         participantId: participant.id,
       })
-      updateToast({
+      showToast({
         description: "The user has been added to the chat successfully!",
         title: "Added to chat",
         variant: "success",
       })
-    } catch (error) {
-      updateToast({ error: error as Error })
-    } finally {
-      dismissToast()
       form.reset()
+    } catch (error) {
+      showToast({ error: error as Error })
     }
   }
 
-  return { form, onSubmit }
+  return [form, onSubmit] as const
 }

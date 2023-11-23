@@ -2,9 +2,9 @@
 
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
-import { adminRepo } from "@/backend/firebase/admin"
-import { createBillingPortalSession } from "@/backend/stripe"
 import { getEnv } from "@/configs/env"
+import { adminRepo } from "@/configs/firebase/admin"
+import { createBillingPortalSession } from "@/configs/stripe"
 import { getServerUser } from "@/services/auth"
 
 function getReturnUrl() {

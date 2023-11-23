@@ -8,7 +8,7 @@ import {
   where,
 } from "firebase/firestore"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import { clientAuth, clientRepo } from "@/backend/firebase/client"
+import { clientAuth, clientRepo } from "@/configs/firebase/client"
 import type { User } from "@/types/User"
 import type { UserService } from "@/types/UserService"
 

@@ -2,8 +2,8 @@ import { FirestoreAdapter } from "@auth/firebase-adapter"
 import { getServerSession } from "next-auth"
 import type { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
-import { adminAuth, adminRepo } from "@/backend/firebase/admin"
 import { getEnv } from "@/configs/env"
+import { adminAuth, adminRepo } from "@/configs/firebase/admin"
 
 export const authOptions: NextAuthOptions = {
   adapter: FirestoreAdapter(adminRepo),

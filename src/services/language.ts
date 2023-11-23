@@ -1,4 +1,13 @@
 import type { LanguageService } from "@/types/LanguageService"
-import { default as languageService } from "./internal/inmemory/language"
+import { getAvailableLanguages as getAllAvailableLanguages } from "@/utilities/languages"
 
-export const { getAvailableLanguages }: LanguageService = languageService
+const NO_OF_LANGUAGES_IN_FREE = 2
+
+export const { getAvailableLanguages }: LanguageService = {
+  async getAvailableLanguages() {
+    return {
+      free: getAllAvailableLanguages().slice(0, NO_OF_LANGUAGES_IN_FREE),
+      pro: getAllAvailableLanguages().slice(NO_OF_LANGUAGES_IN_FREE),
+    }
+  },
+}

@@ -15,5 +15,5 @@ export function useParticipatingChats(userId: string) {
     const unexpected = new Error("[useParticipatingChats] returned unexpected")
     return [undefined, "error", unexpected] as const
   }
-  return [participatingChats, loading, error]
+  return [participatingChats, loading, error] as const
 }

@@ -24,6 +24,6 @@ export function getLanguageCode(language: Language): LanguageCode {
   return CODES[language]
 }
 
-export async function getAvailableLanguages(): Promise<AvailableLanguages> {
+export function getAvailableLanguages(): AvailableLanguages {
   return [LANGUAGES.slice(0, languagesQuota), LANGUAGES.slice(languagesQuota)]
 }

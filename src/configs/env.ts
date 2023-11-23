@@ -10,10 +10,4 @@ const envSchema = z.object({
   STRIPE_SECRET_KEY: z.string(),
 })
 
-type EnvSchema = z.infer<typeof envSchema>
-
 export const env = envSchema.parse(process.env)
-
-export function getEnv<Key extends keyof EnvSchema>(key: Key) {
-  return env[key]
-}

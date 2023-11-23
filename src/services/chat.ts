@@ -9,7 +9,7 @@ import {
   where,
 } from "firebase/firestore"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import { clientRepo } from "@/configs/firebase-client"
+import { clientRepo } from "@/configs/firebase/client"
 import type { Chat } from "@/types/Chat"
 
 const chatConverter: FirestoreDataConverter<Chat> = {

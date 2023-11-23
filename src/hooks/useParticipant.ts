@@ -1,9 +1,5 @@
-import { useEffect } from "react"
 import { useDocumentData } from "react-firebase-hooks/firestore"
 import { participantRef } from "@/services/participant"
-import { subscribeToUser } from "@/services/user"
-import type { User } from "@/types/User"
-import { useObservable } from "./useObservable"
 
 export function useParticipant(participantId: string) {
   const [participant, loading, error] = useDocumentData(
@@ -19,5 +15,5 @@ export function useParticipant(participantId: string) {
     const unexpected = new Error("[useParticipant] returned unexpected")
     return [undefined, "error", unexpected] as const
   }
-  return [participant, "idle", undefined] as const
+  return [participant, "ready", undefined] as const
 }

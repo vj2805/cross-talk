@@ -6,7 +6,7 @@ export function useTranslate() {
     switch (store.status) {
       case "error":
         return [undefined, store.status, store.error] as const
-      case "idle":
+      case "ready":
         return [
           store.language.preferred.translate,
           store.status,

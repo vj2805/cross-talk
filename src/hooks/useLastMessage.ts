@@ -14,5 +14,5 @@ export function useLastMessage(chatId: string) {
     return [undefined, "error", unexpected] as const
   }
   const lastMessage = messages.at(-1) ?? null
-  return [lastMessage, "idle", undefined] as const
+  return [lastMessage, "ready", undefined] as const
 }

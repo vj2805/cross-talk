@@ -13,7 +13,7 @@ export const useLanguageStore = createWithEqualityFn<LanguageStore>(() => ({
 
 export function setAvailableLanguages(availableLanguages: AvailableLanguages) {
   useLanguageStore.setState({
-    availableLanguages: [availableLanguages, "idle", undefined],
+    availableLanguages: [availableLanguages, "ready", undefined],
     preferredLanguage: availableLanguages[0][0],
   })
 }

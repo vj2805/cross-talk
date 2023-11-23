@@ -6,7 +6,7 @@ import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
 import { addParticipantToChat } from "@/services/participant"
 import { getUserByEmail } from "@/services/user"
 import type { Chat } from "@/types/Chat"
-import { useUser } from "./useUser"
+import { useRequiredUser } from "./useRequiredUser"
 
 const InviteFormSchema = z.object({
   email: z.string().email("Please enter a valid email address!"),
@@ -21,10 +21,14 @@ export function useInviteForm(chat: Chat, isPro: boolean) {
     },
     resolver: zodResolver(InviteFormSchema),
   })
-  const [user] = useUser()
+  const [user, status] = useRequiredUser()
 
   async function onSubmit({ email }: InviteFormData) {
-    if (chat.adminId !== user?.id) {
+    if (status !== "authenticated") {
+      return
+    }
+
+    if (chat.adminId !== user.id) {
       return
     }
 

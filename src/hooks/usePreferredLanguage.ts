@@ -6,7 +6,7 @@ export function usePreferredLanguage() {
     switch (store.status) {
       case "error":
         return [undefined, store.status, store.error] as const
-      case "idle":
+      case "ready":
         return [store.language.preferred, store.status, undefined] as const
       case "loading":
         return [undefined, store.status, undefined] as const

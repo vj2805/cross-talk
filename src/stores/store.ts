@@ -14,7 +14,10 @@ type Store =
       error: Error
     }
   | {
-      status: "idle"
+      status: "loading"
+    }
+  | {
+      status: "ready"
       language: {
         preferred: {
           code: LanguageCode
@@ -27,9 +30,6 @@ type Store =
       subscription: {
         isPro: boolean
       }
-    }
-  | {
-      status: "loading"
     }
 
 export const useStore = createWithEqualityFn<Store>()(() => ({
@@ -51,7 +51,7 @@ export function setIsPro(isPro: boolean) {
       supported,
       unsupported,
     },
-    status: "idle",
+    status: "ready",
     subscription: {
       isPro,
     },

@@ -15,5 +15,5 @@ export function useMessages(chatId: string) {
     const unexpected = new Error("[useMessages] returned unexpected")
     return [undefined, "error", unexpected] as const
   }
-  return [messages, "idle", undefined] as const
+  return [messages, "ready", undefined] as const
 }

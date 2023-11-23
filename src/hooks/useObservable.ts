@@ -6,10 +6,10 @@ export function useObservable<T>(initialValue: T | typeof NONE = NONE) {
   const [observable, set] = useState<Observable<T>>(
     initialValue === NONE
       ? [undefined, "loading", undefined]
-      : [initialValue, "idle", undefined]
+      : [initialValue, "ready", undefined]
   )
   const setValue = useCallback(
-    (value: T) => set([value, "idle", undefined]),
+    (value: T) => set([value, "ready", undefined]),
     [set]
   )
   const setError = useCallback(

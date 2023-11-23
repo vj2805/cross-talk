@@ -11,6 +11,6 @@ export const useSubscriptionStore = create<SubscriptionStore>(() => ({
 
 export function setSubscription(subscription: Nullish<Subscription>) {
   useSubscriptionStore.setState({
-    isPro: [subscription?.status === "active", "idle", undefined],
+    isPro: [subscription?.status === "active", "ready", undefined],
   })
 }

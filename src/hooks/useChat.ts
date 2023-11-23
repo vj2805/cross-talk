@@ -13,5 +13,5 @@ export function useChat(chatId: string) {
     const unexpected = new Error("[useChat] returned unexpected")
     return [undefined, "error", unexpected] as const
   }
-  return [chat, "idle", undefined] as const
+  return [chat, "ready", undefined] as const
 }

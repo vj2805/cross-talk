@@ -9,7 +9,7 @@ export const UpgradeBanner: React.FC = () => {
   const router = useRouter()
   const [isPro, status] = useIsPro()
 
-  if (status !== "idle" || isPro) {
+  if (status !== "ready" || isPro) {
     return null
   }
 

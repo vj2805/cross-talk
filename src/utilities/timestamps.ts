@@ -6,9 +6,3 @@ export function getTimestampString(timestamp: Timestamp) {
     .toDate()
     .toLocaleString()
 }
-
-export function compareTimestamps(x: Timestamp, y: Timestamp) {
-  const a = new FirebaseTimestamp(x.seconds, x.nanoseconds)
-  const b = new FirebaseTimestamp(y.seconds, y.nanoseconds)
-  return a.toMillis() - b.toMillis()
-}

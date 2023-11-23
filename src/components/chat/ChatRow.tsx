@@ -8,7 +8,7 @@ import { useLastMessage } from "@/hooks/useLastMessage"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
 import type { Chat } from "@/types/Chat"
-import { cn, prettifyId } from "@/utilities/string"
+import { cn } from "@/utilities/string"
 import { getTimestampString } from "@/utilities/timestamps"
 
 interface ChatRowProps {
@@ -73,7 +73,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
             : preferredLanguage.translate("No messages yet")}
         </p>
         <p className="font-thin">
-          {preferredLanguage.translate("Chat")} #{prettifyId(chatId)}...
+          {preferredLanguage.translate("Chat")} #{chatId.substring(0, 4)}...
         </p>
       </div>
     </div>

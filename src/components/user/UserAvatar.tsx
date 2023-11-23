@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, NextImage } from "@/components/ui"
-import { cn, joinFirstLetterOfEachWord } from "@/utilities/string"
+import { cn } from "@/utilities/string"
 
 interface UserAvatarProps {
   name?: Optional<string>
@@ -27,7 +27,11 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
       delayMs={1000}
       className="dark:bg-white text-lg dark:text-black"
     >
-      {joinFirstLetterOfEachWord(name)?.slice(0, 2)}
+      {name
+        ?.split(" ")
+        .map(n => n[0])
+        .join("")
+        ?.slice(0, 2)}
     </AvatarFallback>
   </Avatar>
 )

@@ -20,12 +20,18 @@ const LANGUAGES_IN_FREE = LANGUAGES.slice(0, languagesQuota)
 
 const LANGUAGES_IN_PRO = LANGUAGES.slice(languagesQuota)
 
-export function getSupportedLanguages(isPro: boolean) {
+function getSupportedLanguages(isPro: boolean) {
   return isPro ? [...LANGUAGES_IN_FREE, ...LANGUAGES_IN_PRO] : LANGUAGES_IN_FREE
 }
 
-export function getUnsupportedLanguages(isPro: boolean) {
+function getUnsupportedLanguages(isPro: boolean) {
   return isPro ? [] : LANGUAGES_IN_PRO
+}
+
+export function getAvailableLanguages(isPro: boolean) {
+  const supported = getSupportedLanguages(isPro)
+  const unsupported = getUnsupportedLanguages(isPro)
+  return [supported, unsupported] as const
 }
 
 export function getLanguageCode(language: Language): LanguageCode {

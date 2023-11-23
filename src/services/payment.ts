@@ -2,7 +2,6 @@ import { addDoc, collection, documentId, onSnapshot } from "firebase/firestore"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import { clientRepo } from "@/configs/firebase/client"
 import type { Checkout } from "@/types/Checkout"
-import type { PaymentService } from "@/types/PaymentService"
 
 const checkoutConverter: FirestoreDataConverter<Checkout> = {
   fromFirestore(snapshot, options) {
@@ -12,10 +11,18 @@ const checkoutConverter: FirestoreDataConverter<Checkout> = {
       id: snapshot.id,
       priceId: data.price,
       response: data.url
-        ? { status: "success", url: data.url }
+        ? {
+            status: "success",
+            url: data.url,
+          }
         : data.error
-        ? { error: new Error(data.error.message), status: "failure" }
-        : { status: "pending" },
+        ? {
+            error: new Error(data.error.message),
+            status: "failure",
+          }
+        : {
+            status: "pending",
+          },
       successUrl: data.success_url,
     }
   },
@@ -28,13 +35,13 @@ const checkoutConverter: FirestoreDataConverter<Checkout> = {
   },
 }
 
-export function checkoutsRef(userId: string) {
+function checkoutsRef(userId: string) {
   const ref = collection(clientRepo, "customers", userId, "checkout_sessions")
   return ref.withConverter(checkoutConverter)
 }
 
-export const { createPaymentCheckout }: PaymentService = {
-  async createPaymentCheckout({ listener, priceId, userId }) {
+export async function createPaymentCheckout(userId: string, priceId: string) {
+  return await new Promise<string>(async (resolve, reject) => {
     const checkout = await addDoc(checkoutsRef(userId), {
       cancelUrl: `${window.location.origin}/register`,
       id: documentId(),
@@ -42,10 +49,20 @@ export const { createPaymentCheckout }: PaymentService = {
       response: { status: "pending" },
       successUrl: `${window.location.origin}/register`,
     })
-    return onSnapshot(checkout, snapshot => {
-      if (snapshot.exists()) {
-        listener(snapshot.data())
+
+    const unsubscribe = onSnapshot(checkout, snapshot => {
+      if (!snapshot.exists()) {
+        return
       }
+      const checkout = snapshot.data()
+      if (checkout.response.status === "pending") {
+        return
+      }
+      unsubscribe()
+      if (checkout.response.status === "failure") {
+        return reject(checkout.response.error)
+      }
+      return resolve(checkout.response.url)
     })
-  },
+  })
 }

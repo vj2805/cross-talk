@@ -14,6 +14,6 @@ export interface Checkout extends Model {
       }
     | {
         status: "success"
-        url: Nullish<string>
+        url: string
       }
 }

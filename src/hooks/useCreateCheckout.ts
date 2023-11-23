@@ -15,24 +15,12 @@ export function useCreateCheckout() {
       title: "Payment Checkout",
     })
     try {
-      const unsubscribe = await createPaymentCheckout({
-        listener: checkout => {
-          if (checkout.response.status === "pending") {
-            return
-          }
-          if (checkout.response.status === "success") {
-            checkout.response.url &&
-              window.location.assign(checkout.response.url)
-          }
-          if (checkout.response.status === "failure") {
-            showToast({ error: checkout.response.error })
-          }
-          unsubscribe()
-          setRunning(false)
-        },
-        priceId,
-        userId,
+      const url = await createPaymentCheckout(userId, priceId)
+      showToast({
+        description: "Redirecting to payment portal...",
+        title: "Payment Portal",
       })
+      location.assign(url)
     } catch (error) {
       showToast({ error: error as Error })
       setRunning(false)

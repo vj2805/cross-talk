@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import { clientRepo } from "@/backend/firebase/client"
+import { getFreeQuota } from "@/configs/quota"
 import type { Message } from "@/types/Message"
 import type { MessageService } from "@/types/MessageService"
 
@@ -35,14 +36,14 @@ const messageConverter: FirestoreDataConverter<Message> = {
   },
 }
 
-export function messagesRef(chatId: string) {
+function messagesRef(chatId: string) {
   return collection(clientRepo, "chats", chatId, "messages").withConverter(
     messageConverter
   )
 }
 
 export function limitedMessagesRef(chatId: string) {
-  return query(messagesRef(chatId), limit(25))
+  return query(messagesRef(chatId), limit(getFreeQuota("MESSAGES")))
 }
 
 export function sortedMessagesRef(chatId: string) {

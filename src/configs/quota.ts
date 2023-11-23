@@ -1,4 +1,4 @@
 export const quota = {
-  LANGUAGES: 2,
-  MESSAGES: 25,
+  languages: 2,
+  messages: 25,
 } as const

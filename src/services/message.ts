@@ -42,7 +42,7 @@ function messagesRef(chatId: string) {
 }
 
 export function limitedMessagesRef(chatId: string) {
-  return query(messagesRef(chatId), limit(quota["MESSAGES"]))
+  return query(messagesRef(chatId), limit(quota.messages))
 }
 
 export function sortedMessagesRef(chatId: string) {

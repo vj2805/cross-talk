@@ -3,7 +3,7 @@ import { clientAuth, clientRepo } from "./client"
 
 type Security = "ADMIN" | "CLIENT"
 
-export function getAuth(security: Security = "CLIENT") {
+export function getAuth(security: Security) {
   switch (security) {
     case "ADMIN":
       return adminAuth
@@ -12,7 +12,7 @@ export function getAuth(security: Security = "CLIENT") {
   }
 }
 
-export function getRepo(security: Security = "CLIENT") {
+export function getRepo(security: Security) {
   switch (security) {
     case "ADMIN":
       return adminRepo

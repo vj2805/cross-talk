@@ -14,7 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
   ErrorAlert,
-  Spinner,
+  Skeleton,
   showToast,
 } from "../ui"
 
@@ -33,7 +33,7 @@ export const DeleteChatButton: React.FC<DeleteChatButtonProps> = ({
   const router = useRouter()
 
   if (userStatus === "loading" || languageStatus === "loading") {
-    return <Spinner />
+    return <Skeleton className="h-10 w-28" />
   }
 
   if (userStatus === "error" || languageStatus === "error") {

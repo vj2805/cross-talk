@@ -12,14 +12,14 @@ interface ChatMessagesProps {
 }
 
 export const ChatMessages: React.FC<ChatMessagesProps> = ({ chatId, user }) => {
-  const [messages, status, error] = useMessages(chatId)
+  const [messages, messagesStatus, messagesError] = useMessages(chatId)
 
-  if (status === "loading") {
+  if (messagesStatus === "loading") {
     return <Spinner />
   }
 
-  if (status === "error") {
-    return <ErrorAlert error={error} />
+  if (messagesStatus === "error") {
+    return <ErrorAlert error={messagesError} />
   }
 
   if (messages.length === 0) {

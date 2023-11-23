@@ -11,21 +11,25 @@ interface ChatListProps {
 }
 
 export const ChatList: React.FC<ChatListProps> = ({ user }) => {
-  const [chats, status, error] = useParticipatingChats(user.id)
+  const [
+    participatingChats,
+    participatingChatsStatus,
+    participatingChatsError,
+  ] = useParticipatingChats(user.id)
 
-  if (status === "loading") {
+  if (participatingChatsStatus === "loading") {
     return <Spinner />
   }
 
-  if (status === "error") {
-    return <ErrorAlert error={error} />
+  if (participatingChatsStatus === "error") {
+    return <ErrorAlert error={participatingChatsError} />
   }
 
-  if (chats.length === 0) {
+  if (participatingChats.length === 0) {
     return <EmptyChatList />
   }
 
-  return chats.map(chat => (
+  return participatingChats.map(chat => (
     <ChatRow
       key={chat.id}
       chatId={chat.id}

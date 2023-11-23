@@ -18,10 +18,11 @@ import { ErrorAlert } from "../ui"
 
 export const LanguageSelect: React.FC = () => {
   const pathname = usePathname()
-  const [preferred, supported, unsupported, status, error] = useLanguages()
+  const [preferred, supported, unsupported, languageStatus, languageError] =
+    useLanguages()
 
-  if (status === "error") {
-    return <ErrorAlert error={error} />
+  if (languageStatus === "error") {
+    return <ErrorAlert error={languageError} />
   }
 
   const isChatPage = pathname.includes("/chat")
@@ -38,7 +39,7 @@ export const LanguageSelect: React.FC = () => {
             <SelectValue placeholder={preferred} />
           </SelectTrigger>
           <SelectContent>
-            {status === "loading" ? (
+            {languageStatus === "loading" ? (
               <Spinner />
             ) : (
               <>

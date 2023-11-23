@@ -9,6 +9,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  ErrorAlert,
   Spinner,
 } from "@/components/ui"
 import { StarIcon } from "@/components/ui/icons"
@@ -22,10 +23,10 @@ interface ProfileButtonProps {
 }
 
 export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
-  const [isPro, status] = useIsPro()
+  const [isPro, subscriptionStatus, subscriptionError] = useIsPro()
 
-  if (status === "error") {
-    return null
+  if (subscriptionStatus === "error") {
+    return <ErrorAlert error={subscriptionError} />
   }
 
   return (
@@ -39,7 +40,7 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
       <DropdownMenuContent className="text-center">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {status === "loading" ? (
+        {subscriptionStatus === "loading" ? (
           <DropdownMenuItem className="flex items-center justify-center">
             <Spinner />
           </DropdownMenuItem>

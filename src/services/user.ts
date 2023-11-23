@@ -11,9 +11,8 @@ import {
   where,
 } from "firebase/firestore"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import type { Session } from "next-auth"
+import type { Session, User } from "next-auth"
 import { clientAuth, clientRepo } from "@/configs/firebase/client"
-import type { User } from "@/types/User"
 import { chatRef } from "./chat"
 
 const userConverter: FirestoreDataConverter<User> = {

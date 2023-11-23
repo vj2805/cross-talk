@@ -1,7 +1,7 @@
+import type { User } from "next-auth"
 import type { LanguageCode } from "./Language"
 import type { Model } from "./Model"
 import type { Timestamp } from "./Timestamp"
-import type { User } from "./User"
 
 export interface Message extends Model {
   input: string

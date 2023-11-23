@@ -1,5 +1,6 @@
 "use client"
 
+import type { User } from "next-auth"
 import { manageSubscription } from "@/actions/manageSubscription"
 import {
   DropdownMenu,
@@ -13,7 +14,6 @@ import {
 import { StarIcon } from "@/components/ui/icons"
 import { useIsPro } from "@/hooks/useIsPro"
 import { signOut } from "@/services/user"
-import type { User } from "@/types/User"
 import { cn } from "@/utilities/string"
 import { UserAvatar } from "./UserAvatar"
 

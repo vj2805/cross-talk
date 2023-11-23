@@ -1,7 +1,7 @@
 "use client"
 
+import type { User } from "next-auth"
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
-import type { User } from "@/types/User"
 import { ErrorAlert, Spinner } from "../ui"
 import { ChatRow } from "./ChatRow"
 import { EmptyChatList } from "./EmptyChatList"

@@ -14,14 +14,14 @@ export const ChatControls: React.FC<ChatControlsProps> = ({
   chatId,
   userId,
 }) => {
-  const [chat, status, error] = useChat(chatId)
+  const [chat, chatStatus, chatError] = useChat(chatId)
 
-  if (status === "loading") {
+  if (chatStatus === "loading") {
     return <Spinner />
   }
 
-  if (status === "error") {
-    return <ErrorAlert error={error} />
+  if (chatStatus === "error") {
+    return <ErrorAlert error={chatError} />
   }
 
   return (

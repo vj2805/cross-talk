@@ -9,24 +9,24 @@ import type { Chat } from "@/types/Chat"
 import { useIsPro } from "./useIsPro"
 import { useRequiredUser } from "./useRequiredUser"
 
-const InviteFormSchema = z.object({
+const InviteUserFormSchema = z.object({
   email: z.string().email("Please enter a valid email address!"),
 })
 
-type InviteFormData = z.infer<typeof InviteFormSchema>
+type InviteUserFormData = z.infer<typeof InviteUserFormSchema>
 
-export function useInviteForm(chat: Chat) {
+export function useInviteUserForm(chat: Chat) {
   const [user, userStatus] = useRequiredUser()
   const [isPro, subscriptionStatus] = useIsPro()
 
-  const form = useForm<InviteFormData>({
+  const form = useForm<InviteUserFormData>({
     defaultValues: {
       email: "",
     },
-    resolver: zodResolver(InviteFormSchema),
+    resolver: zodResolver(InviteUserFormSchema),
   })
 
-  async function onSubmit({ email }: InviteFormData) {
+  async function onSubmit({ email }: InviteUserFormData) {
     if (userStatus !== "authenticated") {
       return
     }

@@ -1,6 +1,6 @@
 "use client"
 
-import { useInviteForm } from "@/hooks/useInviteForm"
+import { useInviteUserForm } from "@/hooks/useInviteUserForm"
 import { useIsPro } from "@/hooks/useIsPro"
 import type { Chat } from "@/types/Chat"
 import {
@@ -24,7 +24,7 @@ interface InviteUserToChatProps {
 }
 
 export const InviteUserToChat: React.FC<InviteUserToChatProps> = ({ chat }) => {
-  const [form, onSubmit] = useInviteForm(chat)
+  const [form, onSubmit] = useInviteUserForm(chat)
   return (
     <Dialog>
       <DialogTrigger asChild>

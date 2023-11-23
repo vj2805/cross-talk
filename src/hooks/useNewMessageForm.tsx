@@ -7,21 +7,21 @@ import { getMessagesCount, postMessage } from "@/services/message"
 import { useIsPro } from "./useIsPro"
 import { useRequiredUser } from "./useRequiredUser"
 
-const MessageFormSchema = z.object({
+const AddMessageFormSchema = z.object({
   input: z.string().min(1).max(100),
 })
 
-type MessageFormSchemaType = z.infer<typeof MessageFormSchema>
+type AddMessageFormData = z.infer<typeof AddMessageFormSchema>
 
-export function useMessageForm(chatId: string) {
+export function useNewMessageForm(chatId: string) {
   const [user, userStatus] = useRequiredUser()
   const [isPro, isProStatus] = useIsPro()
-  const form = useForm<MessageFormSchemaType>({
+  const form = useForm<AddMessageFormData>({
     defaultValues: { input: "" },
-    resolver: zodResolver(MessageFormSchema),
+    resolver: zodResolver(AddMessageFormSchema),
   })
 
-  async function onSubmit({ input }: MessageFormSchemaType) {
+  async function onSubmit({ input }: AddMessageFormData) {
     if (userStatus !== "authenticated") {
       return
     }

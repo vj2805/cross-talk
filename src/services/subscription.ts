@@ -1,6 +1,6 @@
 import { collection, onSnapshot, query, where } from "firebase/firestore"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import { clientRepo } from "@/configs/firebase/client"
+import { clientRepo } from "@/configs/firebase-client"
 import type { Subscription } from "@/types/Subscription"
 import type { SubscriptionService } from "@/types/SubscriptionService"
 

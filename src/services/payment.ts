@@ -1,6 +1,6 @@
 import { addDoc, collection, documentId, onSnapshot } from "firebase/firestore"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import { clientRepo } from "@/configs/firebase/client"
+import { clientRepo } from "@/configs/firebase-client"
 import type { Checkout } from "@/types/Checkout"
 import type { PaymentService } from "@/types/PaymentService"
 

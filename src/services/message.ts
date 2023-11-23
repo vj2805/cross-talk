@@ -11,7 +11,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import { clientRepo } from "@/configs/firebase/client"
+import { clientRepo } from "@/configs/firebase-client"
 import { getFreeQuota } from "@/configs/quota"
 import type { Message } from "@/types/Message"
 import type { MessageService } from "@/types/MessageService"

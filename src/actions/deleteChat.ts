@@ -1,6 +1,6 @@
 "use server"
 
-import { adminRepo } from "@/configs/firebase/admin"
+import { adminRepo } from "@/configs/firebase-admin"
 
 const MAX_RETRY_ATTEMPTS = 5
 

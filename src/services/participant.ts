@@ -6,7 +6,7 @@ import {
   updateDoc,
 } from "firebase/firestore"
 import type { FirestoreDataConverter } from "firebase/firestore"
-import { clientRepo } from "@/configs/firebase/client"
+import { clientRepo } from "@/configs/firebase-client"
 import type { Participant } from "@/types/Participant"
 import type { ParticipantService } from "@/types/ParticipantService"
 import { chatRef } from "./chat"

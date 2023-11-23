@@ -1,11 +1,20 @@
+import { useState } from "react"
 import { showToast } from "@/components/ui"
 import { createPaymentCheckout } from "@/services/payment"
-import { useProcess } from "./useProcess"
 
 export function useCheckout() {
-  return useProcess(
-    async (stop, userId: string, priceId: string) => {
+  const [running, setRunning] = useState(false)
+  return [
+    async (userId: string, priceId: string) => {
+      if (running) {
+        return
+      }
+      showToast({
+        description: "Please wait while we create your checkout session...",
+        title: "Payment Checkout",
+      })
       try {
+        setRunning(true)
         const unsubscribe = await createPaymentCheckout({
           listener: checkout => {
             if (checkout.response.status === "pending") {
@@ -18,19 +27,17 @@ export function useCheckout() {
             if (checkout.response.status === "failure") {
               showToast({ error: checkout.response.error })
             }
-            stop()
             unsubscribe()
+            setRunning(false)
           },
           priceId,
           userId,
         })
       } catch (error) {
         showToast({ error: error as Error })
-        stop()
+        setRunning(false)
       }
     },
-    {
-      shouldStopFinally: false,
-    }
-  )
+    running,
+  ] as const
 }

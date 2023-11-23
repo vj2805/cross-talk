@@ -2,7 +2,7 @@
 
 import { ManageSubscriptionButton } from "@/components/subscription/ManageSubscriptionButton"
 import { Spinner } from "@/components/ui"
-import { useCheckout } from "@/hooks/useCheckout"
+import { useCreateCheckout } from "@/hooks/useCreateCheckout"
 import { useIsPro } from "@/hooks/useIsPro"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
 import { cn } from "@/utilities/string"
@@ -13,8 +13,8 @@ interface CheckoutButtonProps {
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
   const [user] = useRequiredUser()
-  const [createCheckout, processing] = useCheckout()
   const [isPro, status] = useIsPro()
+  const [createCheckout, processing] = useCreateCheckout()
 
   if (!user || status === "error") {
     return null

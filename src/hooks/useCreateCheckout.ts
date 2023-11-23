@@ -2,7 +2,7 @@ import { useState } from "react"
 import { showToast } from "@/components/ui"
 import { createPaymentCheckout } from "@/services/payment"
 
-export function useCheckout() {
+export function useCreateCheckout() {
   const [running, setRunning] = useState(false)
 
   async function run(userId: string, priceId: string) {

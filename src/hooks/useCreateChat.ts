@@ -1,7 +1,7 @@
+import { useRouter } from "next/navigation"
 import { showToast } from "@/components/ui"
 import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
 import { createChat, getParticipatingChatCount } from "@/services/chat"
-import { useRouter } from "./useBuiltins"
 import { useIsPro } from "./useIsPro"
 import { useProcess } from "./useProcess"
 

@@ -1,5 +1,6 @@
 "use client"
 
+import { usePathname } from "next/navigation"
 import {
   NextLink,
   Select,
@@ -10,7 +11,6 @@ import {
   Spinner,
 } from "@/components/ui"
 import { useAvailableLanguages } from "@/hooks/useAvailableLanguages"
-import { usePathname } from "@/hooks/useBuiltins"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { setPreferredLanguage } from "@/stores/language"
 import type { Language } from "@/types/Language"

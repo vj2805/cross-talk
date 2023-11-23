@@ -1,7 +1,7 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { deleteChat } from "@/actions/deleteChat"
-import { useRouter } from "@/hooks/useBuiltins"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
 import { useTranslate } from "@/hooks/useTranslate"
 import {

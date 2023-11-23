@@ -1,5 +1,6 @@
 "use client"
 
+import { useTheme } from "next-themes"
 import {
   Button,
   DropdownMenu,
@@ -8,7 +9,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui"
 import { Moon, Sun } from "@/components/ui/icons"
-import { useTheme } from "@/hooks/useBuiltins"
 import { cn } from "@/utilities/string"
 
 export const ThemeToggle: React.FC = () => {

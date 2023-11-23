@@ -1,7 +1,7 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui"
-import { useRouter } from "@/hooks/useBuiltins"
 import { useIsPro } from "@/hooks/useIsPro"
 import { cn } from "@/utilities/string"
 

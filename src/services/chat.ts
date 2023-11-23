@@ -46,48 +46,51 @@ export function participatingChatsRef(participantId: string) {
   )
 }
 
-export const {
-  createChat,
-  getParticipatingChatCount,
-  getParticipatingChats,
-  subscribeToChat,
-  subscribeToParticipatingChats,
-}: ChatService = {
-  async createChat({ adminId }) {
-    const chatRef = await addDoc(chatsRef(), {
-      adminId,
-      id: documentId(),
-      participantsIds: [adminId],
-    })
-    return chatRef.id
-  },
-  async getParticipatingChatCount({ userId }) {
+export const createChat: ChatService["createChat"] = async ({ adminId }) => {
+  const chatRef = await addDoc(chatsRef(), {
+    adminId,
+    id: documentId(),
+    participantsIds: [adminId],
+  })
+  return chatRef.id
+}
+
+export const getParticipatingChatCount: ChatService["getParticipatingChatCount"] =
+  async ({ userId }) => {
     const snapshot = await getCountFromServer(participatingChatsRef(userId))
     const aggregate = snapshot.data()
     return aggregate.count
-  },
-  async getParticipatingChats({ userId }) {
+  }
+
+export const getParticipatingChats: ChatService["getParticipatingChats"] =
+  async ({ userId }) => {
     const snapshot = await getDocs(participatingChatsRef(userId))
     return snapshot.docs.map(doc => doc.data())
-  },
-  subscribeToChat({ chatId }, onChange, onError) {
-    return onSnapshot(
-      chatRef(chatId),
-      snapshot => {
-        const chat = snapshot.data()
-        if (!chat) {
-          return
-        }
-        return onChange(chat)
-      },
-      onError
-    )
-  },
-  subscribeToParticipatingChats({ userId }, onChange, onError) {
+  }
+
+export const subscribeToChat: ChatService["subscribeToChat"] = (
+  { chatId },
+  onChange,
+  onError
+) => {
+  return onSnapshot(
+    chatRef(chatId),
+    snapshot => {
+      const chat = snapshot.data()
+      if (!chat) {
+        return
+      }
+      return onChange(chat)
+    },
+    onError
+  )
+}
+
+export const subscribeToParticipatingChats: ChatService["subscribeToParticipatingChats"] =
+  ({ userId }, onChange, onError) => {
     return onSnapshot(
       participatingChatsRef(userId),
       snapshot => onChange(snapshot.docs.map(doc => doc.data())),
       onError
     )
-  },
-}
+  }

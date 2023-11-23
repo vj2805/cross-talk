@@ -11,7 +11,6 @@ import {
 import type { FirestoreDataConverter } from "firebase/firestore"
 import { clientRepo } from "@/backend/firebase/client"
 import type { Chat } from "@/types/Chat"
-import type { ChatService } from "@/types/ChatService"
 
 const chatConverter: FirestoreDataConverter<Chat> = {
   fromFirestore(snapshot, options) {
@@ -60,8 +59,7 @@ export async function getParticipatingChatCount(userId: string) {
   return aggregate.count
 }
 
-export const getParticipatingChats: ChatService["getParticipatingChats"] =
-  async ({ userId }) => {
-    const snapshot = await getDocs(participatingChatsRef(userId))
-    return snapshot.docs.map(doc => doc.data())
-  }
+export async function getParticipatingChats(userId: string) {
+  const snapshot = await getDocs(participatingChatsRef(userId))
+  return snapshot.docs.map(doc => doc.data())
+}

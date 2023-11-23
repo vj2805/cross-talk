@@ -21,11 +21,13 @@ const subscriptionConverter: FirestoreDataConverter<Subscription> = {
   },
 }
 
+function subscriptionsRef(userId: string) {
+  const ref = collection(clientRepo, "customers", userId, "subscriptions")
+  return ref.withConverter(subscriptionConverter)
+}
+
 export function activeSubscriptionRef(userId: string) {
-  return query(
-    collection(clientRepo, "customers", userId, "subscriptions"),
-    where("status", "==", "active")
-  ).withConverter(subscriptionConverter)
+  return query(subscriptionsRef(userId), where("status", "==", "active"))
 }
 
 export const { syncSubscription }: SubscriptionService = {

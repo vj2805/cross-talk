@@ -30,7 +30,8 @@ const chatConverter: FirestoreDataConverter<Chat> = {
 }
 
 function chatsRef() {
-  return collection(clientRepo, "chats").withConverter(chatConverter)
+  const ref = collection(clientRepo, "chats")
+  return ref.withConverter(chatConverter)
 }
 
 export function chatRef(chatId: string) {

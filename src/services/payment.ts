@@ -29,12 +29,8 @@ const checkoutConverter: FirestoreDataConverter<Checkout> = {
 }
 
 export function checkoutsRef(userId: string) {
-  return collection(
-    clientRepo,
-    "customers",
-    userId,
-    "checkout_sessions"
-  ).withConverter(checkoutConverter)
+  const ref = collection(clientRepo, "customers", userId, "checkout_sessions")
+  return ref.withConverter(checkoutConverter)
 }
 
 export const { createPaymentCheckout }: PaymentService = {

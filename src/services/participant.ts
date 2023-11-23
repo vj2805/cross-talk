@@ -31,7 +31,8 @@ const participantConverter: FirestoreDataConverter<Participant> = {
 }
 
 export function participantsRef() {
-  return collection(clientRepo, "users").withConverter(participantConverter)
+  const ref = collection(clientRepo, "users")
+  return ref.withConverter(participantConverter)
 }
 
 export function participantRef(userId: string) {

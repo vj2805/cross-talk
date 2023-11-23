@@ -37,9 +37,8 @@ const messageConverter: FirestoreDataConverter<Message> = {
 }
 
 function messagesRef(chatId: string) {
-  return collection(clientRepo, "chats", chatId, "messages").withConverter(
-    messageConverter
-  )
+  const ref = collection(clientRepo, "chats", chatId, "messages")
+  return ref.withConverter(messageConverter)
 }
 
 export function limitedMessagesRef(chatId: string) {

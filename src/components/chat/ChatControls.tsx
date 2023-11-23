@@ -1,7 +1,8 @@
 "use client"
 
 import { useChat } from "@/hooks/useChat"
-import { ErrorAlert, Spinner } from "../ui"
+import { cn } from "@/utilities/string"
+import { ErrorAlert, Skeleton } from "../ui"
 import { ChatAdminControls } from "./ChatAdminControls"
 import { ChatParticipantsBadges } from "./ChatParticipantsBadges"
 
@@ -17,7 +18,28 @@ export const ChatControls: React.FC<ChatControlsProps> = ({
   const [chat, chatStatus, chatError] = useChat(chatId)
 
   if (chatStatus === "loading") {
-    return <Spinner />
+    return (
+      <>
+        <div className={cn("m-5 mb-0", "flex justify-end space-x-2")}>
+          <Skeleton className={cn("h-10 w-44")} />
+          <Skeleton className={cn("h-10 w-36")} />
+          <Skeleton className={cn("h-10 w-28")} />
+        </div>
+        <div
+          className={cn(
+            "m-5",
+            "p-4",
+            "border rounded-xl",
+            "flex flex-wrap justify-center md:justify-start items-center gap-2"
+          )}
+        >
+          <Skeleton className={cn("h-14 w-56", "rounded-full")} />
+          <Skeleton className={cn("h-14 w-56", "rounded-full")} />
+          <Skeleton className={cn("h-14 w-56", "rounded-full")} />
+          <Skeleton className={cn("h-14 w-56", "rounded-full")} />
+        </div>
+      </>
+    )
   }
 
   if (chatStatus === "error") {

@@ -1,5 +1,4 @@
 import type { PriceTier } from "@/types/PriceTier"
-import type { PricingService } from "@/types/PricingService"
 
 const priceTiers: PriceTier[] = [
   {
@@ -34,8 +33,6 @@ const priceTiers: PriceTier[] = [
   },
 ]
 
-export const { getPricingTiers }: PricingService = {
-  async getPricingTiers() {
-    return priceTiers
-  },
+export function getPricingTiers() {
+  return priceTiers
 }

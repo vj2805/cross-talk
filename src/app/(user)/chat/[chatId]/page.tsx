@@ -6,7 +6,7 @@ import {
 } from "@/components"
 import { ErrorAlert, NextLink } from "@/components/ui"
 import { getServerUser } from "@/services/auth"
-import { isUserParticipantOfChat } from "@/services/participant"
+import { isUserParticipantOfChat } from "@/services/user"
 
 interface ChatPageProps {
   params: {

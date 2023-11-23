@@ -73,6 +73,16 @@ export function setPreferredLanguage(language: Language) {
   )
 }
 
+export function setError(error: Error) {
+  setStore(
+    {
+      error,
+      status: "error",
+    },
+    true
+  )
+}
+
 export function setLoading() {
   setStore(
     {

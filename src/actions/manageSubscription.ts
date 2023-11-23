@@ -4,7 +4,7 @@ import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 import { env } from "@/configs/env"
 import { adminRepo } from "@/configs/firebase-admin"
-import { createBillingPortalSession } from "@/configs/stripe"
+import { stripe } from "@/configs/stripe"
 import { getServerUser } from "@/services/auth"
 
 function getReturnUrl() {
@@ -16,6 +16,13 @@ function getReturnUrl() {
 async function getCustomerStripeId(userId: string) {
   const snapshot = await adminRepo.collection("customers").doc(userId).get()
   return snapshot.data()?.stripeId
+}
+
+async function createBillingPortalSession(stripeId: string, returnUrl: string) {
+  return await stripe.billingPortal.sessions.create({
+    customer: stripeId,
+    return_url: returnUrl,
+  })
 }
 
 export async function manageSubscription() {

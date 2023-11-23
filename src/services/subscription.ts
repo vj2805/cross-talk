@@ -1,8 +1,7 @@
-import { collection, onSnapshot, query, where } from "firebase/firestore"
+import { collection, limit, onSnapshot, query, where } from "firebase/firestore"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import { clientRepo } from "@/configs/firebase/client"
 import type { Subscription } from "@/types/Subscription"
-import type { SubscriptionService } from "@/types/SubscriptionService"
 
 const subscriptionConverter: FirestoreDataConverter<Subscription> = {
   fromFirestore(snapshot, options) {
@@ -27,15 +26,21 @@ function subscriptionsRef(userId: string) {
 }
 
 export function activeSubscriptionRef(userId: string) {
-  return query(subscriptionsRef(userId), where("status", "==", "active"))
+  return query(
+    subscriptionsRef(userId),
+    where("status", "==", "active"),
+    limit(1)
+  )
 }
 
-export const { syncSubscription }: SubscriptionService = {
-  syncSubscription({ userId }, onChange, onError) {
-    return onSnapshot(
-      activeSubscriptionRef(userId),
-      snapshot => onChange(snapshot.empty ? null : snapshot.docs[0].data()),
-      onError
-    )
-  },
+export function syncIsPro(
+  userId: string,
+  setIsPro: (subscription: boolean) => void,
+  setSubscriptionError: (error: Error) => void
+) {
+  return onSnapshot(
+    activeSubscriptionRef(userId),
+    snapshot => setIsPro(!snapshot.empty),
+    setSubscriptionError
+  )
 }

@@ -6,6 +6,7 @@ import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
 import { addParticipantToChat } from "@/services/participant"
 import { getUserByEmail } from "@/services/user"
 import type { Chat } from "@/types/Chat"
+import { useIsPro } from "./useIsPro"
 import { useRequiredUser } from "./useRequiredUser"
 
 const InviteFormSchema = z.object({
@@ -14,8 +15,9 @@ const InviteFormSchema = z.object({
 
 type InviteFormData = z.infer<typeof InviteFormSchema>
 
-export function useInviteForm(chat: Chat, isPro: boolean) {
-  const [user, status] = useRequiredUser()
+export function useInviteForm(chat: Chat) {
+  const [user, userStatus] = useRequiredUser()
+  const [isPro, subscriptionStatus] = useIsPro()
 
   const form = useForm<InviteFormData>({
     defaultValues: {
@@ -25,10 +27,13 @@ export function useInviteForm(chat: Chat, isPro: boolean) {
   })
 
   async function onSubmit({ email }: InviteFormData) {
-    if (status !== "authenticated") {
+    if (userStatus !== "authenticated") {
       return
     }
-    if (chat.adminId !== user.id) {
+    if (subscriptionStatus !== "ready") {
+      return
+    }
+    if (user.id !== chat.adminId) {
       return
     }
     showToast({

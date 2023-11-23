@@ -42,5 +42,5 @@ export function useNewMessageForm(chatId: string) {
     }
   }
 
-  return { form, onSubmit }
+  return [form, onSubmit] as const
 }

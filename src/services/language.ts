@@ -1,11 +1,7 @@
 import { languagesQuota } from "@/configs/quota"
-import type {
-  AvailableLanguages,
-  Language,
-  LanguageCode,
-} from "@/types/Language"
+import type { Language, LanguageCode } from "@/types/Language"
 
-const CODES: Record<Language, LanguageCode> = {
+const LANGUAGE_CODES: Record<Language, LanguageCode> = {
   English: "en",
   French: "fr",
   German: "de",
@@ -18,12 +14,20 @@ const CODES: Record<Language, LanguageCode> = {
   Telugu: "te",
 }
 
-const LANGUAGES: Language[] = Object.keys(CODES) as Language[]
+const LANGUAGES: Language[] = Object.keys(LANGUAGE_CODES) as Language[]
 
-export function getLanguageCode(language: Language): LanguageCode {
-  return CODES[language]
+const LANGUAGES_IN_FREE = LANGUAGES.slice(0, languagesQuota)
+
+const LANGUAGES_IN_PRO = LANGUAGES.slice(languagesQuota)
+
+export function getSupportedLanguages(isPro: boolean) {
+  return isPro ? [...LANGUAGES_IN_FREE, ...LANGUAGES_IN_PRO] : LANGUAGES_IN_FREE
 }
 
-export function getAvailableLanguages(): AvailableLanguages {
-  return [LANGUAGES.slice(0, languagesQuota), LANGUAGES.slice(languagesQuota)]
+export function getUnsupportedLanguages(isPro: boolean) {
+  return isPro ? [] : LANGUAGES_IN_PRO
+}
+
+export function getLanguageCode(language: Language): LanguageCode {
+  return LANGUAGE_CODES[language]
 }

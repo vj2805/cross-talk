@@ -24,7 +24,7 @@ export function useCreateChat() {
           throw new FreePlanLimitExceededError("3 chats per user")
         }
       }
-      const chatId = await createChat({ adminId })
+      const chatId = await createChat(adminId)
       showToast({
         description: "Redirecting to the new chat, Please wait...",
         duration: 2000,

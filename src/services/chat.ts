@@ -45,7 +45,7 @@ export function participatingChatsRef(participantId: string) {
   )
 }
 
-export const createChat: ChatService["createChat"] = async ({ adminId }) => {
+export async function createChat(adminId: string) {
   const chatRef = await addDoc(chatsRef(), {
     adminId,
     id: documentId(),

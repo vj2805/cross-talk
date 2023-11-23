@@ -1,28 +1,8 @@
 import { collection, limit, onSnapshot, query, where } from "firebase/firestore"
-import type { FirestoreDataConverter } from "firebase/firestore"
 import { clientRepo } from "@/configs/firebase/client"
-import type { Subscription } from "@/types/Subscription"
-
-const subscriptionConverter: FirestoreDataConverter<Subscription> = {
-  fromFirestore(snapshot, options) {
-    const data = snapshot.data(options)
-    return {
-      id: snapshot.id,
-      role: data.role,
-      status: data.status,
-    }
-  },
-  toFirestore(subscription) {
-    return {
-      role: subscription.role,
-      status: subscription.status,
-    }
-  },
-}
 
 function subscriptionsRef(userId: string) {
-  const ref = collection(clientRepo, "customers", userId, "subscriptions")
-  return ref.withConverter(subscriptionConverter)
+  return collection(clientRepo, "customers", userId, "subscriptions")
 }
 
 export function activeSubscriptionRef(userId: string) {

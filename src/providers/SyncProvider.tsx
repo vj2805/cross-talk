@@ -2,9 +2,9 @@
 
 import { useEffect } from "react"
 import { useSession } from "next-auth/react"
-import { syncSubscription } from "@/services/subscription"
+import { syncIsPro } from "@/services/subscription"
 import { syncUser } from "@/services/user"
-import { setIsPro, setLoading } from "@/stores/store"
+import { setError, setIsPro, setLoading } from "@/stores/store"
 
 export const SyncProvider: React.FC<
   React.PropsWithRequiredChildren
@@ -24,9 +24,7 @@ export const SyncProvider: React.FC<
     if (!session?.user) {
       return setIsPro(false)
     }
-    return syncSubscription({ userId: session.user.id }, subscription =>
-      setIsPro(subscription?.status === "active")
-    )
+    return syncIsPro(session.user.id, setIsPro, setError)
   }, [session, status])
 
   return props.children

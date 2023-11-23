@@ -65,21 +65,28 @@ export const AlertDescription = React.forwardRef<
 ))
 AlertDescription.displayName = AlertDescription.name
 
-interface ErrorAlertProps {
-  error: ErrorWithAction
+type ErrorAlertProps = {
+  error: Array<ErrorWithAction | undefined> | ErrorWithAction
 }
 
-export const ErrorAlert: React.FC<ErrorAlertProps> = ({ error }) => (
-  <Alert
-    variant="destructive"
-    className="flex mx-2 w-auto items-center"
-  >
-    <AlertTitle className="pr-4 text-xl font-bold border-r border-destructive">
-      {error.name}
-    </AlertTitle>
-    <AlertDescription className="pl-5 justify-end font-extrabold">
-      {error.message}
-    </AlertDescription>
-    {error.action}
-  </Alert>
-)
+export const ErrorAlert: React.FC<ErrorAlertProps> = ({ error }) => {
+  const errors = Array.isArray(error) ? error : [error]
+  return errors.map(
+    error =>
+      error && (
+        <Alert
+          key={`${error.name}/${error.message}`}
+          variant="destructive"
+          className="flex mx-2 w-auto items-center"
+        >
+          <AlertTitle className="pr-4 text-xl font-bold border-r border-destructive">
+            {error.name}
+          </AlertTitle>
+          <AlertDescription className="pl-5 justify-end font-extrabold">
+            {error.message}
+          </AlertDescription>
+          {error.action}
+        </Alert>
+      )
+  )
+}

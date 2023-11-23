@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore"
 import type { FirestoreDataConverter } from "firebase/firestore"
 import { clientRepo } from "@/configs/firebase/client"
-import { quota } from "@/configs/quota"
+import { messagesQuota } from "@/configs/quota"
 import type { Message } from "@/types/Message"
 import type { MessageService } from "@/types/MessageService"
 
@@ -42,7 +42,7 @@ function messagesRef(chatId: string) {
 }
 
 export function limitedMessagesRef(chatId: string) {
-  return query(messagesRef(chatId), limit(quota["MESSAGES"]))
+  return query(messagesRef(chatId), limit(messagesQuota))
 }
 
 export function sortedMessagesRef(chatId: string) {

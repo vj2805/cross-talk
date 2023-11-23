@@ -1,10 +1,9 @@
+import { languagesQuota } from "@/configs/quota"
 import type {
   AvailableLanguages,
   Language,
   LanguageCode,
 } from "@/types/Language"
-
-const FREE_LANGUAGES_COUNT = 2
 
 const CODES: Record<Language, LanguageCode> = {
   English: "en",
@@ -26,8 +25,5 @@ export function getLanguageCode(language: Language): LanguageCode {
 }
 
 export async function getAvailableLanguages(): Promise<AvailableLanguages> {
-  return [
-    LANGUAGES.slice(0, FREE_LANGUAGES_COUNT),
-    LANGUAGES.slice(FREE_LANGUAGES_COUNT),
-  ]
+  return [LANGUAGES.slice(0, languagesQuota), LANGUAGES.slice(languagesQuota)]
 }

@@ -1,4 +1,2 @@
-export const quota = {
-  LANGUAGES: 2,
-  MESSAGES: 25,
-} as const
+export const languagesQuota = 2
+export const messagesQuota = 25

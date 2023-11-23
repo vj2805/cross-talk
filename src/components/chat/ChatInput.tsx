@@ -18,7 +18,7 @@ interface ChatInputProps {
 }
 
 export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
-  const { form, onSubmit } = useNewMessageForm(chatId)
+  const [form, onSubmit] = useNewMessageForm(chatId)
   return (
     <div className={cn("px-2", "bottom-0", "sticky")}>
       <Form {...form}>

@@ -1,9 +1,10 @@
 import { createWithEqualityFn } from "zustand/traditional"
 import {
+  getLanguageCode,
   getSupportedLanguages,
   getUnsupportedLanguages,
 } from "@/services/language"
-import type { Language } from "@/types/Language"
+import type { Language, LanguageCode } from "@/types/Language"
 
 type Store =
   | {
@@ -13,7 +14,10 @@ type Store =
   | {
       status: "idle"
       language: {
-        preferred: Language
+        preferred: {
+          code: LanguageCode
+          name: Language
+        }
         supported: Language[]
         unsupported: Language[]
       }
@@ -32,10 +36,18 @@ export const useStore = createWithEqualityFn<Store>()(() => ({
 export function setIsPro(isPro: boolean) {
   const supported = getSupportedLanguages(isPro)
   const unsupported = getUnsupportedLanguages(isPro)
-  const preferred = supported[0]
   useStore.setState({
-    language: { preferred, supported, unsupported },
+    language: {
+      preferred: {
+        code: getLanguageCode(supported[0]),
+        name: supported[0],
+      },
+      supported,
+      unsupported,
+    },
     status: "idle",
-    subscription: { isPro },
+    subscription: {
+      isPro,
+    },
   })
 }

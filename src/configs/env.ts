@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-const EnvSchema = z.object({
+const envSchema = z.object({
   FIREBASE_CLIENT_EMAIL: z.string(),
   FIREBASE_PRIVATE_KEY: z.string(),
   FIREBASE_PROJECT_ID: z.string(),
@@ -10,10 +10,10 @@ const EnvSchema = z.object({
   STRIPE_SECRET_KEY: z.string(),
 })
 
-type Env = z.infer<typeof EnvSchema>
+type EnvSchema = z.infer<typeof envSchema>
 
-export const ENV = EnvSchema.parse(process.env)
+export const env = envSchema.parse(process.env)
 
-export function getEnv<Key extends keyof Env>(key: Key): Env[Key] {
-  return ENV[key]
+export function getEnv<Key extends keyof EnvSchema>(key: Key) {
+  return env[key]
 }

@@ -61,11 +61,23 @@ export function setPreferredLanguage(language: Language) {
   if (!store.language.supported.includes(language)) {
     return
   }
-  setStore({
-    language: {
-      preferred: createPreferredLanguage(language),
-      supported: store.language.supported,
-      unsupported: store.language.unsupported,
+  setStore(
+    {
+      language: {
+        preferred: createPreferredLanguage(language),
+        supported: store.language.supported,
+        unsupported: store.language.unsupported,
+      },
     },
-  })
+    false
+  )
+}
+
+export function setLoading() {
+  setStore(
+    {
+      status: "loading",
+    },
+    true
+  )
 }

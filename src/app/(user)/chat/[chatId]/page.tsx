@@ -22,7 +22,7 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
   }
 
   try {
-    const hasAccess = await isUserParticipantOfChat({ chatId, userId: user.id })
+    const hasAccess = await isUserParticipantOfChat(chatId, user.id)
     if (!hasAccess) {
       throw {
         action: (

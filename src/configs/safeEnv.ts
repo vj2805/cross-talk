@@ -10,4 +10,10 @@ const SafeEnvSchema = z.object({
   STRIPE_SECRET_KEY: z.string(),
 })
 
+type SafeEnv = z.infer<typeof SafeEnvSchema>
+
 export const safeEnv = SafeEnvSchema.parse(process.env)
+
+export function getEnv<Key extends keyof SafeEnv>(key: Key): SafeEnv[Key] {
+  return safeEnv[key]
+}

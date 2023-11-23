@@ -1,16 +1,20 @@
 import { signInWithCustomToken, signOut } from "firebase/auth"
 import {
+  arrayUnion,
   collection,
   doc,
+  getDoc,
   getDocs,
-  onSnapshot,
+  limit,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore"
 import type { FirestoreDataConverter } from "firebase/firestore"
+import type { Session } from "next-auth"
 import { clientAuth, clientRepo } from "@/configs/firebase/client"
 import type { User } from "@/types/User"
-import type { UserService } from "@/types/UserService"
+import { chatRef } from "./chat"
 
 const userConverter: FirestoreDataConverter<User> = {
   fromFirestore(snapshot, options) {
@@ -31,7 +35,7 @@ const userConverter: FirestoreDataConverter<User> = {
   },
 }
 
-export function usersRef() {
+function usersRef() {
   const ref = collection(clientRepo, "users")
   return ref.withConverter(userConverter)
 }
@@ -41,30 +45,43 @@ export function userRef(userId: string) {
 }
 
 export function userByEmailRef(email: string) {
-  return query(usersRef(), where("email", "==", email))
+  return query(usersRef(), where("email", "==", email), limit(1))
 }
 
-export const { getUserByEmail, subscribeToUser, syncUser }: UserService = {
-  async getUserByEmail({ email }) {
-    const users = await getDocs(userByEmailRef(email))
-    return users.docs[0].data()
-  },
-  subscribeToUser({ userId }, onChange, onError) {
-    return onSnapshot(
-      userRef(userId),
-      snapshot => snapshot.exists() && onChange(snapshot.data()),
-      onError
-    )
-  },
-  async syncUser({ session }) {
-    if (session?.user && session?.firebaseToken) {
-      await signInWithCustomToken(clientAuth, session.firebaseToken)
-      return session.user
-    } else {
-      await signOut(clientAuth)
-      return null
-    }
-  },
+export async function addUserWithEmailToChat(chatId: string, email: string) {
+  const user = await getDocs(userByEmailRef(email))
+  if (user.empty) {
+    throw new Error(`[addUserWithEmailToChat] No users with email '${email}'`)
+  }
+  const chat = await getDoc(chatRef(chatId))
+  if (!chat.exists()) {
+    throw new Error(`[addUserWithEmailToChat] No Chats with id '${chatId}'`)
+  }
+  updateDoc(chat.ref, {
+    participantsIds: arrayUnion(user.docs[0].id),
+  })
+}
+
+export async function isUserParticipantOfChat(chatId: string, userId: string) {
+  const participant = await getDoc(userRef(userId))
+  if (!participant.exists()) {
+    throw new Error(`[isUserParticipantOfChat] No user with id '${userId}'`)
+  }
+  const chat = await getDoc(chatRef(chatId))
+  if (!chat.exists()) {
+    throw new Error(`[isUserParticipantOfChat] No chat with id '${chatId}'`)
+  }
+  return chat.data().participantsIds.includes(userId)
+}
+
+export async function syncUser(session?: Session) {
+  if (session?.user && session?.firebaseToken) {
+    await signInWithCustomToken(clientAuth, session.firebaseToken)
+    return session.user
+  } else {
+    await signOut(clientAuth)
+    return null
+  }
 }
 
 export { signIn, signOut } from "next-auth/react"

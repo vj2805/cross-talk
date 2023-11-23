@@ -3,8 +3,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { showToast } from "@/components/ui"
 import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
-import { addParticipantToChat } from "@/services/participant"
-import { getUserByEmail } from "@/services/user"
+import { addUserWithEmailToChat } from "@/services/user"
 import type { Chat } from "@/types/Chat"
 import { useIsPro } from "./useIsPro"
 import { useRequiredUser } from "./useRequiredUser"
@@ -44,8 +43,7 @@ export function useInviteUserForm(chat: Chat) {
       if (!isPro && chat.participantsIds.length >= 2) {
         throw new FreePlanLimitExceededError("2 users per chat")
       }
-      const participant = await getUserByEmail({ email })
-      await addParticipantToChat(chat.id, participant.id)
+      await addUserWithEmailToChat(chat.id, user.id)
       showToast({
         description: "The user has been added to the chat successfully!",
         title: "Added to chat",

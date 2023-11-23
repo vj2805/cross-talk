@@ -1,10 +1,8 @@
 import { useDocumentData } from "react-firebase-hooks/firestore"
-import { participantRef } from "@/services/participant"
+import { userRef } from "@/services/user"
 
 export function useParticipant(participantId: string) {
-  const [participant, loading, error] = useDocumentData(
-    participantRef(participantId)
-  )
+  const [participant, loading, error] = useDocumentData(userRef(participantId))
   if (loading) {
     return [undefined, "loading", undefined] as const
   }

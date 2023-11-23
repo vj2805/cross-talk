@@ -30,12 +30,12 @@ export function useNewMessageForm(chatId: string) {
     }
     try {
       if (!isPro) {
-        const count = await getMessagesCount({ chatId })
+        const count = await getMessagesCount(chatId)
         if (count >= 25) {
           throw new FreePlanLimitExceededError("25 messages per chat")
         }
       }
-      await postMessage({ chatId, input, user })
+      await postMessage(chatId, input, user)
       form.reset()
     } catch (error) {
       showToast({ error: error as Error })

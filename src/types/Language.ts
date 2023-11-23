@@ -13,5 +13,3 @@ type LanguageAndCode =
 export type Language = LanguageAndCode[0]
 
 export type LanguageCode = LanguageAndCode[1]
-
-export type AvailableLanguages = [/* FREE */ Language[], /* PRO */ Language[]]

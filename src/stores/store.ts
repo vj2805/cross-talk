@@ -5,6 +5,8 @@ import {
   getUnsupportedLanguages,
 } from "@/services/language"
 import type { Language, LanguageCode } from "@/types/Language"
+import { getTranslation } from "@/utilities/translations"
+import type { Phrase } from "@/utilities/translations"
 
 type Store =
   | {
@@ -17,6 +19,7 @@ type Store =
         preferred: {
           code: LanguageCode
           name: Language
+          translate: (phrase: Phrase) => string
         }
         supported: Language[]
         unsupported: Language[]
@@ -41,6 +44,9 @@ export function setIsPro(isPro: boolean) {
       preferred: {
         code: getLanguageCode(supported[0]),
         name: supported[0],
+        translate(phrase) {
+          return getTranslation(phrase, this.name)
+        },
       },
       supported,
       unsupported,

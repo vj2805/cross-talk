@@ -10,17 +10,15 @@ import {
   SelectValue,
   Spinner,
 } from "@/components/ui"
-import { useAvailableLanguages } from "@/hooks/useAvailableLanguages"
-import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
-import { setPreferredLanguage } from "@/stores/language"
+import { useLanguages } from "@/hooks/useLanguages"
+import { setPreferredLanguage } from "@/stores/store"
 import type { Language } from "@/types/Language"
 import { cn } from "@/utilities/string"
 import { ErrorAlert } from "../ui"
 
 export const LanguageSelect: React.FC = () => {
   const pathname = usePathname()
-  const preferredLanguage = usePreferredLanguage()
-  const [supported, unsupported, status, error] = useAvailableLanguages()
+  const [preferred, supported, unsupported, status, error] = useLanguages()
 
   if (status === "error") {
     return <ErrorAlert error={error} />
@@ -37,7 +35,7 @@ export const LanguageSelect: React.FC = () => {
           <SelectTrigger
             className={cn("w-[150px]", "text-black dark:text-white")}
           >
-            <SelectValue placeholder={preferredLanguage} />
+            <SelectValue placeholder={preferred} />
           </SelectTrigger>
           <SelectContent>
             {status === "loading" ? (

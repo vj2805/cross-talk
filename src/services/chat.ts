@@ -5,7 +5,6 @@ import {
   documentId,
   getCountFromServer,
   getDocs,
-  onSnapshot,
   query,
   where,
 } from "firebase/firestore"
@@ -31,7 +30,7 @@ const chatConverter: FirestoreDataConverter<Chat> = {
   },
 }
 
-export function chatsRef() {
+function chatsRef() {
   return collection(clientRepo, "chats").withConverter(chatConverter)
 }
 
@@ -66,31 +65,4 @@ export const getParticipatingChats: ChatService["getParticipatingChats"] =
   async ({ userId }) => {
     const snapshot = await getDocs(participatingChatsRef(userId))
     return snapshot.docs.map(doc => doc.data())
-  }
-
-export const subscribeToChat: ChatService["subscribeToChat"] = (
-  { chatId },
-  onChange,
-  onError
-) => {
-  return onSnapshot(
-    chatRef(chatId),
-    snapshot => {
-      const chat = snapshot.data()
-      if (!chat) {
-        return
-      }
-      return onChange(chat)
-    },
-    onError
-  )
-}
-
-export const subscribeToParticipatingChats: ChatService["subscribeToParticipatingChats"] =
-  ({ userId }, onChange, onError) => {
-    return onSnapshot(
-      participatingChatsRef(userId),
-      snapshot => onChange(snapshot.docs.map(doc => doc.data())),
-      onError
-    )
   }

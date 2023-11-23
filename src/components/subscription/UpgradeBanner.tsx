@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { Button, ErrorAlert, Spinner } from "@/components/ui"
+import { Button, ErrorAlert, Skeleton, Spinner } from "@/components/ui"
 import { useIsPro } from "@/hooks/useIsPro"
 import { cn } from "@/utilities/string"
 
@@ -10,7 +10,7 @@ export const UpgradeBanner: React.FC = () => {
   const [isPro, subscriptionStatus, subscriptionError] = useIsPro()
 
   if (subscriptionStatus === "loading") {
-    return <Spinner />
+    return <Skeleton className={cn("w-full", "py-5", "rounded-none")} />
   }
 
   if (subscriptionStatus === "error") {

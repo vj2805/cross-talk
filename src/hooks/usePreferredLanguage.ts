@@ -1,5 +1,5 @@
 import { shallow } from "zustand/shallow"
-import { useStore } from "@/stores/store"
+import { useStore } from "@/stores/useStore"
 
 export function usePreferredLanguage() {
   return useStore(store => {

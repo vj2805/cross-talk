@@ -11,7 +11,7 @@ import {
   Spinner,
 } from "@/components/ui"
 import { useLanguages } from "@/hooks/useLanguages"
-import { setPreferredLanguage } from "@/stores/store"
+import { setPreferredLanguage } from "@/stores/useStore"
 import type { Language } from "@/types/Language"
 import { cn } from "@/utilities/string"
 import { ErrorAlert } from "../ui"

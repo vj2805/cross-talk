@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { useSession } from "next-auth/react"
 import { syncIsPro } from "@/services/subscription"
 import { syncUser } from "@/services/user"
-import { setError, setIsPro, setLoading } from "@/stores/store"
+import { setError, setIsPro, setLoading } from "@/stores/useStore"
 
 export const SyncProvider: React.FC<
   React.PropsWithRequiredChildren

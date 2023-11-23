@@ -1,13 +1,8 @@
-import type { User } from "next-auth"
 import { createWithEqualityFn } from "zustand/traditional"
-import {
-  getLanguageCode,
-  getSupportedLanguages,
-  getUnsupportedLanguages,
-} from "@/services/language"
+import { getAvailableLanguages } from "@/services/language"
 import type { Language, LanguageCode } from "@/types/Language"
-import { getTranslation } from "@/utilities/translations"
-import type { Phrase } from "@/utilities/translations"
+import type { Phrase } from "@/types/Phrase"
+import { createPreferredLanguage } from "@/utilities/language"
 
 type Store =
   | {
@@ -37,21 +32,15 @@ export const useStore = createWithEqualityFn<Store>()(() => ({
   status: "loading",
 }))
 
+const getStore = useStore.getState
 const setStore = useStore.setState
 
 export function setIsPro(isPro: boolean) {
-  const supported = getSupportedLanguages(isPro)
-  const unsupported = getUnsupportedLanguages(isPro)
+  const [supported, unsupported] = getAvailableLanguages(isPro)
   setStore(
     {
       language: {
-        preferred: {
-          code: getLanguageCode(supported[0]),
-          name: supported[0],
-          translate(phrase) {
-            return getTranslation(phrase, this.name)
-          },
-        },
+        preferred: createPreferredLanguage(supported[0]),
         supported,
         unsupported,
       },
@@ -62,4 +51,21 @@ export function setIsPro(isPro: boolean) {
     },
     true
   )
+}
+
+export function setPreferredLanguage(language: Language) {
+  const store = getStore()
+  if (store.status !== "ready") {
+    return
+  }
+  if (!store.language.supported.includes(language)) {
+    return
+  }
+  setStore({
+    language: {
+      preferred: createPreferredLanguage(language),
+      supported: store.language.supported,
+      unsupported: store.language.unsupported,
+    },
+  })
 }

@@ -34,7 +34,7 @@ export function ChatControls({ chatId, userId }: ChatControlsProps) {
 
   return (
     <>
-      {userId === chat.adminId && <ChatAdminControls chat={chat} />}
+      {userId === chat?.adminId && <ChatAdminControls chat={chat} />}
       <ChatParticipantsBadges chat={chat} />
     </>
   )

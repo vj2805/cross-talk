@@ -2,7 +2,7 @@
 
 import type { User } from "next-auth"
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
-import { ErrorAlert, Skeleton } from "../ui"
+import { ErrorAlert, Spinner } from "../ui"
 import { ChatRow } from "./ChatRow"
 import { WelcomeToChatPanel } from "./WelcomeToChatPanel"
 
@@ -18,7 +18,11 @@ export function ChatList({ user }: ChatListProps) {
   ] = useParticipatingChats(user.id)
 
   if (isParticipatingChatsLoading) {
-    return <Skeleton className="h-full w-full" />
+    return (
+      <div className="flex-1 flex justify-center items-center">
+        <Spinner />
+      </div>
+    )
   }
 
   if (participatingChatsError) {

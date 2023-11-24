@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, ErrorAlert, Spinner } from "@/components/ui"
+import { Button, ErrorAlert, Skeleton, Spinner } from "@/components/ui"
 import { MessageSquarePlusIcon } from "@/components/ui/icons"
 import { useCreateChat } from "@/hooks/useCreateChat"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
@@ -17,7 +17,11 @@ export function ChatCreateButton({ large }: ChatCreateButtonProps) {
   const [createChat, isProcessing] = useCreateChat()
 
   if (isUserLoading || isLanguagesLoading) {
-    return <Spinner />
+    return large ? (
+      <Skeleton className="h-10 px-4 py-2" />
+    ) : (
+      <Skeleton className="aspect-square h-10 py-2" />
+    )
   }
 
   if (userError || languageError) {

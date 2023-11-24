@@ -19,7 +19,30 @@ export function ChatMessagesList({ messages, user }: ChatMessagesListProps) {
   const messagesEndRef = useMessagesEndRef(messages)
 
   if (isLanguagesLoading) {
-    return <Spinner />
+    return (
+      <div className={"p-5 w-full flex-1 flex flex-col space-y-3"}>
+        {Array(8)
+          .fill(null)
+          .map(() => Math.random() < 0.5)
+          .map((shouldAlignLeft, idx) => (
+            <div
+              key={idx}
+              className={cn("flex", shouldAlignLeft && "flex-row-reverse")}
+            >
+              <Skeleton className={cn("mx-2 h-10 w-10 rounded-full")} />
+              <div
+                className={cn(
+                  "py-2 flex flex-col space-y-2",
+                  shouldAlignLeft ? "items-end" : "items-start"
+                )}
+              >
+                <Skeleton className="h-2 w-1/3" />
+                <Skeleton className="h-2 w-1/6" />
+              </div>
+            </div>
+          ))}
+      </div>
+    )
   }
 
   if (languageError) {

@@ -14,14 +14,14 @@ export const ParticipantBadge: React.FC<ParticipantBadgeProps> = ({
   isAdmin,
   participantId,
 }) => {
-  const [participant, participantStatus, participantError] =
+  const [participant, isParticipantLoading, participantError] =
     useParticipant(participantId)
 
-  if (participantStatus === "loading") {
+  if (isParticipantLoading) {
     return <Spinner />
   }
 
-  if (participantStatus === "error") {
+  if (participantError) {
     return <ErrorAlert error={participantError} />
   }
 

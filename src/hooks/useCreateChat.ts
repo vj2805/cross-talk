@@ -7,11 +7,11 @@ import { useIsPro } from "./useIsPro"
 
 export function useCreateChat() {
   const [running, setRunning] = useState(false)
-  const [isPro, status] = useIsPro()
+  const [isPro, isSubscriptionLoading, subscriptionError] = useIsPro()
   const router = useRouter()
 
   async function run(adminId: string) {
-    if (status !== "ready") {
+    if (isSubscriptionLoading || subscriptionError) {
       return
     }
     if (running) {

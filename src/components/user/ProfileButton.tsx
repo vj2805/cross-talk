@@ -23,9 +23,9 @@ interface ProfileButtonProps {
 }
 
 export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
-  const [isPro, subscriptionStatus, subscriptionError] = useIsPro()
+  const [isPro, isSubscriptionLoading, subscriptionError] = useIsPro()
 
-  if (subscriptionStatus === "error") {
+  if (subscriptionError) {
     return <ErrorAlert error={subscriptionError} />
   }
 
@@ -40,7 +40,7 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
       <DropdownMenuContent className="text-center">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {subscriptionStatus === "loading" ? (
+        {isSubscriptionLoading ? (
           <DropdownMenuItem className="flex items-center justify-center">
             <Spinner />
           </DropdownMenuItem>

@@ -15,7 +15,7 @@ type AddMessageFormData = z.infer<typeof AddMessageFormSchema>
 
 export function useNewMessageForm(chatId: string) {
   const [user, userStatus] = useRequiredUser()
-  const [isPro, isProStatus] = useIsPro()
+  const [isPro, isSubscriptionLoading, subscriptionError] = useIsPro()
   const form = useForm<AddMessageFormData>({
     defaultValues: { input: "" },
     resolver: zodResolver(AddMessageFormSchema),
@@ -25,7 +25,7 @@ export function useNewMessageForm(chatId: string) {
     if (userStatus !== "authenticated") {
       return
     }
-    if (isProStatus !== "ready") {
+    if (isSubscriptionLoading || subscriptionError) {
       return
     }
     try {

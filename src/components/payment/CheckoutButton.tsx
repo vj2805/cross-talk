@@ -13,14 +13,14 @@ interface CheckoutButtonProps {
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
   const [user, userStatus, userError] = useRequiredUser()
-  const [isPro, subscriptionStatus, subscriptionError] = useIsPro()
+  const [isPro, isSubscriptionLoading, subscriptionError] = useIsPro()
   const [createCheckout, processing] = useCreateCheckout()
 
   if (userStatus === "loading") {
     return <Spinner />
   }
 
-  if (userStatus === "error" || subscriptionStatus === "error") {
+  if (userStatus === "error" || subscriptionError) {
     return <ErrorAlert error={[userError, subscriptionError]} />
   }
 
@@ -48,7 +48,7 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
           "disabled:opacity-80"
         )}
       >
-        {subscriptionStatus === "loading" || processing ? (
+        {isSubscriptionLoading || processing ? (
           <Spinner />
         ) : isPro ? (
           <ManageSubscriptionButton />

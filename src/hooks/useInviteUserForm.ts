@@ -16,7 +16,7 @@ type InviteUserFormData = z.infer<typeof InviteUserFormSchema>
 
 export function useInviteUserForm(chat: Chat) {
   const [user, userStatus] = useRequiredUser()
-  const [isPro, subscriptionStatus] = useIsPro()
+  const [isPro, isSubscriptionLoading, subscriptionError] = useIsPro()
 
   const form = useForm<InviteUserFormData>({
     defaultValues: {
@@ -29,7 +29,7 @@ export function useInviteUserForm(chat: Chat) {
     if (userStatus !== "authenticated") {
       return
     }
-    if (subscriptionStatus !== "ready") {
+    if (isSubscriptionLoading || subscriptionError) {
       return
     }
     if (user.id !== chat.adminId) {

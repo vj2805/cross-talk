@@ -50,10 +50,8 @@ export function CopyChatLinkButton({ chatId }: CopyChatLinkButtonProps) {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Share Link</DialogTitle>
-          <DialogDescription>
-            Any user who has been{" "}
-            <span className="text-indigo-600 font-bold">granted access</span>{" "}
-            can use this link
+          <DialogDescription className="text-indigo-600 font-bold">
+            Any user who has been granted access can use this link
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center space-x-2">

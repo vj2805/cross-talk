@@ -1,6 +1,7 @@
 "use client"
 
 import { useInviteUserForm } from "@/hooks/useInviteUserForm"
+import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import type { Chat } from "@/types/Chat"
 import {
   Button,
@@ -10,11 +11,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  ErrorAlert,
   Form,
   FormControl,
   FormField,
   FormItem,
   Input,
+  Skeleton,
 } from "../ui"
 import { PlusCircleIcon } from "../ui/icons"
 
@@ -22,24 +25,38 @@ interface InviteUserToChatProps {
   chat: Chat
 }
 
-export const InviteUserToChat: React.FC<InviteUserToChatProps> = ({ chat }) => {
+export function InviteUserToChat({ chat }: InviteUserToChatProps) {
+  const [preferredLanguage, isLanguagesLoading, languageError] =
+    usePreferredLanguage()
   const [form, onSubmit] = useInviteUserForm(chat)
+
+  if (isLanguagesLoading) {
+    return <Skeleton className="h-10 w-44" />
+  }
+
+  if (languageError) {
+    return <ErrorAlert error={languageError} />
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button>
-          <PlusCircleIcon className="mr-1" />
-          Add User To Chat
+          <PlusCircleIcon className="mr-1 font-bold" />
+          {preferredLanguage.translate("Add User To Chat")}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Add User to Chat</DialogTitle>
+          <DialogTitle>
+            {preferredLanguage.translate("Add User To Chat")}
+          </DialogTitle>
           <DialogDescription>
-            Simply enter another users email address to invite them to this
-            chat!{" "}
+            {preferredLanguage.translate(
+              "Simply enter another users email address to invite them to this chat!"
+            )}{" "}
             <span className="text-indigo-600 font-bold">
-              (Note: They must be registered)
+              ({preferredLanguage.translate("Note: They must be registered")})
             </span>
           </DialogDescription>
         </DialogHeader>
@@ -55,14 +72,16 @@ export const InviteUserToChat: React.FC<InviteUserToChatProps> = ({ chat }) => {
                 <FormItem>
                   <FormControl>
                     <Input
-                      placeholder="Email"
+                      placeholder={preferredLanguage.translate("Email")}
                       {...field}
                     />
                   </FormControl>
                 </FormItem>
               )}
             />
-            <Button className="ml-auto w-full sm:w-fit">Add to Chat</Button>
+            <Button className="ml-auto w-full sm:w-fit">
+              {preferredLanguage.translate("Add")}
+            </Button>
           </form>
         </Form>
       </DialogContent>

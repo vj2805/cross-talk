@@ -15,9 +15,9 @@ export const ChatControls: React.FC<ChatControlsProps> = ({
   chatId,
   userId,
 }) => {
-  const [chat, chatStatus, chatError] = useChat(chatId)
+  const [chat, isChatLoading, chatError] = useChat(chatId)
 
-  if (chatStatus === "loading") {
+  if (isChatLoading) {
     return (
       <>
         <div className={cn("m-5 mb-0", "flex justify-end space-x-2")}>
@@ -42,7 +42,7 @@ export const ChatControls: React.FC<ChatControlsProps> = ({
     )
   }
 
-  if (chatStatus === "error") {
+  if (chatError) {
     return <ErrorAlert error={chatError} />
   }
 

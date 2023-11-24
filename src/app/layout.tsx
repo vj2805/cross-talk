@@ -20,7 +20,7 @@ export default function RootLayout({
       suppressHydrationWarning
       lang="en"
     >
-      <body>
+      <body className="h-screen flex flex-col">
         <SessionProvider>
           <SyncProvider>
             <ThemeProvider>

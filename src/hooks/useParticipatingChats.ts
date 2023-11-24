@@ -1,19 +1,10 @@
 import { useCollectionData } from "react-firebase-hooks/firestore"
 import { participatingChatsRef } from "@/services/chat"
+import type { Chat } from "@/types/Chat"
+import type { Observable } from "@/types/Observable"
 
 export function useParticipatingChats(userId: string) {
-  const [participatingChats, loading, error] = useCollectionData(
+  return useCollectionData(
     participatingChatsRef(userId)
-  )
-  if (loading) {
-    return [undefined, "loading", undefined] as const
-  }
-  if (error) {
-    return [undefined, "error", error] as const
-  }
-  if (!participatingChats) {
-    const unexpected = new Error("[useParticipatingChats] returned unexpected")
-    return [undefined, "error", unexpected] as const
-  }
-  return [participatingChats, loading, error] as const
+  ) as unknown as Observable<Chat[]>
 }

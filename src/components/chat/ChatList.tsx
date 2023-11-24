@@ -13,15 +13,15 @@ interface ChatListProps {
 export const ChatList: React.FC<ChatListProps> = ({ user }) => {
   const [
     participatingChats,
-    participatingChatsStatus,
+    isParticipatingChatsLoading,
     participatingChatsError,
   ] = useParticipatingChats(user.id)
 
-  if (participatingChatsStatus === "loading") {
+  if (isParticipatingChatsLoading) {
     return <Spinner />
   }
 
-  if (participatingChatsStatus === "error") {
+  if (participatingChatsError) {
     return <ErrorAlert error={participatingChatsError} />
   }
 

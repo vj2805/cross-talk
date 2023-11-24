@@ -1,5 +1,5 @@
-import { useSubscriptionStore } from "@/stores/subscription"
+import { useStore } from "@/stores/useStore"
 
 export function useIsPro() {
-  return useSubscriptionStore(store => store.isPro)
+  return useStore(state => state.subscription.isPro)
 }

@@ -1,10 +1,10 @@
 "use client"
 
+import type { User } from "next-auth"
 import { useMessages } from "@/hooks/useMessages"
 import { ErrorAlert, Spinner } from "../ui"
 import { ChatMessagesList } from "./ChatMessagesList"
 import { StartConversation } from "./StartConversation"
-import type { User } from "next-auth"
 
 interface ChatMessagesProps {
   chatId: string
@@ -12,14 +12,14 @@ interface ChatMessagesProps {
 }
 
 export const ChatMessages: React.FC<ChatMessagesProps> = ({ chatId, user }) => {
-  const [messages, status, error] = useMessages(chatId)
+  const [messages, isMessagesLoading, messagesError] = useMessages(chatId)
 
-  if (status === "loading") {
+  if (isMessagesLoading) {
     return <Spinner />
   }
 
-  if (status === "error") {
-    return <ErrorAlert error={error} />
+  if (messagesError) {
+    return <ErrorAlert error={messagesError} />
   }
 
   if (messages.length === 0) {

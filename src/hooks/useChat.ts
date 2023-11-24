@@ -1,15 +1,8 @@
-import { useEffect } from "react"
-import { subscribeToChat } from "@/services/chat"
-import { useObservable } from "./useObservable"
+import { useDocumentData } from "react-firebase-hooks/firestore"
+import { chatRef } from "@/services/chat"
 import type { Chat } from "@/types/Chat"
+import type { Observable } from "@/types/Observable"
 
 export function useChat(chatId: string) {
-  const [chat, setChat, setError] = useObservable<Chat>()
-
-  useEffect(
-    () => subscribeToChat({ chatId }, setChat, setError),
-    [chatId, setChat, setError]
-  )
-
-  return chat
+  return useDocumentData(chatRef(chatId)) as unknown as Observable<Chat>
 }

@@ -1,13 +1,12 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import { Spinner } from "@/components/ui"
-import { UserAvatar } from "@/components/user/UserAvatar"
-import { usePreferredLanguageCode } from "@/hooks/usePreferredLanguageCode"
-import { useTranslate } from "@/hooks/useTranslate"
-import { cn } from "@/utilities/string"
-import type { Message } from "@/types/Message"
 import type { User } from "next-auth"
+import { ErrorAlert, Skeleton, Spinner } from "@/components/ui"
+import { UserAvatar } from "@/components/user/UserAvatar"
+import { useMessagesEndRef } from "@/hooks/useMessagesEndRef"
+import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
+import type { Message } from "@/types/Message"
+import { cn } from "@/utilities/string"
 
 interface ChatMessagesListProps {
   messages: Message[]
@@ -18,13 +17,17 @@ export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
   messages,
   user,
 }) => {
-  const languageCode = usePreferredLanguageCode()
-  const translate = useTranslate()
+  const [preferredLanguage, isLanguagesLoading, languageError] =
+    usePreferredLanguage()
+  const messagesEndRef = useMessagesEndRef(messages)
 
-  const messagesEndRef = useRef<React.ElementRef<"li">>(null)
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [messages])
+  if (isLanguagesLoading) {
+    return <Spinner />
+  }
+
+  if (languageError) {
+    return <ErrorAlert error={languageError} />
+  }
 
   return (
     <ul className={cn("p-5", "flex-1")}>
@@ -58,9 +61,12 @@ export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
               </p>
               <div className="flex space-x-2">
                 {message.translated ? (
-                  <p>{message.translated?.[languageCode] || message.input}</p>
+                  <p>
+                    {message.translated?.[preferredLanguage.code] ||
+                      message.input}
+                  </p>
                 ) : (
-                  <Spinner />
+                  <Skeleton className="h-2 w-1/5" />
                 )}
               </div>
             </div>
@@ -72,12 +78,12 @@ export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
           </li>
         )
       })}
-      <li
+      <div
         className="sr-only"
         ref={messagesEndRef}
       >
-        {translate("End of Messages")}
-      </li>
+        {preferredLanguage.translate("End of Messages")}
+      </div>
     </ul>
   )
 }

@@ -1,38 +1,34 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { ChatRowSkeleton } from "@/components/chat/ChatRowSkeleton"
 import { ErrorAlert } from "@/components/ui"
 import { UserAvatar } from "@/components/user/UserAvatar"
-import { useRouter } from "@/hooks/useBuiltins"
 import { useLastMessage } from "@/hooks/useLastMessage"
-import { usePreferredLanguageCode } from "@/hooks/usePreferredLanguageCode"
+import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
-import { useTranslate } from "@/hooks/useTranslate"
-import { cn, prettifyId } from "@/utilities/string"
-import { getTimestampString } from "@/utilities/timestamps"
 import type { Chat } from "@/types/Chat"
+import { cn } from "@/utilities/string"
+import { getTimestampString } from "@/utilities/timestamps"
 
 interface ChatRowProps {
   chatId: Chat["id"]
 }
 
 export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
-  const [lastMessage, status, error] = useLastMessage(chatId)
-  const [user] = useRequiredUser()
+  const [user, isUserLoading, userError] = useRequiredUser()
+  const [preferredLanguage, isLanguagesLoading, languageError] =
+    usePreferredLanguage()
+  const [lastMessage, isLastMessageLoading, lastMessageError] =
+    useLastMessage(chatId)
   const router = useRouter()
-  const languageCode = usePreferredLanguageCode()
-  const translate = useTranslate()
 
-  if (!user) {
-    return null
-  }
-
-  if (status === "loading") {
+  if (isUserLoading || isLanguagesLoading || isLastMessageLoading) {
     return <ChatRowSkeleton />
   }
 
-  if (status === "error") {
-    return <ErrorAlert error={error} />
+  if (userError || languageError || lastMessageError) {
+    return <ErrorAlert error={[userError, languageError, lastMessageError]} />
   }
 
   return (
@@ -53,22 +49,23 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
         <p className="font-bold">
           {lastMessage
             ? (lastMessage.user.name ?? user.name)?.split(" ")[0]
-            : translate("New Chat")}
+            : preferredLanguage.translate("New Chat")}
         </p>
         <p className="text-gray-400 line-clamp-1">
           {lastMessage
-            ? lastMessage.translated?.[languageCode] ?? lastMessage.input
-            : translate("Get the conversation started...")}
+            ? lastMessage.translated?.[preferredLanguage.code] ??
+              lastMessage.input
+            : preferredLanguage.translate("Get the conversation started...")}
         </p>
       </div>
       <div className="text-xs text-gray-400 text-right">
         <p className="mb-auto">
           {lastMessage
             ? getTimestampString(lastMessage.timestamp)
-            : translate("No messages yet")}
+            : preferredLanguage.translate("No messages yet")}
         </p>
         <p className="font-thin">
-          {translate("Chat")} #{prettifyId(chatId)}...
+          {preferredLanguage.translate("Chat")} #{chatId.substring(0, 4)}...
         </p>
       </div>
     </div>

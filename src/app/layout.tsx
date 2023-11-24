@@ -1,11 +1,9 @@
-import { Header } from "@/components"
-import {
-  SessionProvider,
-  SyncProvider,
-  ThemeProvider,
-} from "@/components/providers"
-import { Toaster } from "@/components/ui"
 import type { Metadata } from "next"
+import { Header } from "@/components"
+import { Toaster } from "@/components/ui"
+import { SessionProvider } from "@/providers/SessionProvider"
+import { SyncProvider } from "@/providers/SyncProvider"
+import { ThemeProvider } from "@/providers/ThemeProvider"
 
 import "@/styles.css"
 

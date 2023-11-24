@@ -1,16 +1,10 @@
-import { useEffect } from "react"
-import { subscribeToParticipatingChats } from "@/services/chat"
-import { useObservable } from "./useObservable"
+import { useCollectionData } from "react-firebase-hooks/firestore"
+import { participatingChatsRef } from "@/services/chat"
 import type { Chat } from "@/types/Chat"
+import type { Observable } from "@/types/Observable"
 
 export function useParticipatingChats(userId: string) {
-  const [chats, setChats, setError] = useObservable<Chat[]>()
-
-  useEffect(() => {
-    if (userId) {
-      return subscribeToParticipatingChats({ userId }, setChats, setError)
-    }
-  }, [userId, setChats, setError])
-
-  return chats
+  return useCollectionData(
+    participatingChatsRef(userId)
+  ) as unknown as Observable<Chat[]>
 }

@@ -1,5 +1,5 @@
-import { useLanguageStore } from "@/stores/language"
+import { useStore } from "@/stores/useStore"
 
 export function usePreferredLanguage() {
-  return useLanguageStore(store => store.preferredLanguage)
+  return useStore(state => state.language.preferred)
 }

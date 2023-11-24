@@ -1,20 +1,15 @@
-import type { getLanguageCode } from "@/utilities/languages"
+type LanguageAndCode =
+  | ["English", "en"]
+  | ["French", "fr"]
+  | ["German", "de"]
+  | ["Hindi", "hi"]
+  | ["Japanese", "ja"]
+  | ["Kannada", "kn"]
+  | ["Malayalam", "ml"]
+  | ["Spanish", "es"]
+  | ["Tamil", "ta"]
+  | ["Telugu", "te"]
 
-export type Language =
-  | "English"
-  | "French"
-  | "German"
-  | "Hindi"
-  | "Japanese"
-  | "Kannada"
-  | "Malayalam"
-  | "Spanish"
-  | "Tamil"
-  | "Telugu"
+export type Language = LanguageAndCode[0]
 
-export type LanguageCode = ReturnType<typeof getLanguageCode>
-
-export type AvailableLanguages = {
-  free: Language[]
-  pro: Language[]
-}
+export type LanguageCode = LanguageAndCode[1]

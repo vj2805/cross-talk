@@ -1,31 +1,35 @@
 "use client"
 
+import type { User } from "next-auth"
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
 import { ErrorAlert, Spinner } from "../ui"
 import { ChatRow } from "./ChatRow"
 import { EmptyChatList } from "./EmptyChatList"
-import type { User } from "@/types/User"
 
 interface ChatListProps {
   user: User
 }
 
 export const ChatList: React.FC<ChatListProps> = ({ user }) => {
-  const [chats, status, error] = useParticipatingChats(user.id)
+  const [
+    participatingChats,
+    isParticipatingChatsLoading,
+    participatingChatsError,
+  ] = useParticipatingChats(user.id)
 
-  if (status === "loading") {
+  if (isParticipatingChatsLoading) {
     return <Spinner />
   }
 
-  if (status === "error") {
-    return <ErrorAlert error={error} />
+  if (participatingChatsError) {
+    return <ErrorAlert error={participatingChatsError} />
   }
 
-  if (chats.length === 0) {
+  if (participatingChats.length === 0) {
     return <EmptyChatList />
   }
 
-  return chats.map(chat => (
+  return participatingChats.map(chat => (
     <ChatRow
       key={chat.id}
       chatId={chat.id}

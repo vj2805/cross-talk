@@ -1,32 +1,9 @@
 import type { Language } from "@/types/Language"
+import type { Phrase } from "@/types/Phrase"
 
 type TranslatingLanguage = Exclude<Language, "English">
 
-const TRANSLATIONS: Record<
-  TranslatingLanguage,
-  Record<
-    | "Are you sure?"
-    | "Cancel"
-    | "Chat"
-    | "Create a New Chat"
-    | "Delete Chat"
-    | "Delete"
-    | "Deleted Chat with id"
-    | "Deleting chat"
-    | "End of Messages"
-    | "Get the conversation started..."
-    | "Invite a friend"
-    | "Let's get you started by creating your first chat!"
-    | "New Chat"
-    | "No messages yet"
-    | "Please wait while we delete the chat..."
-    | "Send your first message in ANY language below to get started!"
-    | "The AI will auto-detect & translate it all for you..."
-    | "This will delete the chat for all users."
-    | "Welcome!",
-    string
-  >
-> = {
+const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
   French: {
     "Are you sure?": "Es-tu sûr?",
     Cancel: "Annuler",
@@ -254,9 +231,9 @@ const TRANSLATIONS: Record<
   },
 }
 
-export function getTranslation(
-  key: keyof (typeof TRANSLATIONS)[TranslatingLanguage],
-  language: Language
-) {
-  return language === "English" ? key : TRANSLATIONS[language][key] || key
+export function getTranslation(phrase: Phrase, language: Language) {
+  if (language === "English") {
+    return phrase
+  }
+  return TRANSLATIONS[language][phrase] || phrase
 }

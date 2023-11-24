@@ -1,8 +1,8 @@
 "use client"
 
 import { ManageSubscriptionButton } from "@/components/subscription/ManageSubscriptionButton"
-import { Spinner } from "@/components/ui"
-import { useCheckout } from "@/hooks/useCheckout"
+import { ErrorAlert, Spinner } from "@/components/ui"
+import { useCreateCheckout } from "@/hooks/useCreateCheckout"
 import { useIsPro } from "@/hooks/useIsPro"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
 import { cn } from "@/utilities/string"
@@ -12,12 +12,16 @@ interface CheckoutButtonProps {
 }
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
-  const [user] = useRequiredUser()
-  const [createCheckout, processing] = useCheckout()
-  const [isPro, status] = useIsPro()
+  const [user, isUserLoading, userError] = useRequiredUser()
+  const [isPro, isSubscriptionLoading, subscriptionError] = useIsPro()
+  const [createCheckout, isProcessing] = useCreateCheckout()
 
-  if (!user || status === "error") {
-    return null
+  if (isUserLoading) {
+    return <Spinner />
+  }
+
+  if (userError || subscriptionError) {
+    return <ErrorAlert error={[userError, subscriptionError]} />
   }
 
   return (
@@ -44,7 +48,7 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
           "disabled:opacity-80"
         )}
       >
-        {status === "loading" || processing ? (
+        {isSubscriptionLoading || isProcessing ? (
           <Spinner />
         ) : isPro ? (
           <ManageSubscriptionButton />

@@ -1,15 +1,8 @@
-import { useEffect } from "react"
-import { subscribeToUser } from "@/services/user"
-import { useObservable } from "./useObservable"
-import type { User } from "@/types/User"
+import type { User } from "next-auth"
+import { useDocumentData } from "react-firebase-hooks/firestore"
+import { userRef } from "@/services/user"
+import type { Observable } from "@/types/Observable"
 
 export function useParticipant(participantId: string) {
-  const [participant, setParticipant, setError] = useObservable<User>()
-
-  useEffect(
-    () => subscribeToUser({ userId: participantId }, setParticipant, setError),
-    [participantId, setParticipant, setError]
-  )
-
-  return participant
+  return useDocumentData(userRef(participantId)) as unknown as Observable<User>
 }

@@ -1,9 +1,9 @@
+import type { PriceTier } from "@/types/PriceTier"
 import { cn } from "@/utilities/string"
 import { CheckoutButton } from "../payment/CheckoutButton"
 import { GetStartedTodayButton } from "../subscription/GetStartedTodayButton"
 import { PriceMonthlyView } from "./PriceMonthly"
 import { PricingTierFeatureList } from "./PricingTierFeatureList"
-import type { PriceTier } from "@/types/PriceTier"
 
 interface PricingCardProps {
   tier: PriceTier

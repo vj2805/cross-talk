@@ -1,5 +1,6 @@
 "use client"
 
+import { usePathname } from "next/navigation"
 import {
   NextLink,
   Select,
@@ -9,21 +10,18 @@ import {
   SelectValue,
   Spinner,
 } from "@/components/ui"
-import { useAvailableLanguages } from "@/hooks/useAvailableLanguages"
-import { usePathname } from "@/hooks/useBuiltins"
-import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
-import { setPreferredLanguage } from "@/stores/language"
+import { useLanguages } from "@/hooks/useLanguages"
+import { setPreferredLanguage } from "@/stores/useStore"
+import type { Language } from "@/types/Language"
 import { cn } from "@/utilities/string"
 import { ErrorAlert } from "../ui"
-import type { Language } from "@/types/Language"
 
 export const LanguageSelect: React.FC = () => {
   const pathname = usePathname()
-  const preferredLanguage = usePreferredLanguage()
-  const [supported, unsupported, status, error] = useAvailableLanguages()
+  const [languages, isLanguagesLoading, languageError] = useLanguages()
 
-  if (status === "error") {
-    return <ErrorAlert error={error} />
+  if (languageError) {
+    return <ErrorAlert error={languageError} />
   }
 
   const isChatPage = pathname.includes("/chat")
@@ -37,14 +35,18 @@ export const LanguageSelect: React.FC = () => {
           <SelectTrigger
             className={cn("w-[150px]", "text-black dark:text-white")}
           >
-            <SelectValue placeholder={preferredLanguage} />
+            {isLanguagesLoading ? (
+              <Spinner />
+            ) : (
+              <SelectValue placeholder={languages.preferred.name} />
+            )}
           </SelectTrigger>
           <SelectContent>
-            {status === "loading" ? (
+            {isLanguagesLoading ? (
               <Spinner />
             ) : (
               <>
-                {supported.map(language => (
+                {languages.supported.map(language => (
                   <SelectItem
                     key={language}
                     value={language}
@@ -52,7 +54,7 @@ export const LanguageSelect: React.FC = () => {
                     {language}
                   </SelectItem>
                 ))}
-                {unsupported.map(language => (
+                {languages.unsupported.map(language => (
                   <NextLink
                     key={language}
                     prefetch={false}

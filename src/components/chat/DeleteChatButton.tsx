@@ -1,9 +1,9 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { deleteChat } from "@/actions/deleteChat"
-import { useRouter } from "@/hooks/useBuiltins"
+import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
-import { useTranslate } from "@/hooks/useTranslate"
 import {
   Button,
   Dialog,
@@ -13,6 +13,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  ErrorAlert,
+  Skeleton,
   showToast,
 } from "../ui"
 
@@ -25,19 +27,26 @@ export const DeleteChatButton: React.FC<DeleteChatButtonProps> = ({
   adminId,
   chatId,
 }) => {
-  const [user] = useRequiredUser()
+  const [user, isUserLoading, userError] = useRequiredUser()
+  const [preferredLanguage, isLanguagesLoading, languageError] =
+    usePreferredLanguage()
   const router = useRouter()
-  const translate = useTranslate()
 
-  if (!user) {
-    return null
+  if (isUserLoading || isLanguagesLoading) {
+    return <Skeleton className="h-10 w-28" />
   }
 
-  if (user.id !== adminId) {
-    return null
+  if (userError || languageError) {
+    return <ErrorAlert error={[userError, languageError]} />
   }
 
   async function handleDeleteChat() {
+    if (isUserLoading || userError) {
+      return
+    }
+    if (user.id !== adminId) {
+      return
+    }
     showToast({
       description: "Please wait while we delete the chat...",
       title: "Deleting chat",
@@ -57,13 +66,19 @@ export const DeleteChatButton: React.FC<DeleteChatButtonProps> = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="destructive">{translate("Delete Chat")}</Button>
+        <Button variant="destructive">
+          {preferredLanguage.translate("Delete Chat")}
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>{translate("Are you sure?")}</DialogTitle>
+          <DialogTitle>
+            {preferredLanguage.translate("Are you sure?")}
+          </DialogTitle>
           <DialogDescription>
-            {translate("This will delete the chat for all users.")}
+            {preferredLanguage.translate(
+              "This will delete the chat for all users."
+            )}
           </DialogDescription>
         </DialogHeader>
         <div className="grid grid-cols-2 space-x-2">
@@ -71,10 +86,12 @@ export const DeleteChatButton: React.FC<DeleteChatButtonProps> = ({
             variant="destructive"
             onClick={handleDeleteChat}
           >
-            {translate("Delete")}
+            {preferredLanguage.translate("Delete")}
           </Button>
           <DialogClose asChild>
-            <Button variant="outline">{translate("Cancel")}</Button>
+            <Button variant="outline">
+              {preferredLanguage.translate("Cancel")}
+            </Button>
           </DialogClose>
         </div>
       </DialogContent>

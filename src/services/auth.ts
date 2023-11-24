@@ -1,14 +1,12 @@
-import { default as NextAuth, getServerSession } from "next-auth"
-import { default as GoogleProvider } from "next-auth/providers/google"
-import { safeEnv } from "@/configs/safeEnv"
-import { default as authService } from "./internal/firebase/auth"
-import type { AuthService } from "@/types/AuthService"
+import { FirestoreAdapter } from "@auth/firebase-adapter"
+import { getServerSession } from "next-auth"
 import type { NextAuthOptions } from "next-auth"
+import GoogleProvider from "next-auth/providers/google"
+import { env } from "@/configs/env"
+import { adminAuth, adminRepo } from "@/configs/firebase/admin"
 
-const { createAuthAdapter, createAuthToken }: AuthService = authService
-
-const authOptions: NextAuthOptions = {
-  adapter: createAuthAdapter(),
+export const authOptions: NextAuthOptions = {
+  adapter: FirestoreAdapter(adminRepo),
   callbacks: {
     async jwt({ user, token }) {
       if (user) {
@@ -19,22 +17,18 @@ const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (session.user && token.sub) {
         session.user.id = token.sub
-        session.firebaseToken = await createAuthToken({ userId: token.sub })
+        session.firebaseToken = await adminAuth.createCustomToken(token.sub)
       }
       return session
     },
   },
   providers: [
     GoogleProvider({
-      clientId: safeEnv["GOOGLE_CLIENT_ID"],
-      clientSecret: safeEnv["GOOGLE_CLIENT_SECRET"],
+      clientId: env["GOOGLE_CLIENT_ID"],
+      clientSecret: env["GOOGLE_CLIENT_SECRET"],
     }),
   ],
   session: { strategy: "jwt" },
-}
-
-export function createAuthHandler() {
-  return NextAuth(authOptions)
 }
 
 export async function getServerUser() {

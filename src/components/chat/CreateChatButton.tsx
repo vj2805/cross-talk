@@ -1,10 +1,10 @@
 "use client"
 
-import { Button, Spinner } from "@/components/ui"
+import { Button, ErrorAlert, Spinner } from "@/components/ui"
 import { MessageSquarePlusIcon } from "@/components/ui/icons"
 import { useCreateChat } from "@/hooks/useCreateChat"
+import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
-import { useTranslate } from "@/hooks/useTranslate"
 
 interface CreateChatButtonProps {
   large?: true
@@ -13,30 +13,39 @@ interface CreateChatButtonProps {
 export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
   large,
 }) => {
-  const [user] = useRequiredUser()
-  const [createChat, processing] = useCreateChat()
-  const translate = useTranslate()
+  const [user, isUserLoading, userError] = useRequiredUser()
+  const [preferredLanguage, isLanguagesLoading, languageError] =
+    usePreferredLanguage()
+  const [createChat, isProcessing] = useCreateChat()
 
-  if (!user) {
-    return null
+  if (isUserLoading || isLanguagesLoading) {
+    return <Spinner />
+  }
+
+  if (userError || languageError) {
+    return <ErrorAlert error={[userError, languageError]} />
   }
 
   return large ? (
     <Button
       variant="default"
-      disabled={processing}
+      disabled={isProcessing}
       onClick={() => createChat(user.id)}
     >
-      {processing ? <Spinner /> : translate("Create a New Chat")}
+      {isProcessing ? (
+        <Spinner />
+      ) : (
+        preferredLanguage.translate("Create a New Chat")
+      )}
     </Button>
   ) : (
     <Button
       variant="ghost"
       size="icon"
-      disabled={processing}
+      disabled={isProcessing}
       onClick={() => createChat(user.id)}
     >
-      {processing ? <Spinner /> : <MessageSquarePlusIcon />}
+      {isProcessing ? <Spinner /> : <MessageSquarePlusIcon />}
     </Button>
   )
 }

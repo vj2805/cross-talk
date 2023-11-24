@@ -1,7 +1,7 @@
 "use client"
 
-import { useInviteForm } from "@/hooks/useInviteForm"
-import { useIsPro } from "@/hooks/useIsPro"
+import { useInviteUserForm } from "@/hooks/useInviteUserForm"
+import type { Chat } from "@/types/Chat"
 import {
   Button,
   Dialog,
@@ -17,15 +17,13 @@ import {
   Input,
 } from "../ui"
 import { PlusCircleIcon } from "../ui/icons"
-import type { Chat } from "@/types/Chat"
 
 interface InviteUserToChatProps {
   chat: Chat
 }
 
 export const InviteUserToChat: React.FC<InviteUserToChatProps> = ({ chat }) => {
-  const [isPro] = useIsPro()
-  const { form, onSubmit } = useInviteForm(chat, !!isPro)
+  const [form, onSubmit] = useInviteUserForm(chat)
   return (
     <Dialog>
       <DialogTrigger asChild>

@@ -1,5 +1,6 @@
 "use client"
 
+import type { User } from "next-auth"
 import { manageSubscription } from "@/actions/manageSubscription"
 import {
   DropdownMenu,
@@ -8,6 +9,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  ErrorAlert,
   Spinner,
 } from "@/components/ui"
 import { StarIcon } from "@/components/ui/icons"
@@ -15,17 +17,16 @@ import { useIsPro } from "@/hooks/useIsPro"
 import { signOut } from "@/services/user"
 import { cn } from "@/utilities/string"
 import { UserAvatar } from "./UserAvatar"
-import type { User } from "@/types/User"
 
 interface ProfileButtonProps {
   user: User
 }
 
 export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
-  const [isPro, status] = useIsPro()
+  const [isPro, isSubscriptionLoading, subscriptionError] = useIsPro()
 
-  if (status === "error") {
-    return null
+  if (subscriptionError) {
+    return <ErrorAlert error={subscriptionError} />
   }
 
   return (
@@ -39,7 +40,7 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({ user }) => {
       <DropdownMenuContent className="text-center">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {status === "loading" ? (
+        {isSubscriptionLoading ? (
           <DropdownMenuItem className="flex items-center justify-center">
             <Spinner />
           </DropdownMenuItem>

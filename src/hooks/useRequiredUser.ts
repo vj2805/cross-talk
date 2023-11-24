@@ -1,17 +1,15 @@
+import type { User } from "next-auth"
 import { useSession } from "next-auth/react"
-import type { UseSessionOptions } from "next-auth/react"
+import { UnexpectedError } from "@/errors/UnexpectedError"
+import type { Observable } from "@/types/Observable"
 
-export function useRequiredUser(
-  onUnauthenticated: UseSessionOptions<true>["onUnauthenticated"] = undefined
-) {
-  const { data: session, status } = useSession({
-    onUnauthenticated,
-    required: true,
-  })
-  switch (status) {
-    case "authenticated":
-      return [session.user!, status] as const
-    case "loading":
-      return [undefined, status] as const
+export function useRequiredUser(): Observable<User> {
+  const { data: session, status } = useSession({ required: true })
+  if (status === "loading") {
+    return [undefined, true, undefined]
   }
+  if (!session.user) {
+    return [undefined, false, new UnexpectedError(useRequiredUser.name)]
+  }
+  return [session.user, false, undefined]
 }

@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { cn } from "@/utilities/string"
-import { PrimitiveForm, PrimitiveSlot } from "./primitives"
 import { Label } from "./label"
+import { PrimitiveForm, PrimitiveSlot } from "./primitives"
 
 type FormFieldName<
   FieldValues extends PrimitiveForm.FieldValues = PrimitiveForm.FieldValues,
@@ -13,10 +13,11 @@ type FormFieldName<
 
 type FormItemId = string
 
-const FormFieldNameContext =
-  React.createContext<Uncertain<FormFieldName>>(undefined)
+const FormFieldNameContext = React.createContext<FormFieldName | undefined>(
+  undefined
+)
 
-const FormItemIdContext = React.createContext<Uncertain<FormItemId>>(undefined)
+const FormItemIdContext = React.createContext<FormItemId | undefined>(undefined)
 
 const useFormField = () => {
   const fieldName = React.useContext(FormFieldNameContext)

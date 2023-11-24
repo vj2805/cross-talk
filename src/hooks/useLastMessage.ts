@@ -1,16 +1,10 @@
-import { useEffect } from "react"
-import { subscribeToLastMessage } from "@/services/message"
-import { useObservable } from "./useObservable"
+import { useCollectionData } from "react-firebase-hooks/firestore"
+import { lastMessageRef } from "@/services/message"
 import type { Message } from "@/types/Message"
+import type { Observable } from "@/types/Observable"
 
 export function useLastMessage(chatId: string) {
-  const [lastMessage, setLastMessage, setError] =
-    useObservable<Nullish<Message>>()
-
-  useEffect(
-    () => subscribeToLastMessage({ chatId }, setLastMessage, setError),
-    [chatId, setLastMessage, setError]
-  )
-
-  return lastMessage
+  return useCollectionData(lastMessageRef(chatId)) as unknown as Observable<
+    Optional<Message>
+  >
 }

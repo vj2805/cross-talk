@@ -1,19 +1,19 @@
 import * as React from "react"
-import { generateId } from "@/utilities/string"
 import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
 import type { ErrorWithAction } from "@/errors/ErrorWithAction"
+import { generateId } from "@/utilities/string"
 
 const TOAST_LIMIT = 2
 const TOAST_REMOVE_DELAY = 1_000_000
 
-type ToastWithoutId = SafeOmit<ToastProps, "id" | "title"> & {
+type ToastWithoutId = Omit<ToastProps, "id" | "title"> & {
   title?: React.ReactNode
   description?: React.ReactNode
   action?: ToastActionElement
   error?: ErrorWithAction
 }
 
-type Toast = WithId<ToastWithoutId>
+type Toast = ToastWithoutId & { id: string }
 
 type Action =
   | {

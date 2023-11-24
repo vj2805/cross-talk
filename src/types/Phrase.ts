@@ -10,6 +10,7 @@ export type Phrase =
   | "Delete"
   | "Deleted Chat with id"
   | "Deleting chat"
+  | "Email"
   | "End of Messages"
   | "Enter message in ANY language..."
   | "Get the conversation started..."

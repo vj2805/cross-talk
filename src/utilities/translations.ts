@@ -16,6 +16,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Delete Chat": "Supprimer la conversation",
     "Deleted Chat with id": "Conversation supprimée avec identifiant",
     "Deleting chat": "Supprimer une conversation",
+    Email: "E-mail",
     "End of Messages": "Fin des messages",
     "Enter message in ANY language...":
       "Entrez le message dans N'IMPORTE QUELLE langue...",
@@ -51,6 +52,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Delete Chat": "Konversation löschen",
     "Deleted Chat with id": "Konversation mit ID gelöscht",
     "Deleting chat": "Konversation wird gelöscht",
+    Email: "Email",
     "End of Messages": "Ende der Nachrichten",
     "Enter message in ANY language...":
       "Geben Sie eine Nachricht in JEDER Sprache ein...",
@@ -86,6 +88,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Delete Chat": "बातचीत मिटाएं",
     "Deleted Chat with id": "आईडी से चैट हटा दी गई",
     "Deleting chat": "वार्तालाप हटाया जा रहा है",
+    Email: "ईमेल",
     "End of Messages": "संदेशों का अंत",
     "Enter message in ANY language...": "किसी भी भाषा में संदेश दर्ज करें...",
     "Get the conversation started...": "बातचीत शुरू करें...",
@@ -120,6 +123,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Delete Chat": "会話を削除する",
     "Deleted Chat with id": "ID との会話を削除しました",
     "Deleting chat": "会話を削除する",
+    Email: "Eメール",
     "End of Messages": "メッセージの終わり",
     "Enter message in ANY language...":
       "任意の言語でメッセージを入力してください...",
@@ -155,6 +159,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Delete Chat": "ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸು",
     "Deleted Chat with id": "ಐಡಿಯೊಂದಿಗೆ ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸಲಾಗಿದೆ",
     "Deleting chat": "ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ",
+    Email: "ಇಮೇಲ್",
     "End of Messages": "ಸಂದೇಶಗಳ ಅಂತ್ಯ",
     "Enter message in ANY language...":
       "ಯಾವುದೇ ಭಾಷೆಯಲ್ಲಿ ಸಂದೇಶವನ್ನು ನಮೂದಿಸಿ...",
@@ -190,6 +195,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Delete Chat": "സംഭാഷണം നീക്കം ചെയ്യുക",
     "Deleted Chat with id": "ഐഡിയുള്ള സംഭാഷണം ഇല്ലാതാക്കി",
     "Deleting chat": "സംഭാഷണം ഇല്ലാതാക്കുന്നു",
+    Email: "ഇമെയിൽ",
     "End of Messages": "സന്ദേശങ്ങളുടെ അവസാനം",
     "Enter message in ANY language...": "ഏത് ഭാഷയിലും സന്ദേശം നൽകുക...",
     "Get the conversation started...": "സംഭാഷണം ആരംഭിക്കുക...",
@@ -224,6 +230,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Delete Chat": "Eliminar la conversación",
     "Deleted Chat with id": "Conversación eliminada con id.",
     "Deleting chat": "Eliminar conversación",
+    Email: "Correo electrónico",
     "End of Messages": "Fin de mensajes",
     "Enter message in ANY language...":
       "Ingrese el mensaje en CUALQUIER idioma...",
@@ -259,6 +266,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Delete Chat": "அரட்டை அழி",
     "Deleted Chat with id": "அரட்டை அழிக்கப்பட்டது",
     "Deleting chat": "அரட்டையை அழிக்கிறது",
+    Email: "மின்னஞ்சல்",
     "End of Messages": "தகவல்கள் முடிவுற்றன",
     "Enter message in ANY language...": "எந்த மொழியிலும் தகவலை உள்ளிடவும்...",
     "Get the conversation started...": "உரையாடலைத் தொடங்கவும்...",
@@ -294,6 +302,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Delete Chat": "సంభాషణను తొలగించండి",
     "Deleted Chat with id": "idతో సంభాషణ తొలగించబడింది",
     "Deleting chat": "సంభాషణను తొలగిస్తోంది",
+    Email: "ఇమెయిల్",
     "End of Messages": "సందేశాల ముగింపు",
     "Enter message in ANY language...":
       "ఏదైనా భాషలో సందేశాన్ని నమోదు చేయండి...",

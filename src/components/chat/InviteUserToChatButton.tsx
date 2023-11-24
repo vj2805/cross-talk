@@ -72,7 +72,7 @@ export function InviteUserToChat({ chat }: InviteUserToChatProps) {
                 <FormItem>
                   <FormControl>
                     <Input
-                      placeholder="Email"
+                      placeholder={preferredLanguage.translate("Email")}
                       {...field}
                     />
                   </FormControl>

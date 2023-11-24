@@ -19,23 +19,15 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const [user, userStatus, userError] = useRequiredUser()
   const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
-  const [lastMessage, lastMessageStatus, lastMessageError] =
+  const [lastMessage, isLastMessageLoading, lastMessageError] =
     useLastMessage(chatId)
   const router = useRouter()
 
-  if (
-    userStatus === "loading" ||
-    isLanguagesLoading ||
-    lastMessageStatus === "loading"
-  ) {
+  if (userStatus === "loading" || isLanguagesLoading || isLastMessageLoading) {
     return <ChatRowSkeleton />
   }
 
-  if (
-    userStatus === "error" ||
-    languageError ||
-    lastMessageStatus === "error"
-  ) {
+  if (userStatus === "error" || languageError || lastMessageError) {
     return <ErrorAlert error={[userError, languageError, lastMessageError]} />
   }
 

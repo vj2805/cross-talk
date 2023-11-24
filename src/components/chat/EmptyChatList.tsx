@@ -5,14 +5,14 @@ import { MessageSquareIcon } from "../ui/icons"
 import { CreateChatButton } from "./CreateChatButton"
 
 export const EmptyChatList: React.FC = () => {
-  const [preferredLanguage, languageStatus, languageError] =
+  const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
 
-  if (languageStatus === "loading") {
+  if (isLanguagesLoading) {
     return <Spinner />
   }
 
-  if (languageStatus === "error") {
+  if (languageError) {
     return <ErrorAlert error={languageError} />
   }
 

@@ -17,15 +17,15 @@ export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
   messages,
   user,
 }) => {
-  const [preferredLanguage, languageStatus, languageError] =
+  const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
   const messagesEndRef = useMessagesEndRef(messages)
 
-  if (languageStatus === "loading") {
+  if (isLanguagesLoading) {
     return <Spinner />
   }
 
-  if (languageStatus === "error") {
+  if (languageError) {
     return <ErrorAlert error={languageError} />
   }
 

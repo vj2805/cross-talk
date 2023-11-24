@@ -4,14 +4,14 @@ import { cn } from "@/utilities/string"
 import { ErrorAlert, Spinner } from "../ui"
 
 export const StartConversation: React.FC = () => {
-  const [preferredLanguage, languageStatus, languageError] =
+  const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
 
-  if (languageStatus === "loading") {
+  if (isLanguagesLoading) {
     return <Spinner />
   }
 
-  if (languageStatus === "error") {
+  if (languageError) {
     return <ErrorAlert error={languageError} />
   }
 

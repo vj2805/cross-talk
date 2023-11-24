@@ -14,15 +14,15 @@ export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
   large,
 }) => {
   const [user, userStatus, userError] = useRequiredUser()
-  const [preferredLanguage, languageStatus, languageError] =
+  const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
   const [createChat, processing] = useCreateChat()
 
-  if (userStatus === "loading" || languageStatus === "loading") {
+  if (userStatus === "loading" || isLanguagesLoading) {
     return <Spinner />
   }
 
-  if (userStatus === "error" || languageStatus === "error") {
+  if (userStatus === "error" || languageError) {
     return <ErrorAlert error={[userError, languageError]} />
   }
 

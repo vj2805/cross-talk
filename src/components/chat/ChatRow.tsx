@@ -17,7 +17,7 @@ interface ChatRowProps {
 
 export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
   const [user, userStatus, userError] = useRequiredUser()
-  const [preferredLanguage, languageStatus, languageError] =
+  const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
   const [lastMessage, lastMessageStatus, lastMessageError] =
     useLastMessage(chatId)
@@ -25,7 +25,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
 
   if (
     userStatus === "loading" ||
-    languageStatus === "loading" ||
+    isLanguagesLoading ||
     lastMessageStatus === "loading"
   ) {
     return <ChatRowSkeleton />
@@ -33,7 +33,7 @@ export const ChatRow: React.FC<ChatRowProps> = ({ chatId }) => {
 
   if (
     userStatus === "error" ||
-    languageStatus === "error" ||
+    languageError ||
     lastMessageStatus === "error"
   ) {
     return <ErrorAlert error={[userError, languageError, lastMessageError]} />

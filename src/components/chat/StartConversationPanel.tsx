@@ -3,7 +3,7 @@ import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { cn } from "@/utilities/string"
 import { ErrorAlert, Spinner } from "../ui"
 
-export const StartConversation: React.FC = () => {
+export function ChatConversePanel() {
   const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
 

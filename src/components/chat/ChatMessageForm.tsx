@@ -13,11 +13,11 @@ import {
 import { useNewMessageForm } from "@/hooks/useNewMessageForm"
 import { cn } from "@/utilities/string"
 
-interface ChatInputProps {
+interface ChatMessageFormProps {
   chatId: string
 }
 
-export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
+export function ChatMessageForm({ chatId }: ChatMessageFormProps) {
   const [form, onSubmit] = useNewMessageForm(chatId)
   return (
     <div className={cn("px-2", "bottom-0", "sticky")}>

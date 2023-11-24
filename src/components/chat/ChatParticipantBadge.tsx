@@ -5,15 +5,15 @@ import { cn } from "@/utilities/string"
 import { Badge, ErrorAlert, Spinner } from "../ui"
 import { UserAvatar } from "../user/UserAvatar"
 
-interface ParticipantBadgeProps {
+interface ChatParticipantBadgeProps {
   isAdmin: boolean
   participantId: string
 }
 
-export const ParticipantBadge: React.FC<ParticipantBadgeProps> = ({
+export function ChatParticipantBadge({
   isAdmin,
   participantId,
-}) => {
+}: ChatParticipantBadgeProps) {
   const [participant, isParticipantLoading, participantError] =
     useParticipant(participantId)
 

@@ -17,11 +17,11 @@ import {
 } from "../ui"
 import { CopyIcon } from "../ui/icons"
 
-interface CopyChatLinkProps {
+interface CopyChatLinkButtonProps {
   chatId: string
 }
 
-export const CopyChatLink: React.FC<CopyChatLinkProps> = ({ chatId }) => {
+export function CopyChatLinkButton({ chatId }: CopyChatLinkButtonProps) {
   const id = useId()
   const linkToChat = createChatLink(chatId)
 

@@ -2,7 +2,7 @@ import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { cn } from "@/utilities/string"
 import { ErrorAlert, Spinner } from "../ui"
 import { MessageSquareIcon } from "../ui/icons"
-import { CreateChatButton } from "./CreateChatButton"
+import { ChatCreateButton } from "./CreateChatButton"
 
 export const EmptyChatList: React.FC = () => {
   const [preferredLanguage, isLanguagesLoading, languageError] =
@@ -32,7 +32,7 @@ export const EmptyChatList: React.FC = () => {
           "Let's get you started by creating your first chat!"
         )}
       </h2>
-      <CreateChatButton large />
+      <ChatCreateButton large />
     </div>
   )
 }

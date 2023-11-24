@@ -2,15 +2,16 @@
 
 import type { User } from "next-auth"
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
-import { ErrorAlert, Spinner } from "../ui"
-import { ChatRow } from "./ChatRow"
-import { EmptyChatList } from "./EmptyChatList"
+import { ErrorAlert } from "../ui"
+import { ChatRow } from "./ChatListRow"
+import { EmptyChatList } from "./WelcomeToChatPanel"
+import { ChatListSkeleton } from "./skeletons/ChatListSkeleton"
 
 interface ChatListProps {
   user: User
 }
 
-export const ChatList: React.FC<ChatListProps> = ({ user }) => {
+export function ChatList({ user }: ChatListProps) {
   const [
     participatingChats,
     isParticipatingChatsLoading,
@@ -18,7 +19,7 @@ export const ChatList: React.FC<ChatListProps> = ({ user }) => {
   ] = useParticipatingChats(user.id)
 
   if (isParticipatingChatsLoading) {
-    return <Spinner />
+    return <ChatListSkeleton />
   }
 
   if (participatingChatsError) {

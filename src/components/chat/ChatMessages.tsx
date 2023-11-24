@@ -4,14 +4,14 @@ import type { User } from "next-auth"
 import { useMessages } from "@/hooks/useMessages"
 import { ErrorAlert, Spinner } from "../ui"
 import { ChatMessagesList } from "./ChatMessagesList"
-import { StartConversation } from "./StartConversation"
+import { ChatConversePanel } from "./StartConversationPanel"
 
 interface ChatMessagesProps {
   chatId: string
   user: User
 }
 
-export const ChatMessages: React.FC<ChatMessagesProps> = ({ chatId, user }) => {
+export function ChatMessages({ chatId, user }: ChatMessagesProps) {
   const [messages, isMessagesLoading, messagesError] = useMessages(chatId)
 
   if (isMessagesLoading) {
@@ -23,7 +23,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({ chatId, user }) => {
   }
 
   if (messages.length === 0) {
-    return <StartConversation />
+    return <ChatConversePanel />
   }
 
   return (

@@ -6,13 +6,11 @@ import { useCreateChat } from "@/hooks/useCreateChat"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { useRequiredUser } from "@/hooks/useRequiredUser"
 
-interface CreateChatButtonProps {
+interface ChatCreateButtonProps {
   large?: true
 }
 
-export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
-  large,
-}) => {
+export function ChatCreateButton({ large }: ChatCreateButtonProps) {
   const [user, isUserLoading, userError] = useRequiredUser()
   const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()

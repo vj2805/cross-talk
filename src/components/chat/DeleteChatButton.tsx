@@ -18,15 +18,12 @@ import {
   showToast,
 } from "../ui"
 
-interface DeleteChatButtonProps {
+interface ChatDeleteButtonProps {
   adminId: string
   chatId: string
 }
 
-export const DeleteChatButton: React.FC<DeleteChatButtonProps> = ({
-  adminId,
-  chatId,
-}) => {
+export function ChatDeleteButton({ adminId, chatId }: ChatDeleteButtonProps) {
   const [user, isUserLoading, userError] = useRequiredUser()
   const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()

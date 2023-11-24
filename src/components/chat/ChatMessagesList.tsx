@@ -13,10 +13,7 @@ interface ChatMessagesListProps {
   user: User
 }
 
-export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
-  messages,
-  user,
-}) => {
+export function ChatMessagesList({ messages, user }: ChatMessagesListProps) {
   const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
   const messagesEndRef = useMessagesEndRef(messages)

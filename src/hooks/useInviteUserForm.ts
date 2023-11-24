@@ -15,7 +15,7 @@ const InviteUserFormSchema = z.object({
 type InviteUserFormData = z.infer<typeof InviteUserFormSchema>
 
 export function useInviteUserForm(chat: Chat) {
-  const [user, userStatus] = useRequiredUser()
+  const [user, isUserLoading, userError] = useRequiredUser()
   const [isPro, isSubscriptionLoading, subscriptionError] = useIsPro()
 
   const form = useForm<InviteUserFormData>({
@@ -26,7 +26,7 @@ export function useInviteUserForm(chat: Chat) {
   })
 
   async function onSubmit({ email }: InviteUserFormData) {
-    if (userStatus !== "authenticated") {
+    if (isUserLoading || userError) {
       return
     }
     if (isSubscriptionLoading || subscriptionError) {

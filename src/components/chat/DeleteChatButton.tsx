@@ -27,21 +27,21 @@ export const DeleteChatButton: React.FC<DeleteChatButtonProps> = ({
   adminId,
   chatId,
 }) => {
-  const [user, userStatus, userError] = useRequiredUser()
+  const [user, isUserLoading, userError] = useRequiredUser()
   const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
   const router = useRouter()
 
-  if (userStatus === "loading" || isLanguagesLoading) {
+  if (isUserLoading || isLanguagesLoading) {
     return <Skeleton className="h-10 w-28" />
   }
 
-  if (userStatus === "error" || languageError) {
+  if (userError || languageError) {
     return <ErrorAlert error={[userError, languageError]} />
   }
 
   async function handleDeleteChat() {
-    if (userStatus !== "authenticated") {
+    if (isUserLoading || userError) {
       return
     }
     if (user.id !== adminId) {

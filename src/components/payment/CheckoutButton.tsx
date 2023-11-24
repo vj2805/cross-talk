@@ -12,15 +12,15 @@ interface CheckoutButtonProps {
 }
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ priceId }) => {
-  const [user, userStatus, userError] = useRequiredUser()
+  const [user, isUserLoading, userError] = useRequiredUser()
   const [isPro, isSubscriptionLoading, subscriptionError] = useIsPro()
   const [createCheckout, isProcessing] = useCreateCheckout()
 
-  if (userStatus === "loading") {
+  if (isUserLoading) {
     return <Spinner />
   }
 
-  if (userStatus === "error" || subscriptionError) {
+  if (userError || subscriptionError) {
     return <ErrorAlert error={[userError, subscriptionError]} />
   }
 

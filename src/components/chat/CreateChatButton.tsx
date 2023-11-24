@@ -13,16 +13,16 @@ interface CreateChatButtonProps {
 export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
   large,
 }) => {
-  const [user, userStatus, userError] = useRequiredUser()
+  const [user, isUserLoading, userError] = useRequiredUser()
   const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
   const [createChat, isProcessing] = useCreateChat()
 
-  if (userStatus === "loading" || isLanguagesLoading) {
+  if (isUserLoading || isLanguagesLoading) {
     return <Spinner />
   }
 
-  if (userStatus === "error" || languageError) {
+  if (userError || languageError) {
     return <ErrorAlert error={[userError, languageError]} />
   }
 

@@ -14,7 +14,7 @@ const AddMessageFormSchema = z.object({
 type AddMessageFormData = z.infer<typeof AddMessageFormSchema>
 
 export function useNewMessageForm(chatId: string) {
-  const [user, userStatus] = useRequiredUser()
+  const [user, isUserLoading, userError] = useRequiredUser()
   const [isPro, isSubscriptionLoading, subscriptionError] = useIsPro()
   const form = useForm<AddMessageFormData>({
     defaultValues: { input: "" },
@@ -22,7 +22,7 @@ export function useNewMessageForm(chatId: string) {
   })
 
   async function onSubmit({ input }: AddMessageFormData) {
-    if (userStatus !== "authenticated") {
+    if (isUserLoading || userError) {
       return
     }
     if (isSubscriptionLoading || subscriptionError) {

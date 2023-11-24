@@ -6,18 +6,18 @@ import { createChat, getParticipatingChatCount } from "@/services/chat"
 import { useIsPro } from "./useIsPro"
 
 export function useCreateChat() {
-  const [running, setRunning] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false)
   const [isPro, isSubscriptionLoading, subscriptionError] = useIsPro()
   const router = useRouter()
 
-  async function run(adminId: string) {
+  async function execute(adminId: string) {
     if (isSubscriptionLoading || subscriptionError) {
       return
     }
-    if (running) {
+    if (isProcessing) {
       return
     }
-    setRunning(true)
+    setIsProcessing(true)
     showToast({
       description: "Hold tight while we create your new chat...",
       title: "Creating new chat...",
@@ -39,9 +39,9 @@ export function useCreateChat() {
     } catch (error) {
       showToast({ error: error as Error })
     } finally {
-      setRunning(false)
+      setIsProcessing(false)
     }
   }
 
-  return [run, running] as const
+  return [execute, isProcessing] as const
 }

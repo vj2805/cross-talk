@@ -16,7 +16,7 @@ export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
   const [user, userStatus, userError] = useRequiredUser()
   const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
-  const [createChat, processing] = useCreateChat()
+  const [createChat, isProcessing] = useCreateChat()
 
   if (userStatus === "loading" || isLanguagesLoading) {
     return <Spinner />
@@ -29,10 +29,10 @@ export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
   return large ? (
     <Button
       variant="default"
-      disabled={processing}
+      disabled={isProcessing}
       onClick={() => createChat(user.id)}
     >
-      {processing ? (
+      {isProcessing ? (
         <Spinner />
       ) : (
         preferredLanguage.translate("Create a New Chat")
@@ -42,10 +42,10 @@ export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
     <Button
       variant="ghost"
       size="icon"
-      disabled={processing}
+      disabled={isProcessing}
       onClick={() => createChat(user.id)}
     >
-      {processing ? <Spinner /> : <MessageSquarePlusIcon />}
+      {isProcessing ? <Spinner /> : <MessageSquarePlusIcon />}
     </Button>
   )
 }

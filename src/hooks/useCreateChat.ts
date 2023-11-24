@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { showToast } from "@/components/ui"
+import { chatsQuota } from "@/configs/quota"
 import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
 import { createChat, getParticipatingChatCount } from "@/services/chat"
 import { useIsPro } from "./useIsPro"
@@ -25,8 +26,8 @@ export function useCreateChat() {
     try {
       if (!isPro) {
         const participatingChatCount = await getParticipatingChatCount(adminId)
-        if (participatingChatCount >= 3) {
-          throw new FreePlanLimitExceededError("3 chats per user")
+        if (participatingChatCount >= chatsQuota) {
+          throw new FreePlanLimitExceededError(`${chatsQuota} chats per user`)
         }
       }
       const chatId = await createChat(adminId)

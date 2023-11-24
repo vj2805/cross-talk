@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { showToast } from "@/components/ui"
+import { messagesQuota } from "@/configs/quota"
 import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
 import { getMessagesCount, postMessage } from "@/services/message"
 import { useIsPro } from "./useIsPro"
@@ -34,8 +35,10 @@ export function useNewMessageForm(chatId: string) {
     try {
       if (!isPro) {
         const count = await getMessagesCount(chatId)
-        if (count >= 25) {
-          throw new FreePlanLimitExceededError("25 messages per chat")
+        if (count >= messagesQuota) {
+          throw new FreePlanLimitExceededError(
+            `${messagesQuota} messages per chat`
+          )
         }
       }
       await postMessage(chatId, input, user)

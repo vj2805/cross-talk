@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { showToast } from "@/components/ui"
+import { participantsQuota } from "@/configs/quota"
 import { FreePlanLimitExceededError } from "@/errors/FreePlanLimitExceededError"
 import { addUserWithEmailToChat } from "@/services/user"
 import type { Chat } from "@/types/Chat"
@@ -40,10 +41,12 @@ export function useInviteUserForm(chat: Chat) {
       title: "Sending Invite...",
     })
     try {
-      if (!isPro && chat.participantsIds.length >= 2) {
-        throw new FreePlanLimitExceededError("2 users per chat")
+      if (!isPro && chat.participantsIds.length >= participantsQuota) {
+        throw new FreePlanLimitExceededError(
+          `${participantsQuota} users per chat`
+        )
       }
-      await addUserWithEmailToChat(chat.id, user.id)
+      await addUserWithEmailToChat(chat.id, email)
       showToast({
         description: "The user has been added to the chat successfully!",
         title: "Added to chat",

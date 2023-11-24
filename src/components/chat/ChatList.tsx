@@ -4,13 +4,13 @@ import type { User } from "next-auth"
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
 import { ErrorAlert, Spinner } from "../ui"
 import { ChatRow } from "./ChatRow"
-import { EmptyChatList } from "./EmptyChatList"
+import { WelcomeToChatPanel } from "./WelcomeToChatPanel"
 
 interface ChatListProps {
   user: User
 }
 
-export const ChatList: React.FC<ChatListProps> = ({ user }) => {
+export function ChatList({ user }: ChatListProps) {
   const [
     participatingChats,
     isParticipatingChatsLoading,
@@ -18,7 +18,11 @@ export const ChatList: React.FC<ChatListProps> = ({ user }) => {
   ] = useParticipatingChats(user.id)
 
   if (isParticipatingChatsLoading) {
-    return <Spinner />
+    return (
+      <div className="flex-1 flex justify-center items-center">
+        <Spinner />
+      </div>
+    )
   }
 
   if (participatingChatsError) {
@@ -26,7 +30,7 @@ export const ChatList: React.FC<ChatListProps> = ({ user }) => {
   }
 
   if (participatingChats.length === 0) {
-    return <EmptyChatList />
+    return <WelcomeToChatPanel />
   }
 
   return participatingChats.map(chat => (

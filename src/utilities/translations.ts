@@ -5,22 +5,27 @@ type TranslatingLanguage = Exclude<Language, "English">
 
 const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
   French: {
+    Admin: "Administrateur",
     "Are you sure?": "Es-tu sûr?",
     Cancel: "Annuler",
     Chat: "Conversation",
     "Create a New Chat": "Créer une nouvelle conversation",
     Delete: "Supprimer",
     "Delete Chat": "Supprimer la conversation",
-    "Deleted Chat with id": "",
-    "Deleting chat": "",
+    "Deleted Chat with id": "Conversation supprimée avec identifiant",
+    "Deleting chat": "Supprimer une conversation",
     "End of Messages": "Fin des messages",
+    "Enter message in ANY language...":
+      "Entrez le message dans N'IMPORTE QUELLE langue...",
     "Get the conversation started...": "Lancez la conversation...",
     "Invite a friend": "Invite un ami",
     "Let's get you started by creating your first chat!":
       "Commençons par créer votre premier converser!",
     "New Chat": "Nouvelle conversation",
     "No messages yet": "Pas encore de messages",
-    "Please wait while we delete the chat...": "",
+    "Please wait while we delete the chat...":
+      "Veuillez patienter pendant que nous supprimons la conversation...",
+    Send: "Envoyer",
     "Send your first message in ANY language below to get started!":
       "Envoyez votre premier message dans N'IMPORTE QUELLE langue pour commencer",
     "The AI will auto-detect & translate it all for you...":
@@ -30,22 +35,27 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Welcome!": "Bienvenue!",
   },
   German: {
+    Admin: "Administrator",
     "Are you sure?": "Bist du sicher?",
     Cancel: "Stornieren",
     Chat: "Gespräch",
     "Create a New Chat": "Erstellen Sie eine neue Konversation",
     Delete: "Löschen",
     "Delete Chat": "Konversation löschen",
-    "Deleted Chat with id": "",
-    "Deleting chat": "",
+    "Deleted Chat with id": "Konversation mit ID gelöscht",
+    "Deleting chat": "Konversation wird gelöscht",
     "End of Messages": "Ende der Nachrichten",
+    "Enter message in ANY language...":
+      "Geben Sie eine Nachricht in JEDER Sprache ein...",
     "Get the conversation started...": "Beginnen Sie das Gespräch...",
     "Invite a friend": "Einen Freund einladen",
     "Let's get you started by creating your first chat!":
       "Beginnen wir mit der Erstellung Ihres ersten Chats!",
     "New Chat": "Neues Gespräch",
     "No messages yet": "Noch keine Nachrichten",
-    "Please wait while we delete the chat...": "",
+    "Please wait while we delete the chat...":
+      "Bitte warten Sie, während wir die Konversation löschen...",
+    Send: "Schicken",
     "Send your first message in ANY language below to get started!":
       "Senden Sie Ihre erste Nachricht in JEDER Sprache, um loszulegen",
     "The AI will auto-detect & translate it all for you...":
@@ -55,22 +65,26 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Welcome!": "Willkommen!",
   },
   Hindi: {
+    Admin: "व्यवस्थापक",
     "Are you sure?": "क्या आपको यकीन है?",
     Cancel: "रद्द करना",
     Chat: "बातचीत",
     "Create a New Chat": "एक नई बातचीत बनाएं",
     Delete: "मिटाना",
     "Delete Chat": "बातचीत मिटाएं",
-    "Deleted Chat with id": "",
-    "Deleting chat": "",
+    "Deleted Chat with id": "आईडी से चैट हटा दी गई",
+    "Deleting chat": "वार्तालाप हटाया जा रहा है",
     "End of Messages": "संदेशों का अंत",
+    "Enter message in ANY language...": "किसी भी भाषा में संदेश दर्ज करें...",
     "Get the conversation started...": "बातचीत शुरू करें...",
     "Invite a friend": "किसी मित्र को आमंत्रित करें",
     "Let's get you started by creating your first chat!":
       "आइए अपनी पहली चैट बनाकर शुरुआत करें!",
     "New Chat": "नई बातचीत",
     "No messages yet": "अभी तक कोई संदेश नहीं",
-    "Please wait while we delete the chat...": "",
+    "Please wait while we delete the chat...":
+      "कृपया तब तक प्रतीक्षा करें जब तक हम वार्तालाप हटा नहीं देते...",
+    Send: "भेजना",
     "Send your first message in ANY language below to get started!":
       "आरंभ करने के लिए अपना पहला संदेश किसी भी भाषा में भेजें",
     "The AI will auto-detect & translate it all for you...":
@@ -80,22 +94,27 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Welcome!": "स्वागत!",
   },
   Japanese: {
+    Admin: "管理者",
     "Are you sure?": "本気ですか？",
     Cancel: "キャンセル",
     Chat: "会話",
     "Create a New Chat": "新しい会話を作成する",
     Delete: "消去",
     "Delete Chat": "会話を削除する",
-    "Deleted Chat with id": "",
-    "Deleting chat": "",
+    "Deleted Chat with id": "ID との会話を削除しました",
+    "Deleting chat": "会話を削除する",
     "End of Messages": "メッセージの終わり",
+    "Enter message in ANY language...":
+      "任意の言語でメッセージを入力してください...",
     "Get the conversation started...": "会話を始めましょう...",
     "Invite a friend": "友達を招待する",
     "Let's get you started by creating your first chat!":
       "まずは最初のチャットを作成してみましょう",
     "New Chat": "新しい会話",
     "No messages yet": "まだメッセージはありません",
-    "Please wait while we delete the chat...": "",
+    "Please wait while we delete the chat...":
+      "会話を削除するまでお待ちください...",
+    Send: "送信",
     "Send your first message in ANY language below to get started!":
       "まずは任意の言語で最初のメッセージを送信してください",
     "The AI will auto-detect & translate it all for you...":
@@ -105,22 +124,27 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Welcome!": "いらっしゃいませ！",
   },
   Kannada: {
+    Admin: "ನಿರ್ವಾಹಕ",
     "Are you sure?": "ನೀವು ಖಚಿತವಾಗಿರುವಿರಾ?",
     Cancel: "ರದ್ದುಮಾಡಿ",
     Chat: "ಸಂಭಾಷಣೆ",
     "Create a New Chat": "ಹೊಸ ಸಂವಾದವನ್ನು ರಚಿಸಿ",
     Delete: "ಅಳಿಸಿ",
     "Delete Chat": "ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸು",
-    "Deleted Chat with id": "",
-    "Deleting chat": "",
+    "Deleted Chat with id": "ಐಡಿಯೊಂದಿಗೆ ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸಲಾಗಿದೆ",
+    "Deleting chat": "ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ",
     "End of Messages": "ಸಂದೇಶಗಳ ಅಂತ್ಯ",
+    "Enter message in ANY language...":
+      "ಯಾವುದೇ ಭಾಷೆಯಲ್ಲಿ ಸಂದೇಶವನ್ನು ನಮೂದಿಸಿ...",
     "Get the conversation started...": "ಸಂಭಾಷಣೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿ...",
     "Invite a friend": "ಸ್ನೇಹಿತನನ್ನು ಆಮಂತ್ರಿಸು",
     "Let's get you started by creating your first chat!":
       "ನಿಮ್ಮ ಮೊದಲ ಚಾಟ್ ರಚಿಸುವ ಮೂಲಕ ಪ್ರಾರಂಭಿಸೋಣ!",
     "New Chat": "ಹೊಸ ಸಂಭಾಷಣೆ",
     "No messages yet": "ಇನ್ನೂ ಯಾವುದೇ ಸಂದೇಶಗಳಿಲ್ಲ",
-    "Please wait while we delete the chat...": "",
+    "Please wait while we delete the chat...":
+      "ನಾವು ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸುವವರೆಗೆ ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ...",
+    Send: "ಕಳುಹಿಸು",
     "Send your first message in ANY language below to get started!":
       "ಪ್ರಾರಂಭಿಸಲು ಯಾವುದೇ ಭಾಷೆಯಲ್ಲಿ ನಿಮ್ಮ ಮೊದಲ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಿ",
     "The AI will auto-detect & translate it all for you...":
@@ -130,22 +154,26 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Welcome!": "ಸ್ವಾಗತ!",
   },
   Malayalam: {
+    Admin: "അഡ്മിൻ",
     "Are you sure?": "നിങ്ങൾക്ക് ഉറപ്പാണോ?",
     Cancel: "റദ്ദാക്കുക",
     Chat: "സംഭാഷണം",
     "Create a New Chat": "ഒരു പുതിയ സംഭാഷണം സൃഷ്ടിക്കുക",
     Delete: "ഇല്ലാതാക്കുക",
     "Delete Chat": "സംഭാഷണം നീക്കം ചെയ്യുക",
-    "Deleted Chat with id": "",
-    "Deleting chat": "",
+    "Deleted Chat with id": "ഐഡിയുള്ള സംഭാഷണം ഇല്ലാതാക്കി",
+    "Deleting chat": "സംഭാഷണം ഇല്ലാതാക്കുന്നു",
     "End of Messages": "സന്ദേശങ്ങളുടെ അവസാനം",
+    "Enter message in ANY language...": "ഏത് ഭാഷയിലും സന്ദേശം നൽകുക...",
     "Get the conversation started...": "സംഭാഷണം ആരംഭിക്കുക...",
     "Invite a friend": "ഒരു സുഹൃത്തിനെ ക്ഷണിക്കുക",
     "Let's get you started by creating your first chat!":
       "നിങ്ങളുടെ ആദ്യ ചാറ്റ് സൃഷ്ടിച്ചുകൊണ്ട് നമുക്ക് ആരംഭിക്കാം!",
     "New Chat": "പുതിയ സംഭാഷണം",
     "No messages yet": "ഇതുവരെ സന്ദേശങ്ങളൊന്നുമില്ല",
-    "Please wait while we delete the chat...": "",
+    "Please wait while we delete the chat...":
+      "ഞങ്ങൾ സംഭാഷണം ഇല്ലാതാക്കുന്നത് വരെ കാത്തിരിക്കൂ...",
+    Send: "അയക്കുക",
     "Send your first message in ANY language below to get started!":
       "ആരംഭിക്കുന്നതിന് ഏത് ഭാഷയിലും നിങ്ങളുടെ ആദ്യ സന്ദേശം അയയ്‌ക്കുക",
     "The AI will auto-detect & translate it all for you...":
@@ -155,22 +183,27 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Welcome!": "സ്വാഗതം!",
   },
   Spanish: {
+    Admin: "Administrador",
     "Are you sure?": "¿Estas seguro?",
     Cancel: "Cancelar",
     Chat: "Conversación",
     "Create a New Chat": "Crear una nueva conversación",
     Delete: "Borrar",
     "Delete Chat": "Eliminar la conversación",
-    "Deleted Chat with id": "",
-    "Deleting chat": "",
+    "Deleted Chat with id": "Conversación eliminada con id.",
+    "Deleting chat": "Eliminar conversación",
     "End of Messages": "Fin de mensajes",
+    "Enter message in ANY language...":
+      "Ingrese el mensaje en CUALQUIER idioma...",
     "Get the conversation started...": "Inicie la conversación...",
     "Invite a friend": "Invitar a un amigo",
     "Let's get you started by creating your first chat!":
       "¡Comencemos creando tu primer chat!",
     "New Chat": "Nueva conversación",
     "No messages yet": "No hay mensajes todavía",
-    "Please wait while we delete the chat...": "",
+    "Please wait while we delete the chat...":
+      "Espere mientras eliminamos la conversación...",
+    Send: "Enviar",
     "Send your first message in ANY language below to get started!":
       "Envía tu primer mensaje en CUALQUIER idioma para comenzar",
     "The AI will auto-detect & translate it all for you...":
@@ -180,47 +213,56 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Welcome!": "¡Bienvenido!",
   },
   Tamil: {
+    Admin: "நிர்வாகி",
     "Are you sure?": "உறுதியாகவா?",
     Cancel: "ரத்து செய்",
     Chat: "அரட்டை",
     "Create a New Chat": "புது அரட்டையை உருவாக்கு",
     Delete: "அழி",
     "Delete Chat": "அரட்டை அழி",
-    "Deleted Chat with id": "",
-    "Deleting chat": "",
-    "End of Messages": "செய்திகள் முடிவுற்றன",
+    "Deleted Chat with id": "அரட்டை அழிக்கப்பட்டது",
+    "Deleting chat": "அரட்டையை அழிக்கிறது",
+    "End of Messages": "தகவல்கள் முடிவுற்றன",
+    "Enter message in ANY language...": "எந்த மொழியிலும் தகவலை உள்ளிடவும்...",
     "Get the conversation started...": "உரையாடலைத் தொடங்கவும்...",
     "Invite a friend": "நண்பரை அழை",
     "Let's get you started by creating your first chat!":
       "உங்கள் முதல் அரட்டையை உருவாக்குவதன் மூலம் தொடங்குவோம்!",
     "New Chat": "புது அரட்டை",
-    "No messages yet": "இதுவரை எந்தச் செய்தியும் இல்லை",
-    "Please wait while we delete the chat...": "",
+    "No messages yet": "இதுவரை எந்தத் தகவல்களும் இல்லை",
+    "Please wait while we delete the chat...":
+      "அரட்டையை அழிக்கும் வரை காத்திருக்கவும்...",
+    Send: "அனுப்பு",
     "Send your first message in ANY language below to get started!":
-      "தொடங்குவதற்கு உங்கள் முதல் செய்தியை ஏதோர் மொழியிலும் அனுப்பவும்",
+      "தொடங்குவதற்கு உங்கள் முதல் தகவலை ஏதோர் மொழியிலும் அனுப்பவும்",
     "The AI will auto-detect & translate it all for you...":
       "செயற்கை நுண்ணறிவு தானாகவே உங்களுக்காக அனைத்தையும் மொழிபெயர்த்துவிடும்...",
     "This will delete the chat for all users.":
-      "இது அனைத்து உறுப்பினர்களுக்கும் அரட்டையை நீக்கும்.",
+      "இது அனைத்து உறுப்பினர்களுக்கும் அரட்டையை அழிக்கும்.",
     "Welcome!": "நல்வரவு!",
   },
   Telugu: {
+    Admin: "అడ్మిన్",
     "Are you sure?": "మీరు చెప్పేది నిజమా?",
     Cancel: "రద్దు చేయండి",
     Chat: "సంభాషణ",
     "Create a New Chat": "కొత్త సంభాషణను సృష్టించండి",
     Delete: "తొలగించు",
     "Delete Chat": "సంభాషణను తొలగించండి",
-    "Deleted Chat with id": "",
-    "Deleting chat": "",
+    "Deleted Chat with id": "idతో సంభాషణ తొలగించబడింది",
+    "Deleting chat": "సంభాషణను తొలగిస్తోంది",
     "End of Messages": "సందేశాల ముగింపు",
+    "Enter message in ANY language...":
+      "ఏదైనా భాషలో సందేశాన్ని నమోదు చేయండి...",
     "Get the conversation started...": "సంభాషణను ప్రారంభించండి...",
     "Invite a friend": "స్నేహితుడిని ఆహ్వానించు",
     "Let's get you started by creating your first chat!":
       "మీ మొదటి చాట్‌ని సృష్టించడం ద్వారా ప్రారంభించండి!",
     "New Chat": "కొత్త సంభాషణ",
     "No messages yet": "ఇంకా సందేశాలు లేవు",
-    "Please wait while we delete the chat...": "",
+    "Please wait while we delete the chat...":
+      "మేము సంభాషణను తొలగించే వరకు దయచేసి వేచి ఉండండి...",
+    Send: "పంపండి",
     "Send your first message in ANY language below to get started!":
       "ప్రారంభించడానికి మీ మొదటి సందేశాన్ని ఏదైనా భాషలో పంపండి",
     "The AI will auto-detect & translate it all for you...":

@@ -1,4 +1,4 @@
-import { CreateChatButton } from "@/components/chat/CreateChatButton"
+import { ChatCreateButton } from "@/components/chat/CreateChatButton"
 import { UpgradeBanner } from "@/components/subscription/UpgradeBanner"
 import { Button, NextLink } from "@/components/ui"
 import { MessagesSquareIcon } from "@/components/ui/icons"
@@ -41,7 +41,7 @@ export const Header: React.FC = async () => {
                   <MessagesSquareIcon className="text-black dark:text-white" />
                 </Button>
               </NextLink>
-              <CreateChatButton />
+              <ChatCreateButton />
             </>
           ) : (
             <NextLink

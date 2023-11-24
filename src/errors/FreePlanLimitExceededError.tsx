@@ -1,4 +1,9 @@
 import { NextLink, ToastAction } from "@/components/ui"
+import type {
+  chatsQuota,
+  messagesQuota,
+  participantsQuota,
+} from "@/configs/quota"
 import { ErrorWithAction } from "./ErrorWithAction"
 
 export class FreePlanLimitExceededError extends ErrorWithAction {
@@ -24,6 +29,6 @@ export class FreePlanLimitExceededError extends ErrorWithAction {
 }
 
 export type FreePlanLimitExceededErrorCode =
-  | "2 users per chat"
-  | "3 chats per user"
-  | "25 messages per chat"
+  | `${typeof chatsQuota} chats per user`
+  | `${typeof messagesQuota} messages per chat`
+  | `${typeof participantsQuota} users per chat`

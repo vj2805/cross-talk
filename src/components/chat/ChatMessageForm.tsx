@@ -2,25 +2,46 @@
 
 import {
   Button,
+  ErrorAlert,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
   Input,
+  Skeleton,
   Spinner,
 } from "@/components/ui"
 import { useNewMessageForm } from "@/hooks/useNewMessageForm"
+import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { cn } from "@/utilities/string"
 
-interface ChatInputProps {
+interface ChatMessageFormProps {
   chatId: string
 }
 
-export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
+export function ChatMessageForm({ chatId }: ChatMessageFormProps) {
+  const [preferredLanguage, isLanguageLoading, languageError] =
+    usePreferredLanguage()
   const [form, onSubmit] = useNewMessageForm(chatId)
+
+  if (isLanguageLoading) {
+    return (
+      <div className="mx-auto max-w-4xl p-2 border border-muted rounded-t-xl flex space-x-2 animate-pulse">
+        <div className="h-10 w-full px-3 py-2 flex-1 text-muted-foreground">
+          Enter message in ANY language...
+        </div>
+        <div className="h-10 px-4 py-2 bg-muted rounded-md">Send</div>
+      </div>
+    )
+  }
+
+  if (languageError) {
+    return <ErrorAlert error={languageError} />
+  }
+
   return (
-    <div className={cn("px-2", "bottom-0", "sticky")}>
+    <div className="px-2 bottom-0 sticky">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -41,7 +62,9 @@ export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
               <FormItem className="flex-1">
                 <FormControl>
                   <Input
-                    placeholder="Enter message in ANY language..."
+                    placeholder={preferredLanguage.translate(
+                      "Enter message in ANY language..."
+                    )}
                     className={cn(
                       "bg-transparent",
                       "dark:placeholder:text-white/70",
@@ -63,7 +86,11 @@ export const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
               "focus-visible:ring-0"
             )}
           >
-            {form.formState.isSubmitting ? <Spinner /> : "Send"}
+            {form.formState.isSubmitting ? (
+              <Spinner />
+            ) : (
+              preferredLanguage.translate("Send")
+            )}
           </Button>
         </form>
       </Form>

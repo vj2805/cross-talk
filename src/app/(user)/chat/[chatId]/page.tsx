@@ -1,6 +1,6 @@
 import {
   ChatControls,
-  ChatInput,
+  ChatMessageForm,
   ChatMessages,
   SignInRequiredAlert,
 } from "@/components"
@@ -51,7 +51,7 @@ export default async function ChatPage({ params: { chatId } }: ChatPageProps) {
         chatId={chatId}
         user={user}
       />
-      <ChatInput chatId={chatId} />
+      <ChatMessageForm chatId={chatId} />
     </>
   )
 }

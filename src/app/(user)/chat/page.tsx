@@ -9,7 +9,7 @@ export default async function ChatsPage() {
   }
 
   return (
-    <div>
+    <div className="flex-1">
       <ChatList user={user} />
     </div>
   )

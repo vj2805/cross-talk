@@ -3,13 +3,13 @@ import { showToast } from "@/components/ui"
 import { createPaymentCheckout } from "@/services/payment"
 
 export function useCreateCheckout() {
-  const [running, setRunning] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false)
 
-  async function run(userId: string, priceId: string) {
-    if (running) {
+  async function execute(userId: string, priceId: string) {
+    if (isProcessing) {
       return
     }
-    setRunning(true)
+    setIsProcessing(true)
     showToast({
       description: "Please wait while we create your checkout session...",
       title: "Payment Checkout",
@@ -23,9 +23,9 @@ export function useCreateCheckout() {
       location.assign(url)
     } catch (error) {
       showToast({ error: error as Error })
-      setRunning(false)
+      setIsProcessing(false)
     }
   }
 
-  return [run, running] as const
+  return [execute, isProcessing] as const
 }

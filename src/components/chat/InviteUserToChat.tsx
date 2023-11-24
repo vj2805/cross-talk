@@ -1,7 +1,6 @@
 "use client"
 
 import { useInviteUserForm } from "@/hooks/useInviteUserForm"
-import { useIsPro } from "@/hooks/useIsPro"
 import type { Chat } from "@/types/Chat"
 import {
   Button,

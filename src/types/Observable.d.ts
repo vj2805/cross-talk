@@ -1,4 +1,4 @@
-export type Observable<State extends Record<string, any>> =
+export type Observable<State> =
   /* [state, loading, error] */
   | [State, false, undefined]
   | [undefined, false, Error]

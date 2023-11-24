@@ -3,8 +3,8 @@
 import type { User } from "next-auth"
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
 import { ErrorAlert } from "../ui"
-import { ChatRow } from "./ChatListRow"
-import { EmptyChatList } from "./WelcomeToChatPanel"
+import { ChatListRow } from "./ChatListRow"
+import { WelcomeToChatPanel } from "./WelcomeToChatPanel"
 import { ChatListSkeleton } from "./skeletons/ChatListSkeleton"
 
 interface ChatListProps {
@@ -27,11 +27,11 @@ export function ChatList({ user }: ChatListProps) {
   }
 
   if (participatingChats.length === 0) {
-    return <EmptyChatList />
+    return <WelcomeToChatPanel />
   }
 
   return participatingChats.map(chat => (
-    <ChatRow
+    <ChatListRow
       key={chat.id}
       chatId={chat.id}
     />

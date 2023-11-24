@@ -4,7 +4,7 @@ import { ErrorAlert, Spinner } from "../ui"
 import { MessageSquareIcon } from "../ui/icons"
 import { ChatCreateButton } from "./CreateChatButton"
 
-export const EmptyChatList: React.FC = () => {
+export const WelcomeToChatPanel: React.FC = () => {
   const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
 

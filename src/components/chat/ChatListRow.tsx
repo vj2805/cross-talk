@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { ChatRowSkeleton } from "@/components/chat/skeletons/ChatRowSkeleton"
+import { ChatListRowSkeleton } from "@/components/chat/skeletons/ChatRowSkeleton"
 import { ErrorAlert } from "@/components/ui"
 import { UserAvatar } from "@/components/user/UserAvatar"
 import { useLastMessage } from "@/hooks/useLastMessage"
@@ -11,11 +11,11 @@ import type { Chat } from "@/types/Chat"
 import { cn } from "@/utilities/string"
 import { getTimestampString } from "@/utilities/timestamps"
 
-interface ChatRowProps {
+interface ChatListRowProps {
   chatId: Chat["id"]
 }
 
-export function ChatRow({ chatId }: ChatRowProps) {
+export function ChatListRow({ chatId }: ChatListRowProps) {
   const [user, isUserLoading, userError] = useRequiredUser()
   const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
@@ -24,7 +24,7 @@ export function ChatRow({ chatId }: ChatRowProps) {
   const router = useRouter()
 
   if (isUserLoading || isLanguagesLoading || isLastMessageLoading) {
-    return <ChatRowSkeleton />
+    return <ChatListRowSkeleton />
   }
 
   if (userError || languageError || lastMessageError) {

@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui"
 
-export function ChatRowSkeleton() {
+export function ChatListRowSkeleton() {
   return (
     <div className="p-5 flex items-center space-x-2">
       <Skeleton className="h-12 w-12 rounded-full" />

@@ -18,7 +18,7 @@ export function ChatParticipantsBadges({ chat }: ChatParticipantsBadgesProps) {
         "flex flex-wrap justify-center md:justify-start items-center gap-2"
       )}
     >
-      {chat.participantsIds.map(participantId => (
+      {chat?.participantsIds?.map(participantId => (
         <ChatParticipantBadge
           key={participantId}
           participantId={participantId}

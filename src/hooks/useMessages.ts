@@ -1,19 +1,10 @@
 import { useCollectionData } from "react-firebase-hooks/firestore"
 import { sortedMessagesRef } from "@/services/message"
+import type { Message } from "@/types/Message"
+import type { Observable } from "@/types/Observable"
 
 export function useMessages(chatId: string) {
-  const [messages, loading, error] = useCollectionData(
-    sortedMessagesRef(chatId)
-  )
-  if (loading) {
-    return [undefined, "loading", undefined] as const
-  }
-  if (error) {
-    return [undefined, "error", error] as const
-  }
-  if (!messages) {
-    const unexpected = new Error("[useMessages] returned unexpected")
-    return [undefined, "error", unexpected] as const
-  }
-  return [messages, "ready", undefined] as const
+  return useCollectionData(sortedMessagesRef(chatId)) as unknown as Observable<
+    Message[]
+  >
 }

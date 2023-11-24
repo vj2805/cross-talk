@@ -1,4 +1,5 @@
 export type Phrase =
+  | "Admin"
   | "Are you sure?"
   | "Cancel"
   | "Chat"
@@ -8,6 +9,7 @@ export type Phrase =
   | "Deleted Chat with id"
   | "Deleting chat"
   | "End of Messages"
+  | "Enter message in ANY language..."
   | "Get the conversation started..."
   | "Invite a friend"
   | "Let's get you started by creating your first chat!"
@@ -15,6 +17,7 @@ export type Phrase =
   | "No messages yet"
   | "Please wait while we delete the chat..."
   | "Send your first message in ANY language below to get started!"
+  | "Send"
   | "The AI will auto-detect & translate it all for you..."
   | "This will delete the chat for all users."
   | "Welcome!"

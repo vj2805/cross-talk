@@ -1,6 +1,7 @@
 "use client"
 
 import { useParticipant } from "@/hooks/useParticipant"
+import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
 import { cn } from "@/utilities/string"
 import { Badge, ErrorAlert, Skeleton } from "../ui"
 import { UserAvatar } from "../user/UserAvatar"
@@ -16,8 +17,10 @@ export function ChatParticipantBadge({
 }: ChatParticipantBadgeProps) {
   const [participant, isParticipantLoading, participantError] =
     useParticipant(participantId)
+  const [preferredLanguage, isLanguagesLoading, languageError] =
+    usePreferredLanguage()
 
-  if (isParticipantLoading) {
+  if (isParticipantLoading || isLanguagesLoading) {
     return (
       <div className="h-14 p-5 pl-2 flex space-x-2">
         <div className="flex items-center space-x-2">
@@ -31,8 +34,8 @@ export function ChatParticipantBadge({
     )
   }
 
-  if (participantError) {
-    return <ErrorAlert error={participantError} />
+  if (participantError || languageError) {
+    return <ErrorAlert error={[participantError, languageError]} />
   }
 
   return (
@@ -48,7 +51,11 @@ export function ChatParticipantBadge({
       </div>
       <div>
         <p>{participant.email}</p>
-        {isAdmin && <p className="text-indigo-400 animate-pulse">Admin</p>}
+        {isAdmin && (
+          <p className="text-indigo-400 animate-pulse">
+            {preferredLanguage.translate("Admin")}
+          </p>
+        )}
       </div>
     </Badge>
   )

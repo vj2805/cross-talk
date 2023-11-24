@@ -3,8 +3,8 @@
 import { useChat } from "@/hooks/useChat"
 import { ErrorAlert } from "../ui"
 import { ChatAdminControls } from "./ChatAdminControls"
+import { ChatControlsSkeleton } from "./ChatControlsSkeleton"
 import { ChatParticipantsBadges } from "./ChatParticipantsBadges"
-import { ChatControlsSkeleton } from "./skeletons/ChatControlsSkeleton"
 
 interface ChatControlsProps {
   chatId: string

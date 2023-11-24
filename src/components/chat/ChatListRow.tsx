@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { ChatListRowSkeleton } from "@/components/chat/skeletons/ChatRowSkeleton"
+import { ChatListRowSkeleton } from "@/components/chat/ChatRowSkeleton"
 import { ErrorAlert } from "@/components/ui"
 import { UserAvatar } from "@/components/user/UserAvatar"
 import { useLastMessage } from "@/hooks/useLastMessage"

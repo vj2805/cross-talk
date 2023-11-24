@@ -4,8 +4,8 @@ import type { User } from "next-auth"
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
 import { ErrorAlert } from "../ui"
 import { ChatListRow } from "./ChatListRow"
+import { ChatListSkeleton } from "./ChatListSkeleton"
 import { WelcomeToChatPanel } from "./WelcomeToChatPanel"
-import { ChatListSkeleton } from "./skeletons/ChatListSkeleton"
 
 interface ChatListProps {
   user: User

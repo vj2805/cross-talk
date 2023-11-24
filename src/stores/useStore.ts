@@ -1,93 +1,101 @@
+import { shallow } from "zustand/shallow"
 import { createWithEqualityFn } from "zustand/traditional"
 import { getAvailableLanguages } from "@/services/language"
 import type { Language, LanguageCode } from "@/types/Language"
+import type { Observable } from "@/types/Observable"
 import type { Phrase } from "@/types/Phrase"
 import { createPreferredLanguage } from "@/utilities/language"
 
-type Store =
-  | {
-      status: "error"
-      error: Error
+type State = {
+  language: {
+    preferred: {
+      code: LanguageCode
+      name: Language
+      translate: (phrase: Phrase) => string
     }
-  | {
-      status: "loading"
-    }
-  | {
-      status: "ready"
-      language: {
-        preferred: {
-          code: LanguageCode
-          name: Language
-          translate: (phrase: Phrase) => string
-        }
-        supported: Language[]
-        unsupported: Language[]
-      }
-      subscription: {
-        isPro: boolean
-      }
-    }
+    supported: Language[]
+    unsupported: Language[]
+  }
+  subscription: {
+    isPro: boolean
+  }
+}
 
-export const useStore = createWithEqualityFn<Store>()(() => ({
-  status: "loading",
-}))
+type Store = Observable<State>
 
-const getStore = useStore.getState
-const setStore = useStore.setState
+const useInternalStore = createWithEqualityFn<Store>()(() => {
+  return [undefined, true, undefined]
+})
+
+const getStore = useInternalStore.getState
+const setStore = useInternalStore.setState
+
+export function useStore<U>(selector: (state: State) => U) {
+  return useInternalStore(store => {
+    const [state, loading, error] = store
+    if (loading) {
+      return store
+    }
+    if (error) {
+      return store
+    }
+    return [selector(state), loading, error] as const
+  }, shallow)
+}
+
+export function setLoading() {
+  setStore([undefined, true, undefined], true)
+}
+
+export function setError(error: Error) {
+  setStore([undefined, false, error], true)
+}
 
 export function setIsPro(isPro: boolean) {
   const [supported, unsupported] = getAvailableLanguages(isPro)
   setStore(
-    {
-      language: {
-        preferred: createPreferredLanguage(supported[0]),
-        supported,
-        unsupported,
+    [
+      {
+        language: {
+          preferred: createPreferredLanguage(supported[0]),
+          supported,
+          unsupported,
+        },
+        subscription: {
+          isPro,
+        },
       },
-      status: "ready",
-      subscription: {
-        isPro,
-      },
-    },
+      false,
+      undefined,
+    ],
     true
   )
 }
 
 export function setPreferredLanguage(language: Language) {
-  const store = getStore()
-  if (store.status !== "ready") {
+  const [state, loading, error] = getStore()
+  if (loading) {
     return
   }
-  if (!store.language.supported.includes(language)) {
+  if (error) {
+    return
+  }
+  if (!state.language.supported.includes(language)) {
     return
   }
   setStore(
-    {
-      language: {
-        preferred: createPreferredLanguage(language),
-        supported: store.language.supported,
-        unsupported: store.language.unsupported,
+    [
+      {
+        language: {
+          preferred: createPreferredLanguage(language),
+          supported: state.language.supported,
+          unsupported: state.language.unsupported,
+        },
+        subscription: state.subscription,
       },
-    },
-    false
-  )
-}
-
-export function setError(error: Error) {
-  setStore(
-    {
-      error,
-      status: "error",
-    },
-    true
-  )
-}
-
-export function setLoading() {
-  setStore(
-    {
-      status: "loading",
-    },
+      false,
+      undefined,
+    ],
     true
   )
 }

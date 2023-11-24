@@ -18,10 +18,9 @@ import { ErrorAlert } from "../ui"
 
 export const LanguageSelect: React.FC = () => {
   const pathname = usePathname()
-  const [preferred, supported, unsupported, languageStatus, languageError] =
-    useLanguages()
+  const [languages, isLanguagesLoading, languageError] = useLanguages()
 
-  if (languageStatus === "error") {
+  if (languageError) {
     return <ErrorAlert error={languageError} />
   }
 
@@ -36,14 +35,18 @@ export const LanguageSelect: React.FC = () => {
           <SelectTrigger
             className={cn("w-[150px]", "text-black dark:text-white")}
           >
-            <SelectValue placeholder={preferred} />
+            {isLanguagesLoading ? (
+              <Spinner />
+            ) : (
+              <SelectValue placeholder={languages.preferred.name} />
+            )}
           </SelectTrigger>
           <SelectContent>
-            {languageStatus === "loading" ? (
+            {isLanguagesLoading ? (
               <Spinner />
             ) : (
               <>
-                {supported.map(language => (
+                {languages.supported.map(language => (
                   <SelectItem
                     key={language}
                     value={language}
@@ -51,7 +54,7 @@ export const LanguageSelect: React.FC = () => {
                     {language}
                   </SelectItem>
                 ))}
-                {unsupported.map(language => (
+                {languages.unsupported.map(language => (
                   <NextLink
                     key={language}
                     prefetch={false}

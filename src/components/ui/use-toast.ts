@@ -3,7 +3,7 @@ import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
 import type { ErrorWithAction } from "@/errors/ErrorWithAction"
 import { generateId } from "@/utilities/string"
 
-const TOAST_LIMIT = 2
+const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1_000_000
 
 type ToastWithoutId = Omit<ToastProps, "id" | "title"> & {

@@ -43,7 +43,7 @@ export function useInviteUserForm(chat: Chat) {
       if (!isPro && chat.participantsIds.length >= 2) {
         throw new FreePlanLimitExceededError("2 users per chat")
       }
-      await addUserWithEmailToChat(chat.id, user.id)
+      await addUserWithEmailToChat(chat.id, email)
       showToast({
         description: "The user has been added to the chat successfully!",
         title: "Added to chat",

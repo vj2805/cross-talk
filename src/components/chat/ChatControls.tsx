@@ -22,7 +22,14 @@ export function ChatControls({ chatId, userId }: ChatControlsProps) {
           <Skeleton className="h-10 w-28" />
         </div>
         <div className="m-5 p-4 border rounded-xl flex flex-wrap justify-center md:justify-start items-center gap-2">
-          {Array(4).fill(<Skeleton className="h-14 w-56 rounded-full" />)}
+          {Array(4)
+            .fill(null)
+            .map((_, idx) => (
+              <Skeleton
+                key={idx}
+                className="h-14 w-56 rounded-full"
+              />
+            ))}
         </div>
       </>
     )

@@ -8,7 +8,7 @@ import { useIsPro } from "./useIsPro"
 import { useRequiredUser } from "./useRequiredUser"
 
 const AddMessageFormSchema = z.object({
-  input: z.string().min(1).max(100),
+  input: z.string().max(100),
 })
 
 type AddMessageFormData = z.infer<typeof AddMessageFormSchema>
@@ -26,6 +26,9 @@ export function useNewMessageForm(chatId: string) {
       return
     }
     if (isSubscriptionLoading || subscriptionError) {
+      return
+    }
+    if (!input.length) {
       return
     }
     try {

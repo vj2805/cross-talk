@@ -2,7 +2,7 @@
 
 import type { User } from "next-auth"
 import { useMessages } from "@/hooks/useMessages"
-import { ErrorAlert, Spinner } from "../ui"
+import { ErrorAlert, Skeleton } from "../ui"
 import { ChatMessagesList } from "./ChatMessagesList"
 import { ChatConversePanel } from "./StartConversationPanel"
 
@@ -15,7 +15,7 @@ export function ChatMessages({ chatId, user }: ChatMessagesProps) {
   const [messages, isMessagesLoading, messagesError] = useMessages(chatId)
 
   if (isMessagesLoading) {
-    return <Spinner />
+    return <Skeleton className="h-full w-full" />
   }
 
   if (messagesError) {

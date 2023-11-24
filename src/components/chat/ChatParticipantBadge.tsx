@@ -2,7 +2,7 @@
 
 import { useParticipant } from "@/hooks/useParticipant"
 import { cn } from "@/utilities/string"
-import { Badge, ErrorAlert, Spinner } from "../ui"
+import { Badge, ErrorAlert, Skeleton } from "../ui"
 import { UserAvatar } from "../user/UserAvatar"
 
 interface ChatParticipantBadgeProps {
@@ -18,7 +18,17 @@ export function ChatParticipantBadge({
     useParticipant(participantId)
 
   if (isParticipantLoading) {
-    return <Spinner />
+    return (
+      <div className="h-14 p-5 pl-2 flex space-x-2">
+        <div className="flex items-center space-x-2">
+          <Skeleton className="h-10 w-10 rounded-full" />
+          <div>
+            <Skeleton className="h-5 w-24" />
+            <Skeleton className="h-5 w-12" />
+          </div>
+        </div>
+      </div>
+    )
   }
 
   if (participantError) {

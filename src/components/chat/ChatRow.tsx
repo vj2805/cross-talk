@@ -1,8 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { ChatListRowSkeleton } from "@/components/chat/ChatRowSkeleton"
-import { ErrorAlert } from "@/components/ui"
+import { ErrorAlert, Skeleton } from "@/components/ui"
 import { UserAvatar } from "@/components/user/UserAvatar"
 import { useLastMessage } from "@/hooks/useLastMessage"
 import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
@@ -11,11 +10,11 @@ import type { Chat } from "@/types/Chat"
 import { cn } from "@/utilities/string"
 import { getTimestampString } from "@/utilities/timestamps"
 
-interface ChatListRowProps {
+interface ChatRowProps {
   chatId: Chat["id"]
 }
 
-export function ChatListRow({ chatId }: ChatListRowProps) {
+export function ChatRow({ chatId }: ChatRowProps) {
   const [user, isUserLoading, userError] = useRequiredUser()
   const [preferredLanguage, isLanguagesLoading, languageError] =
     usePreferredLanguage()
@@ -24,7 +23,15 @@ export function ChatListRow({ chatId }: ChatListRowProps) {
   const router = useRouter()
 
   if (isUserLoading || isLanguagesLoading || isLastMessageLoading) {
-    return <ChatListRowSkeleton />
+    return (
+      <div className="p-5 flex items-center space-x-2">
+        <Skeleton className="h-12 w-12 rounded-full" />
+        <div className="flex-1 space-y-2">
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-1/4" />
+        </div>
+      </div>
+    )
   }
 
   if (userError || languageError || lastMessageError) {

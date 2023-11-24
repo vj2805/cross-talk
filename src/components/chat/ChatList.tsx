@@ -2,9 +2,8 @@
 
 import type { User } from "next-auth"
 import { useParticipatingChats } from "@/hooks/useParticipatingChats"
-import { ErrorAlert } from "../ui"
-import { ChatListRow } from "./ChatListRow"
-import { ChatListSkeleton } from "./ChatListSkeleton"
+import { ErrorAlert, Skeleton } from "../ui"
+import { ChatRow } from "./ChatRow"
 import { WelcomeToChatPanel } from "./WelcomeToChatPanel"
 
 interface ChatListProps {
@@ -19,7 +18,7 @@ export function ChatList({ user }: ChatListProps) {
   ] = useParticipatingChats(user.id)
 
   if (isParticipatingChatsLoading) {
-    return <ChatListSkeleton />
+    return <Skeleton className="h-full w-full" />
   }
 
   if (participatingChatsError) {
@@ -31,7 +30,7 @@ export function ChatList({ user }: ChatListProps) {
   }
 
   return participatingChats.map(chat => (
-    <ChatListRow
+    <ChatRow
       key={chat.id}
       chatId={chat.id}
     />

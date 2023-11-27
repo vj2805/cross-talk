@@ -13,10 +13,7 @@ export function ChatAdminControls({ chat }: ChatAdminControlsProps) {
     <div className={cn("m-5 mb-0", "flex justify-end space-x-2")}>
       <InviteUserToChat chat={chat} />
       <CopyChatLinkButton chatId={chat.id} />
-      <ChatDeleteButton
-        chatId={chat.id}
-        adminId={chat.adminId}
-      />
+      <ChatDeleteButton chat={chat} />
     </div>
   )
 }

@@ -1,9 +1,7 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-import { deleteChat } from "@/actions/deleteChat"
-import { usePreferredLanguage } from "@/hooks/usePreferredLanguage"
-import { useRequiredUser } from "@/hooks/useRequiredUser"
+import { useDeleteChatButtonState } from "@/hooks/useDeleteChatButtonState"
+import type { Chat } from "@/types/Chat"
 import {
   Button,
   Dialog,
@@ -15,19 +13,22 @@ import {
   DialogTrigger,
   ErrorAlert,
   Skeleton,
-  showToast,
 } from "../ui"
 
 interface ChatDeleteButtonProps {
-  adminId: string
-  chatId: string
+  chat: Chat
 }
 
-export function ChatDeleteButton({ adminId, chatId }: ChatDeleteButtonProps) {
-  const [user, isUserLoading, userError] = useRequiredUser()
-  const [preferredLanguage, isLanguagesLoading, languageError] =
-    usePreferredLanguage()
-  const router = useRouter()
+export function ChatDeleteButton({ chat }: ChatDeleteButtonProps) {
+  const {
+    executeDelete,
+    isDeleting,
+    isLanguagesLoading,
+    isUserLoading,
+    languageError,
+    userError,
+    preferredLanguage,
+  } = useDeleteChatButtonState(chat)
 
   if (isUserLoading || isLanguagesLoading) {
     return <Skeleton className="h-10 w-28" />
@@ -37,43 +38,23 @@ export function ChatDeleteButton({ adminId, chatId }: ChatDeleteButtonProps) {
     return <ErrorAlert error={[userError, languageError]} />
   }
 
-  async function handleDeleteChat() {
-    if (isUserLoading || userError) {
-      return
-    }
-    if (user.id !== adminId) {
-      return
-    }
-    showToast({
-      description: "Please wait while we delete the chat...",
-      title: "Deleting chat",
-    })
-    try {
-      await deleteChat(chatId)
-      showToast({
-        description: `${"Deleted Chat with id"} ${chatId}`,
-        variant: "success",
-      })
-      router.replace("/chat")
-    } catch (error) {
-      showToast({ error: error as Error })
-    }
-  }
-
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="destructive">
-          {preferredLanguage.translate("Delete Chat")}
+        <Button
+          variant="destructive"
+          disabled={isDeleting}
+        >
+          {preferredLanguage?.translate("Delete Chat")}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>
-            {preferredLanguage.translate("Are you sure?")}
+            {preferredLanguage?.translate("Are you sure?")}
           </DialogTitle>
           <DialogDescription>
-            {preferredLanguage.translate(
+            {preferredLanguage?.translate(
               "This will delete the chat for all users."
             )}
           </DialogDescription>
@@ -81,13 +62,14 @@ export function ChatDeleteButton({ adminId, chatId }: ChatDeleteButtonProps) {
         <div className="grid grid-cols-2 space-x-2">
           <Button
             variant="destructive"
-            onClick={handleDeleteChat}
+            disabled={isDeleting}
+            onClick={executeDelete}
           >
-            {preferredLanguage.translate("Delete")}
+            {preferredLanguage?.translate("Delete")}
           </Button>
           <DialogClose asChild>
             <Button variant="outline">
-              {preferredLanguage.translate("Cancel")}
+              {preferredLanguage?.translate("Cancel")}
             </Button>
           </DialogClose>
         </div>

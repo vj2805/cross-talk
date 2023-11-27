@@ -1,6 +1,7 @@
 "use client"
 
 import { useId } from "react"
+import { useLinkToChat } from "@/hooks/useLinkToChat"
 import {
   Button,
   Dialog,
@@ -13,7 +14,6 @@ import {
   DialogTrigger,
   Input,
   Label,
-  showToast,
 } from "../ui"
 import { CopyIcon } from "../ui/icons"
 
@@ -22,22 +22,8 @@ interface CopyChatLinkButtonProps {
 }
 
 export function CopyChatLinkButton({ chatId }: CopyChatLinkButtonProps) {
+  const [linkToChat, copyToClipboard] = useLinkToChat(chatId)
   const id = useId()
-  const linkToChat = createChatLink(chatId)
-
-  async function copyLinkToClipboard() {
-    try {
-      await window.navigator.clipboard.writeText(linkToChat)
-      showToast({
-        description:
-          "Share this to the person you want to chat with! (NOTE: They must be added to the chat to access it!)",
-        title: "Copied Successfully!",
-        variant: "success",
-      })
-    } catch (error) {
-      showToast({ error: error as Error })
-    }
-  }
 
   return (
     <Dialog>
@@ -71,7 +57,7 @@ export function CopyChatLinkButton({ chatId }: CopyChatLinkButtonProps) {
           <Button
             size="sm"
             className="px-3"
-            onClick={copyLinkToClipboard}
+            onClick={copyToClipboard}
           >
             <span className="sr-only">Copy</span>
             <CopyIcon className="h-4 w-4" />
@@ -85,10 +71,4 @@ export function CopyChatLinkButton({ chatId }: CopyChatLinkButtonProps) {
       </DialogContent>
     </Dialog>
   )
-}
-
-function createChatLink(chatId: string) {
-  const protocol = process.env.NODE_ENV === "development" ? "http" : "https"
-  const host = window.location.host
-  return `${protocol}://${host}/chat/${chatId}`
 }

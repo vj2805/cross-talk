@@ -8,9 +8,13 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Add: "Ajouter",
     "Add User To Chat": "Ajouter un utilisateur à la conversation",
     Admin: "Administrateur",
+    "Any user who has been granted access can use this link":
+      "Tout utilisateur disposant d'un accès peut utiliser ce lien",
     "Are you sure?": "Es-tu sûr?",
     Cancel: "Annuler",
     Chat: "Conversation",
+    Close: "Fermer",
+    Copy: "Copie",
     "Create a New Chat": "Créer une nouvelle conversation",
     Delete: "Supprimer",
     "Delete Chat": "Supprimer la conversation",
@@ -24,6 +28,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Invite a friend": "Invite un ami",
     "Let's get you started by creating your first chat!":
       "Commençons par créer votre premier converser!",
+    Link: "Lien",
     "New Chat": "Nouvelle conversation",
     "No messages yet": "Pas encore de messages",
     "Note: They must be registered": "Attention: ils doivent être enregistrés",
@@ -32,6 +37,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Send: "Envoyer",
     "Send your first message in ANY language below to get started!":
       "Envoyez votre premier message dans N'IMPORTE QUELLE langue pour commencer",
+    "Share Link": "Lien de partage",
     "Simply enter another users email address to invite them to this chat!":
       "Entrez simplement l'adresse e-mail d'un autre utilisateur pour l'inviter à cette conversation !",
     "The AI will auto-detect & translate it all for you...":
@@ -44,9 +50,13 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Add: "Hinzufügen",
     "Add User To Chat": "Benutzer zur Konversation hinzufügen",
     Admin: "Administrator",
+    "Any user who has been granted access can use this link":
+      "Jeder Benutzer, dem Zugriff gewährt wurde, kann diesen Link verwenden",
     "Are you sure?": "Bist du sicher?",
     Cancel: "Stornieren",
     Chat: "Gespräch",
+    Close: "Schließen",
+    Copy: "Kopieren",
     "Create a New Chat": "Erstellen Sie eine neue Konversation",
     Delete: "Löschen",
     "Delete Chat": "Konversation löschen",
@@ -60,6 +70,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Invite a friend": "Einen Freund einladen",
     "Let's get you started by creating your first chat!":
       "Beginnen wir mit der Erstellung Ihres ersten Chats!",
+    Link: "Link",
     "New Chat": "Neues Gespräch",
     "No messages yet": "Noch keine Nachrichten",
     "Note: They must be registered": "Hinweis: Sie müssen registriert sein",
@@ -68,6 +79,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Send: "Schicken",
     "Send your first message in ANY language below to get started!":
       "Senden Sie Ihre erste Nachricht in JEDER Sprache, um loszulegen",
+    "Share Link": "Einen Link teilen",
     "Simply enter another users email address to invite them to this chat!":
       "Geben Sie einfach die E-Mail-Adresse eines anderen Benutzers ein, um ihn zu dieser Unterhaltung einzuladen!",
     "The AI will auto-detect & translate it all for you...":
@@ -80,9 +92,13 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Add: "जोड़ना",
     "Add User To Chat": "उपयोगकर्ता को वार्तालाप में जोड़ें",
     Admin: "व्यवस्थापक",
+    "Any user who has been granted access can use this link":
+      "कोई भी उपयोगकर्ता जिसे पहुंच प्रदान की गई है वह इस लिंक का उपयोग कर सकता है",
     "Are you sure?": "क्या आपको यकीन है?",
     Cancel: "रद्द करना",
     Chat: "बातचीत",
+    Close: "बंद करना",
+    Copy: "प्रतिलिपि",
     "Create a New Chat": "एक नई बातचीत बनाएं",
     Delete: "मिटाना",
     "Delete Chat": "बातचीत मिटाएं",
@@ -95,6 +111,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Invite a friend": "किसी मित्र को आमंत्रित करें",
     "Let's get you started by creating your first chat!":
       "आइए अपनी पहली चैट बनाकर शुरुआत करें!",
+    Link: "लिंक",
     "New Chat": "नई बातचीत",
     "No messages yet": "अभी तक कोई संदेश नहीं",
     "Note: They must be registered": "ध्यान दें: उन्हें पंजीकृत होना चाहिए",
@@ -103,6 +120,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Send: "भेजना",
     "Send your first message in ANY language below to get started!":
       "आरंभ करने के लिए अपना पहला संदेश किसी भी भाषा में भेजें",
+    "Share Link": "लिंक शेयर करें",
     "Simply enter another users email address to invite them to this chat!":
       "बस अन्य उपयोगकर्ताओं को इस वार्तालाप में आमंत्रित करने के लिए उनका ईमेल पता दर्ज करें!",
     "The AI will auto-detect & translate it all for you...":
@@ -115,9 +133,13 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Add: "追加",
     "Add User To Chat": "ユーザーを会話に追加",
     Admin: "管理者",
+    "Any user who has been granted access can use this link":
+      "アクセスを許可されたユーザーは誰でもこのリンクを使用できます",
     "Are you sure?": "本気ですか？",
     Cancel: "キャンセル",
     Chat: "会話",
+    Close: "近い",
+    Copy: "コピー",
     "Create a New Chat": "新しい会話を作成する",
     Delete: "消去",
     "Delete Chat": "会話を削除する",
@@ -131,6 +153,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Invite a friend": "友達を招待する",
     "Let's get you started by creating your first chat!":
       "まずは最初のチャットを作成してみましょう",
+    Link: "リンク",
     "New Chat": "新しい会話",
     "No messages yet": "まだメッセージはありません",
     "Note: They must be registered": "注: 登録する必要があります",
@@ -139,6 +162,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Send: "送信",
     "Send your first message in ANY language below to get started!":
       "まずは任意の言語で最初のメッセージを送信してください",
+    "Share Link": "共有リンク",
     "Simply enter another users email address to invite them to this chat!":
       "別のユーザーのメール アドレスを入力するだけで、この会話に招待できます。",
     "The AI will auto-detect & translate it all for you...":
@@ -151,9 +175,13 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Add: "ಸೇರಿಸಿ",
     "Add User To Chat": "ಸಂಭಾಷಣೆಗೆ ಬಳಕೆದಾರರನ್ನು ಸೇರಿಸಿ",
     Admin: "ನಿರ್ವಾಹಕ",
+    "Any user who has been granted access can use this link":
+      "ಪ್ರವೇಶವನ್ನು ಪಡೆದ ಯಾವುದೇ ಬಳಕೆದಾರರು ಈ ಲಿಂಕ್ ಅನ್ನು ಬಳಸಬಹುದು",
     "Are you sure?": "ನೀವು ಖಚಿತವಾಗಿರುವಿರಾ?",
     Cancel: "ರದ್ದುಮಾಡಿ",
     Chat: "ಸಂಭಾಷಣೆ",
+    Close: "ಮುಚ್ಚಿ",
+    Copy: "ನಕಲು ಮಾಡಿ",
     "Create a New Chat": "ಹೊಸ ಸಂವಾದವನ್ನು ರಚಿಸಿ",
     Delete: "ಅಳಿಸಿ",
     "Delete Chat": "ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸು",
@@ -167,6 +195,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Invite a friend": "ಸ್ನೇಹಿತನನ್ನು ಆಮಂತ್ರಿಸು",
     "Let's get you started by creating your first chat!":
       "ನಿಮ್ಮ ಮೊದಲ ಚಾಟ್ ರಚಿಸುವ ಮೂಲಕ ಪ್ರಾರಂಭಿಸೋಣ!",
+    Link: "ಲಿಂಕ್",
     "New Chat": "ಹೊಸ ಸಂಭಾಷಣೆ",
     "No messages yet": "ಇನ್ನೂ ಯಾವುದೇ ಸಂದೇಶಗಳಿಲ್ಲ",
     "Note: They must be registered": "ಗಮನಿಸಿ: ಅವರು ನೋಂದಾಯಿಸಿಕೊಳ್ಳಬೇಕು",
@@ -175,6 +204,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Send: "ಕಳುಹಿಸು",
     "Send your first message in ANY language below to get started!":
       "ಪ್ರಾರಂಭಿಸಲು ಯಾವುದೇ ಭಾಷೆಯಲ್ಲಿ ನಿಮ್ಮ ಮೊದಲ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಿ",
+    "Share Link": "ಲಿಂಕ್ ಹಂಚಿಕೊಳ್ಳಿ",
     "Simply enter another users email address to invite them to this chat!":
       "ಈ ಸಂಭಾಷಣೆಗೆ ಅವರನ್ನು ಆಹ್ವಾನಿಸಲು ಇನ್ನೊಬ್ಬ ಬಳಕೆದಾರರ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ!",
     "The AI will auto-detect & translate it all for you...":
@@ -187,9 +217,13 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Add: "ചേർക്കുക",
     "Add User To Chat": "സംഭാഷണത്തിലേക്ക് ഉപയോക്താവിനെ ചേർക്കുക",
     Admin: "അഡ്മിൻ",
+    "Any user who has been granted access can use this link":
+      "ആക്‌സസ് ലഭിച്ച ഏതൊരു ഉപയോക്താവിനും ഈ ലിങ്ക് ഉപയോഗിക്കാം",
     "Are you sure?": "നിങ്ങൾക്ക് ഉറപ്പാണോ?",
     Cancel: "റദ്ദാക്കുക",
     Chat: "സംഭാഷണം",
+    Close: "അടയ്ക്കുക",
+    Copy: "പകർത്തുക",
     "Create a New Chat": "ഒരു പുതിയ സംഭാഷണം സൃഷ്ടിക്കുക",
     Delete: "ഇല്ലാതാക്കുക",
     "Delete Chat": "സംഭാഷണം നീക്കം ചെയ്യുക",
@@ -202,6 +236,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Invite a friend": "ഒരു സുഹൃത്തിനെ ക്ഷണിക്കുക",
     "Let's get you started by creating your first chat!":
       "നിങ്ങളുടെ ആദ്യ ചാറ്റ് സൃഷ്ടിച്ചുകൊണ്ട് നമുക്ക് ആരംഭിക്കാം!",
+    Link: "ലിങ്ക്",
     "New Chat": "പുതിയ സംഭാഷണം",
     "No messages yet": "ഇതുവരെ സന്ദേശങ്ങളൊന്നുമില്ല",
     "Note: They must be registered": "ശ്രദ്ധിക്കുക: അവ രജിസ്റ്റർ ചെയ്തിരിക്കണം",
@@ -210,6 +245,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Send: "അയക്കുക",
     "Send your first message in ANY language below to get started!":
       "ആരംഭിക്കുന്നതിന് ഏത് ഭാഷയിലും നിങ്ങളുടെ ആദ്യ സന്ദേശം അയയ്‌ക്കുക",
+    "Share Link": "ലിങ്ക് പങ്കിടുക",
     "Simply enter another users email address to invite them to this chat!":
       "ഈ സംഭാഷണത്തിലേക്ക് ക്ഷണിക്കുന്നതിന് മറ്റൊരു ഉപയോക്താക്കളുടെ ഇമെയിൽ വിലാസം നൽകുക!",
     "The AI will auto-detect & translate it all for you...":
@@ -222,9 +258,13 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Add: "Agregar",
     "Add User To Chat": "Agregar usuario a la conversación",
     Admin: "Administrador",
+    "Any user who has been granted access can use this link":
+      "Cualquier usuario al que se le haya concedido acceso puede utilizar este enlace",
     "Are you sure?": "¿Estas seguro?",
     Cancel: "Cancelar",
     Chat: "Conversación",
+    Close: "Cerca",
+    Copy: "Copiar",
     "Create a New Chat": "Crear una nueva conversación",
     Delete: "Borrar",
     "Delete Chat": "Eliminar la conversación",
@@ -238,6 +278,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Invite a friend": "Invitar a un amigo",
     "Let's get you started by creating your first chat!":
       "¡Comencemos creando tu primer chat!",
+    Link: "Enlace",
     "New Chat": "Nueva conversación",
     "No messages yet": "No hay mensajes todavía",
     "Note: They must be registered": "Nota: Deben estar registrados",
@@ -246,6 +287,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Send: "Enviar",
     "Send your first message in ANY language below to get started!":
       "Envía tu primer mensaje en CUALQUIER idioma para comenzar",
+    "Share Link": "Compartir enlace",
     "Simply enter another users email address to invite them to this chat!":
       "¡Simplemente ingrese la dirección de correo electrónico de otro usuario para invitarlo a esta conversación!",
     "The AI will auto-detect & translate it all for you...":
@@ -258,9 +300,13 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Add: "சேர்",
     "Add User To Chat": "அரட்டையுள் உறுப்பினரைச் சேர்",
     Admin: "நிர்வாகி",
+    "Any user who has been granted access can use this link":
+      "அனுமதி வழங்கப்பட்ட எந்தவொரு பயனரும் இந்த இணைப்பைப் பயன்படுத்தலாம்",
     "Are you sure?": "உறுதியாகவா?",
     Cancel: "ரத்து செய்",
     Chat: "அரட்டை",
+    Close: "மூடு",
+    Copy: "நகலெடு",
     "Create a New Chat": "புது அரட்டையை உருவாக்கு",
     Delete: "அழி",
     "Delete Chat": "அரட்டை அழி",
@@ -273,6 +319,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Invite a friend": "நண்பரை அழை",
     "Let's get you started by creating your first chat!":
       "உங்கள் முதல் அரட்டையை உருவாக்குவதன் மூலம் தொடங்குவோம்!",
+    Link: "இணைப்பு",
     "New Chat": "புது அரட்டை",
     "No messages yet": "இதுவரை எந்தத் தகவல்களும் இல்லை",
     "Note: They must be registered":
@@ -282,6 +329,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Send: "அனுப்பு",
     "Send your first message in ANY language below to get started!":
       "தொடங்குவதற்கு உங்கள் முதல் தகவலை ஏதோர் மொழியிலும் அனுப்பவும்",
+    "Share Link": "இணைப்பைப் பகிர்",
     "Simply enter another users email address to invite them to this chat!":
       "இந்த அரட்டைக்கு அழைக்க மற்றொரு பயனர் மின்னஞ்சல் முகவரியை உள்ளிடவும்!",
     "The AI will auto-detect & translate it all for you...":
@@ -294,9 +342,13 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Add: "జోడించు",
     "Add User To Chat": "సంభాషణకు వినియోగదారుని జోడించండి",
     Admin: "అడ్మిన్",
+    "Any user who has been granted access can use this link":
+      "యాక్సెస్ మంజూరు చేయబడిన ఏ వినియోగదారు అయినా ఈ లింక్‌ని ఉపయోగించవచ్చు",
     "Are you sure?": "మీరు చెప్పేది నిజమా?",
     Cancel: "రద్దు చేయండి",
     Chat: "సంభాషణ",
+    Close: "దగ్గరగా",
+    Copy: "కాపీ చేయండి",
     "Create a New Chat": "కొత్త సంభాషణను సృష్టించండి",
     Delete: "తొలగించు",
     "Delete Chat": "సంభాషణను తొలగించండి",
@@ -310,6 +362,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     "Invite a friend": "స్నేహితుడిని ఆహ్వానించు",
     "Let's get you started by creating your first chat!":
       "మీ మొదటి చాట్‌ని సృష్టించడం ద్వారా ప్రారంభించండి!",
+    Link: "లింక్",
     "New Chat": "కొత్త సంభాషణ",
     "No messages yet": "ఇంకా సందేశాలు లేవు",
     "Note: They must be registered": "గమనిక: వారు తప్పనిసరిగా నమోదు చేయబడాలి",
@@ -318,6 +371,7 @@ const TRANSLATIONS: Record<TranslatingLanguage, Record<Phrase, string>> = {
     Send: "పంపండి",
     "Send your first message in ANY language below to get started!":
       "ప్రారంభించడానికి మీ మొదటి సందేశాన్ని ఏదైనా భాషలో పంపండి",
+    "Share Link": "షేర్ లింక్",
     "Simply enter another users email address to invite them to this chat!":
       "ఈ సంభాషణకు వారిని ఆహ్వానించడానికి మరొక వినియోగదారుల ఇమెయిల్ చిరునామాను నమోదు చేయండి!",
     "The AI will auto-detect & translate it all for you...":

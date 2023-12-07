@@ -8,7 +8,7 @@ export function createPreferredLanguage(language: Language): PreferredLanguage {
     code: getLanguageCode(language),
     name: language,
     translate(phase) {
-      return getTranslation(phase, this.name)
+      return getTranslation(phase, language)
     },
   }
 }

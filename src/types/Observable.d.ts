@@ -1,5 +1,4 @@
 export type Observable<State> =
-  /* [state, loading, error] */
-  | [State, false, undefined]
-  | [undefined, false, Error]
-  | [undefined, true, undefined]
+  | [state: State, loading: false, error: undefined]
+  | [state: undefined, loading: false, error: Error]
+  | [state: undefined, loading: true, error: undefined]

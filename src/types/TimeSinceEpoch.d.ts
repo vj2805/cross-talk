@@ -1,4 +1,4 @@
-export interface Timestamp {
+export interface TimeSinceEpoch {
   seconds: number
   nanoseconds: number
 }

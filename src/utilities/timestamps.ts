@@ -1,8 +1,6 @@
-import { Timestamp as FirebaseTimestamp } from "firebase/firestore"
-import type { Timestamp } from "@/types/Timestamp"
+import { Timestamp } from "firebase/firestore"
+import type { TimeSinceEpoch } from "@/types/TimeSinceEpoch"
 
-export function getTimestampString(timestamp: Timestamp) {
-  return new FirebaseTimestamp(timestamp.seconds, timestamp.nanoseconds)
-    .toDate()
-    .toLocaleString()
+export function getTimestampString(time: TimeSinceEpoch) {
+  return new Timestamp(time.seconds, time.nanoseconds).toDate().toLocaleString()
 }

@@ -34,6 +34,7 @@ export const SyncProvider: React.FC<
     return syncIsPro(session.user.id, setIsPro, setError)
   }, [session, status])
 
+  // Subscribing to participating chats
   useEffect(() => {
     if (!user) {
       return

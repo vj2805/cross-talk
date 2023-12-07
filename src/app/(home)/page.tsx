@@ -72,6 +72,7 @@ export default function HomePage() {
                 alt="App Screenshot"
                 width={2432}
                 height={1442}
+                quality={100}
                 className={cn(
                   "rounded-md shadow-2xl",
                   "ring-1 ring-gray-900/10"

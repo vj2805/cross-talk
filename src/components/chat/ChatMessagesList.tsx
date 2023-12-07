@@ -86,7 +86,7 @@ export function ChatMessagesList({ messages, user }: ChatMessagesListProps) {
                       message.input}
                   </p>
                 ) : (
-                  <Skeleton className="h-2 w-1/5" />
+                  <Spinner />
                 )}
               </div>
             </div>
